@@ -7,11 +7,11 @@ public class Projectile : MonoBehaviour
 {
     [Header("----- Projectile Stats -----")]
     //the base damage this kind of shot has
-    [SerializeField] int shotDmg;
+    public int shotDmg;
     //the chance this shot has of being a critical hit (doubling the damage)
     [SerializeField] int critChance;
     //the amount of time this projectile takes to disappear (in seconds)
-    [SerializeField] int bulletLife;
+    [SerializeField] float bulletLife;
     //the speed that the projectile travels at
     [SerializeField] int bulletSpeed;
 
