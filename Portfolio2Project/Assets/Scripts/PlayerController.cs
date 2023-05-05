@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour, IDamage
     //the distance the player can shoot
     [SerializeField] int ShootRange;
     //the cooldown the player has between shots
-    [SerializeField] int ShotCooldown;
+    [SerializeField] float ShotCooldown;
     //checks if the player is currently shooting
     bool isShooting;
 
