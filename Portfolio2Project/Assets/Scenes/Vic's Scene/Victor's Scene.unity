@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &36890274 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8060328068600632496, guid: 21d34616d4bd55d46ad893c2322ce70a, type: 3}
+  m_PrefabInstance: {fileID: 8060328068570411538}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &272812774
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,6 +307,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5693028555803662323, guid: 02cb2ca703ab996439308c5b9411e3dc, type: 3}
+      propertyPath: ShootRange
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693028555803662323, guid: 02cb2ca703ab996439308c5b9411e3dc, type: 3}
+      propertyPath: projectile
+      value: 
+      objectReference: {fileID: 36890274}
+    - target: {fileID: 5693028555803662323, guid: 02cb2ca703ab996439308c5b9411e3dc, type: 3}
+      propertyPath: ShotCooldown
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5693028555803662330, guid: 02cb2ca703ab996439308c5b9411e3dc, type: 3}
       propertyPath: m_RootOrder
       value: 0
