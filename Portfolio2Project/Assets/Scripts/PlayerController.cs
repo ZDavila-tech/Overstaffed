@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour, IDamage
     public void TakeDamage(int amount)
     {
         //adds the amount to the player's hp (adds a negative if taking damage)
-        iHP += amount;
+        iHP -= amount;
     }
 
 
