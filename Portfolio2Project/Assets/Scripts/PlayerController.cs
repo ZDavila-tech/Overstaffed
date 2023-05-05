@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
      IEnumerator Shoot()
     {
-       isShooting = false;
+       isShooting = true;
 
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, ShootRange))
