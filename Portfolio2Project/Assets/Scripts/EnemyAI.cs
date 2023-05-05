@@ -28,6 +28,7 @@ public class EnemyAI : MonoBehaviour
     {
         //navAgent.SetDestination(GameManager.instance.player.transform.position);//uses the GameManager to find the player and being moving towards them
         navAgent.SetDestination(gameManager.instance.player.transform.position);//uses the GameManager to find the player and being moving towards them
+        navAgent.SetDestination(gameManager.instance.player.transform.position);
         if(!bIsShooting){//determines if the Shoot IEnumerator is currently active
             StartCoroutine(Shoot());//if not, begin shooting at the player
         }
