@@ -37,9 +37,9 @@ public class Projectile : MonoBehaviour
         {
             //check if critical change for this weapon is more than or equal the random generated number between 0 and 100 to see if it will or won't be a critial hit
             if(critChance >= Random.Range(0, 100)) //if it is
-             damageable.TakeDamage(-(2*shotDmg));
+             damageable.TakeDamage(2*shotDmg);
             else
-             damageable.TakeDamage(-shotDmg); //if it's not
+             damageable.TakeDamage(shotDmg); //if it's not
         }
 
         Destroy(gameObject);

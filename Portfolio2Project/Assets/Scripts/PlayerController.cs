@@ -24,23 +24,17 @@ public class PlayerController : MonoBehaviour, IDamage
     private int iHPOriginal;
 
     [Header("----- Player Weapon -----")]
-    //the projectile shot buy the player
-    //[SerializeField] GameObject projectile;
-    //the projectile's script
-    //Projectile projectileScript;
     //the distance the player can shoot
     [SerializeField] int ShootRange;
     //the cooldown the player has between shots
     [SerializeField] float ShotCooldown;
     //checks if the player is currently shooting
     bool isShooting;
-    //while we're still using raycast
-    [SerializeField] int shootDmg;
 
     // Start is called before the first frame update
     void Start()
     {
-        //projectileScript = projectile.GetComponent<Projectile>();
+        
     }
 
     // Update is called once per frame
@@ -97,7 +91,7 @@ public class PlayerController : MonoBehaviour, IDamage
     public void TakeDamage(int amount)
     {
         //adds the amount to the player's hp (adds a negative if taking damage)
-        iHP += amount;
+        iHP -= amount;
     }
 
 
@@ -111,7 +105,7 @@ public class PlayerController : MonoBehaviour, IDamage
             IDamage damageable = hit.collider.GetComponent<IDamage>();
             if (damageable != null)
             {
-                damageable.TakeDamage(shootDmg);
+                damageable.TakeDamage(2);
             }
         }
 
