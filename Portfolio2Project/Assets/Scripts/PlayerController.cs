@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] float ShotCooldown;
     //checks if the player is currently shooting
     bool isShooting;
+    //while we're still using raycast
+    [SerializeField] int shootDmg;
 
     // Start is called before the first frame update
     void Start()
@@ -109,7 +111,7 @@ public class PlayerController : MonoBehaviour, IDamage
             IDamage damageable = hit.collider.GetComponent<IDamage>();
             if (damageable != null)
             {
-                damageable.TakeDamage(projectileScript.shotDmg);
+                damageable.TakeDamage(shootDmg);
             }
         }
 
