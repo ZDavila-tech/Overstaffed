@@ -62,12 +62,12 @@ public class PlayerController : MonoBehaviour
 
     void Sprint()
     {
-        if (Input.GetButtonDown("Sprint"))
+        if (!isSprinting && Input.GetButtonDown("Sprint"))
         {
             isSprinting = true;
             playerSpeed *= sprintMod;
         }
-        else if (Input.GetButtonUp("Sprint"))
+        else if (isSprinting && Input.GetButtonUp("Sprint"))
         {
             isSprinting = false;
             playerSpeed /= sprintMod;
