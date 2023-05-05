@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
         Sprint();
 
-        if (Input.GetButtonDown("Shoot") && !isShooting)
+        if (Input.GetButton("Shoot") && !isShooting)
         {
             StartCoroutine(Shoot());
         }
