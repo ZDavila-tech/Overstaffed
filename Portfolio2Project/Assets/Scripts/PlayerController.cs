@@ -25,9 +25,9 @@ public class PlayerController : MonoBehaviour, IDamage
 
     [Header("----- Player Weapon -----")]
     //the projectile shot buy the player
-    [SerializeField] GameObject projectile;
+    //[SerializeField] GameObject projectile;
     //the projectile's script
-    Projectile projectileScript;
+    //Projectile projectileScript;
     //the distance the player can shoot
     [SerializeField] int ShootRange;
     //the cooldown the player has between shots
@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-        projectileScript = projectile.GetComponent<Projectile>();
+        //projectileScript = projectile.GetComponent<Projectile>();
     }
 
     // Update is called once per frame
