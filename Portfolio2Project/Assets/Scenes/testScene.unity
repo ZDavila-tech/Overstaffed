@@ -508,6 +508,10 @@ PrefabInstance:
       value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 6374267713049937826, guid: dca165a5e6a6d0c4f9bc806c89cb6e5c, type: 3}
+      propertyPath: shootDmg
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6374267713049937826, guid: dca165a5e6a6d0c4f9bc806c89cb6e5c, type: 3}
       propertyPath: ShootRange
       value: 152
       objectReference: {fileID: 0}
@@ -721,7 +725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3578921f273289e4d83e6cabbda1655b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rModel: {fileID: 1844109053}
+  rModel: {fileID: 0}
   navAgent: {fileID: 1844109050}
   iHP: 3
   iShootDistance: 100
