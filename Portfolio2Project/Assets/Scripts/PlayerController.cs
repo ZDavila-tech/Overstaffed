@@ -14,8 +14,6 @@ public class PlayerController : MonoBehaviour, IDamage
     [Range(10, 50)][SerializeField] float gravityValue;
     [Range(1, 3)][SerializeField] int maxJumps;
     [Range(2, 5)][SerializeField] float sprintMod;
-    //player's health
-    [Range(1, 50)][SerializeField] float Hp;
 
 
     private int jumpsUsed;
@@ -97,7 +95,7 @@ public class PlayerController : MonoBehaviour, IDamage
     public void TakeDamage(int amount)
     {
         //adds the amount to the player's hp (adds a negative if taking damage)
-        Hp += amount;
+        iHP += amount;
     }
 
 

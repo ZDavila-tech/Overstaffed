@@ -55,7 +55,7 @@ public class gameManager : MonoBehaviour
         Time.timeScale = timeScaleOrig;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        showActiveMenu();
+        hideActiveMenu();
     }
 
     public void youLose()
