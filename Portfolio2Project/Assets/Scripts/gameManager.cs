@@ -10,7 +10,7 @@ public class gameManager : MonoBehaviour
     [Header("------ Player Stuff -----")]
 
     public GameObject player;
-    public playerController playerScript;
+    public PlayerController playerScript;
     public GameObject playerRespawn;
 
     [Header("----- UI Stuff -----")]
@@ -26,8 +26,8 @@ public class gameManager : MonoBehaviour
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
         timeScaleOrig = Time.timeScale;
-        playerScript = player.GetComponent<playerController>();
-        playerRespawn = GameObject.FindGameObjectsWithTag("PlayerRespawn");
+        playerScript = player.GetComponent<PlayerController>();
+        playerRespawn = GameObject.FindGameObjectWithTag("PlayerRespawn");
     }
 
     // Update is called once per frame
