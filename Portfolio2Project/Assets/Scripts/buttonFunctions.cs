@@ -1,18 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class buttonFunctions : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    //Resume the game
+   public void resume()
     {
-        
+        gameManager.instance.unPauseState();
     }
 
-    // Update is called once per frame
-    void Update()
+    //Restarts the level from the beginning
+    public void restart()
     {
-        
+        gameManager.instance.unPauseState();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    //Quits the game; doesn't work unless built
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
+    //Respawn player from respawn location
+    public void respawnPLayer()
+    {
+        gameManager.instance.unPauseState();
+        gameManager.instance.playerScript.spawnPlayer();
+    }
+
+    //Go to next level; doesn't work until next level is made
+    public void nextLevel()
+    {
+
     }
 }

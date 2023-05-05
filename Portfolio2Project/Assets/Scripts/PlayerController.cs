@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [SerializeField] CharacterController controller;
 
     [Header("----- Player Stats -----")]
+    [Range(1, 25)][SerializeField] int iHP;
     [Range(1, 20)][SerializeField] float playerSpeed;
     [Range(1, 20)][SerializeField] float jumpHeight;
     [Range(10, 50)][SerializeField] float gravityValue;
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour, IDamage
     private Vector3 playerVelocity;
     private bool groundedPlayer;
     private bool isSprinting;
+    private int iHPOriginal;
 
     [Header("----- Player Weapon -----")]
     //the projectile shot buy the player
@@ -72,18 +74,17 @@ public class PlayerController : MonoBehaviour, IDamage
 
     void Sprint()
     {
-        if (Input.GetButtonDown("Sprint"))
+        if (!isSprinting && Input.GetButtonDown("Sprint"))
         {
             isSprinting = true;
             playerSpeed *= sprintMod;
         }
-        else if (Input.GetButtonUp("Sprint"))
+        else if (isSprinting && Input.GetButtonUp("Sprint"))
         {
             isSprinting = false;
             playerSpeed /= sprintMod;
         }
     }
-
     public void TakeDamage(int amount)
     {
         //adds the amount to the player's hp (adds a negative if taking damage)
@@ -109,5 +110,12 @@ public class PlayerController : MonoBehaviour, IDamage
 
         isShooting = false;
     }*/
+    public void spawnPlayer()
+    {
+        controller.enabled = false;
+        transform.position = gameManager.instance.playerRespawn.transform.position;
+        iHP = iHPOriginal;
+        controller.enabled = true;
+    }
 }
 
