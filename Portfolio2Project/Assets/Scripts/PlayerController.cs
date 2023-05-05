@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void spawnPlayer(){
+    public void spawnPlayer(){
         controller.enabled = false;
         transform.position = gameManager.instance.playerRespawn.transform.position;
         iHP = iHPOriginal;

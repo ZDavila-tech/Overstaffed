@@ -31,10 +31,6 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.playerScript.spawnPlayer();
     }
 
-    public void playerHeal(int amount)
-    {
-        gameManager.instance.playerScript.playerHeal(amount);
-    }
     //Go to next level; doesn't work until next level is made
     public void nextLevel()
     {
