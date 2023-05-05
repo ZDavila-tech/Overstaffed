@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] CharacterController controller;
 
     [Header("----- Player Stats -----")]
+    [Range(1, 25)][SerializeField] int iHP;
     [Range(1, 20)][SerializeField] float playerSpeed;
     [Range(1, 20)][SerializeField] float jumpHeight;
     [Range(10, 50)][SerializeField] float gravityValue;
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 playerVelocity;
     private bool groundedPlayer;
     private bool isSprinting;
+    private int iHPOriginal;
 
     // Start is called before the first frame update
     void Start()
@@ -72,6 +74,13 @@ public class PlayerController : MonoBehaviour
             isSprinting = false;
             playerSpeed /= sprintMod;
         }
+    }
+
+    void spawnPlayer(){
+        controller.enabled = false;
+        transform.position = gameManager.instance.playerRespawn.transform.position;
+        iHP = iHPOriginal;
+        controller.enabled = true;
     }
 }
 
