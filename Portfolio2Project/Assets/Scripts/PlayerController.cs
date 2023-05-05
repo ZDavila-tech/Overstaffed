@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamage
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     [Range(10, 50)][SerializeField] float gravityValue;
     [Range(1, 3)][SerializeField] int maxJumps;
     [Range(2, 5)][SerializeField] float sprintMod;
+    //player's health
+    [Range(1, 50)][SerializeField] float Hp;
 
 
     private int jumpsUsed;
@@ -20,6 +22,14 @@ public class PlayerController : MonoBehaviour
     private Vector3 playerVelocity;
     private bool groundedPlayer;
     private bool isSprinting;
+
+    [Header("----- Player Weapon -----")]
+    //the projectile shot buy the player
+    [SerializeField] GameObject projectile;
+    //the cooldown the player has between shots
+    [SerializeField] int ShotCooldown;
+    //checks if the player is currently shooting
+    bool isShooting;
 
     // Start is called before the first frame update
     void Start()
@@ -73,5 +83,31 @@ public class PlayerController : MonoBehaviour
             playerSpeed /= sprintMod;
         }
     }
+
+    public void TakeDamage(int amount)
+    {
+        //adds the amount to the player's hp (adds a negative if taking damage)
+        Hp += amount;
+    }
+
+
+   /*  IEnumerator Shoot()
+    {
+       isShooting = false;
+
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistace))
+        {
+            IDamage damageable = hit.collider.GetComponent<IDamage>();
+            if (damageable != null)
+            {
+                damageable.TakeDamage();
+            }
+        }
+
+        yield return new WaitForSeconds(ShotCooldown);
+
+        isShooting = false;
+    }*/
 }
 

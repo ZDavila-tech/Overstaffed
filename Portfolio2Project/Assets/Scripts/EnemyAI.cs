@@ -26,7 +26,7 @@ public class EnemyActions : MonoBehaviour
     
     void Update()
     {
-        navAgent.SetDestination(GameManager.instance.player.transform.position);//uses the GameManager to find the player and being moving towards them
+        //navAgent.SetDestination(GameManager.instance.player.transform.position);//uses the GameManager to find the player and being moving towards them
         if(!bIsShooting){//determines if the Shoot IEnumerator is currently active
             StartCoroutine(Shoot());//if not, begin shooting at the player
         }
