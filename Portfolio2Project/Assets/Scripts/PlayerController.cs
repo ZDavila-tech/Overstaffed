@@ -28,6 +28,10 @@ public class PlayerController : MonoBehaviour, IDamage
     [Header("----- Player Weapon -----")]
     //the projectile shot buy the player
     [SerializeField] GameObject projectile;
+    //the projectile's script
+    Projectile projectileScript;
+    //the distance the player can shoot
+    [SerializeField] int ShootRange;
     //the cooldown the player has between shots
     [SerializeField] int ShotCooldown;
     //checks if the player is currently shooting
@@ -36,7 +40,7 @@ public class PlayerController : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-
+        projectileScript = projectile.GetComponent<Projectile>();
     }
 
     // Update is called once per frame
@@ -45,6 +49,11 @@ public class PlayerController : MonoBehaviour, IDamage
         Movement();
 
         Sprint();
+
+        if (Input.GetButtonDown("Shoot") && !isShooting)
+        {
+            StartCoroutine(Shoot());
+        }
     }
 
     void Movement()
@@ -92,24 +101,26 @@ public class PlayerController : MonoBehaviour, IDamage
     }
 
 
-   /*  IEnumerator Shoot()
+     IEnumerator Shoot()
     {
        isShooting = false;
 
         RaycastHit hit;
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDistace))
+        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, ShootRange))
         {
             IDamage damageable = hit.collider.GetComponent<IDamage>();
             if (damageable != null)
             {
-                damageable.TakeDamage();
+                damageable.TakeDamage(projectileScript.shotDmg);
             }
         }
 
         yield return new WaitForSeconds(ShotCooldown);
 
         isShooting = false;
-    }*/
+    }
+
+
     public void spawnPlayer()
     {
         controller.enabled = false;
