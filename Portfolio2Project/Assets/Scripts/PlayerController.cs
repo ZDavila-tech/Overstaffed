@@ -91,7 +91,11 @@ public class PlayerController : MonoBehaviour, IDamage
     public void TakeDamage(int amount)
     {
         //adds the amount to the player's hp (adds a negative if taking damage)
+
         iHP -= amount;
+        if(iHP <= 0){
+            gameManager.instance.youLose();
+        }
     }
 
 

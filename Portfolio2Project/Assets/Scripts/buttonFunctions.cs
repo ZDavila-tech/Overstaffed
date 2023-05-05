@@ -27,8 +27,8 @@ public class buttonFunctions : MonoBehaviour
     //Respawn player from respawn location
     public void respawnPLayer()
     {
-        gameManager.instance.unPauseState();
         gameManager.instance.playerScript.spawnPlayer();
+        gameManager.instance.unPauseState();
     }
 
     //Go to next level; doesn't work until next level is made
