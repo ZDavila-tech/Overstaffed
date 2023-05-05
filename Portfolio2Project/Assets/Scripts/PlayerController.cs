@@ -15,9 +15,6 @@ public class PlayerController : MonoBehaviour
     [Range(2, 5)][SerializeField] float sprintMod;
 
 
-
-
-
     private int jumpsUsed;
     private Vector3 move;
     private Vector3 playerVelocity;
