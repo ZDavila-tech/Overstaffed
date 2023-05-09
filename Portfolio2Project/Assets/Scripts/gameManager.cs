@@ -18,6 +18,7 @@ public class gameManager : MonoBehaviour
     public GameObject activeMenu;
     public GameObject loseMenu;
     public GameObject winMenu;
+    public GameObject flashDamage;
 
     public bool isPaused;
     float timeScaleOrig;
@@ -40,6 +41,8 @@ public class gameManager : MonoBehaviour
             showActiveMenu();
             pauseState();
         }
+        
+       
     }
 
     public void pauseState()
@@ -66,9 +69,9 @@ public class gameManager : MonoBehaviour
         showActiveMenu();
     }
 
-    public void updateGameGoal()
+    public void updateGameGoal(int amount)
     {
-
+        StartCoroutine(youWin());
     }
 
     public void showActiveMenu() //shows active menu if there is one.
@@ -88,11 +91,23 @@ public class gameManager : MonoBehaviour
         }        
     }
 
+    public void showDamage()
+    {
+        StartCoroutine(flashRed());
+    }
+
     IEnumerator youWin()
     {
         yield return new WaitForSeconds(1);
         activeMenu = winMenu;
         showActiveMenu();
         pauseState();
+    }
+
+    IEnumerator flashRed()
+    {
+        flashDamage.SetActive(true);
+        yield return new WaitForSeconds(1);
+        flashDamage.SetActive(false);
     }
 }
