@@ -138,6 +138,7 @@ public class PlayerController : MonoBehaviour, IDamage
         controller.enabled = false;
         transform.position = gameManager.instance.playerRespawn.transform.position;
         iHP = iHPOriginal;
+        gameManager.instance.ResetHpBar();
         controller.enabled = true;
     }
 
