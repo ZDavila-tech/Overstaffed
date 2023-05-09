@@ -97,8 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32ffcfe1f9ccc104786a0411f1500734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensHor: 300
-  sensVert: 400
+  sensHor: 1000
+  sensVert: 1000
   lockVerMin: -75
   lockVerMax: 75
   invertY: 0
@@ -116,6 +116,7 @@ GameObject:
   - component: {fileID: 6374267713049937830}
   - component: {fileID: 6374267713049937827}
   - component: {fileID: 6374267713049937826}
+  - component: {fileID: 847792135}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -234,12 +235,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 6374267713049937827}
+  skills: {fileID: 847792135}
   iHP: 10
-  playerSpeed: 2
-  jumpHeight: 5
-  gravityValue: 10
+  playerSpeed: 7
+  jumpHeight: 6
+  gravityValue: 12
   maxJumps: 1
   sprintMod: 2
-  Hp: 10
-  projectile: {fileID: 0}
+  ShootRange: 0
   ShotCooldown: 0
+--- !u!114 &847792135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6374267713049937833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0685e4768be3224ea467e7ef764b700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 6374267713049937827}
+  DashSpeed: 21.9
+  DashTime: 0.352
