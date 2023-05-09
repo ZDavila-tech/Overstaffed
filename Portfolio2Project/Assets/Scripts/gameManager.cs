@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class gameManager : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class gameManager : MonoBehaviour
     public GameObject loseMenu;
     public GameObject winMenu;
     public GameObject flashDamage;
+    [SerializeField] Slider hpBar;
+    [SerializeField] Text hpText;
 
     public bool isPaused;
     float timeScaleOrig;
@@ -37,12 +40,12 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Cancel") && activeMenu == null)
+        if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
             activeMenu = pauseMenu;
             showActiveMenu();
             pauseState();
-        }       
+        }
     }
 
     public void pauseState()
@@ -86,7 +89,7 @@ public class gameManager : MonoBehaviour
         {
             activeMenu.SetActive(false);
             activeMenu = null;
-        }        
+        }
     }
 
     public void showDamage()
@@ -106,5 +109,11 @@ public class gameManager : MonoBehaviour
         flashDamage.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         flashDamage.SetActive(false);
+    }
+
+    public void UpdateHealthBar(int amount)
+    {
+        hpBar.value -= (amount / playerScript.getOriginalHealth());
+        hpText.text = "HP: " + playerScript.getHealth();
     }
 }
