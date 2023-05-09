@@ -18,6 +18,7 @@ public class gameManager : MonoBehaviour
     public GameObject activeMenu;
     public GameObject loseMenu;
     public GameObject winMenu;
+    public GameObject flashDamage;
 
     public bool isPaused;
     float timeScaleOrig;
@@ -94,5 +95,12 @@ public class gameManager : MonoBehaviour
         activeMenu = winMenu;
         showActiveMenu();
         pauseState();
+    }
+
+    IEnumerator flashRed()
+    {
+        flashDamage.SetActive(true);
+        yield return new WaitForSeconds(1);
+        flashDamage.SetActive(false);
     }
 }
