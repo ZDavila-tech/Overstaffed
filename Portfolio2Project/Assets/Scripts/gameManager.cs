@@ -75,9 +75,10 @@ public class gameManager : MonoBehaviour
 
     public void youLose()
     {
-        pauseState();
+        flashDamage.SetActive(false);
         activeMenu = loseMenu;
         showActiveMenu();
+        pauseState();
     }
 
     public void showActiveMenu() //shows active menu if there is one.
