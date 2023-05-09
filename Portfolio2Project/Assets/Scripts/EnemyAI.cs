@@ -36,12 +36,12 @@ public class EnemyAI : MonoBehaviour, IDamage
     void Start()
     {
         cOrigColor = rModel.material.color;
-        gameManager.instance.updateGameGoal(1);
     }
 
     
     void Update()
     {
+
         if((bPlayerInRange || bBeenShot) && CanSeePlayer())
         {
             AttackPlayer();
@@ -50,17 +50,18 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     bool CanSeePlayer()
     {
-        playerDir = gameManager.instance.transform.position - tHeadPos.position;
+        playerDir = gameManager.instance.player.transform.position - tHeadPos.position;
         fAngleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
 
         Debug.DrawRay(tHeadPos.position, playerDir);
-        Debug.Log(fAngleToPlayer);
+        //Debug.Log(fAngleToPlayer);
 
         RaycastHit hit;
         if(Physics.Raycast(tHeadPos.position, playerDir, out hit))
         {
-            if(hit.collider.CompareTag("Player") && fAngleToPlayer <= fFieldOfView)
+            if (hit.collider.CompareTag("Player") && fAngleToPlayer <= fFieldOfView)
             {
+
                 return true;
             }
         }
@@ -70,14 +71,17 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void FacePlayer()
     {
+
         Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * fTurnRate);
     }
 
     void AttackPlayer()
     {
+        navAgent.SetDestination(gameManager.instance.player.transform.position);
         if (navAgent.remainingDistance < navAgent.stoppingDistance)
         {
+            Debug.Log("YARGH");
             FacePlayer();
         }
 
@@ -103,7 +107,6 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if(iHP <= 0) //if it dies, get rid of it
         {
-            gameManager.instance.updateGameGoal(-1);
             Destroy(gameObject);
         }
     }
