@@ -108,7 +108,7 @@ public class gameManager : MonoBehaviour
 
     public void UpdateHealthBar(int amount)
     {
-        hpBar.value += amount / playerScript.getHealth();
+        hpBar.value -= (amount / playerScript.getOriginalHealth());
         hpText.text = "HP: " + playerScript.getHealth();
     }
 }

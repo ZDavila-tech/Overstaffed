@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -104,16 +104,18 @@ public class PlayerController : MonoBehaviour, IDamage
         //adds the amount to the player's hp (adds a negative if taking damage)
 
         iHP -= amount;
+        gameManager.instance.UpdateHealthBar(amount);
         gameManager.instance.showDamage();
-        if(iHP <= 0){
+        if (iHP <= 0)
+        {
             gameManager.instance.youLose();
         }
     }
 
 
-     IEnumerator Shoot()
+    IEnumerator Shoot()
     {
-       isShooting = true;
+        isShooting = true;
 
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, ShootRange))
@@ -142,6 +144,11 @@ public class PlayerController : MonoBehaviour, IDamage
     public int getHealth()
     {
         return iHP;
+    }
+
+    public int getOriginalHealth()
+    {
+        return iHPOriginal;
     }
 
 }
