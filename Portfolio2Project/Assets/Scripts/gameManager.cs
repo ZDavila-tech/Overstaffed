@@ -41,6 +41,7 @@ public class gameManager : MonoBehaviour
             showActiveMenu();
             pauseState();
         }
+        
        
     }
 
@@ -68,7 +69,7 @@ public class gameManager : MonoBehaviour
         showActiveMenu();
     }
 
-    public void updateGameGoal()
+    public void updateGameGoal(int amount)
     {
         StartCoroutine(youWin());
     }
@@ -88,6 +89,11 @@ public class gameManager : MonoBehaviour
             activeMenu.SetActive(false);
             activeMenu = null;
         }        
+    }
+
+    public void showDamage()
+    {
+        StartCoroutine(flashRed());
     }
 
     IEnumerator youWin()
