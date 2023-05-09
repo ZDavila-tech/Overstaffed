@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour, IDamage
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] Skills skills;
 
     [Header("----- Player Stats -----")]
     [Range(1, 25)][SerializeField] int iHP;
@@ -40,17 +41,24 @@ public class PlayerController : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
+        if (skills.canMove())
+        {
+            Movement();
+        }
+
 
         Sprint();
-        if(gameManager.instance.activeMenu == null){
-            Movement();
 
-            if (Input.GetButton("Shoot") && !isShooting)
-            {   
-                StartCoroutine(Shoot());
-            }
+        if (Input.GetButton("Shoot") && !isShooting)
+        {
+            StartCoroutine(Shoot());
         }
-        
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            skills.Dash();
+        }
+
+
     }
 
     void Movement()
@@ -129,5 +137,11 @@ public class PlayerController : MonoBehaviour, IDamage
         iHP = iHPOriginal;
         controller.enabled = true;
     }
+
+    public int getHealth()
+    {
+        return iHP;
+    }
+
 }
 
