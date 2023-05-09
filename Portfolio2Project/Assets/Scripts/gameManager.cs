@@ -41,6 +41,7 @@ public class gameManager : MonoBehaviour
             showActiveMenu();
             pauseState();
         }
+       
     }
 
     public void pauseState()
@@ -69,7 +70,7 @@ public class gameManager : MonoBehaviour
 
     public void updateGameGoal()
     {
-
+        StartCoroutine(youWin());
     }
 
     public void showActiveMenu() //shows active menu if there is one.
