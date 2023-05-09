@@ -69,7 +69,7 @@ public class gameManager : MonoBehaviour
         showActiveMenu();
     }
 
-    public void updateGameGoal()
+    public void updateGameGoal(int amount)
     {
         StartCoroutine(youWin());
     }
