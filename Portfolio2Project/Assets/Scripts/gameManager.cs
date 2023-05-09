@@ -34,7 +34,15 @@ public class gameManager : MonoBehaviour
         timeScaleOrig = Time.timeScale;
         playerScript = player.GetComponent<PlayerController>();
         playerRespawn = GameObject.FindGameObjectWithTag("PlayerRespawn");
+<<<<<<< Updated upstream
         reticle = GameObject.FindGameObjectWithTag("Reticle");
+=======
+<<<<<<< HEAD
+        ResetHpBar();
+=======
+        reticle = GameObject.FindGameObjectWithTag("Reticle");
+>>>>>>> edd20ab06239a9260ebedb6e819f117201357e01
+>>>>>>> Stashed changes
     }
 
     // Update is called once per frame
@@ -115,5 +123,11 @@ public class gameManager : MonoBehaviour
     {
         hpBar.value -= (amount / playerScript.getOriginalHealth());
         hpText.text = "HP: " + playerScript.getHealth();
+    }
+
+    public void ResetHpBar()
+    {
+        hpText.text = "HP: " + playerScript.getHealth();
+        hpBar.value = 1;
     }
 }
