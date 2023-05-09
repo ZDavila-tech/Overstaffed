@@ -26,12 +26,14 @@ public class Staff : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Shoot();
     }
 
     public void Shoot()
     {
-        if(lastShootTime + delay < Time.time)
+        if (Input.GetButton("Shoot"))
+        {
+        if (lastShootTime + delay < Time.time)
         {
             //anim.SetBool("IsShooting", true);
             Vector3 direction = GetDirection();
@@ -43,6 +45,8 @@ public class Staff : MonoBehaviour
 
                 lastShootTime = Time.time;
             }
+        }
+            
         }
     } 
 
@@ -64,7 +68,8 @@ public class Staff : MonoBehaviour
     private IEnumerator SpawnTrail(TrailRenderer trail, RaycastHit hit)
     {
         float time = 0;
-        Vector3 startPos = trail.transform.position;
+        //Vector3 startPos = trail.transform.position;
+        Vector3 startPos = shootPos.transform.position;
 
         while (time < 1)
         {
@@ -77,5 +82,6 @@ public class Staff : MonoBehaviour
         Instantiate(impactParticles, hit.point, Quaternion.LookRotation(hit.normal));
 
         Destroy(trail.gameObject, trail.time);
+            
     }
 }
