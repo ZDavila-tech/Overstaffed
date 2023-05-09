@@ -12,6 +12,7 @@ public class gameManager : MonoBehaviour
     public GameObject player;
     public PlayerController playerScript;
     public GameObject playerRespawn;
+    public GameObject reticle;
 
     [Header("----- UI Stuff -----")]
     public GameObject pauseMenu;
@@ -30,6 +31,7 @@ public class gameManager : MonoBehaviour
         timeScaleOrig = Time.timeScale;
         playerScript = player.GetComponent<PlayerController>();
         playerRespawn = GameObject.FindGameObjectWithTag("PlayerRespawn");
+        reticle = GameObject.FindGameObjectWithTag("Reticle");
     }
 
     // Update is called once per frame
@@ -49,6 +51,8 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
+        reticle.SetActive(false);
+
     }
 
     public void unPauseState()
@@ -58,6 +62,7 @@ public class gameManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         hideActiveMenu();
+        reticle.SetActive(true);
     }
 
     public void youLose()
