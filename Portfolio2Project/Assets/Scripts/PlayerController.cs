@@ -40,14 +40,17 @@ public class PlayerController : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        Movement();
 
         Sprint();
+        if(gameManager.instance.activeMenu == null){
+            Movement();
 
-        if (Input.GetButton("Shoot") && !isShooting)
-        {
-            StartCoroutine(Shoot());
+            if (Input.GetButton("Shoot") && !isShooting)
+            {   
+                StartCoroutine(Shoot());
+            }
         }
+        
     }
 
     void Movement()

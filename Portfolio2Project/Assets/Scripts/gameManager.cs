@@ -17,6 +17,7 @@ public class gameManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject activeMenu;
     public GameObject loseMenu;
+    public GameObject winMenu;
 
     public bool isPaused;
     float timeScaleOrig;
@@ -65,6 +66,11 @@ public class gameManager : MonoBehaviour
         showActiveMenu();
     }
 
+    public void updateGameGoal()
+    {
+
+    }
+
     public void showActiveMenu() //shows active menu if there is one.
     {
         if (activeMenu != null)
@@ -80,5 +86,13 @@ public class gameManager : MonoBehaviour
             activeMenu.SetActive(false);
             activeMenu = null;
         }        
+    }
+
+    IEnumerator youWin()
+    {
+        yield return new WaitForSeconds(1);
+        activeMenu = winMenu;
+        showActiveMenu();
+        pauseState();
     }
 }

@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 686526668}
   m_Layer: 0
   m_Name: PlayerRespawn
-  m_TagString: Untagged
+  m_TagString: PlayerRespawn
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -277,7 +277,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 686526667}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.25, z: -37}
+  m_LocalPosition: {x: 0, y: 3.64, z: -37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -492,6 +492,10 @@ PrefabInstance:
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 1441211781995531610, guid: f1d919aa84818934aa778a54a5cab19d, type: 3}
+      propertyPath: iHP
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441211781995531610, guid: f1d919aa84818934aa778a54a5cab19d, type: 3}
       propertyPath: rModel
       value: 
       objectReference: {fileID: 1646172815}
@@ -553,6 +557,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6374267713049937826, guid: dca165a5e6a6d0c4f9bc806c89cb6e5c, type: 3}
+      propertyPath: iHP
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6374267713049937826, guid: dca165a5e6a6d0c4f9bc806c89cb6e5c, type: 3}
       propertyPath: ShootRange
       value: 100
       objectReference: {fileID: 0}
@@ -562,7 +570,7 @@ PrefabInstance:
       objectReference: {fileID: 8060328068600632496, guid: 21d34616d4bd55d46ad893c2322ce70a, type: 3}
     - target: {fileID: 6374267713049937826, guid: dca165a5e6a6d0c4f9bc806c89cb6e5c, type: 3}
       propertyPath: ShotCooldown
-      value: 0.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6374267713049937829, guid: dca165a5e6a6d0c4f9bc806c89cb6e5c, type: 3}
       propertyPath: m_RootOrder
@@ -609,8 +617,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6374267713049937830, guid: dca165a5e6a6d0c4f9bc806c89cb6e5c, type: 3}
+      propertyPath: m_Radius
+      value: 0.7340995
+      objectReference: {fileID: 0}
+    - target: {fileID: 6374267713049937830, guid: dca165a5e6a6d0c4f9bc806c89cb6e5c, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6374267713049937830, guid: dca165a5e6a6d0c4f9bc806c89cb6e5c, type: 3}
+      propertyPath: m_Center.z
+      value: 0.03589022
       objectReference: {fileID: 0}
     - target: {fileID: 6374267713049937833, guid: dca165a5e6a6d0c4f9bc806c89cb6e5c, type: 3}
       propertyPath: m_Name
