@@ -36,7 +36,6 @@ public class EnemyAI : MonoBehaviour, IDamage
     void Start()
     {
         cOrigColor = rModel.material.color;
-        gameManager.instance.updateGameGoal(1);
     }
 
     
@@ -103,7 +102,6 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if(iHP <= 0) //if it dies, get rid of it
         {
-            gameManager.instance.updateGameGoal(-1);
             Destroy(gameObject);
         }
     }
