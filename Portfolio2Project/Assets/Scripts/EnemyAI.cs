@@ -8,27 +8,82 @@ public class EnemyAI : MonoBehaviour, IDamage
     [Header("----- Components -----")]
     [SerializeField] Renderer rModel;
     [SerializeField] NavMeshAgent navAgent;
+    [SerializeField] Transform tShootPos;
+    [SerializeField] Transform tHeadPos;
+
     [Header("----- Enemy Stats -----")]
     [SerializeField] int iHP;
+    [SerializeField] float fTurnRate;
+    [SerializeField] float fFieldOfView;
+    [SerializeField] float fChaseTime;
+
     [Header("----- Weapon Stats -----")]
-    [Range(1, 100)][SerializeField] int iShootDistance;
-    [Range(0, 2.5f)][SerializeField] float iShootRate;
     [SerializeField] GameObject gOBullet;
+    [Range(1, 100)][SerializeField] int iShootDistance;
+    [Range(0, 2.5f)][SerializeField] float fShootRate;
+    [SerializeField] float fShootAngle;
+
     bool bIsShooting;
+    bool bPlayerInRange;
+    bool bBeenShot;
+
+    Vector3 playerDir;
+    float fAngleToPlayer;
+
     IDamage damageInterface;
     private Color cOrigColor;
     
     void Start()
     {
         cOrigColor = rModel.material.color;
+        gameManager.instance.updateGameGoal(1);
     }
 
     
     void Update()
     {
-        navAgent.SetDestination(gameManager.instance.player.transform.position);//uses the GameManager to find the player and being moving towards them
-        if(!bIsShooting){//determines if the Shoot IEnumerator is currently active
-            StartCoroutine(Shoot());//if not, begin shooting at the player
+        if((bPlayerInRange || bBeenShot) && CanSeePlayer())
+        {
+            AttackPlayer();
+        }
+    }
+
+    bool CanSeePlayer()
+    {
+        playerDir = gameManager.instance.transform.position - tHeadPos.position;
+        fAngleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
+
+        Debug.DrawRay(tHeadPos.position, playerDir);
+        Debug.Log(fAngleToPlayer);
+
+        RaycastHit hit;
+        if(Physics.Raycast(tHeadPos.position, playerDir, out hit))
+        {
+            if(hit.collider.CompareTag("Player") && fAngleToPlayer <= fFieldOfView)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    void FacePlayer()
+    {
+        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * fTurnRate);
+    }
+
+    void AttackPlayer()
+    {
+        if (navAgent.remainingDistance < navAgent.stoppingDistance)
+        {
+            FacePlayer();
+        }
+
+        if (!bIsShooting && fAngleToPlayer <= fShootAngle)
+        {
+            StartCoroutine(Shoot());
         }
     }
     
@@ -36,16 +91,28 @@ public class EnemyAI : MonoBehaviour, IDamage
         bIsShooting = true;//tell update that this is running
         Instantiate(gOBullet, transform.position, transform.rotation);//create bullet
         
-        yield return new WaitForSeconds(iShootRate);//cooldown
+        yield return new WaitForSeconds(fShootRate);//cooldown
         bIsShooting = false;//tell update that we're ready to shoot again
     }
 
     public void TakeDamage(int dmg){
         iHP -= dmg;//health goes down
         StartCoroutine(flashColor());//indicate damage taken
-        if(iHP <= 0){//if it dies, get rid of it
+        navAgent.SetDestination(gameManager.instance.player.transform.position);
+        BeenShot();
+
+        if(iHP <= 0) //if it dies, get rid of it
+        {
+            gameManager.instance.updateGameGoal(-1);
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator BeenShot()
+    {
+        bBeenShot = true;
+        yield return new WaitForSeconds(fChaseTime);
+        bBeenShot = false;
     }
 
     IEnumerator flashColor(){//when it, change the color of the enemy from whatever it was to red, and back again
@@ -54,5 +121,21 @@ public class EnemyAI : MonoBehaviour, IDamage
         yield return new WaitForSeconds(0.1f);
 
         rModel.material.color = cOrigColor;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            bPlayerInRange = true;
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            bPlayerInRange = false;
+        }
     }
 }
