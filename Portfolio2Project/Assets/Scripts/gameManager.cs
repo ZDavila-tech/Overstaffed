@@ -41,6 +41,7 @@ public class gameManager : MonoBehaviour
             showActiveMenu();
             pauseState();
         }
+        
        
     }
 
@@ -88,6 +89,11 @@ public class gameManager : MonoBehaviour
             activeMenu.SetActive(false);
             activeMenu = null;
         }        
+    }
+
+    public void showDamage()
+    {
+        StartCoroutine(flashRed());
     }
 
     IEnumerator youWin()
