@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour, IDamage
         //adds the amount to the player's hp (adds a negative if taking damage)
 
         iHP -= amount;
-        gameManager.instance.UpdateHealthBar(amount);
+        gameManager.instance.UpdateHealthBar();
         gameManager.instance.showDamage();
         if (iHP <= 0)
         {

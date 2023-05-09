@@ -37,9 +37,6 @@ public class gameManager : MonoBehaviour
 
         reticle = GameObject.FindGameObjectWithTag("Reticle");
         ResetHpBar();
-
-        reticle = GameObject.FindGameObjectWithTag("Reticle");
-
     }
 
     // Update is called once per frame
@@ -117,9 +114,10 @@ public class gameManager : MonoBehaviour
         flashDamage.SetActive(false);
     }
 
-    public void UpdateHealthBar(int amount)
+    public void UpdateHealthBar()
     {
-        hpBar.value -= (amount / playerScript.getOriginalHealth());
+        hpBar.maxValue = playerScript.getOriginalHealth();
+        hpBar.value = playerScript.getHealth();
         hpText.text = "HP: " + playerScript.getHealth();
     }
 
