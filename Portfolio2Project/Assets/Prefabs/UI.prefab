@@ -51,6 +51,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 8177094150441434826}
   activeMenu: {fileID: 0}
   loseMenu: {fileID: 8177094150871440207}
+  winMenu: {fileID: 8177094150393831460}
   isPaused: 0
 --- !u!114 &603040317
 MonoBehaviour:
@@ -1070,7 +1071,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8177094149552358606}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 603040317}
+        m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
+        m_MethodName: restart
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8177094149557069562
 GameObject:
   m_ObjectHideFlags: 0
@@ -1664,7 +1677,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8177094149734666722}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 603040317}
+        m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
+        m_MethodName: Quit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8177094149800362234
 GameObject:
   m_ObjectHideFlags: 0
@@ -2355,7 +2380,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8177094150393831463
 RectTransform:
   m_ObjectHideFlags: 0
