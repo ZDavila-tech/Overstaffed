@@ -386,11 +386,11 @@ PrefabInstance:
     - target: {fileID: 1441211781995531610, guid: f1d919aa84818934aa778a54a5cab19d, type: 3}
       propertyPath: tHeadPos
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1378130865}
     - target: {fileID: 1441211781995531610, guid: f1d919aa84818934aa778a54a5cab19d, type: 3}
       propertyPath: tShootPos
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1378130866}
     - target: {fileID: 1441211781995531614, guid: f1d919aa84818934aa778a54a5cab19d, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -437,6 +437,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1d919aa84818934aa778a54a5cab19d, type: 3}
+--- !u!4 &1378130865 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 277824472, guid: f1d919aa84818934aa778a54a5cab19d, type: 3}
+  m_PrefabInstance: {fileID: 1378130864}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1378130866 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1040803166, guid: f1d919aa84818934aa778a54a5cab19d, type: 3}
+  m_PrefabInstance: {fileID: 1378130864}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1439116786
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -501,24 +511,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3895479802954595767, guid: 3aaf7647d5fa8b84297699c4b258282b, type: 3}
-      propertyPath: m_Color.a
-      value: 0.49411765
+    - target: {fileID: 1918923010718266559, guid: 3aaf7647d5fa8b84297699c4b258282b, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3895479802954595767, guid: 3aaf7647d5fa8b84297699c4b258282b, type: 3}
-      propertyPath: m_Color.b
-      value: 0.08018869
-      objectReference: {fileID: 0}
-    - target: {fileID: 3895479802954595767, guid: 3aaf7647d5fa8b84297699c4b258282b, type: 3}
-      propertyPath: m_Color.g
-      value: 0.08018869
-      objectReference: {fileID: 0}
-    - target: {fileID: 3895479802954595767, guid: 3aaf7647d5fa8b84297699c4b258282b, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4290584074526984343, guid: 3aaf7647d5fa8b84297699c4b258282b, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 1918923010718266559, guid: 3aaf7647d5fa8b84297699c4b258282b, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8177094150598617813, guid: 3aaf7647d5fa8b84297699c4b258282b, type: 3}

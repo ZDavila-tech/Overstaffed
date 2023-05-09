@@ -99,7 +99,7 @@ public class gameManager : MonoBehaviour
     IEnumerator flashRed()
     {
         flashDamage.SetActive(true);
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.1f);
         flashDamage.SetActive(false);
     }
 }
