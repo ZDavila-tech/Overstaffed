@@ -8,6 +8,7 @@ public class Skills : MonoBehaviour
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
     [SerializeField] PlayerController playerController;
+    [SerializeField] Transform blinkAimIndicator;
 
     [Header("----- Values ------")]
     [Header("~Dash~")]
@@ -20,6 +21,9 @@ public class Skills : MonoBehaviour
 
     [Header("~Slow Fall~")]
     [Range(1, 50)][SerializeField] float NewGravityForce;
+
+    [Header("~Blink~")]
+    [Range(1, 50)][SerializeField] float BlinkDistance;
 
 
 
@@ -92,6 +96,24 @@ public class Skills : MonoBehaviour
         }
         playerController.changeGravity(gravityOrig);
 
+    }
+
+    public void blinkAim()
+    {
+        Debug.Log("BLINK AIM");
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, BlinkDistance))
+        {
+            IDamage damageable = hit.collider.GetComponent<IDamage>();
+            if (damageable != null)
+            {
+                damageable.TakeDamage(2);
+            }
+        }
+        if (!blinkAimIndicator)
+        {
+            
+        }
     }
 
 
