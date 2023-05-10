@@ -18,9 +18,13 @@ public class Skills : MonoBehaviour
     [Range(1, 50)][SerializeField] float JumpForce;
     [Range(0, 1)][SerializeField] float JumpTime;
 
+    [Header("~Slow Fall~")]
+    [Range(1, 50)][SerializeField] float NewGravityForce;
+
 
 
     bool CanMove = true;
+    float gravityOrig;
     public void Dash()
     {
         CanMove= false;
@@ -60,6 +64,33 @@ public class Skills : MonoBehaviour
             yield return null;
         }
         CanMove = true;
+
+    }
+
+    public void slowFall()
+    {
+
+        Debug.Log("SlOW");
+        StartCoroutine(slowFallCoroutine());
+
+    }
+
+    IEnumerator slowFallCoroutine()
+    {
+        gravityOrig = playerController.changeGravity(NewGravityForce);
+        while(!controller.isGrounded)
+        {
+            if (controller.velocity.y > 0)
+            {
+                playerController.changeGravity(gravityOrig);
+            }
+            else
+            {
+                playerController.changeGravity(NewGravityForce);
+            }
+            yield return null;
+        }
+        playerController.changeGravity(gravityOrig);
 
     }
 

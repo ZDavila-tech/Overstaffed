@@ -56,8 +56,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            skills.hiJump();
-            jumpsUsed++;
+            skills.slowFall();
         }
 
 
@@ -157,6 +156,14 @@ public class PlayerController : MonoBehaviour, IDamage
     public void changeJumpsUsed(int ammount)
     {
         jumpsUsed += ammount;
+    }
+
+    //Changer Gravity and Returns Original Gravity
+    public float changeGravity(float ammount)
+    {
+        float gravityOrig = gravityValue;
+        gravityValue = ammount;
+        return gravityOrig;
     }
 
 }
