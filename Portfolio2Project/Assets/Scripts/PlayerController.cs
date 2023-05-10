@@ -56,12 +56,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            skills.blinkAim();
-        }
-
-        if (Input.GetKeyUp(KeyCode.LeftControl))
-        {
-            skills.blinkFire();
+            skills.invisible();
         }
 
     }

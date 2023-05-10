@@ -221,17 +221,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &847792136 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6374267713049937826, guid: dca165a5e6a6d0c4f9bc806c89cb6e5c, type: 3}
-  m_PrefabInstance: {fileID: 940248801}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ac024ec76d1be746aee0bcda6031e65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &940248801
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -240,36 +229,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 847792135, guid: dca165a5e6a6d0c4f9bc806c89cb6e5c, type: 3}
-      propertyPath: JumpTime
-      value: 0.336
-      objectReference: {fileID: 0}
-    - target: {fileID: 847792135, guid: dca165a5e6a6d0c4f9bc806c89cb6e5c, type: 3}
-      propertyPath: JumpForce
-      value: 20.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 847792135, guid: dca165a5e6a6d0c4f9bc806c89cb6e5c, type: 3}
-      propertyPath: BlinkDistance
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 847792135, guid: dca165a5e6a6d0c4f9bc806c89cb6e5c, type: 3}
-      propertyPath: NewGravityForce
-      value: 1.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 847792135, guid: dca165a5e6a6d0c4f9bc806c89cb6e5c, type: 3}
-      propertyPath: playerController
-      value: 
-      objectReference: {fileID: 847792136}
-    - target: {fileID: 847792135, guid: dca165a5e6a6d0c4f9bc806c89cb6e5c, type: 3}
-      propertyPath: blinkAimIndicatorPrefab
-      value: 
-      objectReference: {fileID: 2848004723096892248, guid: 9d2a42548f99c5042b79c8c622fcb472, type: 3}
-    - target: {fileID: 6374267713049937826, guid: dca165a5e6a6d0c4f9bc806c89cb6e5c, type: 3}
-      propertyPath: ShootRange
-      value: 355
-      objectReference: {fileID: 0}
-    - target: {fileID: 6374267713049937826, guid: dca165a5e6a6d0c4f9bc806c89cb6e5c, type: 3}
-      propertyPath: ShotCooldown
-      value: 0.09
+      propertyPath: invisDuration
+      value: 13.5
       objectReference: {fileID: 0}
     - target: {fileID: 6374267713049937829, guid: dca165a5e6a6d0c4f9bc806c89cb6e5c, type: 3}
       propertyPath: m_RootOrder

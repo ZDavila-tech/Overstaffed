@@ -26,6 +26,9 @@ public class Skills : MonoBehaviour
     [Range(1, 50)][SerializeField] float BlinkDistance;
     bool aiming;
 
+    [Header("~Invisibility~")]
+    [Range(1, 50)][SerializeField] float invisDuration;
+
 
 
     bool CanMove = true;
@@ -49,6 +52,7 @@ public class Skills : MonoBehaviour
             yield return null;
         }
         CanMove= true;
+        StopCoroutine(dashCoroutine());
 
     }
 
@@ -70,6 +74,7 @@ public class Skills : MonoBehaviour
             yield return null;
         }
         CanMove = true;
+        StopCoroutine(hiJumpCoroutine());
 
     }
 
@@ -97,6 +102,7 @@ public class Skills : MonoBehaviour
             yield return null;
         }
         playerController.changeGravity(gravityOrig);
+        StopCoroutine(slowFallCoroutine());
 
     }
 
@@ -150,6 +156,21 @@ public class Skills : MonoBehaviour
         }
         controller.enabled= true;
 
+    }
+
+    public void invisible()
+    {
+        Debug.Log("Invisible");
+        this.gameObject.layer = 8;
+        StartCoroutine(invisibilityCoroutine());
+    }
+
+    IEnumerator invisibilityCoroutine()
+    {
+        yield return new WaitForSeconds(invisDuration);
+        this.gameObject.layer = 3;
+        Debug.Log("VISIBLE");
+        StopCoroutine(invisibilityCoroutine());
     }
 
 
