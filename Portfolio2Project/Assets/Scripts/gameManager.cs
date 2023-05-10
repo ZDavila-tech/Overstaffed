@@ -114,9 +114,9 @@ public class gameManager : MonoBehaviour
         flashDamage.SetActive(false);
     }
 
-    public void UpdateHealthBar(int amount)
+    public void UpdateHealthBar()
     {
-        hpBar.value -= (amount / playerScript.getOriginalHealth());
+        hpBar.value = (playerScript.getHealth() / playerScript.getOriginalHealth());
         hpText.text = "HP: " + playerScript.getHealth();
     }
 
