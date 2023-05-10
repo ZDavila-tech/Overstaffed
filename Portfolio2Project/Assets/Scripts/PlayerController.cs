@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour, IDamage
     void Start()
     {
         iHPOriginal = iHP;
+        Debug.Log(iHPOriginal);
+        Debug.Log(iHP);
     }
 
     // Update is called once per frame
@@ -102,13 +104,21 @@ public class PlayerController : MonoBehaviour, IDamage
     public void TakeDamage(int amount)
     {
         //adds the amount to the player's hp (adds a negative if taking damage)
-
-        iHP -= amount;
-        gameManager.instance.UpdateHealthBar();
-        gameManager.instance.showDamage();
-        if (iHP <= 0)
+        if (iHP - amount <= iHPOriginal)
         {
-            gameManager.instance.youLose();
+            if(iHP - amount < iHP)
+            gameManager.instance.showDamage();
+            iHP -= amount;
+            gameManager.instance.UpdateHealthBar();
+            if (iHP <= 0)
+            {
+                gameManager.instance.youLose();
+            }
+        }
+        else
+        {
+            iHP = iHPOriginal;
+            gameManager.instance.UpdateHealthBar();
         }
     }
 
