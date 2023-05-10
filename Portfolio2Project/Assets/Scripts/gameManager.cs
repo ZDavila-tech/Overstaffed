@@ -35,7 +35,6 @@ public class gameManager : MonoBehaviour
         playerScript = player.GetComponent<PlayerController>();
         playerRespawn = GameObject.FindGameObjectWithTag("PlayerRespawn");
         reticle = GameObject.FindGameObjectWithTag("Reticle");
-
         ResetHpBar();
         reticle = GameObject.FindGameObjectWithTag("Reticle");
     }
@@ -58,6 +57,7 @@ public class gameManager : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
         reticle.SetActive(false);
+        flashDamage.SetActive(false);
 
     }
 
