@@ -53,10 +53,14 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             StartCoroutine(Shoot());
         }
-        Debug.Log(Input.GetAxis("Movement1"));
+
         if (Input.GetAxis("Movement1") != 0)
         {
-            skills.hiJump();
+            skills.useSkill(1);
+        }
+        if (Input.GetAxis("Movement2") != 0)
+        {
+            skills.useSkill(2);
         }
 
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditorInternal;
@@ -35,16 +36,16 @@ public class Skills : MonoBehaviour
     [Header("~Blink~")]
     [Range(1, 50)][SerializeField] float BlinkDistance;
     [Range(1, 20)][SerializeField] float BlinkCooldown;
-    bool canBlink;
-    bool aiming = true;
+    bool canBlink = true;
+    bool aiming;
 
     [Header("~Invisibility~")]
     [Range(1, 50)][SerializeField] float invisDuration;
     [Range(1, 20)][SerializeField] float InvisCooldown;
     bool canInvis = true;
 
-    skill activeSkill1;
-    skill activeSkill2;
+    skill activeSkill1 = skill.Blink;
+    skill activeSkill2 = skill.Dash;
 
 
     bool CanMove = true;
@@ -154,6 +155,7 @@ public class Skills : MonoBehaviour
 
     public void blinkAim()
     {
+        Debug.Log("AIMING");
         if (canBlink)
         {
             canBlink= false;
@@ -165,6 +167,7 @@ public class Skills : MonoBehaviour
 
     IEnumerator blinkAimCoroutine()
     {
+
         while (aiming)
         {
             RaycastHit hit;
@@ -184,6 +187,20 @@ public class Skills : MonoBehaviour
                     Destroy(blinkAimIndicator.gameObject);
                 }
 
+            }
+            if (activeSkill1 == skill.Blink)
+            {
+                if (Input.GetAxis("Movement1") == 0)
+                {
+                    blinkFire();
+                }
+            }
+            else
+            {
+                if (Input.GetAxis("Movement2") == 0)
+                {
+                    blinkFire();
+                }
             }
             Debug.Log("Coroutine Running");
             yield return null;
@@ -252,6 +269,50 @@ public class Skills : MonoBehaviour
         {
             activeSkill2= skill;
         }
+    }
+
+    public void useSkill(int slot)
+    {
+        if (slot == 1)
+        {
+            Action skill = testSkill(activeSkill1);
+            skill();
+        }
+        else if (slot == 2)
+        {
+            Action skill = testSkill(activeSkill2);
+            skill();
+        }
+    }
+
+    Action testSkill(skill sk)
+    {
+        switch (sk)
+        {
+            case (skill.Dash):
+                {
+                    return Dash;
+                }
+            case (skill.HiJump):
+                {
+                    return hiJump;
+                }
+            case (skill.SlowFall):
+                {
+                    return slowFall;
+                }
+            case (skill.Blink):
+                {
+                    return blinkAim;
+                }
+            case (skill.Invisibility):
+                {
+                    return invisible;
+                }
+        }
+        return null;
+
+
     }
 
 
