@@ -56,12 +56,12 @@ public class PlayerController : MonoBehaviour, IDamage
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            skills.slowFall();
+            skills.blinkAim();
         }
 
         if (Input.GetKeyUp(KeyCode.LeftControl))
         {
-            skills.slowFall();
+            skills.blinkFire();
         }
 
     }

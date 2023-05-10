@@ -248,9 +248,21 @@ PrefabInstance:
       value: 20.6
       objectReference: {fileID: 0}
     - target: {fileID: 847792135, guid: dca165a5e6a6d0c4f9bc806c89cb6e5c, type: 3}
+      propertyPath: BlinkDistance
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 847792135, guid: dca165a5e6a6d0c4f9bc806c89cb6e5c, type: 3}
+      propertyPath: NewGravityForce
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 847792135, guid: dca165a5e6a6d0c4f9bc806c89cb6e5c, type: 3}
       propertyPath: playerController
       value: 
       objectReference: {fileID: 847792136}
+    - target: {fileID: 847792135, guid: dca165a5e6a6d0c4f9bc806c89cb6e5c, type: 3}
+      propertyPath: blinkAimIndicatorPrefab
+      value: 
+      objectReference: {fileID: 2848004723096892248, guid: 9d2a42548f99c5042b79c8c622fcb472, type: 3}
     - target: {fileID: 6374267713049937826, guid: dca165a5e6a6d0c4f9bc806c89cb6e5c, type: 3}
       propertyPath: ShootRange
       value: 355

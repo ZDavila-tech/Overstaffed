@@ -8,7 +8,7 @@ public class Skills : MonoBehaviour
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
     [SerializeField] PlayerController playerController;
-    [SerializeField] Transform blinkAimIndicator;
+    [SerializeField] Transform blinkAimIndicatorPrefab;
 
     [Header("----- Values ------")]
     [Header("~Dash~")]
@@ -24,11 +24,13 @@ public class Skills : MonoBehaviour
 
     [Header("~Blink~")]
     [Range(1, 50)][SerializeField] float BlinkDistance;
+    bool aiming;
 
 
 
     bool CanMove = true;
     float gravityOrig;
+    Transform blinkAimIndicator;
     public void Dash()
     {
         CanMove= false;
@@ -100,20 +102,54 @@ public class Skills : MonoBehaviour
 
     public void blinkAim()
     {
+        aiming = true;
         Debug.Log("BLINK AIM");
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, BlinkDistance))
+        StartCoroutine(blinkAimCoroutine());
+
+    }
+
+    IEnumerator blinkAimCoroutine()
+    {
+        while (aiming)
         {
-            IDamage damageable = hit.collider.GetComponent<IDamage>();
-            if (damageable != null)
+            RaycastHit hit;
+
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, BlinkDistance))
             {
-                damageable.TakeDamage(2);
+                if (!blinkAimIndicator)
+                {
+                    blinkAimIndicator = Instantiate(blinkAimIndicatorPrefab);
+                }
+                blinkAimIndicator.position = hit.point;
             }
+            else
+            {
+                if (blinkAimIndicator)
+                {
+                    Destroy(blinkAimIndicator.gameObject);
+                }
+
+            }
+            Debug.Log("Coroutine Running");
+            yield return null;
         }
-        if (!blinkAimIndicator)
+
+    }
+
+    public void blinkFire()
+    {
+        controller.enabled= false;
+        aiming = false;
+        StopCoroutine(blinkAimCoroutine());
+        if (blinkAimIndicator)
         {
-            
+            Debug.Log("BLINK");
+            transform.position = new Vector3(blinkAimIndicator.position.x,blinkAimIndicator.position.y + 1,blinkAimIndicator.position.z);
+
+            Destroy(blinkAimIndicator.gameObject);
         }
+        controller.enabled= true;
+
     }
 
 
