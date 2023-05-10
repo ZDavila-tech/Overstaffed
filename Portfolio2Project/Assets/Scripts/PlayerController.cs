@@ -56,9 +56,8 @@ public class PlayerController : MonoBehaviour, IDamage
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            skills.Dash();
+            skills.invisible();
         }
-
 
     }
 
@@ -116,14 +115,17 @@ public class PlayerController : MonoBehaviour, IDamage
 
     IEnumerator Shoot()
     {
+
         isShooting = true;
 
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, ShootRange))
-        {
+        //if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward * ShootRange, out hit))
+            {
             IDamage damageable = hit.collider.GetComponent<IDamage>();
             if (damageable != null)
             {
+                Debug.Log("Shot");
                 damageable.TakeDamage(2);
             }
         }
@@ -151,6 +153,19 @@ public class PlayerController : MonoBehaviour, IDamage
     public int getOriginalHealth()
     {
         return iHPOriginal;
+    }
+
+    public void changeJumpsUsed(int ammount)
+    {
+        jumpsUsed += ammount;
+    }
+
+    //Changer Gravity and Returns Original Gravity
+    public float changeGravity(float ammount)
+    {
+        float gravityOrig = gravityValue;
+        gravityValue = ammount;
+        return gravityOrig;
     }
 
 }

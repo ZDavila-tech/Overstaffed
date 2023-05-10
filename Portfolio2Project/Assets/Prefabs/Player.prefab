@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 6374267713049937827}
   - component: {fileID: 6374267713049937826}
   - component: {fileID: 847792135}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -242,8 +242,8 @@ MonoBehaviour:
   gravityValue: 12
   maxJumps: 1
   sprintMod: 2
-  ShootRange: 0
-  ShotCooldown: 0
+  ShootRange: 355
+  ShotCooldown: 0.09
 --- !u!114 &847792135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,5 +257,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 6374267713049937827}
+  playerController: {fileID: 6374267713049937826}
+  blinkAimIndicatorPrefab: {fileID: 2848004723096892248, guid: 9d2a42548f99c5042b79c8c622fcb472, type: 3}
   DashSpeed: 21.9
   DashTime: 0.352
+  DashCooldown: 5
+  JumpForce: 20.6
+  JumpTime: 0.336
+  HiJumpCooldown: 5
+  NewGravityForce: 1.2
+  SlowFallCooldown: 5
+  BlinkDistance: 50
+  BlinkCooldown: 5
+  invisDuration: 3
+  InvisCooldown: 5
