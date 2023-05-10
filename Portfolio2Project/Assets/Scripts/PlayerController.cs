@@ -56,9 +56,13 @@ public class PlayerController : MonoBehaviour, IDamage
             StartCoroutine(Shoot());
         }
 
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetAxis("Movement1") != 0)
         {
-            skills.invisible();
+            skills.useSkill(1);
+        }
+        if (Input.GetAxis("Movement2") != 0)
+        {
+            skills.useSkill(2);
         }
 
     }
