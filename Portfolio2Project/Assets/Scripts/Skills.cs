@@ -155,7 +155,6 @@ public class Skills : MonoBehaviour
 
     public void blinkAim()
     {
-        Debug.Log("AIMING");
         if (canBlink)
         {
             canBlink= false;
@@ -202,7 +201,6 @@ public class Skills : MonoBehaviour
                     blinkFire();
                 }
             }
-            Debug.Log("Coroutine Running");
             yield return null;
         }
 
