@@ -64,10 +64,12 @@ MonoBehaviour:
   navAgent: {fileID: 2856267348468154940}
   tShootPos: {fileID: 3721018377356388921}
   tHeadPos: {fileID: 3721018377867693247}
+  drop: {fileID: 0}
   iHP: 6
   fTurnRate: 5
   fFieldOfView: 90
   fChaseTime: 3
+  DropRate: 0
   gOBullet: {fileID: 8060328068600632496, guid: 21d34616d4bd55d46ad893c2322ce70a, type: 3}
   iShootDistance: 100
   fShootRate: 1
@@ -256,7 +258,7 @@ BoxCollider:
   m_GameObject: {fileID: 3721018375914233682}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
