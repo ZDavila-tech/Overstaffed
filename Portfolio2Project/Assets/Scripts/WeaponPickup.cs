@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class weaponPickUp : MonoBehaviour
+public class WeaponPickup : MonoBehaviour
 {
     [SerializeField] GameObject thisWeapon;
 
@@ -18,6 +18,6 @@ public class weaponPickUp : MonoBehaviour
     public void equipWeapon(GameObject newWeapon)
     {
         GameObject newWeaponInstance = Instantiate(newWeapon);
-        //gameManager.instance.playerScript.equipWeapon(newWeaponInstance);
+        gameManager.instance.playerScript.equipWeapon(newWeaponInstance);
     }
 }

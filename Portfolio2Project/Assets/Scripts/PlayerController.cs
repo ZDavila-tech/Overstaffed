@@ -32,6 +32,10 @@ public class PlayerController : MonoBehaviour, IDamage
     //checks if the player is currently shooting
     bool isShooting;
 
+    [SerializeField] GameObject playerWeaponHolder;
+    GameObject playerWeapon;
+    Staff playerWeaponScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -182,5 +186,11 @@ public class PlayerController : MonoBehaviour, IDamage
         return gravityOrig;
     }
 
+    public void equipWeapon(GameObject newWeapon)
+    {
+        playerWeapon = newWeapon;
+        playerWeapon.transform.SetParent(playerWeaponHolder.transform);
+        playerWeapon.transform.position = playerWeaponHolder.transform.position;
+        playerWeapon.transform.rotation = playerWeaponHolder.transform.rotation;
+    }
 }
-
