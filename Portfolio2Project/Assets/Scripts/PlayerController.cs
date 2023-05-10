@@ -53,10 +53,10 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             StartCoroutine(Shoot());
         }
-
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        Debug.Log(Input.GetAxis("Movement1"));
+        if (Input.GetAxis("Movement1") != 0)
         {
-            skills.invisible();
+            skills.hiJump();
         }
 
     }

@@ -9,35 +9,42 @@ public class Skills : MonoBehaviour
     [SerializeField] CharacterController controller;
     [SerializeField] PlayerController playerController;
     [SerializeField] Transform blinkAimIndicatorPrefab;
+    public enum skill
+    {
+        Dash,HiJump,SlowFall,Blink,Invisibility
+    }
 
     [Header("----- Values ------")]
     [Header("~Dash~")]
     [Range(1,50)][SerializeField] float DashSpeed;
     [Range(0,1)][SerializeField] float DashTime;
     [Range(1, 20)][SerializeField] float DashCooldown;
-    bool canDash;
+    bool canDash = true;
 
     [Header("~High Jump~")]
     [Range(1, 50)][SerializeField] float JumpForce;
     [Range(0, 1)][SerializeField] float JumpTime;
     [Range(1, 20)][SerializeField] float HiJumpCooldown;
-    bool canHiJump;
+    bool canHiJump = true;
 
     [Header("~Slow Fall~")]
     [Range(1, 50)][SerializeField] float NewGravityForce;
     [Range(1, 20)][SerializeField] float SlowFallCooldown;
-    bool canSlowFall;
+    bool canSlowFall = true;
 
     [Header("~Blink~")]
     [Range(1, 50)][SerializeField] float BlinkDistance;
     [Range(1, 20)][SerializeField] float BlinkCooldown;
     bool canBlink;
-    bool aiming;
+    bool aiming = true;
 
     [Header("~Invisibility~")]
     [Range(1, 50)][SerializeField] float invisDuration;
     [Range(1, 20)][SerializeField] float InvisCooldown;
-    bool canInvis;
+    bool canInvis = true;
+
+    skill activeSkill1;
+    skill activeSkill2;
 
 
     bool CanMove = true;
@@ -234,5 +241,18 @@ public class Skills : MonoBehaviour
     {
         return CanMove;
     }
+
+    public void setSkill(int slot, skill skill)
+    {
+        if (slot == 1) 
+        {
+            activeSkill1 = skill;
+        }
+        else if (slot == 2)
+        {
+            activeSkill2= skill;
+        }
+    }
+
 
 }
