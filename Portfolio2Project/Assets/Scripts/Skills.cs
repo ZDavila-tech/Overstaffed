@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditorInternal;
@@ -9,35 +10,42 @@ public class Skills : MonoBehaviour
     [SerializeField] CharacterController controller;
     [SerializeField] PlayerController playerController;
     [SerializeField] Transform blinkAimIndicatorPrefab;
+    public enum skill
+    {
+        Dash,HiJump,SlowFall,Blink,Invisibility
+    }
 
     [Header("----- Values ------")]
     [Header("~Dash~")]
     [Range(1,50)][SerializeField] float DashSpeed;
     [Range(0,1)][SerializeField] float DashTime;
     [Range(1, 20)][SerializeField] float DashCooldown;
-    bool canDash;
+    bool canDash = true;
 
     [Header("~High Jump~")]
     [Range(1, 50)][SerializeField] float JumpForce;
     [Range(0, 1)][SerializeField] float JumpTime;
     [Range(1, 20)][SerializeField] float HiJumpCooldown;
-    bool canHiJump;
+    bool canHiJump = true;
 
     [Header("~Slow Fall~")]
     [Range(1, 50)][SerializeField] float NewGravityForce;
     [Range(1, 20)][SerializeField] float SlowFallCooldown;
-    bool canSlowFall;
+    bool canSlowFall = true;
 
     [Header("~Blink~")]
     [Range(1, 50)][SerializeField] float BlinkDistance;
     [Range(1, 20)][SerializeField] float BlinkCooldown;
-    bool canBlink;
+    bool canBlink = true;
     bool aiming;
 
     [Header("~Invisibility~")]
     [Range(1, 50)][SerializeField] float invisDuration;
     [Range(1, 20)][SerializeField] float InvisCooldown;
-    bool canInvis;
+    bool canInvis = true;
+
+    skill activeSkill1 = skill.Blink;
+    skill activeSkill2 = skill.Dash;
 
 
     bool CanMove = true;
@@ -158,6 +166,7 @@ public class Skills : MonoBehaviour
 
     IEnumerator blinkAimCoroutine()
     {
+
         while (aiming)
         {
             RaycastHit hit;
@@ -178,7 +187,20 @@ public class Skills : MonoBehaviour
                 }
 
             }
-            Debug.Log("Coroutine Running");
+            if (activeSkill1 == skill.Blink)
+            {
+                if (Input.GetAxis("Movement1") == 0)
+                {
+                    blinkFire();
+                }
+            }
+            else
+            {
+                if (Input.GetAxis("Movement2") == 0)
+                {
+                    blinkFire();
+                }
+            }
             yield return null;
         }
 
@@ -234,5 +256,62 @@ public class Skills : MonoBehaviour
     {
         return CanMove;
     }
+
+    public void setSkill(int slot, skill skill)
+    {
+        if (slot == 1) 
+        {
+            activeSkill1 = skill;
+        }
+        else if (slot == 2)
+        {
+            activeSkill2= skill;
+        }
+    }
+
+    public void useSkill(int slot)
+    {
+        if (slot == 1)
+        {
+            Action skill = testSkill(activeSkill1);
+            skill();
+        }
+        else if (slot == 2)
+        {
+            Action skill = testSkill(activeSkill2);
+            skill();
+        }
+    }
+
+    Action testSkill(skill sk)
+    {
+        switch (sk)
+        {
+            case (skill.Dash):
+                {
+                    return Dash;
+                }
+            case (skill.HiJump):
+                {
+                    return hiJump;
+                }
+            case (skill.SlowFall):
+                {
+                    return slowFall;
+                }
+            case (skill.Blink):
+                {
+                    return blinkAim;
+                }
+            case (skill.Invisibility):
+                {
+                    return invisible;
+                }
+        }
+        return null;
+
+
+    }
+
 
 }
