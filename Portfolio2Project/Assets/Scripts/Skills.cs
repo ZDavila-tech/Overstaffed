@@ -37,7 +37,6 @@ public class Skills : MonoBehaviour
     public void Dash()
     {
         CanMove= false;
-        Debug.Log("DASH");
         playerController.changeJumpsUsed(1);
         StartCoroutine(dashCoroutine());
 
@@ -59,7 +58,6 @@ public class Skills : MonoBehaviour
     public void hiJump()
     {
         CanMove = false;
-        Debug.Log("JUMP");
         playerController.changeJumpsUsed(1);
         StartCoroutine(hiJumpCoroutine());
 
@@ -81,7 +79,6 @@ public class Skills : MonoBehaviour
     public void slowFall()
     {
 
-        Debug.Log("SlOW");
         StartCoroutine(slowFallCoroutine());
 
     }
@@ -109,7 +106,6 @@ public class Skills : MonoBehaviour
     public void blinkAim()
     {
         aiming = true;
-        Debug.Log("BLINK AIM");
         StartCoroutine(blinkAimCoroutine());
 
     }
@@ -149,7 +145,6 @@ public class Skills : MonoBehaviour
         StopCoroutine(blinkAimCoroutine());
         if (blinkAimIndicator)
         {
-            Debug.Log("BLINK");
             transform.position = new Vector3(blinkAimIndicator.position.x,blinkAimIndicator.position.y + 1,blinkAimIndicator.position.z);
 
             Destroy(blinkAimIndicator.gameObject);
@@ -160,7 +155,6 @@ public class Skills : MonoBehaviour
 
     public void invisible()
     {
-        Debug.Log("Invisible");
         this.gameObject.layer = 8;
         StartCoroutine(invisibilityCoroutine());
     }
@@ -169,7 +163,6 @@ public class Skills : MonoBehaviour
     {
         yield return new WaitForSeconds(invisDuration);
         this.gameObject.layer = 3;
-        Debug.Log("VISIBLE");
         StopCoroutine(invisibilityCoroutine());
     }
 
