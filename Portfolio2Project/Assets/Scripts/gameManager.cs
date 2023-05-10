@@ -52,6 +52,10 @@ public class gameManager : MonoBehaviour
 
     public void pauseState()
     {
+        if(flashDamage.activeSelf == true)
+        {
+            flashDamage.SetActive(false);
+        }
         isPaused = true;
         Time.timeScale = 0;
         Cursor.visible = true;
@@ -72,7 +76,6 @@ public class gameManager : MonoBehaviour
 
     public void youLose()
     {
-        flashDamage.SetActive(false);
         activeMenu = loseMenu;
         showActiveMenu();
         pauseState();

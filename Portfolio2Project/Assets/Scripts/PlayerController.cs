@@ -49,10 +49,11 @@ public class PlayerController : MonoBehaviour, IDamage
 
         Sprint();
 
-        if (Input.GetButton("Shoot") && !isShooting)
+        if (Input.GetButton("Shoot") && !isShooting && !gameManager.instance.isPaused)
         {
             StartCoroutine(Shoot());
         }
+
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             skills.Dash();
