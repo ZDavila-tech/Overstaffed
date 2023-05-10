@@ -9,8 +9,15 @@ public class Skills : MonoBehaviour
     [SerializeField] CharacterController controller;
 
     [Header("----- Values ------")]
+    [Header("~Dash~")]
     [Range(1,50)][SerializeField] float DashSpeed;
     [Range(0,1)][SerializeField] float DashTime;
+
+    [Header("~High Jump~")]
+    [Range(1, 50)][SerializeField] float JumpForce;
+    [Range(0, 1)][SerializeField] float JumpTime;
+
+
 
     bool CanMove = true;
     public void Dash()
@@ -30,6 +37,27 @@ public class Skills : MonoBehaviour
             yield return null;
         }
         CanMove= true;
+
+    }
+
+    public void hiJump()
+    {
+        CanMove = false;
+        Debug.Log("JUMP");
+        GetComponent<PlayerController>().changeJumpsUsed(1);
+        StartCoroutine(hiJumpCoroutine());
+
+    }
+
+    IEnumerator hiJumpCoroutine()
+    {
+        var startTime = Time.time;
+        while (Time.time < startTime + JumpTime)
+        {
+            controller.Move(transform.up * JumpForce * Time.deltaTime);
+            yield return null;
+        }
+        CanMove = true;
 
     }
 

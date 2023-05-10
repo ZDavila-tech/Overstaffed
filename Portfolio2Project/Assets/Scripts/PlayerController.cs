@@ -56,7 +56,8 @@ public class PlayerController : MonoBehaviour, IDamage
 
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
-            skills.Dash();
+            skills.hiJump();
+            jumpsUsed++;
         }
 
 
@@ -151,6 +152,11 @@ public class PlayerController : MonoBehaviour, IDamage
     public int getOriginalHealth()
     {
         return iHPOriginal;
+    }
+
+    public void changeJumpsUsed(int ammount)
+    {
+        jumpsUsed += ammount;
     }
 
 }
