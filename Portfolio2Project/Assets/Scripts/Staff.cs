@@ -15,27 +15,47 @@ public class Staff : MonoBehaviour
     [SerializeField] private LayerMask mask;
 
    
-    private Animator anim;
+    [SerializeField] Animator anim;
     private float lastShootTime;
     bool isShooting;
+    private float timer;
 
     // Start is called before the first frame update
     private void Awake()
     {
-        anim = GetComponent<Animator>();
+        anim = gameObject.GetComponent<Animator>();
+        //anim.speed = 0.1f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        timer += Time.deltaTime;
         Shoot();
+
+        if(timer > 0.5f)
+        {
+            isShooting = false;
+            timer = 0;
+        }
+
+        if(isShooting == true)
+        {
+            anim.speed = 2.5f;
+        }
+        else
+        {
+            anim.speed = 0.5f;
+        }
     }
 
     public void Shoot()
     {
-        isShooting = true;
+        
         if (Input.GetButton("Shoot"))
         {
+            isShooting = true;
+            //anim.speed = 1.5f;
             if (lastShootTime + delay < Time.time)
             {
                 //anim.SetBool("IsShooting", true);
@@ -47,13 +67,16 @@ public class Staff : MonoBehaviour
                         StartCoroutine(SpawnTrail(trail, hit));
 
                     lastShootTime = Time.time;
+                    
                     //StartCoroutine(def.DestroyTrail(trailRenderer));
                     //StartCoroutine(def.DestroyParticle(impactParticles));
                 }
             }
             
         }
-        isShooting = false; 
+        //yield return new WaitForSeconds(1);
+        //isShooting = false;
+        //anim.speed = 0.5f;
     } 
 
     private Vector3 GetDirection()
