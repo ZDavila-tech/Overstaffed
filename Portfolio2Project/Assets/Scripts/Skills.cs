@@ -7,6 +7,7 @@ public class Skills : MonoBehaviour
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
+    [SerializeField] PlayerController playerController;
 
     [Header("----- Values ------")]
     [Header("~Dash~")]
@@ -24,6 +25,7 @@ public class Skills : MonoBehaviour
     {
         CanMove= false;
         Debug.Log("DASH");
+        playerController.changeJumpsUsed(1);
         StartCoroutine(dashCoroutine());
 
     }
@@ -44,7 +46,7 @@ public class Skills : MonoBehaviour
     {
         CanMove = false;
         Debug.Log("JUMP");
-        GetComponent<PlayerController>().changeJumpsUsed(1);
+        playerController.changeJumpsUsed(1);
         StartCoroutine(hiJumpCoroutine());
 
     }
