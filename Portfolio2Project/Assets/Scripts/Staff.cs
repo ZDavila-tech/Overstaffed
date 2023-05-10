@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Staff : MonoBehaviour
 {
-    [SerializeField] GameObject basicBullet;
     [SerializeField] private bool addBulletSpread;
     [SerializeField] private Vector3 bulletSpread = new Vector3(0.1f, 0.1f, 0.1f);
     [SerializeField] private ParticleSystem shootingSystem;
@@ -14,8 +14,10 @@ public class Staff : MonoBehaviour
     [SerializeField] private float delay;
     [SerializeField] private LayerMask mask;
 
+   
     private Animator anim;
     private float lastShootTime;
+    bool isShooting;
 
     // Start is called before the first frame update
     private void Awake()
@@ -31,28 +33,33 @@ public class Staff : MonoBehaviour
 
     public void Shoot()
     {
+        isShooting = true;
         if (Input.GetButton("Shoot"))
         {
-        if (lastShootTime + delay < Time.time)
-        {
-            //anim.SetBool("IsShooting", true);
-            Vector3 direction = GetDirection();
-            if(Physics.Raycast(shootPos.position, direction, out RaycastHit hit, float.MaxValue, mask))
+            if (lastShootTime + delay < Time.time)
             {
-                TrailRenderer trail = Instantiate(trailRenderer, shootPos.position, Quaternion.identity);
+                //anim.SetBool("IsShooting", true);
+                Vector3 direction = GetDirection();
+                if(Physics.Raycast(shootPos.position, direction, out RaycastHit hit, float.MaxValue, mask))
+                {
+                    TrailRenderer trail = Instantiate(trailRenderer, shootPos.position, Quaternion.identity); //Quaternion.identity
 
-                StartCoroutine(SpawnTrail(trail, hit));
+                        StartCoroutine(SpawnTrail(trail, hit));
 
-                lastShootTime = Time.time;
+                    lastShootTime = Time.time;
+                    //StartCoroutine(def.DestroyTrail(trailRenderer));
+                    //StartCoroutine(def.DestroyParticle(impactParticles));
+                }
             }
-        }
             
         }
+        isShooting = false; 
     } 
 
     private Vector3 GetDirection()
     {
-        Vector3 dir = transform.forward;
+        Vector3 dir = transform.parent.forward;
+        //Vector3 dir = new Vector3(transform.parent.rotation.x, transform.parent.rotation.y, transform.parent.rotation.z);
 
         if (addBulletSpread)
         {
@@ -77,11 +84,18 @@ public class Staff : MonoBehaviour
             time += Time.deltaTime / trail.time;
             yield return null;
         }
-        anim.SetBool("isShooting", false);
+        //anim.SetBool("isShooting", false);
         trail.transform.position = hit.point;
-        Instantiate(impactParticles, hit.point, Quaternion.LookRotation(hit.normal));
+        if(impactParticles != null)
+        {
+        }
+            Instantiate(impactParticles, hit.point, Quaternion.LookRotation(hit.normal)); //hit.point
 
-        Destroy(trail.gameObject, trail.time);
-            
+        if (trail.gameObject != null)
+        {
+            yield return new WaitForSeconds(1);
+            Destroy(trail.gameObject);
+        }
+
     }
 }
