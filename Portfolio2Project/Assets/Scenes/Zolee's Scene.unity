@@ -370,6 +370,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6374267713049937833, guid: dca165a5e6a6d0c4f9bc806c89cb6e5c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dca165a5e6a6d0c4f9bc806c89cb6e5c, type: 3}
 --- !u!1001 &1378130864
@@ -495,7 +499,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1918923009868625174, guid: 3aaf7647d5fa8b84297699c4b258282b, type: 3}
       propertyPath: m_Value
-      value: 1
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1918923009868625174, guid: 3aaf7647d5fa8b84297699c4b258282b, type: 3}
+      propertyPath: m_MaxValue
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1918923010718266559, guid: 3aaf7647d5fa8b84297699c4b258282b, type: 3}
       propertyPath: m_AnchorMax.x

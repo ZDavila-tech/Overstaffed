@@ -136,8 +136,8 @@ public class gameManager : MonoBehaviour
 
     public void ResetHpBar()
     {
-        hpBar.maxValue = playerScript.getOriginalHealth();
-        hpBar.value = playerScript.getHealth();
+        hpBar.maxValue = 1;
+        hpBar.value = 1;
         hpText.text = "HP: " + playerScript.getHealth();
     }
 }
