@@ -34,9 +34,9 @@ public class gameManager : MonoBehaviour
         timeScaleOrig = Time.timeScale;
         playerScript = player.GetComponent<PlayerController>();
         playerRespawn = GameObject.FindGameObjectWithTag("PlayerRespawn");
-
         reticle = GameObject.FindGameObjectWithTag("Reticle");
         ResetHpBar();
+        reticle = GameObject.FindGameObjectWithTag("Reticle");
     }
 
     // Update is called once per frame
@@ -52,15 +52,12 @@ public class gameManager : MonoBehaviour
 
     public void pauseState()
     {
-        if(flashDamage.activeSelf == true)
-        {
-            flashDamage.SetActive(false);
-        }
         isPaused = true;
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
         reticle.SetActive(false);
+        flashDamage.SetActive(false);
 
     }
 
@@ -76,9 +73,9 @@ public class gameManager : MonoBehaviour
 
     public void youLose()
     {
+        pauseState();
         activeMenu = loseMenu;
         showActiveMenu();
-        pauseState();
     }
 
     public void showActiveMenu() //shows active menu if there is one.
@@ -119,10 +116,10 @@ public class gameManager : MonoBehaviour
 
     public void UpdateHealthBar()
     {
-
         hpBar.maxValue = playerScript.getOriginalHealth();
         hpBar.value = playerScript.getHealth();
-        if(playerScript.getHealth() <= 0)
+        hpText.text = "HP: " + playerScript.getHealth();
+        if (playerScript.getHealth() <= 0)
         {
             hpText.text = "HP: 0";
         }
@@ -130,12 +127,12 @@ public class gameManager : MonoBehaviour
         {
             hpText.text = "HP: " + playerScript.getHealth();
         }
-       
-
     }
 
     public void ResetHpBar()
     {
+        hpBar.maxValue = playerScript.getOriginalHealth();
+        hpBar.value = playerScript.getHealth();
         hpBar.maxValue = 1;
         hpBar.value = 1;
         hpText.text = "HP: " + playerScript.getHealth();
