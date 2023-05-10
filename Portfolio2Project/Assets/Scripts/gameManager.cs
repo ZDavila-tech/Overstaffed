@@ -21,6 +21,8 @@ public class gameManager : MonoBehaviour
     public GameObject loseMenu;
     public GameObject winMenu;
     public GameObject flashDamage;
+    public GameObject inventoryMenu;
+
     [SerializeField] Slider hpBar;
     [SerializeField] Text hpText;
 
