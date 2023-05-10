@@ -10,12 +10,14 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] NavMeshAgent navAgent;
     [SerializeField] Transform tShootPos;
     [SerializeField] Transform tHeadPos;
+    [SerializeField] GameObject drop;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int iHP;
     [SerializeField] float fTurnRate;
     [SerializeField] float fFieldOfView;
     [SerializeField] float fChaseTime;
+    [Range(0, 100)][SerializeField] int DropRate;
 
     [Header("----- Weapon Stats -----")]
     [SerializeField] GameObject gOBullet;
@@ -107,6 +109,10 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if(iHP <= 0) //if it dies, get rid of it
         {
+            if(Random.Range(0,100) <= DropRate)
+            {
+             Instantiate(drop, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), transform.rotation);
+            }
             Destroy(gameObject);
         }
     }
