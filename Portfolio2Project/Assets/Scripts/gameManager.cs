@@ -38,7 +38,6 @@ public class gameManager : MonoBehaviour
         playerRespawn = GameObject.FindGameObjectWithTag("PlayerRespawn");
         reticle = GameObject.FindGameObjectWithTag("Reticle");
         ResetHpBar();
-        reticle = GameObject.FindGameObjectWithTag("Reticle");
     }
 
     // Update is called once per frame
@@ -101,7 +100,12 @@ public class gameManager : MonoBehaviour
     {
         StartCoroutine(flashRed());
     }
-
+    IEnumerator flashRed()
+    {
+        flashDamage.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        flashDamage.SetActive(false);
+    }
     public void youWin()
     {
         activeMenu = winMenu;
@@ -109,18 +113,10 @@ public class gameManager : MonoBehaviour
         pauseState();
     }
 
-    IEnumerator flashRed()
-    {
-        flashDamage.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        flashDamage.SetActive(false);
-    }
-
     public void UpdateHealthBar()
     {
         hpBar.maxValue = playerScript.getOriginalHealth();
         hpBar.value = playerScript.getHealth();
-        hpText.text = "HP: " + playerScript.getHealth();
         if (playerScript.getHealth() <= 0)
         {
             hpText.text = "HP: 0";
@@ -133,8 +129,8 @@ public class gameManager : MonoBehaviour
 
     public void ResetHpBar()
     {
-        hpBar.maxValue = playerScript.getOriginalHealth();
-        hpBar.value = playerScript.getHealth();
+        //hpBar.maxValue = playerScript.getOriginalHealth();
+        //hpBar.value = playerScript.getHealth();
         hpBar.maxValue = 1;
         hpBar.value = 1;
         hpText.text = "HP: " + playerScript.getHealth();

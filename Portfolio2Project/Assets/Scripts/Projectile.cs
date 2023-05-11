@@ -23,6 +23,7 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Bullet Made");
         //destroy the bullet after it's lifespan ends
         Destroy(gameObject, bulletLife);
         //move the bullet
@@ -30,24 +31,12 @@ public class Projectile : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other)
-    {
-  
+    {  
         IDamage damageable = other.GetComponent<IDamage>();
         if (damageable != null)
         {
-            if(critChance == 0)
-            {
-                damageable.TakeDamage(shotDmg);
-                Destroy(gameObject);
-                return;
-            }
-            //check if critical change for this weapon is more than or equal the random generated number between 0 and 100 to see if it will or won't be a critial hit
-            if (critChance >= Random.Range(0, 100)) //if it is
-             damageable.TakeDamage(2*shotDmg);
-            else
-             damageable.TakeDamage(shotDmg); //if it's not
+            damageable.TakeDamage(shotDmg);
         }
-
         Destroy(gameObject);
     }
 }
