@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [Range(10, 50)][SerializeField] float gravityValue;
     [Range(1, 3)][SerializeField] int maxJumps;
     [Range(2, 5)][SerializeField] float sprintMod;
+    [SerializeField] private float damagecoolDown;
 
 
     private int jumpsUsed;
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour, IDamage
     private bool groundedPlayer;
     private bool isSprinting;
     private int iHPOriginal;
+    private bool damagedRecently;
 
     [Header("----- Player Weapon -----")]
     //the distance the player can shoot
@@ -40,8 +42,8 @@ public class PlayerController : MonoBehaviour, IDamage
     void Start()
     {
         iHPOriginal = iHP;
-        Debug.Log(iHPOriginal);
-        Debug.Log(iHP);
+        //Debug.Log(iHPOriginal);
+        //Debug.Log(iHP);
     }
 
     // Update is called once per frame
@@ -111,25 +113,38 @@ public class PlayerController : MonoBehaviour, IDamage
     }
     public void TakeDamage(int amount)
     {
-        //adds the amount to the player's hp (adds a negative if taking damage)
-        if (iHP - amount <= iHPOriginal)
+        if (damagedRecently == false)
         {
-            if(iHP - amount < iHP)
-            gameManager.instance.showDamage();
+            damagedRecently = true;
+            StartCoroutine(resetDamagedRecently());
+            Debug.Log("my damage" + amount);
+            //-= used, negative amounts heal.         
             iHP -= amount;
-            gameManager.instance.UpdateHealthBar();
-            if (iHP <= 0)
+            if (amount > 0)
             {
-                gameManager.instance.youLose();
+                gameManager.instance.showDamage();
+                if (iHP <= 0)
+                {
+                    iHP = 0;
+                    gameManager.instance.youLose();
+                }
             }
-        }
-        else
-        {
-            iHP = iHPOriginal;
+            else
+            {
+                if (iHP > iHPOriginal)
+                {
+                    iHP = iHPOriginal;
+                }
+            }
             gameManager.instance.UpdateHealthBar();
         }
     }
 
+    IEnumerator resetDamagedRecently()
+    {
+        yield return new WaitForSeconds(damagecoolDown);
+        damagedRecently = false;
+    }
 
     IEnumerator Shoot()
     {
