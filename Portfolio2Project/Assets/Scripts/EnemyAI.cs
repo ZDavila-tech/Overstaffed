@@ -83,7 +83,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         navAgent.SetDestination(gameManager.instance.player.transform.position);
         if (navAgent.remainingDistance < navAgent.stoppingDistance)
         {
-            Debug.Log("YARGH");
+            //Debug.Log("YARGH");
             FacePlayer();
         }
 

@@ -112,11 +112,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7280602921333878449}
+  - component: {fileID: 7280602921333878454}
   - component: {fileID: 7280602921333878448}
   - component: {fileID: 7280602921333878451}
   - component: {fileID: 7280602921333878450}
   - component: {fileID: 7280602921333878455}
-  - component: {fileID: 7280602921333878454}
   - component: {fileID: 4430441963859992851}
   m_Layer: 3
   m_Name: Player(WithWeapon)
@@ -141,6 +141,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7280602921333878454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7280602921333878461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac024ec76d1be746aee0bcda6031e65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 7280602921333878455}
+  skills: {fileID: 4430441963859992851}
+  iHP: 10
+  playerSpeed: 7
+  jumpHeight: 6
+  gravityValue: 12
+  maxJumps: 1
+  sprintMod: 2
+  ShootRange: 355
+  ShotCooldown: 0.09
+  playerWeaponHolder: {fileID: 0}
 --- !u!33 &7280602921333878448
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -223,28 +246,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7280602921333878454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7280602921333878461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ac024ec76d1be746aee0bcda6031e65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 7280602921333878455}
-  skills: {fileID: 4430441963859992851}
-  iHP: 10
-  playerSpeed: 7
-  jumpHeight: 6
-  gravityValue: 12
-  maxJumps: 1
-  sprintMod: 2
-  ShootRange: 355
-  ShotCooldown: 0.09
 --- !u!114 &4430441963859992851
 MonoBehaviour:
   m_ObjectHideFlags: 0
