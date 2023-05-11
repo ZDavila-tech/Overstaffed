@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7280602920077839618}
   - component: {fileID: 7280602920077839629}
   - component: {fileID: 7280602920077839616}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -113,11 +113,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7280602921333878449}
   - component: {fileID: 7280602921333878454}
+  - component: {fileID: 4430441963859992851}
   - component: {fileID: 7280602921333878448}
   - component: {fileID: 7280602921333878451}
   - component: {fileID: 7280602921333878450}
   - component: {fileID: 7280602921333878455}
-  - component: {fileID: 4430441963859992851}
   m_Layer: 3
   m_Name: Player(WithWeapon)
   m_TagString: Player
@@ -133,7 +133,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7280602921333878461}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.846078, y: 1, z: -13.60598}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -161,9 +161,37 @@ MonoBehaviour:
   gravityValue: 12
   maxJumps: 1
   sprintMod: 2
+  damagecoolDown: 0.1
   ShootRange: 355
   ShotCooldown: 0.09
-  playerWeaponHolder: {fileID: 0}
+  playerWeaponHolder: {fileID: 287258874952850161}
+--- !u!114 &4430441963859992851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7280602921333878461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0685e4768be3224ea467e7ef764b700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 7280602921333878455}
+  playerController: {fileID: 7280602921333878454}
+  blinkAimIndicatorPrefab: {fileID: 2848004723096892248, guid: 9d2a42548f99c5042b79c8c622fcb472, type: 3}
+  DashSpeed: 21.9
+  DashTime: 0.352
+  DashCooldown: 5
+  JumpForce: 20.6
+  JumpTime: 0.336
+  HiJumpCooldown: 5
+  NewGravityForce: 1.2
+  SlowFallCooldown: 5
+  BlinkDistance: 50
+  BlinkCooldown: 5
+  invisDuration: 3
+  InvisCooldown: 5
 --- !u!33 &7280602921333878448
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -246,33 +274,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4430441963859992851
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7280602921333878461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0685e4768be3224ea467e7ef764b700, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 7280602921333878455}
-  playerController: {fileID: 7280602921333878454}
-  blinkAimIndicatorPrefab: {fileID: 2848004723096892248, guid: 9d2a42548f99c5042b79c8c622fcb472, type: 3}
-  DashSpeed: 21.9
-  DashTime: 0.352
-  DashCooldown: 5
-  JumpForce: 20.6
-  JumpTime: 0.336
-  HiJumpCooldown: 5
-  NewGravityForce: 1.2
-  SlowFallCooldown: 5
-  BlinkDistance: 50
-  BlinkCooldown: 5
-  invisDuration: 3
-  InvisCooldown: 5
 --- !u!1001 &4430441964307286739
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -333,5 +334,10 @@ PrefabInstance:
 --- !u!4 &287258874952746765 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4503770133153844702, guid: 9a49c1178d5393f40aff4be9116e4c48, type: 3}
+  m_PrefabInstance: {fileID: 4430441964307286739}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &287258874952850161 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4503770133153550370, guid: 9a49c1178d5393f40aff4be9116e4c48, type: 3}
   m_PrefabInstance: {fileID: 4430441964307286739}
   m_PrefabAsset: {fileID: 0}

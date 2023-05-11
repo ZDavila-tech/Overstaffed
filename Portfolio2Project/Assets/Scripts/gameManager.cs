@@ -38,7 +38,6 @@ public class gameManager : MonoBehaviour
         playerRespawn = GameObject.FindGameObjectWithTag("PlayerRespawn");
         reticle = GameObject.FindGameObjectWithTag("Reticle");
         ResetHpBar();
-        reticle = GameObject.FindGameObjectWithTag("Reticle");
     }
 
     // Update is called once per frame
@@ -101,19 +100,17 @@ public class gameManager : MonoBehaviour
     {
         StartCoroutine(flashRed());
     }
-
-    public void youWin()
-    {
-        activeMenu = winMenu;
-        showActiveMenu();
-        pauseState();
-    }
-
     IEnumerator flashRed()
     {
         flashDamage.SetActive(true);
         yield return new WaitForSeconds(0.1f);
         flashDamage.SetActive(false);
+    }
+    public void youWin()
+    {
+        activeMenu = winMenu;
+        showActiveMenu();
+        pauseState();
     }
 
     public void UpdateHealthBar()

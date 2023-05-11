@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [Range(10, 50)][SerializeField] float gravityValue;
     [Range(1, 3)][SerializeField] int maxJumps;
     [Range(2, 5)][SerializeField] float sprintMod;
+    [SerializeField] private float damagecoolDown;
 
 
     private int jumpsUsed;
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour, IDamage
     private bool groundedPlayer;
     private bool isSprinting;
     private int iHPOriginal;
+    private bool damagedRecently;
 
     [Header("----- Player Weapon -----")]
     //the distance the player can shoot
@@ -111,23 +113,37 @@ public class PlayerController : MonoBehaviour, IDamage
     }
     public void TakeDamage(int amount)
     {
-        Debug.Log("my damage" + amount);
-        //-= used, negative amounts heal.         
-        if(amount >= 0 )
+        if (damagedRecently == false)
         {
-            gameManager.instance.showDamage();
+            damagedRecently = true;
+            StartCoroutine(resetDamagedRecently());
+            Debug.Log("my damage" + amount);
+            //-= used, negative amounts heal.         
+            iHP -= amount;
+            if (amount > 0)
+            {
+                gameManager.instance.showDamage();
+                if (iHP <= 0)
+                {
+                    iHP = 0;
+                    gameManager.instance.youLose();
+                }
+            }
+            else
+            {
+                if (iHP > iHPOriginal)
+                {
+                    iHP = iHPOriginal;
+                }
+            }
+            gameManager.instance.UpdateHealthBar();
         }
-        iHP -= amount;
-        if (iHP > iHPOriginal)
-        {
-            iHP = iHPOriginal;
-        }
-        if (iHP <= 0)
-        {
-            iHP = 0;
-            gameManager.instance.youLose();
-        }
-        gameManager.instance.UpdateHealthBar();
+    }
+
+    IEnumerator resetDamagedRecently()
+    {
+        yield return new WaitForSeconds(damagecoolDown);
+        damagedRecently = false;
     }
 
     IEnumerator Shoot()
