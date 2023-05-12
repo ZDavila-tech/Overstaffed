@@ -13,7 +13,6 @@ public class gameManager : MonoBehaviour
     public GameObject player;
     public PlayerController playerScript;
     public GameObject playerRespawn;
-    public GameObject reticle;
 
     [Header("----- UI Stuff -----")]
     public GameObject pauseMenu;
@@ -36,7 +35,6 @@ public class gameManager : MonoBehaviour
         timeScaleOrig = Time.timeScale;
         playerScript = player.GetComponent<PlayerController>();
         playerRespawn = GameObject.FindGameObjectWithTag("PlayerRespawn");
-        reticle = GameObject.FindGameObjectWithTag("Reticle");
         ResetHpBar();
     }
 
@@ -57,7 +55,6 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
-        reticle.SetActive(false);
         flashDamage.SetActive(false);
 
     }
@@ -69,7 +66,6 @@ public class gameManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         hideActiveMenu();
-        reticle.SetActive(true);
     }
 
     public void youLose()
@@ -103,7 +99,7 @@ public class gameManager : MonoBehaviour
     IEnumerator flashRed()
     {
         flashDamage.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.3f);
         flashDamage.SetActive(false);
     }
     public void youWin()
