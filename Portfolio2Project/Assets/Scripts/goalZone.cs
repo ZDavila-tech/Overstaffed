@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class goalZone : MonoBehaviour
 {
-
-
     private void OnTriggerEnter(Collider other) //go into zone to win/go to next level
     {
-        if (other.CompareTag("Player"))
+        if (gameManager.instance.enemiesRemaining <= 0 && other.CompareTag("Player"))
         {
             gameManager.instance.youWin();
         }

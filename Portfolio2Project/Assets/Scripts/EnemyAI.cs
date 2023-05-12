@@ -38,6 +38,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     void Start()
     {
         cOrigColor = rModel.material.color;
+        ++gameManager.instance.enemiesRemaining;
     }
 
     
@@ -113,6 +114,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             {
              Instantiate(drop, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), transform.rotation);
             }
+            --gameManager.instance.enemiesRemaining;
             Destroy(gameObject);
         }
     }
