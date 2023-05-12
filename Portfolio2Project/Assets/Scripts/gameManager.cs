@@ -22,6 +22,9 @@ public class gameManager : MonoBehaviour
     public GameObject flashDamage;
     public GameObject inventoryMenu;
 
+    [Header("----- Enemy Stuff -----")]
+    public int enemiesRemaining;
+
     [SerializeField] Slider hpBar;
     [SerializeField] Text hpText;
 
@@ -36,6 +39,7 @@ public class gameManager : MonoBehaviour
         playerScript = player.GetComponent<PlayerController>();
         playerRespawn = GameObject.FindGameObjectWithTag("PlayerRespawn");
         ResetHpBar();
+        enemiesRemaining = 0;
     }
 
     // Update is called once per frame
