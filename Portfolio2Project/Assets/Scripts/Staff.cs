@@ -45,7 +45,6 @@ public class Staff : MonoBehaviour
             canMelee = false;
             if (lastShootTime + delay < Time.time)
             {
-                //anim.SetBool("IsShooting", true);
                 Vector3 direction = GetDirection();
                 if(Physics.Raycast(shootPos.position, direction, out RaycastHit hit, float.MaxValue, mask))
                 {
