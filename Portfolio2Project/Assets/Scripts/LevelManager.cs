@@ -8,6 +8,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField] Animator doorAnim;
 
 
+    [Header("-----Levels------")]
+    [SerializeField] Transform[] levelPrefabs;
+
     // Start is called before the first frame update
     void Start()
     {
