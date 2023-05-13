@@ -13,40 +13,31 @@ public class Staff : MonoBehaviour
     [SerializeField] private TrailRenderer trailRenderer;
     [SerializeField] private float delay;
     [SerializeField] private LayerMask mask;
+    [SerializeField] private float meleeCooldown;
 
-   
-    [SerializeField] Animator anim;
+
+    //[SerializeField] Animator anim;
     private float lastShootTime;
-    bool isShooting;
     private float timer;
+    bool isShooting;
+    public bool canMelee;
+    public GameObject weapon;
 
-    // Start is called before the first frame update
     private void Awake()
     {
-        anim = gameObject.GetComponent<Animator>();
+        //anim = gameObject.GetComponent<Animator>();
         //anim.speed = 0.1f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
+        //timer += Time.deltaTime;
         Shoot();
+        Melee();
+        
 
-        if(timer > 0.5f)
-        {
-            isShooting = false;
-            timer = 0;
-        }
-
-        if(isShooting == true)
-        {
-            anim.speed = 2.5f;
-        }
-        else
-        {
-            anim.speed = 0.5f;
-        }
+        
     }
 
     public void Shoot()
@@ -120,5 +111,27 @@ public class Staff : MonoBehaviour
             Destroy(trail.gameObject);
         }
 
+    }
+
+    public void Melee()
+    {
+        if (!canMelee)
+        {
+            return;
+        }
+
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            canMelee = false;
+            Animator anim = weapon.GetComponent<Animator>();
+            anim.SetTrigger("Melee");
+            StartCoroutine(ResetMeleeCooldown());
+        }
+    }
+    IEnumerator ResetMeleeCooldown()
+    {
+        yield return new WaitForSeconds(meleeCooldown);
+        canMelee = true;
     }
 }
