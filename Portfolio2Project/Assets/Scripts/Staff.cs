@@ -14,7 +14,7 @@ public class Staff : MonoBehaviour
     [SerializeField] private float delay;
     [SerializeField] private LayerMask mask;
     [SerializeField] private float meleeCooldown;
-
+    [SerializeField] Collider hitbox;
 
     //[SerializeField] Animator anim;
     private float lastShootTime;
@@ -22,22 +22,18 @@ public class Staff : MonoBehaviour
     bool isShooting;
     public bool canMelee;
     public GameObject weapon;
+    public bool isAttacking;
 
     private void Awake()
     {
-        //anim = gameObject.GetComponent<Animator>();
-        //anim.speed = 0.1f;
+        hitbox.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //timer += Time.deltaTime;
         Shoot();
         Melee();
-        
-
-        
     }
 
     public void Shoot()
@@ -46,34 +42,25 @@ public class Staff : MonoBehaviour
         if (Input.GetButton("Shoot"))
         {
             isShooting = true;
-            //anim.speed = 1.5f;
+            canMelee = false;
             if (lastShootTime + delay < Time.time)
             {
                 //anim.SetBool("IsShooting", true);
                 Vector3 direction = GetDirection();
                 if(Physics.Raycast(shootPos.position, direction, out RaycastHit hit, float.MaxValue, mask))
                 {
-                    TrailRenderer trail = Instantiate(trailRenderer, shootPos.position, Quaternion.identity); //Quaternion.identity
-
-                        StartCoroutine(SpawnTrail(trail, hit));
-
-                    lastShootTime = Time.time;
-                    
-                    //StartCoroutine(def.DestroyTrail(trailRenderer));
-                    //StartCoroutine(def.DestroyParticle(impactParticles));
+                    TrailRenderer trail = Instantiate(trailRenderer, shootPos.position, Quaternion.identity);
+                    StartCoroutine(SpawnTrail(trail, hit));
+                    StartCoroutine(Wait(delay));
                 }
             }
-            
         }
-        //yield return new WaitForSeconds(1);
-        //isShooting = false;
-        //anim.speed = 0.5f;
+        StartCoroutine(ResetShooting());
     } 
 
     private Vector3 GetDirection()
     {
         Vector3 dir = transform.parent.forward;
-        //Vector3 dir = new Vector3(transform.parent.rotation.x, transform.parent.rotation.y, transform.parent.rotation.z);
 
         if (addBulletSpread)
         {
@@ -89,7 +76,6 @@ public class Staff : MonoBehaviour
     private IEnumerator SpawnTrail(TrailRenderer trail, RaycastHit hit)
     {
         float time = 0;
-        //Vector3 startPos = trail.transform.position;
         Vector3 startPos = shootPos.transform.position;
 
         while (time < 1)
@@ -98,11 +84,9 @@ public class Staff : MonoBehaviour
             time += Time.deltaTime / trail.time;
             yield return null;
         }
-        //anim.SetBool("isShooting", false);
+        
         trail.transform.position = hit.point;
-        if(impactParticles != null)
-        {
-        }
+       
             Instantiate(impactParticles, hit.point, Quaternion.LookRotation(hit.normal)); //hit.point
 
         if (trail.gameObject != null)
@@ -119,10 +103,12 @@ public class Staff : MonoBehaviour
         {
             return;
         }
-
+        
+        isAttacking = true;
 
         if (Input.GetMouseButtonDown(1))
         {
+            hitbox.enabled = true;
             canMelee = false;
             Animator anim = weapon.GetComponent<Animator>();
             anim.SetTrigger("Melee");
@@ -133,5 +119,20 @@ public class Staff : MonoBehaviour
     {
         yield return new WaitForSeconds(meleeCooldown);
         canMelee = true;
+        isAttacking = false;
+        yield return new WaitForSeconds(1);
+        hitbox.enabled = false;
+    }
+
+    IEnumerator ResetShooting()
+    {
+        yield return new WaitForSeconds(0.5f);
+        isShooting = false;
+        canMelee = true;
+    }
+
+    IEnumerator Wait(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
     }
 }
