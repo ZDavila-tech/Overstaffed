@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Staff : MonoBehaviour
 {
+    [Header("----- Shooting Stuff -----")]
     [SerializeField] private bool addBulletSpread;
     [SerializeField] private Vector3 bulletSpread = new Vector3(0.1f, 0.1f, 0.1f);
     [SerializeField] private ParticleSystem shootingSystem;
@@ -13,6 +14,7 @@ public class Staff : MonoBehaviour
     [SerializeField] private TrailRenderer trailRenderer;
     [SerializeField] private float delay;
     [SerializeField] private LayerMask mask;
+    [Header("----- Melee Stuff -----")]
     [SerializeField] private float meleeCooldown;
     [SerializeField] Collider hitbox;
 
@@ -103,10 +105,10 @@ public class Staff : MonoBehaviour
             return;
         }
         
-        isAttacking = true;
 
         if (Input.GetMouseButtonDown(1))
         {
+            isAttacking = true;
             hitbox.enabled = true;
             canMelee = false;
             Animator anim = weapon.GetComponent<Animator>();

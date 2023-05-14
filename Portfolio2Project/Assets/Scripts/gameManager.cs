@@ -19,17 +19,22 @@ public class gameManager : MonoBehaviour
     public GameObject activeMenu;
     public GameObject loseMenu;
     public GameObject winMenu;
+    public GameObject settingsMenu;
     public GameObject flashDamage;
     public GameObject inventoryMenu;
 
     [Header("----- Enemy Stuff -----")]
     public int enemiesRemaining;
 
+    [Header("-----Misc Stuff-----")]
+
     [SerializeField] Slider hpBar;
     [SerializeField] Text hpText;
+    LevelManager levelManager;
 
     public bool isPaused;
     float timeScaleOrig;
+    Stack<GameObject> stack = new Stack<GameObject>();
 
     private void Awake()
     {
@@ -38,6 +43,7 @@ public class gameManager : MonoBehaviour
         timeScaleOrig = Time.timeScale;
         playerScript = player.GetComponent<PlayerController>();
         playerRespawn = GameObject.FindGameObjectWithTag("PlayerRespawn");
+        levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
         ResetHpBar();
         enemiesRemaining = 0;
     }
@@ -51,6 +57,11 @@ public class gameManager : MonoBehaviour
             showActiveMenu();
             pauseState();
         }
+        if (instance.enemiesRemaining <= 0 && levelManager.isInLevel)
+        {
+            levelManager.levelComplete();
+        }
+
     }
 
     public void pauseState()
@@ -71,11 +82,22 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         hideActiveMenu();
     }
+    public void goBack() //Go back to pause menu
+    {
+        activeMenu = pauseMenu;
+        showActiveMenu();
+    }
 
     public void youLose()
     {
         pauseState();
         activeMenu = loseMenu;
+        showActiveMenu();
+    }
+
+    public void goToSettings() //goes to settings menu
+    {
+        activeMenu = settingsMenu;
         showActiveMenu();
     }
 
@@ -100,6 +122,7 @@ public class gameManager : MonoBehaviour
     {
         StartCoroutine(flashRed());
     }
+
     IEnumerator flashRed()
     {
         flashDamage.SetActive(true);
