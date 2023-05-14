@@ -19,6 +19,7 @@ public class gameManager : MonoBehaviour
     public GameObject activeMenu;
     public GameObject loseMenu;
     public GameObject winMenu;
+    public GameObject settingsMenu;
     public GameObject flashDamage;
     public GameObject inventoryMenu;
 
@@ -76,6 +77,12 @@ public class gameManager : MonoBehaviour
     {
         pauseState();
         activeMenu = loseMenu;
+        showActiveMenu();
+    }
+
+    public void goToSettings()
+    {
+        activeMenu = settingsMenu;
         showActiveMenu();
     }
 
