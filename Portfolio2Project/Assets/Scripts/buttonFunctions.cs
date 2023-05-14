@@ -31,6 +31,10 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.unPauseState();
     }
 
+    public void goBackMenu()
+    {
+        gameManager.instance.goBack();
+    }
    
     //Go to next level; doesn't work until next level is made
     public void nextLevel()

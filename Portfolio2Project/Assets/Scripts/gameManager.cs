@@ -82,10 +82,11 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         hideActiveMenu();
     }
-    //public void goBack() //Go back to previous menu
-    //{
-    //    hideActiveMenu();
-    //}
+    public void goBack() //Go back to pause menu
+    {
+        activeMenu = pauseMenu;
+        showActiveMenu();
+    }
 
     public void youLose()
     {
