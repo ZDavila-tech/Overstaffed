@@ -31,6 +31,7 @@ public class gameManager : MonoBehaviour
 
     public bool isPaused;
     float timeScaleOrig;
+    Stack<GameObject> stack = new Stack<GameObject>();
 
     private void Awake()
     {
@@ -72,6 +73,10 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         hideActiveMenu();
     }
+    //public void goBack() //Go back to previous menu
+    //{
+    //    hideActiveMenu();
+    //}
 
     public void youLose()
     {
@@ -80,7 +85,7 @@ public class gameManager : MonoBehaviour
         showActiveMenu();
     }
 
-    public void goToSettings()
+    public void goToSettings() //goes to settings menu
     {
         activeMenu = settingsMenu;
         showActiveMenu();
@@ -107,6 +112,7 @@ public class gameManager : MonoBehaviour
     {
         StartCoroutine(flashRed());
     }
+
     IEnumerator flashRed()
     {
         flashDamage.SetActive(true);
