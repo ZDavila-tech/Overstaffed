@@ -13,9 +13,6 @@ public class ColorControler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //color = mat.color;
-        //color.a = 50;
-        //mat.color = color;
         sword.enabled = false;
     }
 

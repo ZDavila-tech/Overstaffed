@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Staff : MonoBehaviour
+public class WaterStaff : MonoBehaviour
 {
     [Header("----- Shooting Stuff -----")]
     [SerializeField] private bool addBulletSpread;
@@ -40,7 +40,7 @@ public class Staff : MonoBehaviour
 
     public void Shoot()
     {
-        
+
         if (Input.GetButton("Shoot"))
         {
             isShooting = true;
@@ -48,7 +48,7 @@ public class Staff : MonoBehaviour
             if (lastShootTime + delay < Time.time)
             {
                 Vector3 direction = GetDirection();
-                if(Physics.Raycast(shootPos.position, direction, out RaycastHit hit, float.MaxValue, mask))
+                if (Physics.Raycast(shootPos.position, direction, out RaycastHit hit, float.MaxValue, mask))
                 {
                     TrailRenderer trail = Instantiate(trailRenderer, shootPos.position, Quaternion.identity);
                     StartCoroutine(SpawnTrail(trail, hit));
@@ -57,7 +57,7 @@ public class Staff : MonoBehaviour
             }
         }
         StartCoroutine(ResetShooting());
-    } 
+    }
 
     private Vector3 GetDirection()
     {
@@ -85,10 +85,10 @@ public class Staff : MonoBehaviour
             time += Time.deltaTime / trail.time;
             yield return null;
         }
-        
+
         trail.transform.position = hit.point;
-       
-            Instantiate(impactParticles, hit.point, Quaternion.LookRotation(hit.normal)); //hit.point
+
+        Instantiate(impactParticles, hit.point, Quaternion.LookRotation(hit.normal)); //hit.point
 
         if (trail.gameObject != null)
         {
@@ -104,15 +104,15 @@ public class Staff : MonoBehaviour
         {
             return;
         }
-        
+
+        isAttacking = true;
 
         if (Input.GetMouseButtonDown(1))
         {
-            isAttacking = true;
             hitbox.enabled = true;
             canMelee = false;
             Animator anim = weapon.GetComponent<Animator>();
-            anim.SetTrigger("Melee");
+            anim.SetTrigger("SpearMelee");
             StartCoroutine(ResetMeleeCooldown());
         }
     }
