@@ -1142,7 +1142,7 @@ GameObject:
   - component: {fileID: 4260260369507079311}
   m_Layer: 0
   m_Name: Elevator
-  m_TagString: Untagged
+  m_TagString: LevelManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1154,7 +1154,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4260260369507079297}
-  m_LocalRotation: {x: -0, y: 0.70710707, z: -0, w: -0.7071066}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
   m_LocalPosition: {x: 5.0199995, y: 0.17, z: -5.5}
   m_LocalScale: {x: 0.77256626, y: 0.77256626, z: 0.77256626}
   m_ConstrainProportionsScale: 0
@@ -1178,8 +1178,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorAnim: {fileID: 4260260368467271750}
+  doorLight: {fileID: 4260260368043274828}
+  tutorialLevel: {fileID: 4757090257182501672, guid: 0bac5f8af2509aa4381faa0cf1d1ed37, type: 3}
   levelPrefabs:
-  - {fileID: 0}
+  - {fileID: 7733667217120645074, guid: aca8ff0e236e3514fbf2a486c8e44636, type: 3}
+  - {fileID: 110273596649059644, guid: 9ead71c29d7a602418491403be14bc5a, type: 3}
+  lightOnMat: {fileID: 2100000, guid: dc2e9e5e7f017a049b294245d3505f4d, type: 2}
+  level: 0
 --- !u!54 &4260260369507079310
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1207,5 +1212,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.4736712, y: 4.5412984, z: 3.7990994}
-  m_Center: {x: -2.6690659e-14, y: 2.1402392, z: 1.3995498}
+  m_Size: {x: 3.4736712, y: 4.5412984, z: 2.30895}
+  m_Center: {x: 1.9234396e-13, y: 2.140239, z: -1.6104176}
