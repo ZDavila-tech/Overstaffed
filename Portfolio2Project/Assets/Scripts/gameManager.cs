@@ -26,8 +26,11 @@ public class gameManager : MonoBehaviour
     [Header("----- Enemy Stuff -----")]
     public int enemiesRemaining;
 
+    [Header("-----Misc Stuff-----")]
+
     [SerializeField] Slider hpBar;
     [SerializeField] Text hpText;
+    LevelManager levelManager;
 
     public bool isPaused;
     float timeScaleOrig;
@@ -40,6 +43,7 @@ public class gameManager : MonoBehaviour
         timeScaleOrig = Time.timeScale;
         playerScript = player.GetComponent<PlayerController>();
         playerRespawn = GameObject.FindGameObjectWithTag("PlayerRespawn");
+        levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
         ResetHpBar();
         enemiesRemaining = 0;
     }
@@ -53,6 +57,11 @@ public class gameManager : MonoBehaviour
             showActiveMenu();
             pauseState();
         }
+        if (instance.enemiesRemaining <= 0 && levelManager.isInLevel)
+        {
+            levelManager.levelComplete();
+        }
+
     }
 
     public void pauseState()
