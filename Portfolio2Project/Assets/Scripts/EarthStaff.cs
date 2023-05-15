@@ -52,7 +52,7 @@ public class EarthStaff : MonoBehaviour
                 {
                     TrailRenderer trail = Instantiate(trailRenderer, shootPos.position, Quaternion.identity);
                     StartCoroutine(SpawnTrail(trail, hit));
-                    //StartCoroutine(Wait());
+                    lastShootTime = Time.time;
                 }
             }
         }
