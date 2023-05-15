@@ -37,6 +37,8 @@ public class gameManager : MonoBehaviour
     [SerializeField] Slider ability1;
     [SerializeField] Slider ability2;
     LevelManager levelManager;
+    public Sprite[] spriteArray;
+    public Image element;
 
     public bool isPaused;
     float timeScaleOrig;
@@ -45,10 +47,11 @@ public class gameManager : MonoBehaviour
     {
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
-        //Loking for which element the player has
+        //Looking for which element the player has
         waterPlayer = GameObject.Find("Water Player");
         firePlayer = GameObject.Find("Fire Player");
         earthPlayer = GameObject.Find("Earth Player");
+        element = GameObject.Find("Element");
         timeScaleOrig = Time.timeScale;
         playerScript = player.GetComponent<PlayerController>();
         playerRespawn = GameObject.FindGameObjectWithTag("PlayerRespawn");
@@ -147,20 +150,20 @@ public class gameManager : MonoBehaviour
         showActiveMenu();
         pauseState();
     }
-
+ 
     public void SetElementIcon()
     {
         if(waterPlayer != null)
         {
-
+            element.sprite = spriteArray[0];
         }
         else if(firePlayer != null)
         {
-
+            element.sprite = spriteArray[1];
         }
         else if(earthPlayer != null)
         {
-
+            element.sprite = spriteArray[2];
         }
     }
 
