@@ -5,28 +5,30 @@ using UnityEngine;
 public class ColorControler : MonoBehaviour
 {
     public Staff staff;
-    [SerializeField] private Material mat;
-    [SerializeField] private Renderer sword;
-    public bool test;
+    public WaterStaff wStaff;
+    [SerializeField] private Renderer sWeapon;
 
+
+    public bool attacking;
     Color color;
     // Start is called before the first frame update
     void Start()
     {
-        sword.enabled = false;
+        sWeapon.enabled = false;
+        attacking = wStaff.isAttacking;
     }
 
     // Update is called once per frame
     void Update()
     {
-        test = staff.isAttacking;
-        if (staff.isAttacking)
+        attacking = wStaff.isAttacking;
+        if (wStaff.isAttacking)
         {
-            sword.enabled = true;
+            sWeapon.enabled = true;
         }
         else
         {
-            sword.enabled = false;
+            sWeapon.enabled = false;
         }
 
     }

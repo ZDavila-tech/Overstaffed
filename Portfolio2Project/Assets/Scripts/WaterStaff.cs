@@ -105,10 +105,10 @@ public class WaterStaff : MonoBehaviour
             return;
         }
 
-        isAttacking = true;
 
         if (Input.GetMouseButtonDown(1))
         {
+            isAttacking = true;
             hitbox.enabled = true;
             canMelee = false;
             Animator anim = weapon.GetComponent<Animator>();
