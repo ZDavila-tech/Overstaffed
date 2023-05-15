@@ -13,6 +13,7 @@ public class gameManager : MonoBehaviour
     public GameObject player;
     public PlayerController playerScript;
     public GameObject playerRespawn;
+    public Skills skillScript;
 
     [Header("----- UI Stuff -----")]
     public GameObject pauseMenu;
@@ -30,6 +31,8 @@ public class gameManager : MonoBehaviour
 
     [SerializeField] Slider hpBar;
     [SerializeField] Text hpText;
+    [SerializeField] Slider ability1;
+    [SerializeField] Slider ability2;
     LevelManager levelManager;
 
     public bool isPaused;
@@ -149,7 +152,12 @@ public class gameManager : MonoBehaviour
             hpText.text = "HP: " + playerScript.getHealth();
         }
     }
-
+    public void UpdateAbilityCD()
+    {
+        ability1.maxValue = 1;
+        ability1.value -= ability1.maxValue / skillScript.getCooldown();
+    }
+    
     public void ResetHpBar()
     {
         //hpBar.maxValue = playerScript.getOriginalHealth();

@@ -80,6 +80,7 @@ public class Skills : MonoBehaviour
 
     IEnumerator dashCooldownCoroutine()
     {
+        
         yield return new WaitForSeconds(DashCooldown);
         canDash = true;
     }
@@ -283,6 +284,33 @@ public class Skills : MonoBehaviour
         }
     }
 
+    public float getCooldown(skill sk)
+    {
+        switch (sk)
+        {
+            case (skill.Dash):
+                {
+                    return DashCooldown;
+                }
+            case (skill.HiJump):
+                {
+                    return HiJumpCooldown;
+                }
+            case (skill.SlowFall):
+                {
+                    return SlowFallCooldown;
+                }
+            case (skill.Blink):
+                {
+                    return BlinkCooldown;
+                }
+            case (skill.Invisibility):
+                {
+                    return InvisCooldown;
+                }
+        }
+        return 0;
+    }
     Action testSkill(skill sk)
     {
         switch (sk)
