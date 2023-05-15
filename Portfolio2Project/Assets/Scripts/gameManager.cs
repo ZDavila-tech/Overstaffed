@@ -14,6 +14,9 @@ public class gameManager : MonoBehaviour
     public PlayerController playerScript;
     public GameObject playerRespawn;
     public Skills skillScript;
+    public GameObject firePlayer;
+    public GameObject waterPlayer;
+    public GameObject earthPlayer;
 
     [Header("----- UI Stuff -----")]
     public GameObject pauseMenu;
@@ -34,26 +37,33 @@ public class gameManager : MonoBehaviour
     [SerializeField] Slider ability1;
     [SerializeField] Slider ability2;
     LevelManager levelManager;
+    public Sprite[] spriteArray;
+    public Image element;
 
     public bool isPaused;
     float timeScaleOrig;
-    Stack<GameObject> stack = new Stack<GameObject>();
 
     private void Awake()
     {
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
+        //Looking for which element the player has
+        waterPlayer = GameObject.Find("Water Player");
+        firePlayer = GameObject.Find("Fire Player");
+        earthPlayer = GameObject.Find("Earth Player");
         timeScaleOrig = Time.timeScale;
         playerScript = player.GetComponent<PlayerController>();
         playerRespawn = GameObject.FindGameObjectWithTag("PlayerRespawn");
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
         ResetHpBar();
+        SetElementIcon();
         enemiesRemaining = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+       
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
             activeMenu = pauseMenu;
@@ -64,7 +74,6 @@ public class gameManager : MonoBehaviour
         {
             levelManager.levelComplete();
         }
-
     }
 
     public void pauseState()
@@ -140,6 +149,22 @@ public class gameManager : MonoBehaviour
         activeMenu = winMenu;
         showActiveMenu();
         pauseState();
+    }
+ 
+    public void SetElementIcon()
+    {
+        if(waterPlayer != null)
+        {
+            element.sprite = spriteArray[0];
+        }
+        else if(firePlayer != null)
+        {
+            element.sprite = spriteArray[1];
+        }
+        else if(earthPlayer != null)
+        {
+            element.sprite = spriteArray[2];
+        }
     }
 
     public void UpdateHealthBar()

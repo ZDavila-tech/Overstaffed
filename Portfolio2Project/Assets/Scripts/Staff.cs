@@ -34,16 +34,21 @@ public class Staff : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Shoot();
+        //Shoot();
         Melee();
     }
 
-    public void Shoot()
+    public void Shoot(float shootRate)
     {
         
         if (Input.GetButton("Shoot"))
         {
             isShooting = true;
+            delay = shootRate;
+
+            Animator anim = weapon.GetComponent<Animator>();
+            anim.SetTrigger("Shoot");
+
             canMelee = false;
             if (lastShootTime + delay < Time.time)
             {
@@ -129,6 +134,8 @@ public class Staff : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         isShooting = false;
+        Animator anim = weapon.GetComponent<Animator>();
+        anim.SetTrigger("NotShooting");
         canMelee = true;
     }
 

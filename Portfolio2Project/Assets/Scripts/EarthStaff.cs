@@ -34,13 +34,13 @@ public class EarthStaff : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Shoot();
+        //Shoot();
         Melee();
     }
 
-    public void Shoot()
+    public void Shoot(float shootRate)
     {
-
+        delay = shootRate;
         if (Input.GetButton("Shoot"))
         {
             isShooting = true;
