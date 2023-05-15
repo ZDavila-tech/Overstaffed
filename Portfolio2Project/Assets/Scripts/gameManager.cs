@@ -51,18 +51,19 @@ public class gameManager : MonoBehaviour
         waterPlayer = GameObject.Find("Water Player");
         firePlayer = GameObject.Find("Fire Player");
         earthPlayer = GameObject.Find("Earth Player");
-        element = GameObject.Find("Element");
         timeScaleOrig = Time.timeScale;
         playerScript = player.GetComponent<PlayerController>();
         playerRespawn = GameObject.FindGameObjectWithTag("PlayerRespawn");
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
         ResetHpBar();
+        SetElementIcon();
         enemiesRemaining = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+       
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
             activeMenu = pauseMenu;
@@ -73,7 +74,6 @@ public class gameManager : MonoBehaviour
         {
             levelManager.levelComplete();
         }
-
     }
 
     public void pauseState()
