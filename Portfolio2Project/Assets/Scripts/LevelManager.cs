@@ -19,9 +19,10 @@ public class LevelManager : MonoBehaviour
     public int level = 0;
 
     Material lightOffMat;
-    bool levelIsComplete;
+    bool levelIsComplete = true;
     bool inElevator;
     Transform currLevel;
+    Coroutine activeCoroutine;
 
     // Start is called before the first frame update
     void Start()
@@ -36,10 +37,20 @@ public class LevelManager : MonoBehaviour
 
         if (other.CompareTag("Player") && !inElevator) 
         {
-            Debug.Log("Player is in Elevator");
-            inElevator= true;
-            Debug.Log(other.name);
-            StartCoroutine(nextLevelCoroutine());
+            if (levelIsComplete)
+            {
+                inElevator= true;
+                Debug.Log(other.name);
+                activeCoroutine = StartCoroutine(nextLevelCoroutine());
+            }
+            else
+            {
+                if (doorAnim != null)
+                {
+                    doorAnim.SetBool("Open", true);
+                }
+            }
+
         }
 
 
@@ -51,7 +62,8 @@ public class LevelManager : MonoBehaviour
         {
             if (levelIsComplete)
             {
-                StopCoroutine(nextLevelCoroutine());
+            Debug.Log("stoppong Coroutine");
+                StopCoroutine(activeCoroutine);
 
             }
             else
@@ -91,7 +103,7 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Closing Door");
             doorAnim.SetBool("Open", false);
         }
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(4);
         if (currLevel != null)
         {
             Destroy(currLevel.gameObject);
@@ -113,7 +125,8 @@ public class LevelManager : MonoBehaviour
         {
             doorAnim.SetBool("Open", true);
         }
-        isInLevel= true;
+        doorLight.GetComponent<MeshRenderer>().material = lightOffMat;
+        isInLevel = true;
         StopCoroutine(nextLevelCoroutine());
 
 
