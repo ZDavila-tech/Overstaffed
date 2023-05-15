@@ -39,13 +39,9 @@ public class Skills : MonoBehaviour
     bool canBlink = true;
     bool aiming;
 
-    [Header("~Invisibility~")]
-    [Range(1, 50)][SerializeField] float invisDuration;
-    [Range(1, 20)][SerializeField] float InvisCooldown;
-    bool canInvis = true;
-
     skill activeSkill1 = skill.Blink;
     skill activeSkill2 = skill.Dash;
+    skill activeSkill3 = skill.HiJump;
 
 
     bool CanMove = true;
@@ -231,30 +227,6 @@ public class Skills : MonoBehaviour
 
     }
 
-    public void invisible()
-    {
-        if (canInvis)
-        {
-            canInvis = false;
-            this.gameObject.layer = 8;
-            StartCoroutine(invisibilityCoroutine());
-            StartCoroutine(InvisCooldownCoroutine());
-        }
-    }
-
-    IEnumerator invisibilityCoroutine()
-    {
-        yield return new WaitForSeconds(invisDuration);
-        this.gameObject.layer = 3;
-        StopCoroutine(invisibilityCoroutine());
-    }
-
-    IEnumerator InvisCooldownCoroutine()
-    {
-        yield return new WaitForSeconds(InvisCooldown);
-        canInvis = true;
-    }
-
 
     public bool canMove()
     {
@@ -294,6 +266,11 @@ public class Skills : MonoBehaviour
             Action skill = testSkill(activeSkill2);
             skill();
         }
+        else if (slot == 3)
+        {
+            Action skill = testSkill(activeSkill3);
+            skill();
+        }
     }
 
     public float getCooldown(skill sk)
@@ -315,10 +292,6 @@ public class Skills : MonoBehaviour
             case (skill.Blink):
                 {
                     return BlinkCooldown;
-                }
-            case (skill.Invisibility):
-                {
-                    return InvisCooldown;
                 }
         }
         return 0;
@@ -342,10 +315,6 @@ public class Skills : MonoBehaviour
             case (skill.Blink):
                 {
                     return blinkAim;
-                }
-            case (skill.Invisibility):
-                {
-                    return invisible;
                 }
         }
         return null;

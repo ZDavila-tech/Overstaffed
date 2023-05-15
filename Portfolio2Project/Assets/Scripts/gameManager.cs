@@ -87,6 +87,8 @@ public class gameManager : MonoBehaviour
     }
     public void goBack() //Go back to pause menu
     {
+        pauseState();
+        settingsMenu.SetActive(false);
         activeMenu = pauseMenu;
         showActiveMenu();
     }
@@ -100,6 +102,7 @@ public class gameManager : MonoBehaviour
 
     public void goToSettings() //goes to settings menu
     {
+        pauseState();
         activeMenu = settingsMenu;
         showActiveMenu();
     }
