@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour, IDamage
 {
@@ -14,6 +15,8 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int iHP;
+    [SerializeField] Slider hpBar;
+    [SerializeField] GameObject hpDisplay;
     [SerializeField] float fTurnRate;
     [SerializeField] float fFieldOfView;
     [SerializeField] float fChaseTime;
@@ -39,9 +42,11 @@ public class EnemyAI : MonoBehaviour, IDamage
     {
         cOrigColor = rModel.material.color;
         ++gameManager.instance.enemiesRemaining;
+        hpBar.maxValue = iHP;
+        hpBar.value = hpBar.maxValue;
     }
 
-    
+
     void Update()
     {
 
@@ -102,8 +107,11 @@ public class EnemyAI : MonoBehaviour, IDamage
         bIsShooting = false;//tell update that we're ready to shoot again
     }
 
-    public void TakeDamage(int dmg){
+    public void TakeDamage(int dmg)
+    {
         iHP -= dmg;//health goes down
+        StartCoroutine(showHealth());
+        hpBar.value = iHP;
         StartCoroutine(flashColor());//indicate damage taken
         navAgent.SetDestination(gameManager.instance.player.transform.position);
         BeenShot();
@@ -126,12 +134,20 @@ public class EnemyAI : MonoBehaviour, IDamage
         bBeenShot = false;
     }
 
-    IEnumerator flashColor(){//when it, change the color of the enemy from whatever it was to red, and back again
+    IEnumerator flashColor()
+    {//when it, change the color of the enemy from whatever it was to red, and back again
         rModel.material.color = Color.red;
 
         yield return new WaitForSeconds(0.1f);
 
         rModel.material.color = cOrigColor;
+    }
+
+    IEnumerator showHealth()
+    {
+        hpDisplay.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        hpDisplay.SetActive(false);
     }
 
     void OnTriggerEnter(Collider other)
