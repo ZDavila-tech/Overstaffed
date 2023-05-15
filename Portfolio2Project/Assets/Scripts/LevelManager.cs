@@ -40,7 +40,6 @@ public class LevelManager : MonoBehaviour
             if (levelIsComplete)
             {
                 inElevator= true;
-                Debug.Log(other.name);
                 activeCoroutine = StartCoroutine(nextLevelCoroutine());
             }
             else
@@ -62,7 +61,6 @@ public class LevelManager : MonoBehaviour
         {
             if (levelIsComplete)
             {
-            Debug.Log("stoppong Coroutine");
                 StopCoroutine(activeCoroutine);
 
             }
@@ -87,7 +85,6 @@ public class LevelManager : MonoBehaviour
             levelIsComplete = true;
             if (doorAnim != null)
             {
-                Debug.Log("OpeningDoor");
                 doorAnim.SetBool("Open", true);
             }
         }
@@ -100,7 +97,6 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(2);
         if (doorAnim != null)
         {
-        Debug.Log("Closing Door");
             doorAnim.SetBool("Open", false);
         }
         yield return new WaitForSeconds(4);
