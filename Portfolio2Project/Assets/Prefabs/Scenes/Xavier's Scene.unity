@@ -504,6 +504,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5249770107873613657, guid: d01d4ffad7aabda4fb2a161e8038bcf1, type: 3}
+      propertyPath: waterWeapon
+      value: 
+      objectReference: {fileID: 1643449300}
+    - target: {fileID: 5249770107873613657, guid: d01d4ffad7aabda4fb2a161e8038bcf1, type: 3}
+      propertyPath: ShotCooldown
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5249770107873613662, guid: d01d4ffad7aabda4fb2a161e8038bcf1, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -746,6 +754,17 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 6639278139705077396, guid: 87591f3428006394c811eb49ac87061d, type: 3}
   m_PrefabInstance: {fileID: 2084980001}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &905407433 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 548104577925688047, guid: 87591f3428006394c811eb49ac87061d, type: 3}
+  m_PrefabInstance: {fileID: 2084980001}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20f1826bb3d37214b84c6b3ef434360a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1125408354
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1158,8 +1177,17 @@ MonoBehaviour:
   SlowFallCooldown: 1
   BlinkDistance: 50
   BlinkCooldown: 1
-  invisDuration: 3
-  InvisCooldown: 1
+--- !u!114 &1643449300 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4163244880213434264, guid: d01d4ffad7aabda4fb2a161e8038bcf1, type: 3}
+  m_PrefabInstance: {fileID: 360365600}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06494aba3f74c0c46af2565ca2e358a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1811572201
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1398,6 +1426,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6190940359032564604, guid: 87591f3428006394c811eb49ac87061d, type: 3}
+      propertyPath: ShotCooldown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6190940359032564604, guid: 87591f3428006394c811eb49ac87061d, type: 3}
+      propertyPath: playerWeaponScript
+      value: 
+      objectReference: {fileID: 905407433}
     - target: {fileID: 6639278139705077399, guid: 87591f3428006394c811eb49ac87061d, type: 3}
       propertyPath: sWeapon
       value: 
@@ -1670,7 +1706,7 @@ MonoBehaviour:
     m_Bits: 1
   meleeCooldown: 1.15
   hitbox: {fileID: 2984142205564041468}
-  canMelee: 0
+  canMelee: 1
   weapon: {fileID: 1553115972927909350}
   isAttacking: 0
 --- !u!33 &4514430370478262641
@@ -1840,6 +1876,9 @@ MonoBehaviour:
   ShootRange: 355
   ShotCooldown: 0.1
   playerWeaponHolder: {fileID: 0}
+  playerWeaponScript: {fileID: 0}
+  waterWeapon: {fileID: 0}
+  earthWeapon: {fileID: 0}
 --- !u!81 &6374267712496604036
 AudioListener:
   m_ObjectHideFlags: 0

@@ -35,8 +35,12 @@ public class PlayerController : MonoBehaviour, IDamage
     bool isShooting;
 
     [SerializeField] GameObject playerWeaponHolder;
+    [SerializeField] Staff playerWeaponScript;
+    [SerializeField] WaterStaff waterWeapon;
+    [SerializeField] EarthStaff earthWeapon;
+
+
     GameObject playerWeapon;
-    Staff playerWeaponScript;
 
     // Start is called before the first frame update
     void Start()
@@ -60,6 +64,7 @@ public class PlayerController : MonoBehaviour, IDamage
         if (Input.GetButton("Shoot") && !isShooting && !gameManager.instance.isPaused)
         {
             StartCoroutine(Shoot());
+            
         }
 
         if (Input.GetAxis("Movement1") != 0)
@@ -158,6 +163,14 @@ public class PlayerController : MonoBehaviour, IDamage
             isShooting = true;
 
             RaycastHit hit;
+
+            if (playerWeaponScript != null)
+                playerWeaponScript.Shoot(ShotCooldown);
+            else if (waterWeapon != null)
+                waterWeapon.Shoot(ShotCooldown);
+            else if (earthWeapon != null)
+                earthWeapon.Shoot(ShotCooldown);
+
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, ShootRange))
             //if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward * ShootRange, out hit))
                 {
