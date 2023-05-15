@@ -52,7 +52,7 @@ public class LevelManager : MonoBehaviour
             if (levelIsComplete)
             {
                 StopCoroutine(nextLevelCoroutine());
-                inElevator = false;
+
             }
             else
             {
@@ -61,6 +61,7 @@ public class LevelManager : MonoBehaviour
                     doorAnim.SetBool("Open", false);
                 }
             }
+            inElevator = false;
         }
 
 
@@ -82,12 +83,18 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator nextLevelCoroutine()
     {
+
         isInLevel = false;
-        Debug.Log("Next level!");
         yield return new WaitForSeconds(2);
         if (doorAnim != null)
         {
+        Debug.Log("Closing Door");
             doorAnim.SetBool("Open", false);
+        }
+        yield return new WaitForSeconds(1);
+        if (currLevel != null)
+        {
+            Destroy(currLevel.gameObject);
         }
         if (level == 0)
         {
