@@ -19,9 +19,10 @@ public class LevelManager : MonoBehaviour
     public int level = 0;
 
     Material lightOffMat;
-    bool levelIsComplete;
+    bool levelIsComplete = true;
     bool inElevator;
     Transform currLevel;
+    Coroutine activeCoroutine;
 
     // Start is called before the first frame update
     void Start()
@@ -36,10 +37,19 @@ public class LevelManager : MonoBehaviour
 
         if (other.CompareTag("Player") && !inElevator) 
         {
-            Debug.Log("Player is in Elevator");
-            inElevator= true;
-            Debug.Log(other.name);
-            StartCoroutine(nextLevelCoroutine());
+            if (levelIsComplete)
+            {
+                inElevator= true;
+                activeCoroutine = StartCoroutine(nextLevelCoroutine());
+            }
+            else
+            {
+                if (doorAnim != null)
+                {
+                    doorAnim.SetBool("Open", true);
+                }
+            }
+
         }
 
 
@@ -51,8 +61,8 @@ public class LevelManager : MonoBehaviour
         {
             if (levelIsComplete)
             {
-                StopCoroutine(nextLevelCoroutine());
-                inElevator = false;
+                StopCoroutine(activeCoroutine);
+
             }
             else
             {
@@ -61,6 +71,7 @@ public class LevelManager : MonoBehaviour
                     doorAnim.SetBool("Open", false);
                 }
             }
+            inElevator = false;
         }
 
 
@@ -74,7 +85,6 @@ public class LevelManager : MonoBehaviour
             levelIsComplete = true;
             if (doorAnim != null)
             {
-                Debug.Log("OpeningDoor");
                 doorAnim.SetBool("Open", true);
             }
         }
@@ -82,12 +92,17 @@ public class LevelManager : MonoBehaviour
 
     IEnumerator nextLevelCoroutine()
     {
+
         isInLevel = false;
-        Debug.Log("Next level!");
         yield return new WaitForSeconds(2);
         if (doorAnim != null)
         {
             doorAnim.SetBool("Open", false);
+        }
+        yield return new WaitForSeconds(4);
+        if (currLevel != null)
+        {
+            Destroy(currLevel.gameObject);
         }
         if (level == 0)
         {
@@ -106,7 +121,8 @@ public class LevelManager : MonoBehaviour
         {
             doorAnim.SetBool("Open", true);
         }
-        isInLevel= true;
+        doorLight.GetComponent<MeshRenderer>().material = lightOffMat;
+        isInLevel = true;
         StopCoroutine(nextLevelCoroutine());
 
 
