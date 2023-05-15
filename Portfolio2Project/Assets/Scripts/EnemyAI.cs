@@ -49,7 +49,10 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void Update()
     {
-
+        if (hpDisplay.active)
+        {
+            hpDisplay.transform.LookAt(gameManager.instance.player.transform.position);
+        }
         if((bPlayerInRange || bBeenShot) && CanSeePlayer())
         {
             AttackPlayer();
@@ -146,7 +149,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     IEnumerator showHealth()
     {
         hpDisplay.SetActive(true);
-        hpDisplay.transform.LookAt(gameManager.instance.player.transform.position);
+
         yield return new WaitForSeconds(2f);
         hpDisplay.SetActive(false);
     }
