@@ -152,10 +152,15 @@ public class gameManager : MonoBehaviour
             hpText.text = "HP: " + playerScript.getHealth();
         }
     }
-    public void UpdateAbilityCD()
+    public void UpdateAbilityCD1()
     {
         ability1.maxValue = 1;
-        ability1.value -= ability1.maxValue / skillScript.getCooldown();
+        ability1.value -= ability1.maxValue / skillScript.getCooldown(skillScript.getSkill1());
+    }
+    public void UpdateAbilityCD2()
+    {
+        ability2.maxValue = 1;
+        ability2.value -= ability2.maxValue / skillScript.getCooldown(skillScript.getSkill2());
     }
     
     public void ResetHpBar()

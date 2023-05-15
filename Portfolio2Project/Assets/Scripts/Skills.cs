@@ -12,13 +12,13 @@ public class Skills : MonoBehaviour
     [SerializeField] Transform blinkAimIndicatorPrefab;
     public enum skill
     {
-        Dash,HiJump,SlowFall,Blink,Invisibility
+        Dash, HiJump, SlowFall, Blink, Invisibility
     }
 
     [Header("----- Values ------")]
     [Header("~Dash~")]
-    [Range(1,50)][SerializeField] float DashSpeed;
-    [Range(0,1)][SerializeField] float DashTime;
+    [Range(1, 50)][SerializeField] float DashSpeed;
+    [Range(0, 1)][SerializeField] float DashTime;
     [Range(1, 20)][SerializeField] float DashCooldown;
     bool canDash = true;
 
@@ -55,8 +55,8 @@ public class Skills : MonoBehaviour
     {
         if (canDash)
         {
-            canDash= false;
-            CanMove= false;
+            canDash = false;
+            CanMove = false;
             playerController.changeJumpsUsed(1);
             StartCoroutine(dashCoroutine());
             StartCoroutine(dashCooldownCoroutine());
@@ -73,14 +73,14 @@ public class Skills : MonoBehaviour
             controller.Move(transform.forward * DashSpeed * Time.deltaTime);
             yield return null;
         }
-        CanMove= true;
+        CanMove = true;
         StopCoroutine(dashCoroutine());
 
     }
 
     IEnumerator dashCooldownCoroutine()
     {
-        
+
         yield return new WaitForSeconds(DashCooldown);
         canDash = true;
     }
@@ -89,7 +89,7 @@ public class Skills : MonoBehaviour
     {
         if (canHiJump)
         {
-            canHiJump= false;
+            canHiJump = false;
             CanMove = false;
             playerController.changeJumpsUsed(1);
             StartCoroutine(hiJumpCoroutine());
@@ -122,7 +122,7 @@ public class Skills : MonoBehaviour
     {
         if (canSlowFall)
         {
-            canSlowFall= false;
+            canSlowFall = false;
             StartCoroutine(slowFallCoroutine());
             StartCoroutine(slowFallCooldownCoroutine());
         }
@@ -131,7 +131,7 @@ public class Skills : MonoBehaviour
     IEnumerator slowFallCoroutine()
     {
         gravityOrig = playerController.changeGravity(NewGravityForce);
-        while(!controller.isGrounded)
+        while (!controller.isGrounded)
         {
             if (controller.velocity.y > 0)
             {
@@ -158,7 +158,7 @@ public class Skills : MonoBehaviour
     {
         if (canBlink)
         {
-            canBlink= false;
+            canBlink = false;
             aiming = true;
             StartCoroutine(blinkAimCoroutine());
             StartCoroutine(blinkCooldownCoroutine());
@@ -215,16 +215,16 @@ public class Skills : MonoBehaviour
 
     public void blinkFire()
     {
-        controller.enabled= false;
+        controller.enabled = false;
         aiming = false;
         StopCoroutine(blinkAimCoroutine());
         if (blinkAimIndicator)
         {
-            transform.position = new Vector3(blinkAimIndicator.position.x,blinkAimIndicator.position.y + 1,blinkAimIndicator.position.z);
+            transform.position = new Vector3(blinkAimIndicator.position.x, blinkAimIndicator.position.y + 1, blinkAimIndicator.position.z);
 
             Destroy(blinkAimIndicator.gameObject);
         }
-        controller.enabled= true;
+        controller.enabled = true;
 
     }
 
@@ -232,7 +232,7 @@ public class Skills : MonoBehaviour
     {
         if (canInvis)
         {
-            canInvis= false;
+            canInvis = false;
             this.gameObject.layer = 8;
             StartCoroutine(invisibilityCoroutine());
             StartCoroutine(InvisCooldownCoroutine());
@@ -260,14 +260,23 @@ public class Skills : MonoBehaviour
 
     public void setSkill(int slot, skill skill)
     {
-        if (slot == 1) 
+        if (slot == 1)
         {
             activeSkill1 = skill;
         }
         else if (slot == 2)
         {
-            activeSkill2= skill;
+            activeSkill2 = skill;
         }
+    }
+
+    public skill getSkill1()
+    {
+        return activeSkill1;
+    }
+    public skill getSkill2()
+    {
+        return activeSkill2;
     }
 
     public void useSkill(int slot)
