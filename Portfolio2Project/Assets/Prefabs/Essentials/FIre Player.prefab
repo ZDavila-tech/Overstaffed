@@ -162,8 +162,6 @@ MonoBehaviour:
   SlowFallCooldown: 1
   BlinkDistance: 50
   BlinkCooldown: 1
-  invisDuration: 3
-  InvisCooldown: 1
 --- !u!33 &6190940359032564602
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -360,6 +358,10 @@ PrefabInstance:
     - target: {fileID: 1905235507777040400, guid: 2620bb44ef11a394d93a8bbe9e3f8644, type: 3}
       propertyPath: hitDmg
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1905235507777040407, guid: 2620bb44ef11a394d93a8bbe9e3f8644, type: 3}
+      propertyPath: delay
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 1905235507777040407, guid: 2620bb44ef11a394d93a8bbe9e3f8644, type: 3}
       propertyPath: meleeCooldown
