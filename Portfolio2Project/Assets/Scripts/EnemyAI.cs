@@ -146,6 +146,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     IEnumerator showHealth()
     {
         hpDisplay.SetActive(true);
+        hpDisplay.transform.LookAt(gameManager.instance.player.transform.position);
         yield return new WaitForSeconds(2f);
         hpDisplay.SetActive(false);
     }
