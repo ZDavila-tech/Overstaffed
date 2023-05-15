@@ -80,8 +80,9 @@ public class Skills : MonoBehaviour
 
     IEnumerator dashCooldownCoroutine()
     {
-
+        gameManager.instance.ShowCDBar2(true);
         yield return new WaitForSeconds(DashCooldown);
+        gameManager.instance.ShowCDBar2(false);
         canDash = true;
     }
 
@@ -209,8 +210,10 @@ public class Skills : MonoBehaviour
 
     IEnumerator blinkCooldownCoroutine()
     {
+        gameManager.instance.ShowCDBar1(true);
         yield return new WaitForSeconds(BlinkCooldown);
         canBlink = true;
+        gameManager.instance.ShowCDBar1(false);
     }
 
     public void blinkFire()

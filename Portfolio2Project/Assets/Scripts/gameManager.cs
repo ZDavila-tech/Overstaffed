@@ -152,16 +152,63 @@ public class gameManager : MonoBehaviour
             hpText.text = "HP: " + playerScript.getHealth();
         }
     }
-    public void UpdateAbilityCD1()
+    //shows the bar or deletes the bar
+    public void ShowCDBar1(bool ans)
     {
-        ability1.maxValue = 1;
-        ability1.value -= ability1.maxValue / skillScript.getCooldown(skillScript.getSkill1());
+        if(ans)
+        {
+            ability1.gameObject.SetActive(true);
+        }
+        else
+        {
+            ability1.gameObject.SetActive(false);
+        }
     }
-    public void UpdateAbilityCD2()
+    //shows the bar or deletes the bar
+    public void ShowCDBar2(bool ans)
     {
-        ability2.maxValue = 1;
-        ability2.value -= ability2.maxValue / skillScript.getCooldown(skillScript.getSkill2());
+        if (ans)
+        {
+            ability2.gameObject.SetActive(true);
+        }
+        else
+        {
+            ability2.gameObject.SetActive(false);
+        }
     }
+
+    //Want to try and get the slider to animate
+    //IEnumerator updateCD(Slider slider)
+    //{
+    //    float cool;
+    //    if (slider == ability1)
+    //    {
+    //         cool = skillScript.getCooldown(skillScript.getSkill1());
+    //    }
+    //    else
+    //    {
+    //        cool = skillScript.getCooldown(skillScript.getSkill2());
+    //    }
+    //    slider.value -= slider.maxValue / cool;
+    //    if(slider.value <= 0)
+    //    {
+    //        StopCoroutine(updateCD(slider));
+    //    }
+    //    yield return null;
+    //}
+    ////updates the bar \
+    //public void UpdateAbilityCD1()
+    //{
+    //    ability1.maxValue = 1;
+    //    StartCoroutine(updateCD(ability1));
+
+    //} 
+
+    //public void UpdateAbilityCD2()
+    //{
+    //    ability2.maxValue = 1;
+    //    StartCoroutine(updateCD(ability2));
+    //}
     
     public void ResetHpBar()
     {
