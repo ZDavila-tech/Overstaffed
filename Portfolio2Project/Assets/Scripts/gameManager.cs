@@ -14,6 +14,9 @@ public class gameManager : MonoBehaviour
     public PlayerController playerScript;
     public GameObject playerRespawn;
     public Skills skillScript;
+    public GameObject firePlayer;
+    public GameObject waterPlayer;
+    public GameObject earthPlayer;
 
     [Header("----- UI Stuff -----")]
     public GameObject pauseMenu;
@@ -37,12 +40,15 @@ public class gameManager : MonoBehaviour
 
     public bool isPaused;
     float timeScaleOrig;
-    Stack<GameObject> stack = new Stack<GameObject>();
 
     private void Awake()
     {
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
+        //Loking for which element the player has
+        waterPlayer = GameObject.Find("Water Player");
+        firePlayer = GameObject.Find("Fire Player");
+        earthPlayer = GameObject.Find("Earth Player");
         timeScaleOrig = Time.timeScale;
         playerScript = player.GetComponent<PlayerController>();
         playerRespawn = GameObject.FindGameObjectWithTag("PlayerRespawn");
@@ -140,6 +146,22 @@ public class gameManager : MonoBehaviour
         activeMenu = winMenu;
         showActiveMenu();
         pauseState();
+    }
+
+    public void SetElementIcon()
+    {
+        if(waterPlayer != null)
+        {
+
+        }
+        else if(firePlayer != null)
+        {
+
+        }
+        else if(earthPlayer != null)
+        {
+
+        }
     }
 
     public void UpdateHealthBar()
