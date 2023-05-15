@@ -148,19 +148,23 @@ public class PlayerController : MonoBehaviour, IDamage
 
     IEnumerator Shoot()
     {
+        if (!isShooting)
+        {
+            Debug.Log("Shot");
+            isShooting = true;
 
-        isShooting = true;
+            RaycastHit hit;
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, ShootRange))
+            //if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward * ShootRange, out hit))
+                {
+                IDamage damageable = hit.collider.GetComponent<IDamage>();
+                if (damageable != null)
+                {
 
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, ShootRange))
-        //if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward * ShootRange, out hit))
-            {
-            IDamage damageable = hit.collider.GetComponent<IDamage>();
-            if (damageable != null)
-            {
-                Debug.Log("Shot");
-                damageable.TakeDamage(2);
+                    damageable.TakeDamage(2);
+                }
             }
+
         }
 
         yield return new WaitForSeconds(ShotCooldown);

@@ -27,7 +27,10 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        lightOffMat = doorLight.GetComponent<MeshRenderer>().material;
+        if (doorLight != null)
+        {
+            lightOffMat = doorLight.GetComponent<MeshRenderer>().material;
+        }
     }
 
 
@@ -81,7 +84,10 @@ public class LevelManager : MonoBehaviour
     {
         if (!levelIsComplete)
         {
-            doorLight.GetComponent<MeshRenderer>().material = lightOnMat;
+            if (doorLight != null)
+            {
+                doorLight.GetComponent<MeshRenderer>().material = lightOnMat;
+            }
             levelIsComplete = true;
             if (doorAnim != null)
             {
@@ -121,7 +127,11 @@ public class LevelManager : MonoBehaviour
         {
             doorAnim.SetBool("Open", true);
         }
-        doorLight.GetComponent<MeshRenderer>().material = lightOffMat;
+        if (doorLight != null)
+        {
+            doorLight.GetComponent<MeshRenderer>().material = lightOffMat;
+        }
+
         isInLevel = true;
         StopCoroutine(nextLevelCoroutine());
 
