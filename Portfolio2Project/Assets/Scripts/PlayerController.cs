@@ -70,6 +70,10 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             skills.useSkill(2);
         }
+        if (Input.GetAxis("Movement3") != 0)
+        {
+            skills.useSkill(3);
+        }
 
     }
 
