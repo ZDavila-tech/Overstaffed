@@ -357,6 +357,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6190940359890847945}
     m_Modifications:
+    - target: {fileID: 1905235507777040400, guid: 2620bb44ef11a394d93a8bbe9e3f8644, type: 3}
+      propertyPath: hitDmg
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1905235507777040407, guid: 2620bb44ef11a394d93a8bbe9e3f8644, type: 3}
+      propertyPath: meleeCooldown
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2780069659783570699, guid: 2620bb44ef11a394d93a8bbe9e3f8644, type: 3}
       propertyPath: m_Name
       value: Fire Staff
@@ -437,10 +445,47 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4740311177566319727, guid: 2620bb44ef11a394d93a8bbe9e3f8644, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2620bb44ef11a394d93a8bbe9e3f8644, type: 3}
+--- !u!114 &548104577925688047 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1905235507777040407, guid: 2620bb44ef11a394d93a8bbe9e3f8644, type: 3}
+  m_PrefabInstance: {fileID: 2155961622416612088}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20f1826bb3d37214b84c6b3ef434360a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &3473570129060144457 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3305389293854130097, guid: 2620bb44ef11a394d93a8bbe9e3f8644, type: 3}
+  m_PrefabInstance: {fileID: 2155961622416612088}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5126090586193694529 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6541491200330356153, guid: 2620bb44ef11a394d93a8bbe9e3f8644, type: 3}
+  m_PrefabInstance: {fileID: 2155961622416612088}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &877175998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5126090586193694529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e639669cd28fcb341bbc253208d28300, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  staff: {fileID: 548104577925688047}
+  sWeapon: {fileID: 6639278139705077396}
+  attacking: 0
+--- !u!23 &6639278139705077396 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4740311177566319724, guid: 2620bb44ef11a394d93a8bbe9e3f8644, type: 3}
   m_PrefabInstance: {fileID: 2155961622416612088}
   m_PrefabAsset: {fileID: 0}

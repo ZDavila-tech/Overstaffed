@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ColorControler : MonoBehaviour
+public class SpearControler : MonoBehaviour
 {
-    [SerializeField] public Staff staff;
-    //[SerializeField] public WaterStaff wStaff;
-    //[SerializeField] public EarthStaff eStaff;
+    [SerializeField] public WaterStaff wStaff;
     [SerializeField] private Renderer sWeapon;
 
 
@@ -15,18 +13,16 @@ public class ColorControler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        staff.gameObject.GetComponent<Staff>();
-        //wStaff.gameObject.GetComponent<WaterStaff>();
-        //eStaff.gameObject.GetComponent<EarthStaff>();
+        wStaff.gameObject.GetComponent<WaterStaff>();
         sWeapon.enabled = false;
-        //attacking = eStaff.isAttacking;
+        attacking = wStaff.isAttacking;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //attacking = eStaff.isAttacking;
-        if (staff.isAttacking)
+        attacking = wStaff.isAttacking;
+        if (wStaff.isAttacking)
         {
             sWeapon.enabled = true;
         }
