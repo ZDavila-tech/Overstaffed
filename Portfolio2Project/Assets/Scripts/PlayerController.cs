@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
         if (Input.GetAxis("Movement1") != 0)
         {
-            skills.useSkill(1);
+            skills.useSkill(3);
         }
         if (Input.GetAxis("Movement2") != 0)
         {
@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour, IDamage
         }
         if (Input.GetAxis("Movement3") != 0)
         {
-            skills.useSkill(3);
+            skills.useSkill(1);
         }
 
     }
