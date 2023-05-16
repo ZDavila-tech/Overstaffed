@@ -41,9 +41,6 @@ public class gameManager : MonoBehaviour
 
     [SerializeField] Slider hpBar;
     [SerializeField] Text hpText;
-    [SerializeField] Slider ability1;
-    [SerializeField] Slider ability2;
-    [SerializeField] Slider ability3;
     LevelManager levelManager;
     public Sprite[] spriteArray;
     public Image element;
@@ -192,83 +189,13 @@ public class gameManager : MonoBehaviour
     //decreases the cooldown slider value
     public void decreaseCD()
     {
-        float slice;
-        if(ability1 != null) //Blink
-        {
-            slice = skillScript.getCooldown(skillScript.getSkill1());
-            Debug.Log("Hi Jump CD: " + slice);
-            Debug.Log(ability1.value);
-        }
-
-        if (ability2 != null)
-        {
-            slice = ability2.value / 5;
-            ability2.value -= slice;
-        }
-
-        if (ability3 != null)
-        {
-            slice = ability3.value / 5;
-            ability3.value -= slice;
-        }
 
     }
     //resets the cooldown slider value back to max value
-    public void resetCD()
-    {
-        if (ability1 != null)
-        {
-            ability1.maxValue = 1;
-            ability1.value = 1;
-        }
-        if (ability2 != null)
-        {
-            ability2.maxValue = 1;
-            ability2.value = 1;
-        }
-        if (ability3 != null)
-        {
-            ability3.maxValue = 1;
-            ability3.value = 1;
-        }
 
-    }
 
     //shows the Cooldown slider for the specific ability
-    public void ShowCDBar(bool ans)
-    {
-        if (ans)
-        {
-            if (Input.GetAxis("Movement1") != 0) //Blink
-            {
-                ability1.gameObject.SetActive(true);
-            }
-            if (Input.GetAxis("Movement2") != 0)
-            {
-                ability2.gameObject.SetActive(true); //Dash
-            }
-            if (Input.GetAxis("Movement3") != 0) //HiJump
-            {
-                ability3.gameObject.SetActive(true);
-            }
-        }
-        else
-        {
-            if (ability1 != null)
-            {
-                ability1.gameObject.SetActive(false);
-            }
-            if (ability2 != null)
-            {
-                ability2.gameObject.SetActive(false);
-            }
-            if (ability3 != null)
-            {
-                ability3.gameObject.SetActive(false);
-            }
-        }
-    }
-
+   
 
     public void ResetHpBar()
     {
