@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using static Skills;
 
 public class gameManager : MonoBehaviour
 {
@@ -228,41 +229,41 @@ public class gameManager : MonoBehaviour
 
     }
 
-    //shows the bar or deletes the bar
-    public void ShowCDBar1(bool ans)
-    {
-        if(ans)
-        {
-            ability1.gameObject.SetActive(true);
-        }
-        else
-        {
-            ability1.gameObject.SetActive(false);
-        }
-    }
-    //shows the bar or deletes the bar
-    public void ShowCDBar2(bool ans)
+    //shows the Cooldown slider for the specific ability
+    public void ShowCDBar(bool ans)
     {
         if (ans)
         {
-            ability2.gameObject.SetActive(true);
+            if (Input.GetAxis("Movement1") != 0)
+            {
+                ability1.gameObject.SetActive(true);
+            }
+            if (Input.GetAxis("Movement2") != 0)
+            {
+                ability2.gameObject.SetActive(true);
+            }
+            if (Input.GetAxis("Movement3") != 0)
+            {
+                ability3.gameObject.SetActive(true);
+            }
         }
         else
         {
-            ability2.gameObject.SetActive(false);
+            if (ability1 != null)
+            {
+                ability1.gameObject.SetActive(false);
+            }
+            if (ability2 != null)
+            {
+                ability2.gameObject.SetActive(false);
+            }
+            if (ability3 != null)
+            {
+                ability3.gameObject.SetActive(false);
+            }
         }
     }
-    public void ShowCDBar3(bool ans)
-    {
-        if (ans)
-        {
-            ability3.gameObject.SetActive(true);
-        }
-        else
-        {
-            ability3.gameObject.SetActive(false);
-        }
-    }
+   
 
     //Want to try and get the slider to animate
     //IEnumerator updateCD(Slider slider)
