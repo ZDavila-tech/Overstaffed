@@ -158,6 +158,7 @@ public class gameManager : MonoBehaviour
         pauseState();
     }
  
+    //displays the correct element based on character type
     public void SetElementIcon()
     {
         if(waterPlayer != null)
@@ -187,6 +188,7 @@ public class gameManager : MonoBehaviour
             hpText.text = "HP: " + playerScript.getHealth();
         }
     }
+    //decreases the cooldown slider value
     public void decreaseCD()
     {
         float slice;
@@ -212,6 +214,7 @@ public class gameManager : MonoBehaviour
         }
 
     }
+    //resets the cooldown slider value back to max value
     public void resetCD()
     {
         if (ability1 != null)
@@ -263,40 +266,7 @@ public class gameManager : MonoBehaviour
             }
         }
     }
-   
 
-    //Want to try and get the slider to animate
-    //IEnumerator updateCD(Slider slider)
-    //{
-    //    float cool;
-    //    if (slider == ability1)
-    //    {
-    //         cool = skillScript.getCooldown(skillScript.getSkill1());
-    //    }
-    //    else
-    //    {
-    //        cool = skillScript.getCooldown(skillScript.getSkill2());
-    //    }
-    //    slider.value -= slider.maxValue / cool;
-    //    if(slider.value <= 0)
-    //    {
-    //        StopCoroutine(updateCD(slider));
-    //    }
-    //    yield return null;
-    //}
-    ////updates the bar \
-    //public void UpdateAbilityCD1()
-    //{
-    //    ability1.maxValue = 1;
-    //    StartCoroutine(updateCD(ability1));
-
-    //} 
-
-    //public void UpdateAbilityCD2()
-    //{
-    //    ability2.maxValue = 1;
-    //    StartCoroutine(updateCD(ability2));
-    //}
 
     public void ResetHpBar()
     {
