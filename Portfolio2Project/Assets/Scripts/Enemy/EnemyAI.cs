@@ -52,7 +52,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void Update()
     {
-        if (hpDisplay.active)
+        if (hpDisplay.activeSelf)
         {
             hpDisplay.transform.LookAt(gameManager.instance.player.transform.position);
         }
