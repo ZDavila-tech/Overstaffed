@@ -196,7 +196,9 @@ public class gameManager : MonoBehaviour
         if(ability1 != null)
         {
             slice = ability1.maxValue / skillScript.getCooldown(skillScript.getSkill1());
+            Debug.Log("Hi Jump CD: " + skillScript.getCooldown(skillScript.getSkill1()));
             Debug.Log("Hi-Jump used");
+            Debug.Log(ability1.maxValue / skillScript.getCooldown(skillScript.getSkill1()));
             Debug.Log("slice value: " + slice);
             ability1.value -= slice;
             Debug.Log(ability1.value);
