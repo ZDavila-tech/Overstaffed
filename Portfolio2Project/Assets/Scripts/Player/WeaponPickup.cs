@@ -18,6 +18,6 @@ public class WeaponPickup : MonoBehaviour
     public void equipWeapon(GameObject newWeapon)
     {
         GameObject newWeaponInstance = Instantiate(newWeapon);
-        gameManager.instance.playerScript.equipWeapon(newWeaponInstance);
+        //gameManager.instance.playerScript.equipWeapon(newWeaponInstance);
     }
 }
