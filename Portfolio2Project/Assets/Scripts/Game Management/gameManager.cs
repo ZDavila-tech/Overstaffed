@@ -193,20 +193,16 @@ public class gameManager : MonoBehaviour
     public void decreaseCD()
     {
         float slice;
-        if(ability1 != null)
+        if(ability1 != null) //Blink
         {
-            slice = ability1.maxValue / skillScript.getCooldown(skillScript.getSkill1());
-            Debug.Log("Hi Jump CD: " + skillScript.getCooldown(skillScript.getSkill1()));
-            Debug.Log("Hi-Jump used");
-            Debug.Log(ability1.maxValue / skillScript.getCooldown(skillScript.getSkill1()));
-            Debug.Log("slice value: " + slice);
-            ability1.value -= slice;
+            slice = skillScript.getCooldown(skillScript.getSkill1());
+            Debug.Log("Hi Jump CD: " + slice);
             Debug.Log(ability1.value);
         }
 
-        if(ability2 != null)
+        if (ability2 != null)
         {
-            slice = ability2.value/5;
+            slice = ability2.value / 5;
             ability2.value -= slice;
         }
 
@@ -243,15 +239,15 @@ public class gameManager : MonoBehaviour
     {
         if (ans)
         {
-            if (Input.GetAxis("Movement1") != 0)
+            if (Input.GetAxis("Movement1") != 0) //Blink
             {
                 ability1.gameObject.SetActive(true);
             }
             if (Input.GetAxis("Movement2") != 0)
             {
-                ability2.gameObject.SetActive(true);
+                ability2.gameObject.SetActive(true); //Dash
             }
-            if (Input.GetAxis("Movement3") != 0)
+            if (Input.GetAxis("Movement3") != 0) //HiJump
             {
                 ability3.gameObject.SetActive(true);
             }
