@@ -49,7 +49,7 @@ public class enemySpawn : MonoBehaviour
 
     void spawn()
     {
-        Instantiate(weightedEnemySelection(),spawnCoords(),Quaternion.identity,transform);
+        Instantiate(weightedEnemySelection(),transform, false);
         lm.addCurr();
     }
 
@@ -60,7 +60,6 @@ public class enemySpawn : MonoBehaviour
 
     Transform weightedEnemySelection()
     {
-        int selection = 0;
         int rand = Random.Range(0, totalWeight);
         for (int i = 0; i < weights.Length; i++)
         {

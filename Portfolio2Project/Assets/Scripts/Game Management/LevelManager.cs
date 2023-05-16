@@ -138,13 +138,13 @@ public class LevelManager : MonoBehaviour
         totalEnemies = scaledDifficulty();
         if (level == 0)
         {
-            currLevel = Instantiate(tutorialLevel);
+            currLevel = Instantiate(tutorialLevel,transform,false);
             level++;
         }
         else
         {
             int rand = Random.Range(0, levelPrefabs.Length);
-            currLevel = Instantiate(levelPrefabs[rand],transform.position,Quaternion.identity,transform);
+            currLevel = Instantiate(levelPrefabs[rand],transform,false);
             currLevel.SetParent(transform);
             level++;
         }

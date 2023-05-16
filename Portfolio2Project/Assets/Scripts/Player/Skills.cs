@@ -39,9 +39,9 @@ public class Skills : MonoBehaviour
     bool canBlink = true;
     bool aiming;
 
-    skill activeSkill1 = skill.Blink;
+    skill activeSkill1 = skill.HiJump;
     skill activeSkill2 = skill.Dash;
-    skill activeSkill3 = skill.HiJump;
+    skill activeSkill3 = skill.Blink;
 
 
     bool CanMove = true;
@@ -191,20 +191,11 @@ public class Skills : MonoBehaviour
                 }
 
             }
-            if (activeSkill1 == skill.Blink)
-            {
-                if (Input.GetAxis("Movement1") == 0)
+                if (Input.GetAxis("Movement3") == 0)
                 {
                     blinkFire();
                 }
-            }
-            else
-            {
-                if (Input.GetAxis("Movement2") == 0)
-                {
-                    blinkFire();
-                }
-            }
+
             yield return null;
         }
 
