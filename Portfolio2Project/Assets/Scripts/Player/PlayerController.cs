@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour, IDamage
     //checks if the player is currently shooting
     bool isShooting;
 
-    [SerializeField] GameObject playerWeaponHolder;
+    //[SerializeField] GameObject playerWeaponHolder;
     [SerializeField] NewStaff playerWeaponScript;
     [SerializeField] WaterStaff waterWeapon;
     [SerializeField] EarthStaff earthWeapon;
