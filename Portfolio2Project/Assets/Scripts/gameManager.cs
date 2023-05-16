@@ -17,6 +17,7 @@ public class gameManager : MonoBehaviour
     public GameObject firePlayer;
     public GameObject waterPlayer;
     public GameObject earthPlayer;
+    public Transform playerType;
 
     [Header("----- UI Stuff -----")]
     public GameObject pauseMenu;
@@ -46,18 +47,18 @@ public class gameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        player = GameObject.FindGameObjectWithTag("Player");
-        //Looking for which element the player has
-        waterPlayer = GameObject.Find("Water Player");
-        firePlayer = GameObject.Find("Fire Player");
-        earthPlayer = GameObject.Find("Earth Player");
-        timeScaleOrig = Time.timeScale;
-        playerScript = player.GetComponent<PlayerController>();
-        playerRespawn = GameObject.FindGameObjectWithTag("PlayerRespawn");
-        levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
-        ResetHpBar();
-        SetElementIcon();
-        enemiesRemaining = 0;
+        //player = GameObject.FindGameObjectWithTag("Player");
+        ////Looking for which element the player has
+        //waterPlayer = GameObject.Find("Water Player");
+        //firePlayer = GameObject.Find("Fire Player");
+        //earthPlayer = GameObject.Find("Earth Player");
+        //timeScaleOrig = Time.timeScale;
+        //playerScript = player.GetComponent<PlayerController>();
+        //playerRespawn = GameObject.FindGameObjectWithTag("PlayerRespawn");
+        //levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
+        //ResetHpBar();
+        //SetElementIcon();
+        //enemiesRemaining = 0;
     }
 
     // Update is called once per frame
@@ -246,4 +247,22 @@ public class gameManager : MonoBehaviour
         hpBar.value = 1;
         hpText.text = "HP: " + playerScript.getHealth();
     }
+
+    public void StartGame()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        //Looking for which element the player has
+        waterPlayer = GameObject.Find("Water Player");
+        firePlayer = GameObject.Find("Fire Player");
+        earthPlayer = GameObject.Find("Earth Player");
+        timeScaleOrig = Time.timeScale;
+        playerScript = player.GetComponent<PlayerController>();
+        playerRespawn = GameObject.FindGameObjectWithTag("PlayerRespawn");
+        levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
+        ResetHpBar();
+        SetElementIcon();
+        enemiesRemaining = 0;
+    }
+
+
 }
