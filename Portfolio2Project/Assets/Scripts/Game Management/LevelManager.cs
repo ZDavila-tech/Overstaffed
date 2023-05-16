@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class LevelManager : MonoBehaviour
 {
@@ -138,13 +139,15 @@ public class LevelManager : MonoBehaviour
         totalEnemies = scaledDifficulty();
         if (level == 0)
         {
-            currLevel = Instantiate(tutorialLevel);
+            currLevel = Instantiate(tutorialLevel,transform,false);
+            NavMeshSurface sf = currLevel.GetComponent<NavMeshSurface>();
+            sf.BuildNavMesh();
             level++;
         }
         else
         {
             int rand = Random.Range(0, levelPrefabs.Length);
-            currLevel = Instantiate(levelPrefabs[rand],transform.position,Quaternion.identity,transform);
+            currLevel = Instantiate(levelPrefabs[rand],transform,false);
             currLevel.SetParent(transform);
             level++;
         }

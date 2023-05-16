@@ -49,18 +49,17 @@ public class enemySpawn : MonoBehaviour
 
     void spawn()
     {
-        Instantiate(weightedEnemySelection(),spawnCoords(),Quaternion.identity,transform);
+        Instantiate(weightedEnemySelection(),transform.position + spawnCoords(),Quaternion.identity,transform);
         lm.addCurr();
     }
 
     Vector3 spawnCoords()
     {
-        return new Vector3(Random.Range(transform.position.x - (spawnAreaX / 2), transform.position.x + (spawnAreaX / 2)) , 2 , Random.Range(transform.position.y - (spawnAreaY / 2), transform.position.y + (spawnAreaY / 2)));
+        return new Vector3(Random.Range(transform.position.x - (spawnAreaX / 2), transform.position.x + (spawnAreaX / 2)) , 0 , Random.Range(transform.position.y - (spawnAreaY / 2), transform.position.y + (spawnAreaY / 2)));
     }
 
     Transform weightedEnemySelection()
     {
-        int selection = 0;
         int rand = Random.Range(0, totalWeight);
         for (int i = 0; i < weights.Length; i++)
         {
