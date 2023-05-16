@@ -52,11 +52,11 @@ public class NewStaff : MonoBehaviour
         {
             sWeapon.enabled = false;
         }
-        Shoot();
+        //Shoot();
         Melee();
     }
 
-    public void Shoot()
+    public void Shoot(float shootRate)
     {
 
         if (Input.GetButton("Shoot"))
