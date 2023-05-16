@@ -77,8 +77,10 @@ public class Skills : MonoBehaviour
     IEnumerator dashCooldownCoroutine()
     {
         gameManager.instance.ShowCDBar2(true);
+        //gameManager.instance.decreaseCD();
         yield return new WaitForSeconds(DashCooldown);
         gameManager.instance.ShowCDBar2(false);
+        gameManager.instance.resetCD();
         canDash = true;
     }
 
@@ -111,7 +113,10 @@ public class Skills : MonoBehaviour
 
     IEnumerator hiJumpCooldownCoroutine()
     {
+        gameManager.instance.ShowCDBar3(true);
         yield return new WaitForSeconds(HiJumpCooldown);
+        gameManager.instance.ShowCDBar3(false);
+        gameManager.instance.resetCD();
         canHiJump = true;
     }
 
@@ -207,9 +212,12 @@ public class Skills : MonoBehaviour
     IEnumerator blinkCooldownCoroutine()
     {
         gameManager.instance.ShowCDBar1(true);
+        //gameManager.instance.decreaseCD();
         yield return new WaitForSeconds(BlinkCooldown);
         canBlink = true;
+        gameManager.instance.resetCD();
         gameManager.instance.ShowCDBar1(false);
+        
     }
 
     public void blinkFire()

@@ -42,6 +42,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] Text hpText;
     [SerializeField] Slider ability1;
     [SerializeField] Slider ability2;
+    [SerializeField] Slider ability3;
     LevelManager levelManager;
     public Sprite[] spriteArray;
     public Image element;
@@ -185,6 +186,48 @@ public class gameManager : MonoBehaviour
             hpText.text = "HP: " + playerScript.getHealth();
         }
     }
+    public void decreaseCD()
+    {
+        float slice;
+        if(ability1 != null)
+        {
+            slice = ability1.value /5;
+            while (ability1.value > 0)
+            {
+                ability1.value -= slice;
+            }
+        }
+
+        if(ability2 != null)
+        {
+            slice = ability2.value/5;
+            ability2.value -= slice;
+        }
+
+        if (ability3 != null)
+        {
+            slice = ability3.value / 5;
+            ability3.value -= slice;
+        }
+
+    }
+    public void resetCD()
+    {
+        if (ability1 != null)
+        {
+            ability1.value = ability1.maxValue;
+        }
+        if (ability2 != null)
+        {
+            ability2.value = ability2.maxValue;
+        }
+        if (ability3 != null)
+        {
+            ability3.value = ability3.maxValue;
+        }
+
+    }
+
     //shows the bar or deletes the bar
     public void ShowCDBar1(bool ans)
     {
@@ -207,6 +250,17 @@ public class gameManager : MonoBehaviour
         else
         {
             ability2.gameObject.SetActive(false);
+        }
+    }
+    public void ShowCDBar3(bool ans)
+    {
+        if (ans)
+        {
+            ability3.gameObject.SetActive(true);
+        }
+        else
+        {
+            ability3.gameObject.SetActive(false);
         }
     }
 
@@ -242,7 +296,7 @@ public class gameManager : MonoBehaviour
     //    ability2.maxValue = 1;
     //    StartCoroutine(updateCD(ability2));
     //}
-    
+
     public void ResetHpBar()
     {
         //hpBar.maxValue = playerScript.getOriginalHealth();
