@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class LevelManager : MonoBehaviour
 {
@@ -139,6 +140,8 @@ public class LevelManager : MonoBehaviour
         if (level == 0)
         {
             currLevel = Instantiate(tutorialLevel,transform,false);
+            NavMeshSurface sf = currLevel.GetComponent<NavMeshSurface>();
+            sf.BuildNavMesh();
             level++;
         }
         else
