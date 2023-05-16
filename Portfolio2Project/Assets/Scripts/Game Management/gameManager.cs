@@ -42,6 +42,9 @@ public class gameManager : MonoBehaviour
     [SerializeField] Slider hpBar;
     [SerializeField] Text hpText;
     LevelManager levelManager;
+    public Image ability1; //Hi-Jump
+    public Image ability2; //Dash
+    public Image ability3; //Blink
     public Sprite[] spriteArray;
     public Image element;
 
@@ -189,13 +192,8 @@ public class gameManager : MonoBehaviour
     //decreases the cooldown slider value
     public void decreaseCD()
     {
-
+        
     }
-    //resets the cooldown slider value back to max value
-
-
-    //shows the Cooldown slider for the specific ability
-   
 
     public void ResetHpBar()
     {
