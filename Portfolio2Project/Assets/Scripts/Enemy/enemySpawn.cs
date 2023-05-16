@@ -7,6 +7,7 @@ public class enemySpawn : MonoBehaviour
     [Header("-----Dimensions-----")]
     [SerializeField] float spawnAreaX;
     [SerializeField] float spawnAreaY;
+    [SerializeField] float spawnDelay;
 
     [Header("-----Enemies-----")]
     [SerializeField] Transform[] enemies;
@@ -36,11 +37,12 @@ public class enemySpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        attemptSpawn();
+        StartCoroutine(attemptSpawn());
     }
 
-    void attemptSpawn()
+    IEnumerator attemptSpawn()
     {
+        yield return new WaitForSeconds(spawnDelay);
         if (lm.currLessThanTotal())
         {
             spawn();
