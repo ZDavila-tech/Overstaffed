@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class PlayerSpawn : MonoBehaviour
 {
-    //private void Start()
-    //{
-    //    StartCoroutine(Spawn());
-    //}
-
-    //IEnumerator Spawn()
-    //{
-    //    yield return new WaitForSeconds(1.0f);
-    //    gameManager.instance.StartGame();
-    //}
+    GameObject playerSpawn;
+    GameObject player;
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerSpawn = GameObject.FindGameObjectWithTag("PlayerSpawn");
+        player.transform.SetPositionAndRotation(playerSpawn.transform.position, playerSpawn.transform.rotation);
+    }
 }
