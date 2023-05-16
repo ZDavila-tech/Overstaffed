@@ -18,8 +18,8 @@ public class FireStaff : MonoBehaviour
 
     //[SerializeField] Animator anim;
     private float lastShootTime;
-    private float timer;
-    bool isShooting;
+    //private float timer;
+    public bool isShooting;
     public bool canMelee;
     public GameObject weapon;
     public bool isAttacking;
@@ -27,6 +27,12 @@ public class FireStaff : MonoBehaviour
     private void Awake()
     {
         hitbox.enabled = false;
+    }
+
+    private void Start()
+    {
+        isShooting = false;
+
     }
 
     // Update is called once per frame

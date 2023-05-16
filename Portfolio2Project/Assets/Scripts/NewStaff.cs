@@ -30,7 +30,7 @@ public class NewStaff : MonoBehaviour
     //[SerializeField] Animator anim;
     private float lastShootTime;
     private float timer;
-    //bool isShooting;
+    bool isShooting;
     public bool canMelee;
     public GameObject weapon;
     public bool isAttacking;
