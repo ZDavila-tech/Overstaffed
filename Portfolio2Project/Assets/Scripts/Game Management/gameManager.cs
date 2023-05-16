@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class gameManager : MonoBehaviour
 {
@@ -13,11 +14,15 @@ public class gameManager : MonoBehaviour
     public GameObject player;
     public PlayerController playerScript;
     public GameObject playerRespawn;
+    public GameObject playerSpawn;
     public Skills skillScript;
     public GameObject firePlayer;
     public GameObject waterPlayer;
     public GameObject earthPlayer;
-    public Transform playerType;
+    //public GameObject playerType;
+    //[SerializeField] GameObject playerTypeFire;
+    //[SerializeField] GameObject playerTypeWater;
+    //[SerializeField] GameObject playerTypeEarth;
 
     [Header("----- UI Stuff -----")]
     public GameObject pauseMenu;
@@ -47,24 +52,23 @@ public class gameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        //player = GameObject.FindGameObjectWithTag("Player");
-        ////Looking for which element the player has
-        //waterPlayer = GameObject.Find("Water Player");
-        //firePlayer = GameObject.Find("Fire Player");
-        //earthPlayer = GameObject.Find("Earth Player");
-        //timeScaleOrig = Time.timeScale;
-        //playerScript = player.GetComponent<PlayerController>();
-        //playerRespawn = GameObject.FindGameObjectWithTag("PlayerRespawn");
-        //levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
-        //ResetHpBar();
-        //SetElementIcon();
-        //enemiesRemaining = 0;
+        player = GameObject.FindGameObjectWithTag("Player");
+        //Looking for which element the player has
+        waterPlayer = GameObject.Find("Water Player");
+        firePlayer = GameObject.Find("Fire Player");
+        earthPlayer = GameObject.Find("Earth Player");
+        timeScaleOrig = Time.timeScale;
+        playerScript = player.GetComponent<PlayerController>();
+        playerRespawn = GameObject.FindGameObjectWithTag("PlayerRespawn");
+        levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
+        ResetHpBar();
+        SetElementIcon();
+        enemiesRemaining = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-       
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
             activeMenu = pauseMenu;
@@ -248,21 +252,39 @@ public class gameManager : MonoBehaviour
         hpText.text = "HP: " + playerScript.getHealth();
     }
 
-    public void StartGame()
-    {
-        player = GameObject.FindGameObjectWithTag("Player");
-        //Looking for which element the player has
-        waterPlayer = GameObject.Find("Water Player");
-        firePlayer = GameObject.Find("Fire Player");
-        earthPlayer = GameObject.Find("Earth Player");
-        timeScaleOrig = Time.timeScale;
-        playerScript = player.GetComponent<PlayerController>();
-        playerRespawn = GameObject.FindGameObjectWithTag("PlayerRespawn");
-        levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
-        ResetHpBar();
-        SetElementIcon();
-        enemiesRemaining = 0;
-    }
+    //public void StartGame()
+    //{
+    //    player = GameObject.FindGameObjectWithTag("Player");
+    //    //Looking for which element the player has
+    //    waterPlayer = GameObject.Find("Water Player");
+    //    firePlayer = GameObject.Find("Fire Player");
+    //    earthPlayer = GameObject.Find("Earth Player");
+    //    timeScaleOrig = Time.timeScale;
+    //    playerScript = player.GetComponent<PlayerController>();
+    //    playerRespawn = GameObject.FindGameObjectWithTag("PlayerRespawn");
+    //    levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
+    //    ResetHpBar();
+    //    SetElementIcon();
+    //    enemiesRemaining = 0;
+    //    gameStarted = true;
+    //}
 
+    //public void SelectedFire()
+    //{
+    //    SceneManager.LoadScene("Main Game");
+    //    playerSpawn = GameObject.FindGameObjectWithTag("Player Spawn");
+    //    playerType = Instantiate(playerTypeFire);
+    //    playerType.transform.SetPositionAndRotation(playerSpawn.transform.position, playerSpawn.transform.rotation);
+    //    StartGame();
+    //}
 
+    //public void SelectedWater()
+    //{
+
+    //}
+
+    //public void SelectedEarth()
+    //{
+
+    //}
 }

@@ -6,37 +6,24 @@ using UnityEngine.SceneManagement;
 
 public class PlayerSelect : MonoBehaviour
 {
-    [Header("-----Player Types------")]
-    [SerializeField] public Transform firePlayer;
-    [SerializeField] public Transform waterPlayer;
-    [SerializeField] public Transform earthPlayer;
-
+    GameObject playerSpawn;
+    GameObject playerType;
+    [SerializeField] GameObject playerTypeFire;
     public void SelectedFire()
     {
-        gameManager.instance.playerType = firePlayer;
-        Debug.Log("playerType set to Fire Wizard");
-        CharacterSelected();
-        Debug.Log("Fire Wizard Selected");
+        SceneManager.LoadScene("Main Game");
+        //playerSpawn = GameObject.FindGameObjectWithTag("PlayerSpawn");
+        //playerType = Instantiate(playerTypeFire);
+        //playerType.transform.SetPositionAndRotation(playerSpawn.transform.position, playerSpawn.transform.rotation);
     }
 
     public void SelectedWater()
     {
-        gameManager.instance.playerType = waterPlayer;
-        CharacterSelected();
-        Debug.Log("Water Wizard Selected");
+        //gameManager.instance.SelectedWater();
     }
 
     public void SelectedEarth()
     {
-        gameManager.instance.playerType = earthPlayer;
-        CharacterSelected();
-        Debug.Log("Earth Wizard Selected");
-    }
-
-    public void CharacterSelected()
-    {
-        PlayerSpawn.CreatePlayerCharacter();
-        SceneManager.LoadScene("Main Game");
-        gameManager.instance.StartGame();
+        //gameManager.instance.SelectedEarth();
     }
 }

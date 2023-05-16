@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class PlayerSpawn : MonoBehaviour
 {
-    static GameObject playerSpawn;
-    static Transform playerCharacter;
+    //private void Start()
+    //{
+    //    StartCoroutine(Spawn());
+    //}
 
-    public static void CreatePlayerCharacter()
-    {
-        Debug.Log("Player Spawn Create Player Loaded");
-        playerSpawn = GameObject.FindGameObjectWithTag("PlayerSpawn");
-        Instantiate(gameManager.instance.playerType);
-        playerCharacter.transform.SetLocalPositionAndRotation(playerSpawn.transform.position, playerSpawn.transform.rotation);
-        Debug.Log("Player Spawn Create Player Fired");
-    }
+    //IEnumerator Spawn()
+    //{
+    //    yield return new WaitForSeconds(1.0f);
+    //    gameManager.instance.StartGame();
+    //}
 }
