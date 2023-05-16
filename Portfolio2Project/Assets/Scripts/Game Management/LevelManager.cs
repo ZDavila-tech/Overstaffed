@@ -13,6 +13,13 @@ public class LevelManager : MonoBehaviour
     [SerializeField] Transform tutorialLevel;
     [SerializeField] Transform[] levelPrefabs;
 
+    [Header("-----Balance-----")]
+    [Range(5,30)][SerializeField] int baseEnemyCount = 10;
+    [Range(0,1)][SerializeField] float byLevelMultiplier;
+    int totalEnemies;
+    int currEnemies;
+    int enemiesKilled;
+
     [Header("-----Misc------")]
     [SerializeField] Material lightOnMat;
     public bool isInLevel;
@@ -110,17 +117,7 @@ public class LevelManager : MonoBehaviour
         {
             Destroy(currLevel.gameObject);
         }
-        if (level == 0)
-        {
-            currLevel = Instantiate(tutorialLevel);
-            level++;
-        }
-        else
-        {
-            int rand = Random.Range(0, levelPrefabs.Length);
-            currLevel = Instantiate(levelPrefabs[rand],transform,false);
-            level++;
-        }
+        loadLevel();
         levelIsComplete = false;
         yield return new WaitForSeconds(1);
         if (doorAnim != null)
@@ -134,7 +131,48 @@ public class LevelManager : MonoBehaviour
 
         isInLevel = true;
         StopCoroutine(nextLevelCoroutine());
+    }
 
+    void loadLevel()
+    {
+        totalEnemies = scaledDifficulty();
+        if (level == 0)
+        {
+            currLevel = Instantiate(tutorialLevel);
+            level++;
+        }
+        else
+        {
+            int rand = Random.Range(0, levelPrefabs.Length);
+            currLevel = Instantiate(levelPrefabs[rand], transform, false);
+            level++;
+        }
 
     }
+
+    int scaledDifficulty()
+    {
+        return (int)Mathf.Round(baseEnemyCount * (1 +(level * byLevelMultiplier)));
+    }
+
+
+    public bool currLessThanTotal()
+    {
+        return currEnemies < totalEnemies;
+    }
+
+    public void addCurr()
+    {
+        currEnemies++;
+    }
+
+    public void enemyKill()
+    {
+        enemiesKilled++;
+        if (enemiesKilled >= totalEnemies)
+        {
+            levelComplete();
+        }
+    }
+
 }

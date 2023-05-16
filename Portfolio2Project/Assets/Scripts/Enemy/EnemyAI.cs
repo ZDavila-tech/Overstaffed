@@ -12,6 +12,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform tShootPos;
     [SerializeField] Transform tHeadPos;
     [SerializeField] GameObject drop;
+    LevelManager lm;
+    
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int iHP;
@@ -44,6 +46,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         ++gameManager.instance.enemiesRemaining;
         hpBar.maxValue = iHP;
         hpBar.value = hpBar.maxValue;
+        lm = GetComponentInParent<LevelManager>();
     }
 
 
@@ -126,6 +129,7 @@ public class EnemyAI : MonoBehaviour, IDamage
              Instantiate(drop, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), transform.rotation);
             }
             --gameManager.instance.enemiesRemaining;
+            lm.enemyKill();
             Destroy(gameObject);
         }
     }
