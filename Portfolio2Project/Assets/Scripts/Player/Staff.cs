@@ -21,7 +21,7 @@ public class Staff : MonoBehaviour
     //[SerializeField] Animator anim;
     private float lastShootTime;
     private float timer;
-    bool isShooting;
+    public bool isShooting;
     public bool canMelee;
     public GameObject weapon;
     public bool isAttacking;
