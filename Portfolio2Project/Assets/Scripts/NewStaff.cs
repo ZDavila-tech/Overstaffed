@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Staff : MonoBehaviour
+public class NewStaff : MonoBehaviour
 {
     [Header("----- Shooting Stuff -----")]
     [SerializeField] private bool addBulletSpread;
@@ -17,6 +17,15 @@ public class Staff : MonoBehaviour
     [Header("----- Melee Stuff -----")]
     [SerializeField] private float meleeCooldown;
     [SerializeField] Collider hitbox;
+    [SerializeField] private Renderer sWeapon;
+
+    enum Element
+    {
+        Fire,
+        Water,
+        Earth
+    }
+    [SerializeField] Element element;
 
     //[SerializeField] Animator anim;
     private float lastShootTime;
@@ -29,26 +38,30 @@ public class Staff : MonoBehaviour
     private void Awake()
     {
         hitbox.enabled = false;
+        sWeapon.enabled = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Shoot();
+        if (isAttacking)
+        {
+            sWeapon.enabled = true;
+        }
+        else
+        {
+            sWeapon.enabled = false;
+        }
+        Shoot();
         Melee();
     }
 
-    public void Shoot(float shootRate)
+    public void Shoot()
     {
 
         if (Input.GetButton("Shoot"))
         {
             isShooting = true;
-            delay = shootRate;
-
-            Animator anim = weapon.GetComponent<Animator>();
-            anim.SetTrigger("Shoot");
-
             canMelee = false;
             if (lastShootTime + delay < Time.time)
             {
@@ -117,7 +130,18 @@ public class Staff : MonoBehaviour
             hitbox.enabled = true;
             canMelee = false;
             Animator anim = weapon.GetComponent<Animator>();
-            anim.SetTrigger("SwordMelee");
+            switch (element)
+            {
+                case Element.Fire:
+                    anim.SetTrigger("SwordMelee");
+                    break;
+                case Element.Water:
+                    anim.SetTrigger("SpearMelee");
+                    break;
+                case Element.Earth:
+                    anim.SetTrigger("HammerMelee");
+                    break;
+            }
             StartCoroutine(ResetMeleeCooldown());
         }
     }
@@ -134,13 +158,16 @@ public class Staff : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         isShooting = false;
-        Animator anim = weapon.GetComponent<Animator>();
-        anim.SetTrigger("NotShooting");
         canMelee = true;
     }
 
     IEnumerator Wait(float seconds)
     {
         yield return new WaitForSeconds(seconds);
+    }
+
+    int GetElement()
+    {
+        return (int)element;
     }
 }
