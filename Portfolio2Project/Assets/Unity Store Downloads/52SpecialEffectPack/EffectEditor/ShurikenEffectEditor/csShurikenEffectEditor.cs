@@ -22,6 +22,7 @@ public class csShurikenEffectEditor : EditorWindow
 		myWindow.titleContent.text = "Scale Editor";
 	}
 
+    [System.Obsolete]
     void OnGUI()
     {
         GUILayout.Box("Shuriken System Effect Scale Editor", GUILayout.Width(295));
