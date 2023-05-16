@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditorInternal;
 using UnityEngine;
 
@@ -213,7 +214,7 @@ public class Skills : MonoBehaviour
     IEnumerator blinkCooldownCoroutine()
     {
         gameManager.instance.ShowCDBar(true);
-        //gameManager.instance.decreaseCD();
+        gameManager.instance.decreaseCD();
         yield return new WaitForSeconds(BlinkCooldown);
         canBlink = true;
         gameManager.instance.resetCD();
