@@ -43,6 +43,11 @@ public class PlayerController : MonoBehaviour, IDamage
     GameObject playerWeapon;
 
     // Start is called before the first frame update
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     void Start()
     {
         iHPOriginal = iHP;

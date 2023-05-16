@@ -6,24 +6,22 @@ using UnityEngine.SceneManagement;
 
 public class PlayerSelect : MonoBehaviour
 {
-    GameObject playerSpawn;
-    GameObject playerType;
-    [SerializeField] GameObject playerTypeFire;
+    [SerializeField] GameObject player;
     public void SelectedFire()
     {
+        Instantiate(player);
         SceneManager.LoadScene("Main Game");
-        //playerSpawn = GameObject.FindGameObjectWithTag("PlayerSpawn");
-        //playerType = Instantiate(playerTypeFire);
-        //playerType.transform.SetPositionAndRotation(playerSpawn.transform.position, playerSpawn.transform.rotation);
     }
 
     public void SelectedWater()
     {
-        //gameManager.instance.SelectedWater();
+        Instantiate(player);
+        SceneManager.LoadScene("Main Game");
     }
 
     public void SelectedEarth()
     {
-        //gameManager.instance.SelectedEarth();
+        Instantiate(player);
+        SceneManager.LoadScene("Main Game");
     }
 }
