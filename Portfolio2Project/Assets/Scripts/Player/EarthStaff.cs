@@ -20,8 +20,8 @@ public class EarthStaff : MonoBehaviour
 
     //[SerializeField] Animator anim;
     private float lastShootTime;
-    private float timer;
-    bool isShooting;
+    //private float timer;
+    public bool isShooting;
     public bool canMelee;
     public GameObject weapon;
     public bool isAttacking;
