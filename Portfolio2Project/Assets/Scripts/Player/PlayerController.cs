@@ -227,11 +227,11 @@ public class PlayerController : MonoBehaviour, IDamage
         return gravityOrig;
     }
 
-    public void equipWeapon(GameObject newWeapon)
-    {
-        playerWeapon = newWeapon;
-        playerWeapon.transform.SetParent(playerWeaponHolder.transform);
-        playerWeapon.transform.position = playerWeaponHolder.transform.position;
-        playerWeapon.transform.rotation = playerWeaponHolder.transform.rotation;
-    }
+    //public void equipWeapon(GameObject newWeapon)
+    //{
+    //    playerWeapon = newWeapon;
+    //    playerWeapon.transform.SetParent(playerWeaponHolder.transform);
+    //    playerWeapon.transform.position = playerWeaponHolder.transform.position;
+    //    playerWeapon.transform.rotation = playerWeaponHolder.transform.rotation;
+    //}
 }
