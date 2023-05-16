@@ -144,7 +144,8 @@ public class LevelManager : MonoBehaviour
         else
         {
             int rand = Random.Range(0, levelPrefabs.Length);
-            currLevel = Instantiate(levelPrefabs[rand], transform, false);
+            currLevel = Instantiate(levelPrefabs[rand],transform.position,Quaternion.identity,transform);
+            currLevel.SetParent(transform);
             level++;
         }
 
