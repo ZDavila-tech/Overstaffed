@@ -138,6 +138,10 @@ PrefabInstance:
       propertyPath: BlinkCooldown
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1202211163498633468, guid: d01d4ffad7aabda4fb2a161e8038bcf1, type: 3}
+      propertyPath: HiJumpCooldown
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5249770107873613650, guid: d01d4ffad7aabda4fb2a161e8038bcf1, type: 3}
       propertyPath: m_Name
       value: WaterPlayer
@@ -444,6 +448,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2054933014, guid: 3aaf7647d5fa8b84297699c4b258282b, type: 3}
+      propertyPath: m_Transition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2054933014, guid: 3aaf7647d5fa8b84297699c4b258282b, type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1918923010718266559, guid: 3aaf7647d5fa8b84297699c4b258282b, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0

@@ -114,6 +114,7 @@ public class Skills : MonoBehaviour
     IEnumerator hiJumpCooldownCoroutine()
     {
         gameManager.instance.ShowCDBar(true);
+        gameManager.instance.decreaseCD();
         yield return new WaitForSeconds(HiJumpCooldown);
         gameManager.instance.ShowCDBar(false);
         gameManager.instance.resetCD();

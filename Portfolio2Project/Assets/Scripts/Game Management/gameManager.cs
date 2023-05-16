@@ -61,6 +61,7 @@ public class gameManager : MonoBehaviour
         earthPlayer = GameObject.Find("Earth Player");
         timeScaleOrig = Time.timeScale;
         playerScript = player.GetComponent<PlayerController>();
+        skillScript = player.GetComponent<Skills>();
         playerRespawn = GameObject.FindGameObjectWithTag("PlayerRespawn");
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
         ResetHpBar();
@@ -194,11 +195,11 @@ public class gameManager : MonoBehaviour
         float slice;
         if(ability1 != null)
         {
-            slice = ability1.value /5;
-            while (ability1.value > 0)
-            {
-                ability1.value -= slice;
-            }
+            slice = ability1.maxValue / skillScript.getCooldown(skillScript.getSkill1());
+            Debug.Log("Hi-Jump used");
+            Debug.Log("slice value: " + slice);
+            ability1.value -= slice;
+            Debug.Log(ability1.value);
         }
 
         if(ability2 != null)
@@ -219,15 +220,18 @@ public class gameManager : MonoBehaviour
     {
         if (ability1 != null)
         {
-            ability1.value = ability1.maxValue;
+            ability1.maxValue = 1;
+            ability1.value = 1;
         }
         if (ability2 != null)
         {
-            ability2.value = ability2.maxValue;
+            ability2.maxValue = 1;
+            ability2.value = 1;
         }
         if (ability3 != null)
         {
-            ability3.value = ability3.maxValue;
+            ability3.maxValue = 1;
+            ability3.value = 1;
         }
 
     }
