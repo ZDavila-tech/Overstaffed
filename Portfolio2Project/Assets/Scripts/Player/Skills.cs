@@ -81,6 +81,17 @@ public class Skills : MonoBehaviour
         canDash = true;
     }
 
+    public bool isDashCooldown()
+    {
+        if(!canDash)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     public void hiJump()
     {
         if (canHiJump)
@@ -114,6 +125,17 @@ public class Skills : MonoBehaviour
         canHiJump = true;
     }
 
+    public bool isJumpCooldown()
+    {
+        if (!canHiJump)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     public void slowFall()
     {
         if (canSlowFall)
@@ -193,7 +215,17 @@ public class Skills : MonoBehaviour
         }
 
     }
-
+    public bool isBlinkCooldown()
+    {
+        if (!canBlink)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     IEnumerator blinkCooldownCoroutine()
     {
         yield return new WaitForSeconds(BlinkCooldown);

@@ -50,6 +50,7 @@ public class gameManager : MonoBehaviour
 
     public bool isPaused;
     float timeScaleOrig;
+    float waitTime;
 
     private void Awake()
     {
@@ -82,6 +83,7 @@ public class gameManager : MonoBehaviour
         {
             levelManager.levelComplete();
         }
+        abilityCooldown();
     }
 
     public void pauseState()
@@ -189,10 +191,41 @@ public class gameManager : MonoBehaviour
             hpText.text = "HP: " + playerScript.getHealth();
         }
     }
-    //decreases the cooldown slider value
-    public void decreaseCD()
+    //cooldownImage
+    public void abilityCooldown()
     {
-        
+        if(skillScript.isDashCooldown())
+        {
+            waitTime = skillScript.getCooldown(skill.Dash);
+           for(int i = 0; i < waitTime; i++)
+            {
+                ability2.fillAmount -= (1.0f / waitTime) * Time.deltaTime;
+            }
+        }
+           
+        else if(skillScript.isJumpCooldown())
+        {
+            waitTime = skillScript.getCooldown(skill.HiJump);
+            for (int i = 0; i < waitTime; i++)
+            {
+                ability1.fillAmount -= (1.0f / waitTime) * Time.deltaTime;
+            }
+            
+        }
+        else if(skillScript.isBlinkCooldown())
+        {
+            waitTime = skillScript.getCooldown(skill.Blink);
+            for (int i = 0; i < waitTime; i++)
+                ability3.fillAmount -= (1.0f / waitTime) * Time.deltaTime;
+        }
+        else
+        {
+            ability1.fillAmount = 1;
+            ability2.fillAmount = 1;
+            ability3.fillAmount = 1;
+        }
+
+
     }
 
     public void ResetHpBar()
