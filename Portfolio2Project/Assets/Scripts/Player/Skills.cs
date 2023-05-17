@@ -263,15 +263,10 @@ public class Skills : MonoBehaviour
         {
             activeSkill2 = skill;
         }
-    }
-
-    public skill getSkill1()
-    {
-        return activeSkill1;
-    }
-    public skill getSkill2()
-    {
-        return activeSkill2;
+        else if(slot == 3)
+        {
+            activeSkill3 = skill;
+        }
     }
 
     public void useSkill(int slot)
