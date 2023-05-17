@@ -41,7 +41,10 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-
+    public int getlevel() 
+    { 
+        return level;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -178,5 +181,6 @@ public class LevelManager : MonoBehaviour
             levelComplete();
         }
     }
+
 
 }
