@@ -81,6 +81,17 @@ public class Skills : MonoBehaviour
         canDash = true;
     }
 
+    public bool isDashCooldown()
+    {
+        if(!canDash)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     public void hiJump()
     {
         if (canHiJump)
@@ -114,6 +125,17 @@ public class Skills : MonoBehaviour
         canHiJump = true;
     }
 
+    public bool isJumpCooldown()
+    {
+        if (!canHiJump)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     public void slowFall()
     {
         if (canSlowFall)
@@ -193,7 +215,17 @@ public class Skills : MonoBehaviour
         }
 
     }
-
+    public bool isBlinkCooldown()
+    {
+        if (!canBlink)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     IEnumerator blinkCooldownCoroutine()
     {
         yield return new WaitForSeconds(BlinkCooldown);
@@ -231,15 +263,10 @@ public class Skills : MonoBehaviour
         {
             activeSkill2 = skill;
         }
-    }
-
-    public skill getSkill1()
-    {
-        return activeSkill1;
-    }
-    public skill getSkill2()
-    {
-        return activeSkill2;
+        else if(slot == 3)
+        {
+            activeSkill3 = skill;
+        }
     }
 
     public void useSkill(int slot)

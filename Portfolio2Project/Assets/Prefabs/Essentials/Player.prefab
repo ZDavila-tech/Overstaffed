@@ -338,6 +338,7 @@ MonoBehaviour:
   hitbox: {fileID: 334106367046308164}
   sWeapon: {fileID: 6853015764813239609}
   element: 0
+  isShooting: 0
   canMelee: 1
   weapon: {fileID: 4055193228901778526}
   isAttacking: 0
@@ -665,7 +666,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6256373689337983851}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.416, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -803,7 +804,6 @@ MonoBehaviour:
   damagecoolDown: 0.1
   ShootRange: 355
   ShotCooldown: 0.1
-  playerWeaponHolder: {fileID: 0}
   playerWeaponScript: {fileID: 334106367046308170}
   waterWeapon: {fileID: 0}
   earthWeapon: {fileID: 0}
