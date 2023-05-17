@@ -56,10 +56,6 @@ public class gameManager : MonoBehaviour
     {
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
-        //Looking for which element the player has
-        waterPlayer = GameObject.Find("Water Player");
-        firePlayer = GameObject.Find("Fire Player");
-        earthPlayer = GameObject.Find("Earth Player");
         timeScaleOrig = Time.timeScale;
         playerScript = player.GetComponent<PlayerController>();
         skillScript = player.GetComponent<Skills>();
@@ -164,15 +160,15 @@ public class gameManager : MonoBehaviour
     //displays the correct element based on character type
     public void SetElementIcon()
     {
-        if(waterPlayer != null)
+        if(player.name.Equals("WaterPlayer"))
         {
             element.sprite = spriteArray[0];
         }
-        else if(firePlayer != null)
+        else if(player.name.Equals("FIre Player"))
         {
             element.sprite = spriteArray[1];
         }
-        else if(earthPlayer != null)
+        else if(player.name.Equals("EarthPlayer"))
         {
             element.sprite = spriteArray[2];
         }
