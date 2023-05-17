@@ -199,7 +199,7 @@ public class gameManager : MonoBehaviour
             waitTime = skillScript.getCooldown(skill.Dash);
            for(int i = 0; i < waitTime; i++)
             {
-                ability2.fillAmount -= (1.0f / waitTime) * Time.deltaTime;
+                ability2.fillAmount += (1.0f / waitTime) * Time.deltaTime;
             }
         }
            
@@ -208,7 +208,7 @@ public class gameManager : MonoBehaviour
             waitTime = skillScript.getCooldown(skill.HiJump);
             for (int i = 0; i < waitTime; i++)
             {
-                ability1.fillAmount -= (1.0f / waitTime) * Time.deltaTime;
+                ability1.fillAmount += (1.0f / waitTime) * Time.deltaTime;
             }
             
         }
@@ -216,13 +216,13 @@ public class gameManager : MonoBehaviour
         {
             waitTime = skillScript.getCooldown(skill.Blink);
             for (int i = 0; i < waitTime; i++)
-                ability3.fillAmount -= (1.0f / waitTime) * Time.deltaTime;
+                ability3.fillAmount += (1.0f / waitTime) * Time.deltaTime;
         }
         else
         {
-            ability1.fillAmount = 1;
-            ability2.fillAmount = 1;
-            ability3.fillAmount = 1;
+            ability1.fillAmount = 0;
+            ability2.fillAmount = 0;
+            ability3.fillAmount = 0;
         }
 
 
