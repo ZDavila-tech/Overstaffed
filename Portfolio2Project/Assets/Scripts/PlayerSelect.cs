@@ -12,7 +12,6 @@ public class PlayerSelect : MonoBehaviour
     {
         Instantiate(player);
         player.GetComponent<PlayerController>().playerWeaponScript.element = NewStaff.Element.Fire;
-        gameManager.instance.SetElementIcon();
         Debug.Log("PlayerSpawned");
         SceneManager.LoadScene("Main Game");
     }
@@ -21,7 +20,6 @@ public class PlayerSelect : MonoBehaviour
     {
         Instantiate(player);
         player.GetComponent<PlayerController>().playerWeaponScript.element = NewStaff.Element.Water;
-        gameManager.instance.SetElementIcon();
         Debug.Log("PlayerSpawned");
         SceneManager.LoadScene("Main Game");
     }
@@ -30,7 +28,6 @@ public class PlayerSelect : MonoBehaviour
     {
         Instantiate(player);
         player.GetComponent<PlayerController>().playerWeaponScript.element = NewStaff.Element.Earth;
-        gameManager.instance.SetElementIcon();
         Debug.Log("PlayerSpawned");
         SceneManager.LoadScene("Main Game");
     }
