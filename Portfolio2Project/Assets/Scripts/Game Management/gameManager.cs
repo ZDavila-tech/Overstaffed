@@ -17,13 +17,10 @@ public class gameManager : MonoBehaviour
     public GameObject playerRespawn;
     public GameObject playerSpawn;
     public Skills skillScript;
-    public GameObject firePlayer;
+    /*public GameObject firePlayer;
     public GameObject waterPlayer;
-    public GameObject earthPlayer;
-    //public GameObject playerType;
-    //[SerializeField] GameObject playerTypeFire;
-    //[SerializeField] GameObject playerTypeWater;
-    //[SerializeField] GameObject playerTypeEarth;
+    public GameObject earthPlayer;*/
+
 
     [Header("----- UI Stuff -----")]
     public GameObject pauseMenu;
@@ -45,7 +42,7 @@ public class gameManager : MonoBehaviour
     public Image ability1; //Hi-Jump
     public Image ability2; //Dash
     public Image ability3; //Blink
-    public Sprite[] spriteArray;
+    public List<Sprite> spriteArray;
     public Image element;
 
     public bool isPaused;
@@ -69,6 +66,7 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        SetElementIcon();
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
             activeMenu = pauseMenu;
@@ -160,18 +158,8 @@ public class gameManager : MonoBehaviour
     //displays the correct element based on character type
     public void SetElementIcon()
     {
-        if(player.name.Equals("WaterPlayer"))
-        {
-            element.sprite = spriteArray[0];
-        }
-        else if(player.name.Equals("FIre Player"))
-        {
-            element.sprite = spriteArray[1];
-        }
-        else if(player.name.Equals("EarthPlayer"))
-        {
-            element.sprite = spriteArray[2];
-        }
+        Debug.Log(playerScript.GetWeapon());
+        element.sprite = spriteArray[playerScript.GetWeapon()];
     }
 
     public void UpdateHealthBar()

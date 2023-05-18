@@ -36,8 +36,6 @@ public class PlayerController : MonoBehaviour, IDamage
 
     //[SerializeField] GameObject playerWeaponHolder;
     [SerializeField] NewStaff playerWeaponScript;
-    [SerializeField] WaterStaff waterWeapon;
-    [SerializeField] EarthStaff earthWeapon;
 
 
     GameObject playerWeapon;
@@ -69,7 +67,7 @@ public class PlayerController : MonoBehaviour, IDamage
         if (Input.GetButton("Shoot") && !isShooting && !gameManager.instance.isPaused)
         {
             StartCoroutine(Shoot());
-            
+
         }
 
         if (Input.GetAxis("Movement1") != 0)
@@ -171,14 +169,14 @@ public class PlayerController : MonoBehaviour, IDamage
 
             if (playerWeaponScript != null)
                 playerWeaponScript.Shoot(ShotCooldown);
-            else if (waterWeapon != null)
+           /* else if (waterWeapon != null)
                 waterWeapon.Shoot(ShotCooldown);
             else if (earthWeapon != null)
-                earthWeapon.Shoot(ShotCooldown);
+                earthWeapon.Shoot(ShotCooldown);*/
 
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, ShootRange))
             //if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward * ShootRange, out hit))
-                {
+            {
                 IDamage damageable = hit.collider.GetComponent<IDamage>();
                 if (damageable != null)
                 {
@@ -225,6 +223,11 @@ public class PlayerController : MonoBehaviour, IDamage
         float gravityOrig = gravityValue;
         gravityValue = ammount;
         return gravityOrig;
+    }
+
+    public int GetWeapon()
+    {
+        return playerWeaponScript.GetElement();
     }
 
     //public void equipWeapon(GameObject newWeapon)
