@@ -20,13 +20,13 @@ public class NewStaff : MonoBehaviour
     [SerializeField] private Renderer sWeapon;
     [SerializeField] List<Renderer> weapons;
 
-    enum Element
+    public enum Element
     {
         Fire,
         Water,
         Earth
     }
-    [SerializeField] Element element;
+    [SerializeField] public Element element;
 
     //[SerializeField] Animator anim;
     private float lastShootTime;

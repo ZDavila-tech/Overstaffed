@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour, IDamage
     bool isShooting;
 
     //[SerializeField] GameObject playerWeaponHolder;
-    [SerializeField] NewStaff playerWeaponScript;
+    [SerializeField] public NewStaff playerWeaponScript;
 
 
     GameObject playerWeapon;
