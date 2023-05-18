@@ -18,7 +18,6 @@ public class NewStaff : MonoBehaviour
     [SerializeField] private float meleeCooldown;
     [SerializeField] Collider hitbox;
     [SerializeField] private Renderer sWeapon;
-    //[SerializeField] List<Renderer> weapons;
 
     public enum Element
     {
@@ -143,15 +142,15 @@ public class NewStaff : MonoBehaviour
                     anim.SetTrigger("HammerMelee");
                     break;
             }
-            //sWeapon = weapons[(int)element];
             StartCoroutine(ResetMeleeCooldown());
         }
     }
     IEnumerator ResetMeleeCooldown()
     {
-        //yield return new WaitForSeconds(meleeCooldown);
         yield return new WaitForSeconds(meleeCooldown);
+        canMelee = true;
         isAttacking = false;
+        yield return new WaitForSeconds(1);
         hitbox.enabled = false;
         canMelee = true;
     }
