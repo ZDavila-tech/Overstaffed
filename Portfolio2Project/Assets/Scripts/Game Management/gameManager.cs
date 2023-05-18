@@ -31,7 +31,7 @@ public class gameManager : MonoBehaviour
     public GameObject settingsMenu;
     public GameObject flashDamage;
     public GameObject inventoryMenu;
-
+    
     [Header("----- Enemy Stuff -----")]
     public int enemiesRemaining;
 
@@ -44,6 +44,7 @@ public class gameManager : MonoBehaviour
     public Image ability1; //Hi-Jump
     public Image ability2; //Dash
     public Image ability3; //Blink
+    public Image fadeOutImage;
     public List<Sprite> spriteArray;
     public Image element;
 
@@ -227,6 +228,26 @@ public class gameManager : MonoBehaviour
         hpBar.maxValue = 1;
         hpBar.value = 1;
         hpText.text = "HP: " + playerScript.getHealth();
+    }
+
+    IEnumerator fadeScreen(bool toFade)
+    {
+       if(toFade)   //Fade into level
+        {
+            for(float i = 1; i>=0;i-=Time.deltaTime)
+            {
+                fadeOutImage.color = new Color(1, 1, 1, i);
+                yield return null;
+            }
+        }
+        else           //Fade out of level
+        {
+            for (float i = 0; i <= 1; i += Time.deltaTime)
+            {
+                fadeOutImage.color = new Color(1, 1, 1, i);
+                yield return null;
+            }
+        }
     }
 
     //public void StartGame()
