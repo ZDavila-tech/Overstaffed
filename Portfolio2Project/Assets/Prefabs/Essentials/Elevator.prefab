@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 97243433042328967}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 6.5, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1228,6 +1228,8 @@ MonoBehaviour:
   levelPrefabs:
   - {fileID: 8878911403180767278, guid: e2bb3a2e5c274c54a8300664c28b48ea, type: 3}
   - {fileID: 5196440058152316769, guid: 6daaebc8f2c48bd4c9e79730956a3c1d, type: 3}
+  baseEnemyCount: 10
+  byLevelMultiplier: 0
   lightOnMat: {fileID: 2100000, guid: dc2e9e5e7f017a049b294245d3505f4d, type: 2}
   isInLevel: 0
   level: 0
