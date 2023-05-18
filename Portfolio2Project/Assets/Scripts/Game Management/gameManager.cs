@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using static Skills;
+using TMPro;
 
 public class gameManager : MonoBehaviour
 {
@@ -17,13 +18,10 @@ public class gameManager : MonoBehaviour
     public GameObject playerRespawn;
     public GameObject playerSpawn;
     public Skills skillScript;
-    public GameObject firePlayer;
+    /*public GameObject firePlayer;
     public GameObject waterPlayer;
-    public GameObject earthPlayer;
-    //public GameObject playerType;
-    //[SerializeField] GameObject playerTypeFire;
-    //[SerializeField] GameObject playerTypeWater;
-    //[SerializeField] GameObject playerTypeEarth;
+    public GameObject earthPlayer;*/
+
 
     [Header("----- UI Stuff -----")]
     public GameObject pauseMenu;
@@ -33,7 +31,7 @@ public class gameManager : MonoBehaviour
     public GameObject settingsMenu;
     public GameObject flashDamage;
     public GameObject inventoryMenu;
-
+    
     [Header("----- Enemy Stuff -----")]
     public int enemiesRemaining;
 
@@ -41,11 +39,13 @@ public class gameManager : MonoBehaviour
 
     [SerializeField] Slider hpBar;
     [SerializeField] Text hpText;
+    [SerializeField] Text levelText;
     LevelManager levelManager;
     public Image ability1; //Hi-Jump
     public Image ability2; //Dash
     public Image ability3; //Blink
-    public Sprite[] spriteArray;
+    public Image fadeOutImage;
+    public List<Sprite> spriteArray;
     public Image element;
 
     public bool isPaused;
@@ -59,7 +59,7 @@ public class gameManager : MonoBehaviour
         timeScaleOrig = Time.timeScale;
         playerScript = player.GetComponent<PlayerController>();
         skillScript = player.GetComponent<Skills>();
-        playerRespawn = GameObject.FindGameObjectWithTag("PlayerRespawn");
+        //playerRespawn = GameObject.FindGameObjectWithTag("PlayerRespawn");
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
         ResetHpBar();
         SetElementIcon();
@@ -69,6 +69,7 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        SetElementIcon();
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
             activeMenu = pauseMenu;
@@ -160,18 +161,8 @@ public class gameManager : MonoBehaviour
     //displays the correct element based on character type
     public void SetElementIcon()
     {
-        if(player.name.Equals("WaterPlayer"))
-        {
-            element.sprite = spriteArray[0];
-        }
-        else if(player.name.Equals("FIre Player"))
-        {
-            element.sprite = spriteArray[1];
-        }
-        else if(player.name.Equals("EarthPlayer"))
-        {
-            element.sprite = spriteArray[2];
-        }
+        //Debug.Log(playerScript.GetWeapon());
+        element.sprite = spriteArray[playerScript.GetWeapon()];
     }
 
     public void UpdateHealthBar()
@@ -186,6 +177,12 @@ public class gameManager : MonoBehaviour
         {
             hpText.text = "HP: " + playerScript.getHealth();
         }
+    }
+    //update level counter in UI
+    public void updateLevelCount()
+    {
+        int level = levelManager.getlevel();
+        levelText.text = "Level: " + level;
     }
     //cooldownImage
     public void abilityCooldown()
@@ -231,6 +228,26 @@ public class gameManager : MonoBehaviour
         hpBar.maxValue = 1;
         hpBar.value = 1;
         hpText.text = "HP: " + playerScript.getHealth();
+    }
+
+    IEnumerator fadeScreen(bool toFade)
+    {
+       if(toFade)   //Fade into level
+        {
+            for(float i = 1; i>=0;i-=Time.deltaTime)
+            {
+                fadeOutImage.color = new Color(1, 1, 1, i);
+                yield return null;
+            }
+        }
+        else           //Fade out of level
+        {
+            for (float i = 0; i <= 1; i += Time.deltaTime)
+            {
+                fadeOutImage.color = new Color(1, 1, 1, i);
+                yield return null;
+            }
+        }
     }
 
     //public void StartGame()

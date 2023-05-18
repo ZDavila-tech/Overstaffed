@@ -154,6 +154,7 @@ public class LevelManager : MonoBehaviour
             currLevel.SetParent(transform);
             level++;
         }
+        gameManager.instance.updateLevelCount();
 
     }
 

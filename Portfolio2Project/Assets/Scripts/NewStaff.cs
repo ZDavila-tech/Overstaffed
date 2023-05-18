@@ -18,14 +18,15 @@ public class NewStaff : MonoBehaviour
     [SerializeField] private float meleeCooldown;
     [SerializeField] Collider hitbox;
     [SerializeField] private Renderer sWeapon;
+    [SerializeField] List<Renderer> weapons;
 
-    enum Element
+    public enum Element
     {
         Fire,
         Water,
         Earth
     }
-    [SerializeField] Element element;
+    [SerializeField] public Element element;
 
     //[SerializeField] Animator anim;
     private float lastShootTime;
@@ -142,6 +143,7 @@ public class NewStaff : MonoBehaviour
                     anim.SetTrigger("HammerMelee");
                     break;
             }
+            sWeapon = weapons[(int)element];
             StartCoroutine(ResetMeleeCooldown());
         }
     }
@@ -166,7 +168,7 @@ public class NewStaff : MonoBehaviour
         yield return new WaitForSeconds(seconds);
     }
 
-    int GetElement()
+    public int GetElement()
     {
         return (int)element;
     }

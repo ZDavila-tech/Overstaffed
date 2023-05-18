@@ -337,6 +337,7 @@ MonoBehaviour:
   meleeCooldown: 0.5
   hitbox: {fileID: 334106367046308164}
   sWeapon: {fileID: 6853015764813239609}
+  weapons: []
   element: 0
   isShooting: 0
   canMelee: 1
@@ -353,7 +354,6 @@ GameObject:
   - component: {fileID: 5715597186587668054}
   - component: {fileID: 8718470587620041203}
   - component: {fileID: 6853015764813239609}
-  - component: {fileID: 232421149725941523}
   m_Layer: 9
   m_Name: Sword
   m_TagString: Untagged
@@ -426,21 +426,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &232421149725941523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4907289682166412524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e639669cd28fcb341bbc253208d28300, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  staff: {fileID: 0}
-  sWeapon: {fileID: 6853015764813239609}
-  attacking: 0
 --- !u!1 &5704455047256438802
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,7 +437,6 @@ GameObject:
   - component: {fileID: 4927389929242567336}
   - component: {fileID: 8344678204838522125}
   - component: {fileID: 6064861971219012039}
-  - component: {fileID: 2391281312418110638}
   m_Layer: 0
   m_Name: Spear
   m_TagString: Untagged
@@ -525,21 +509,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2391281312418110638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5704455047256438802}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9afad91d8be4e004dbf2ebd9a709a006, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wStaff: {fileID: 0}
-  sWeapon: {fileID: 6064861971219012039}
-  attacking: 0
 --- !u!1 &5957258368493389606
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,7 +520,6 @@ GameObject:
   - component: {fileID: 6478355774370602396}
   - component: {fileID: 7946713510245487161}
   - component: {fileID: 5308779261353142003}
-  - component: {fileID: 7946713510245487162}
   m_Layer: 0
   m_Name: Hammer
   m_TagString: Untagged
@@ -624,21 +592,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7946713510245487162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5957258368493389606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18a1a75b5d13e10459a01e4d31db938e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eStaff: {fileID: 0}
-  sWeapon: {fileID: 5308779261353142003}
-  attacking: 0
 --- !u!1 &6256373689337983851
 GameObject:
   m_ObjectHideFlags: 0
@@ -805,8 +758,6 @@ MonoBehaviour:
   ShootRange: 355
   ShotCooldown: 0.1
   playerWeaponScript: {fileID: 334106367046308170}
-  waterWeapon: {fileID: 0}
-  earthWeapon: {fileID: 0}
 --- !u!114 &1055786313974128500
 MonoBehaviour:
   m_ObjectHideFlags: 0
