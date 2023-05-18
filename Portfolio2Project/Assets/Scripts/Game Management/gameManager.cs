@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using static Skills;
+using TMPro;
 
 public class gameManager : MonoBehaviour
 {
@@ -38,6 +39,7 @@ public class gameManager : MonoBehaviour
 
     [SerializeField] Slider hpBar;
     [SerializeField] Text hpText;
+    [SerializeField] Text levelText;
     LevelManager levelManager;
     public Image ability1; //Hi-Jump
     public Image ability2; //Dash
@@ -174,6 +176,12 @@ public class gameManager : MonoBehaviour
         {
             hpText.text = "HP: " + playerScript.getHealth();
         }
+    }
+    //update level counter in UI
+    public void updateLevelCount()
+    {
+        int level = levelManager.getlevel();
+        levelText.text = "Level: " + level;
     }
     //cooldownImage
     public void abilityCooldown()
