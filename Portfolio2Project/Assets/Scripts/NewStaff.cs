@@ -152,6 +152,7 @@ public class NewStaff : MonoBehaviour
         isAttacking = false;
         yield return new WaitForSeconds(1);
         hitbox.enabled = false;
+        canMelee = true;
     }
 
     IEnumerator ResetShooting()
