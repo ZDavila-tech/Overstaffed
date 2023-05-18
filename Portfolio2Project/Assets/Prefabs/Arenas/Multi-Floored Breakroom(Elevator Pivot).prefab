@@ -260,7 +260,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7327751924147454272}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.75, y: 7.5, z: 0}
+  m_LocalPosition: {x: -5.86, y: 7.5, z: 0}
   m_LocalScale: {x: 9, y: 15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -530,8 +530,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7327751924279163919}
+  - component: {fileID: 804410578193239391}
   m_Layer: 0
-  m_Name: Multi-Floored Breakroom
+  m_Name: Multi-Floored Breakroom(Elevator Pivot)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -553,6 +554,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &804410578193239391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7327751924279163916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_BuildHeightMesh: 0
+  m_NavMeshData: {fileID: 0}
 --- !u!1 &7327751924401689754
 GameObject:
   m_ObjectHideFlags: 0
@@ -1448,8 +1478,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7327751925315279333}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 9.25, z: 0}
-  m_LocalScale: {x: 2.5, y: 11.5, z: 1}
+  m_LocalPosition: {x: 0, y: 10.25, z: 0}
+  m_LocalScale: {x: 2.7, y: 11.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7327751924988944326}
@@ -2182,7 +2212,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7327751925862452045}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.75, y: 7.5, z: 0}
+  m_LocalPosition: {x: 5.85, y: 7.5, z: 0}
   m_LocalScale: {x: 9, y: 15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3350,13 +3380,49 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7327751925471725877}
     m_Modifications:
+    - target: {fileID: 427271757478349786, guid: ccac2e5f24ef0c7438c2b1586549f764, type: 3}
+      propertyPath: spawnAreaX
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 427271757478349786, guid: ccac2e5f24ef0c7438c2b1586549f764, type: 3}
+      propertyPath: spawnAreaY
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 427271757478349786, guid: ccac2e5f24ef0c7438c2b1586549f764, type: 3}
+      propertyPath: spawnDelay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 427271757478349786, guid: ccac2e5f24ef0c7438c2b1586549f764, type: 3}
+      propertyPath: enemies.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 427271757478349786, guid: ccac2e5f24ef0c7438c2b1586549f764, type: 3}
+      propertyPath: weights.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 427271757478349786, guid: ccac2e5f24ef0c7438c2b1586549f764, type: 3}
+      propertyPath: enemies.Array.data[0]
+      value: 
+      objectReference: {fileID: 4728235726989330132, guid: 8410533c5719b054980dc8019928826d, type: 3}
+    - target: {fileID: 427271757478349786, guid: ccac2e5f24ef0c7438c2b1586549f764, type: 3}
+      propertyPath: enemies.Array.data[1]
+      value: 
+      objectReference: {fileID: 2856267348468154937, guid: 8f7c1d08c441e8f4cb3cc94a791f997f, type: 3}
+    - target: {fileID: 427271757478349786, guid: ccac2e5f24ef0c7438c2b1586549f764, type: 3}
+      propertyPath: weights.Array.data[0]
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 427271757478349786, guid: ccac2e5f24ef0c7438c2b1586549f764, type: 3}
+      propertyPath: weights.Array.data[1]
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 2039379257155128617, guid: ccac2e5f24ef0c7438c2b1586549f764, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2039379257155128617, guid: ccac2e5f24ef0c7438c2b1586549f764, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.25
+      value: -8.04
       objectReference: {fileID: 0}
     - target: {fileID: 2039379257155128617, guid: ccac2e5f24ef0c7438c2b1586549f764, type: 3}
       propertyPath: m_LocalPosition.y
