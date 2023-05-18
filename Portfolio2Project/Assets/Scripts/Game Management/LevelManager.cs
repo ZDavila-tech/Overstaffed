@@ -35,6 +35,7 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("Elevator Start Ran");
         if (doorLight != null)
         {
             lightOffMat = doorLight.GetComponent<MeshRenderer>().material;
@@ -182,6 +183,4 @@ public class LevelManager : MonoBehaviour
             levelComplete();
         }
     }
-
-
 }
