@@ -39,7 +39,7 @@ public class gameManager : MonoBehaviour
 
     [SerializeField] Slider hpBar;
     [SerializeField] Text hpText;
-    [SerializeField] Text levelText;
+    [SerializeField] TextMeshProUGUI levelText;
     LevelManager levelManager;
     public Image ability1; //Hi-Jump
     public Image ability2; //Dash
@@ -182,7 +182,7 @@ public class gameManager : MonoBehaviour
     public void updateLevelCount()
     {
         int level = levelManager.getlevel();
-        levelText.text = "Level: " + level;
+        levelText.text = level.ToString("F0");
     }
     //cooldownImage
     public void abilityCooldown()
