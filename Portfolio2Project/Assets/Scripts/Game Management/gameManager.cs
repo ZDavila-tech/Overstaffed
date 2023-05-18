@@ -161,7 +161,7 @@ public class gameManager : MonoBehaviour
     //displays the correct element based on character type
     public void SetElementIcon()
     {
-        Debug.Log(playerScript.GetWeapon());
+        //Debug.Log(playerScript.GetWeapon());
         element.sprite = spriteArray[playerScript.GetWeapon()];
     }
 
