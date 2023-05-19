@@ -135,7 +135,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if(iHP <= 0) //if it dies, get rid of it
         {
-            if(Random.Range(0,100) <= DropRate)
+            if(Random.Range(0,100) <= DropRate && drop != null)
             {
              Instantiate(drop, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), transform.rotation);
             }
