@@ -54,9 +54,13 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void Update()
     {
-        float speed = 0;
-        speed = Mathf.Lerp(speed, navAgent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
-        anim.SetFloat("Speed", speed);
+        if (anim != null)
+        {
+            float speed = 0;
+            speed = Mathf.Lerp(speed, navAgent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
+            anim.SetFloat("Speed", speed);
+        }
+
 
         if (hpDisplay.activeSelf)
         {
