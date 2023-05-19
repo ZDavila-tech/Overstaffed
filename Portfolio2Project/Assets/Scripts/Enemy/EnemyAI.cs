@@ -12,6 +12,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform tShootPos;
     [SerializeField] Transform tHeadPos;
     [SerializeField] GameObject drop;
+    [SerializeField] Animator anim;
     LevelManager lm;
     
 
@@ -23,6 +24,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] float fFieldOfView;
     [SerializeField] float fChaseTime;
     [Range(0, 100)][SerializeField] int DropRate;
+    [SerializeField] float animTransSpeed;
 
     [Header("----- Weapon Stats -----")]
     [SerializeField] GameObject gOBullet;
@@ -52,6 +54,10 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void Update()
     {
+        float speed = 0;
+        speed = Mathf.Lerp(speed, navAgent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
+        anim.SetFloat("Speed", speed);
+
         if (hpDisplay.activeSelf)
         {
             hpDisplay.transform.LookAt(gameManager.instance.player.transform.position);
@@ -108,7 +114,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     IEnumerator Shoot(){
         bIsShooting = true;//tell update that this is running
         Instantiate(gOBullet, transform.position, transform.rotation);//create bullet
-        
+        anim.SetTrigger("Attack");//play the shooting animation
+
         yield return new WaitForSeconds(fShootRate);//cooldown
         bIsShooting = false;//tell update that we're ready to shoot again
     }
