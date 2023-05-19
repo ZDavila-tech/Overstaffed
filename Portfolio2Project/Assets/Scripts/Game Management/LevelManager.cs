@@ -55,6 +55,7 @@ public class LevelManager : MonoBehaviour
             if (levelIsComplete)
             {
                 inElevator= true;
+                StartCoroutine(gameManager.instance.fadeScreen(false));
                 activeCoroutine = StartCoroutine(nextLevelCoroutine());
             }
             else
@@ -155,6 +156,7 @@ public class LevelManager : MonoBehaviour
             currLevel.SetParent(transform);
             level++;
         }
+        StartCoroutine(gameManager.instance.fadeScreen(true));
         gameManager.instance.updateLevelCount();
 
     }
