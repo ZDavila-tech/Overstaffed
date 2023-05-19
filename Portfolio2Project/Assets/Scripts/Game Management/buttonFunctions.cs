@@ -15,6 +15,7 @@ public class buttonFunctions : MonoBehaviour
     public void restart()
     {
         Destroy(GameObject.FindGameObjectWithTag("Player"));
+        Debug.Log("Player Character destroyed");
         SceneManager.LoadScene("Character Select");
     }
 

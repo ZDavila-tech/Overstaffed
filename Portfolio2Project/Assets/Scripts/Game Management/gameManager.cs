@@ -66,10 +66,15 @@ public class gameManager : MonoBehaviour
         enemiesRemaining = 0;
     }
 
+    private void Start()
+    {
+        SetElementIcon();
+    }
+
     // Update is called once per frame
     void Update()
     {
-        SetElementIcon();
+        //SetElementIcon();
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
             activeMenu = pauseMenu;
