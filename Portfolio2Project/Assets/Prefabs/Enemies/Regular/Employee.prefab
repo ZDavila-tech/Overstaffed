@@ -293,6 +293,7 @@ GameObject:
   - component: {fileID: 6169411614234004007}
   - component: {fileID: -5621288197490441543}
   - component: {fileID: 8987806709014719895}
+  - component: {fileID: 2331917227492202658}
   m_Layer: 6
   m_Name: Employee
   m_TagString: Enemy
@@ -344,6 +345,7 @@ MonoBehaviour:
   tShootPos: {fileID: 6169411614852804308}
   tHeadPos: {fileID: 6169411615633328210}
   drop: {fileID: 4658357512159410959, guid: 59364d3133cbbe541bde47c1ee4298d3, type: 3}
+  anim: {fileID: 0}
   iHP: 4
   hpBar: {fileID: 4517169128264336482}
   hpDisplay: {fileID: 1985376260711448354}
@@ -351,6 +353,7 @@ MonoBehaviour:
   fFieldOfView: 90
   fChaseTime: 3
   DropRate: 20
+  animTransSpeed: 0
   gOBullet: {fileID: 8060328068600632496, guid: 21d34616d4bd55d46ad893c2322ce70a, type: 3}
   iShootDistance: 100
   fShootRate: 1
@@ -475,6 +478,27 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &2331917227492202658
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4728235726989330130}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 555dddb0fd62c1a4a8a87449606cff55, type: 3}
+  m_Controller: {fileID: 9100000, guid: 6b0086299d61ab14482bee8586eb1f8d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6169411614214642623
 GameObject:
   m_ObjectHideFlags: 0
