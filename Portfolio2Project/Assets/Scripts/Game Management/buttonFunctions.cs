@@ -26,11 +26,11 @@ public class buttonFunctions : MonoBehaviour
     }
 
     //Respawn player from respawn location
-    public void respawnPLayer()
-    {
-        gameManager.instance.playerScript.spawnPlayer();
-        gameManager.instance.unPauseState();
-    }
+    //public void respawnPLayer()
+    //{
+    //    gameManager.instance.playerScript.spawnPlayer();
+    //    gameManager.instance.unPauseState();
+    //}
 
     public void goBackMenu()
     {

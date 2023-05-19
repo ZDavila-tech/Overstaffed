@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour, IDamage
     bool isShooting;
 
     //[SerializeField] GameObject playerWeaponHolder;
-    [SerializeField] public NewStaff playerWeaponScript;
+    public NewStaff playerWeaponScript;
 
 
     GameObject playerWeapon;
@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour, IDamage
         }
 
         move = (transform.right * Input.GetAxis("Horizontal")) + (transform.forward * Input.GetAxis("Vertical"));
-        controller.Move(move * Time.deltaTime * playerSpeed);
+        controller.Move(move * playerSpeed * Time.deltaTime);
 
 
 
@@ -168,7 +168,7 @@ public class PlayerController : MonoBehaviour, IDamage
             RaycastHit hit;
 
             if (playerWeaponScript != null)
-                playerWeaponScript.Shoot(ShotCooldown);
+                playerWeaponScript.Shoot();
            /* else if (waterWeapon != null)
                 waterWeapon.Shoot(ShotCooldown);
             else if (earthWeapon != null)
@@ -180,7 +180,6 @@ public class PlayerController : MonoBehaviour, IDamage
                 IDamage damageable = hit.collider.GetComponent<IDamage>();
                 if (damageable != null)
                 {
-
                     damageable.TakeDamage(2);
                 }
             }
@@ -193,14 +192,14 @@ public class PlayerController : MonoBehaviour, IDamage
     }
 
 
-    public void spawnPlayer()
-    {
-        controller.enabled = false;
-        transform.position = gameManager.instance.playerRespawn.transform.position;
-        iHP = iHPOriginal;
-        gameManager.instance.ResetHpBar();
-        controller.enabled = true;
-    }
+    //public void spawnPlayer()
+    //{
+    //    controller.enabled = false;
+    //    transform.position = gameManager.instance.playerSpawn.transform.position;
+    //    iHP = iHPOriginal;
+    //    gameManager.instance.ResetHpBar();
+    //    controller.enabled = true;
+    //}
 
     public int getHealth()
     {

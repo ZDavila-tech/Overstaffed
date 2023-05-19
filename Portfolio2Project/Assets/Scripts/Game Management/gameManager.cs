@@ -15,7 +15,7 @@ public class gameManager : MonoBehaviour
 
     public GameObject player;
     public PlayerController playerScript;
-    public GameObject playerRespawn;
+    //public GameObject playerRespawn;
     public GameObject playerSpawn;
     public Skills skillScript;
     /*public GameObject firePlayer;

@@ -39,7 +39,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     Vector3 playerDir;
     float fAngleToPlayer;
 
-    IDamage damageInterface;
+    //IDamage damageInterface;
     private Color cOrigColor;
     
     void Start()
@@ -131,7 +131,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         hpBar.value = iHP;
         StartCoroutine(flashColor());//indicate damage taken
         navAgent.SetDestination(gameManager.instance.player.transform.position);
-        BeenShot();
+        StartCoroutine(BeenShot());
 
         if(iHP <= 0) //if it dies, get rid of it
         {
