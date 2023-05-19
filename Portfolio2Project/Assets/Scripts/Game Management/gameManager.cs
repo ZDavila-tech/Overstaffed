@@ -69,7 +69,6 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SetElementIcon();
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
             activeMenu = pauseMenu;
