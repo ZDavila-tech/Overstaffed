@@ -11,5 +11,6 @@ public class PlayerSpawn : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerSpawn = GameObject.FindGameObjectWithTag("PlayerSpawn");
         player.transform.SetPositionAndRotation(playerSpawn.transform.position, playerSpawn.transform.rotation);
+        Debug.Log("Player spawn pulled player");
     }
 }
