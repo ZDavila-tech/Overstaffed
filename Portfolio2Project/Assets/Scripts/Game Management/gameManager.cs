@@ -31,7 +31,8 @@ public class gameManager : MonoBehaviour
     public GameObject settingsMenu;
     public GameObject flashDamage;
     public GameObject inventoryMenu;
-    
+    public Image fadeOutImage;
+
     [Header("----- Enemy Stuff -----")]
     public int enemiesRemaining;
 
@@ -44,7 +45,6 @@ public class gameManager : MonoBehaviour
     public Image ability1; //Hi-Jump
     public Image ability2; //Dash
     public Image ability3; //Blink
-    public Image fadeOutImage;
     public List<Sprite> spriteArray;
     public Image element;
 
@@ -62,7 +62,7 @@ public class gameManager : MonoBehaviour
         //playerRespawn = GameObject.FindGameObjectWithTag("PlayerRespawn");
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
         ResetHpBar();
-        SetElementIcon();
+        //SetElementIcon();
         enemiesRemaining = 0;
     }
 
