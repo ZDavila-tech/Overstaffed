@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 using static Skills;
 using TMPro;
 
-public class gameManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public static gameManager instance;
+    public static GameManager instance;
 
     [Header("------ Player Stuff -----")]
 
@@ -56,7 +56,7 @@ public class gameManager : MonoBehaviour
         timeScaleOrig = Time.timeScale;
         playerScript = player.GetComponent<PlayerController>();
         skillScript = player.GetComponent<Skills>();
-        levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
+        levelManager = LevelManager.instance;
         ResetHpBar();
         enemiesRemaining = 0;
     }
@@ -73,13 +73,13 @@ public class gameManager : MonoBehaviour
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
             activeMenu = pauseMenu;
-            showActiveMenu();
-            pauseState();
+            ShowActiveMenu();
+            PauseState();
         }
-        abilityCooldown();
+        AbilityCoolDown();
     }
 
-    public void pauseState()
+    public void PauseState()
     {
         isPaused = true;
         Time.timeScale = 0;
@@ -89,37 +89,37 @@ public class gameManager : MonoBehaviour
 
     }
 
-    public void unPauseState()
+    public void UnpauseState()
     {
         isPaused = false;
         Time.timeScale = timeScaleOrig;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        hideActiveMenu();
+        HideActiveMenu();
     }
-    public void goBack() //Go back to pause menu
+    public void GoBack() //Go back to pause menu
     {
-        pauseState();
+        PauseState();
         settingsMenu.SetActive(false);
         activeMenu = pauseMenu;
-        showActiveMenu();
+        ShowActiveMenu();
     }
 
-    public void youLose()
+    public void YouLose()
     {
-        pauseState();
+        PauseState();
         activeMenu = loseMenu;
-        showActiveMenu();
+        ShowActiveMenu();
     }
 
-    public void goToSettings() //goes to settings menu
+    public void GoToSettings() //goes to settings menu
     {
-        pauseState();
+        PauseState();
         activeMenu = settingsMenu;
-        showActiveMenu();
+        ShowActiveMenu();
     }
 
-    public void showActiveMenu() //shows active menu if there is one.
+    public void ShowActiveMenu() //shows active menu if there is one.
     {
         if (activeMenu != null)
         {
@@ -127,7 +127,7 @@ public class gameManager : MonoBehaviour
         }
     }
 
-    public void hideActiveMenu() //hides active menu and sets it to null
+    public void HideActiveMenu() //hides active menu and sets it to null
     {
         if (activeMenu != null)
         {
@@ -136,22 +136,22 @@ public class gameManager : MonoBehaviour
         }
     }
 
-    public void showDamage()
+    public void ShowDamage()
     {
-        StartCoroutine(flashRed());
+        StartCoroutine(FlashRed());
     }
 
-    IEnumerator flashRed()
+    IEnumerator FlashRed()
     {
         flashDamage.SetActive(true);
         yield return new WaitForSeconds(0.3f);
         flashDamage.SetActive(false);
     }
-    public void youWin()
+    public void YouWin()
     {
         activeMenu = winMenu;
-        showActiveMenu();
-        pauseState();
+        ShowActiveMenu();
+        PauseState();
     }
  
     //displays the correct element based on character type
@@ -163,25 +163,25 @@ public class gameManager : MonoBehaviour
 
     public void UpdateHealthBar()
     {
-        hpBar.maxValue = playerScript.getOriginalHealth();
-        hpBar.value = playerScript.getHealth();
-        if (playerScript.getHealth() <= 0)
+        hpBar.maxValue = playerScript.GetOriginalHealth();
+        hpBar.value = playerScript.GetHealth();
+        if (playerScript.GetHealth() <= 0)
         {
             hpText.text = "HP: 0";
         }
         else
         {
-            hpText.text = "HP: " + playerScript.getHealth();
+            hpText.text = "HP: " + playerScript.GetHealth();
         }
     }
     //update level counter in UI
-    public void updateLevelCount()
+    public void UpdateLevelCount()
     {
         int level = levelManager.currentLevel;
         levelText.text = level.ToString("F0");
     }
     //cooldownImage
-    public void abilityCooldown()
+    public void AbilityCoolDown()
     {
         if(skillScript.isDashCooldown())
         {
@@ -221,10 +221,10 @@ public class gameManager : MonoBehaviour
     {
         hpBar.maxValue = 1;
         hpBar.value = 1;
-        hpText.text = "HP: " + playerScript.getHealth();
+        hpText.text = "HP: " + playerScript.GetHealth();
     }
 
-    public IEnumerator fadeScreen(bool toFade)
+    public IEnumerator FadeScreen(bool toFade)
     {
        if(toFade)   //Fade into level
         {

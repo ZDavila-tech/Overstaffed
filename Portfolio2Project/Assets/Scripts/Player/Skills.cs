@@ -54,7 +54,7 @@ public class Skills : MonoBehaviour
         {
             canDash = false;
             CanMove = false;
-            playerController.changeJumpsUsed(1);
+            playerController.ChangeJumpsUsed(1);
             StartCoroutine(dashCoroutine());
             StartCoroutine(dashCooldownCoroutine());
         }
@@ -98,7 +98,7 @@ public class Skills : MonoBehaviour
         {
             canHiJump = false;
             CanMove = false;
-            playerController.changeJumpsUsed(1);
+            playerController.ChangeJumpsUsed(1);
             StartCoroutine(hiJumpCoroutine());
             StartCoroutine(hiJumpCooldownCoroutine());
         }
@@ -148,20 +148,20 @@ public class Skills : MonoBehaviour
 
     IEnumerator slowFallCoroutine()
     {
-        gravityOrig = playerController.changeGravity(NewGravityForce);
+        gravityOrig = playerController.ChangeGravity(NewGravityForce);
         while (!controller.isGrounded)
         {
             if (controller.velocity.y > 0)
             {
-                playerController.changeGravity(gravityOrig);
+                playerController.ChangeGravity(gravityOrig);
             }
             else
             {
-                playerController.changeGravity(NewGravityForce);
+                playerController.ChangeGravity(NewGravityForce);
             }
             yield return null;
         }
-        playerController.changeGravity(gravityOrig);
+        playerController.ChangeGravity(gravityOrig);
         StopCoroutine(slowFallCoroutine());
 
     }

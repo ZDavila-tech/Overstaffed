@@ -13,7 +13,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform tHeadPos;
     [SerializeField] GameObject drop;
     [SerializeField] Animator anim;
-    LevelManager lm;
+    LevelManager levelManager;
     
 
     [Header("----- Enemy Stats -----")]
@@ -45,10 +45,10 @@ public class EnemyAI : MonoBehaviour, IDamage
     void Start()
     {
         cOrigColor = rModel.material.color;
-        ++gameManager.instance.enemiesRemaining;
         hpBar.maxValue = iHP;
         hpBar.value = hpBar.maxValue;
-        lm = GetComponentInParent<LevelManager>();
+        levelManager = LevelManager.instance;
+        ++levelManager.enemiesRemaining;
     }
 
 
@@ -80,8 +80,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         Debug.DrawRay(tHeadPos.position, playerDir);
         //Debug.Log(fAngleToPlayer);
 
-        RaycastHit hit;
-        if(Physics.Raycast(tHeadPos.position, playerDir, out hit))
+        if(Physics.Raycast(tHeadPos.position, playerDir, out RaycastHit hit))
         {
             if (hit.collider.CompareTag("Player") && fAngleToPlayer <= fFieldOfView)
             {
@@ -127,9 +126,9 @@ public class EnemyAI : MonoBehaviour, IDamage
     public void TakeDamage(int dmg)
     {
         iHP -= dmg;//health goes down
-        StartCoroutine(showHealth());
+        StartCoroutine(ShowHealth());
         hpBar.value = iHP;
-        StartCoroutine(flashColor());//indicate damage taken
+        StartCoroutine(FlashColor());//indicate damage taken
         navAgent.SetDestination(gameManager.instance.player.transform.position);
         StartCoroutine(BeenShot());
 
@@ -139,8 +138,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             {
              Instantiate(drop, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), transform.rotation);
             }
-            --gameManager.instance.enemiesRemaining;
-            lm.enemyKill();
+            --levelManager.enemiesRemaining;
             Destroy(gameObject);
         }
     }
@@ -152,7 +150,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         bBeenShot = false;
     }
 
-    IEnumerator flashColor()
+    IEnumerator FlashColor()
     {//when it, change the color of the enemy from whatever it was to red, and back again
         rModel.material.color = Color.red;
 
@@ -161,7 +159,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         rModel.material.color = cOrigColor;
     }
 
-    IEnumerator showHealth()
+    IEnumerator ShowHealth()
     {
         hpDisplay.SetActive(true);
 

@@ -15,7 +15,7 @@ public class enemySpawn : MonoBehaviour
     int totalWeight;
 
 
-    LevelManager lm;
+    LevelManager levelManager;
 
 
     int arrayLen;
@@ -24,7 +24,7 @@ public class enemySpawn : MonoBehaviour
     {
         initializeLength();
         sortArrays();
-        lm = GetComponentInParent<LevelManager>();
+        levelManager = LevelManager.instance;
         totalWeight = initializeEnemyWeight();
     }
 
@@ -47,7 +47,7 @@ public class enemySpawn : MonoBehaviour
     IEnumerator attemptSpawn()
     {
         yield return new WaitForSeconds(spawnDelay);
-        if (lm.currLessThanTotal())
+        if (levelManager.currLessThanTotal())
         {
             spawn();
         }
@@ -57,7 +57,7 @@ public class enemySpawn : MonoBehaviour
     {
         Transform toSpawn = weightedEnemySelection();
         Instantiate(toSpawn,transform.position + spawnCoords(), transform.rotation);
-        lm.addCurr();
+        levelManager.addCurr();
     }
 
     Vector3 spawnCoords()

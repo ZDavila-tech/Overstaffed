@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour, IDamage
     public NewStaff playerWeaponScript;
 
 
-    GameObject playerWeapon;
+    //GameObject playerWeapon;
 
     // Start is called before the first frame update
     private void Awake()
@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
         Sprint();
 
-        if (Input.GetButton("Shoot") && !isShooting && !gameManager.instance.isPaused)
+        if (Input.GetButton("Shoot") && !isShooting && !GameManager.instance.isPaused)
         {
             StartCoroutine(Shoot());
 
@@ -128,17 +128,17 @@ public class PlayerController : MonoBehaviour, IDamage
         if (damagedRecently == false)
         {
             damagedRecently = true;
-            StartCoroutine(resetDamagedRecently());
+            StartCoroutine(ResetDamagedRecently());
             Debug.Log("my damage" + amount);
             //-= used, negative amounts heal.         
             iHP -= amount;
             if (amount > 0)
             {
-                gameManager.instance.showDamage();
+                GameManager.instance.ShowDamage();
                 if (iHP <= 0)
                 {
                     iHP = 0;
-                    gameManager.instance.youLose();
+                    GameManager.instance.YouLose();
                 }
             }
             else
@@ -148,11 +148,11 @@ public class PlayerController : MonoBehaviour, IDamage
                     iHP = iHPOriginal;
                 }
             }
-            gameManager.instance.UpdateHealthBar();
+            GameManager.instance.UpdateHealthBar();
         }
     }
 
-    IEnumerator resetDamagedRecently()
+    IEnumerator ResetDamagedRecently()
     {
         yield return new WaitForSeconds(damagecoolDown);
         damagedRecently = false;
@@ -165,8 +165,6 @@ public class PlayerController : MonoBehaviour, IDamage
             Debug.Log("Shot");
             isShooting = true;
 
-            RaycastHit hit;
-
             if (playerWeaponScript != null)
                 playerWeaponScript.Shoot();
            /* else if (waterWeapon != null)
@@ -174,7 +172,7 @@ public class PlayerController : MonoBehaviour, IDamage
             else if (earthWeapon != null)
                 earthWeapon.Shoot(ShotCooldown);*/
 
-            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, ShootRange))
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out RaycastHit hit, ShootRange))
             //if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward * ShootRange, out hit))
             {
                 IDamage damageable = hit.collider.GetComponent<IDamage>();
@@ -201,23 +199,23 @@ public class PlayerController : MonoBehaviour, IDamage
     //    controller.enabled = true;
     //}
 
-    public int getHealth()
+    public int GetHealth()
     {
         return iHP;
     }
 
-    public int getOriginalHealth()
+    public int GetOriginalHealth()
     {
         return iHPOriginal;
     }
 
-    public void changeJumpsUsed(int ammount)
+    public void ChangeJumpsUsed(int ammount)
     {
         jumpsUsed += ammount;
     }
 
     //Changer Gravity and Returns Original Gravity
-    public float changeGravity(float ammount)
+    public float ChangeGravity(float ammount)
     {
         float gravityOrig = gravityValue;
         gravityValue = ammount;
