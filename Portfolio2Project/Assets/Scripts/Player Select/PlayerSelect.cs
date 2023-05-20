@@ -12,23 +12,26 @@ public class PlayerSelect : MonoBehaviour
     {
         Instantiate(player);
         player.GetComponent<PlayerController>().playerWeaponScript.element = NewStaff.Element.Fire;
-        Debug.Log("PlayerSpawned");
-        SceneManager.LoadScene("Main Game");
+        postPlayerSelected();
     }
 
     public void SelectedWater()
     {
         Instantiate(player);
         player.GetComponent<PlayerController>().playerWeaponScript.element = NewStaff.Element.Water;
-        Debug.Log("PlayerSpawned");
-        SceneManager.LoadScene("Main Game");
+        postPlayerSelected();
     }
 
     public void SelectedEarth()
     {
         Instantiate(player);
         player.GetComponent<PlayerController>().playerWeaponScript.element = NewStaff.Element.Earth;
+        postPlayerSelected();
+    }
+
+    public void postPlayerSelected()
+    {
         Debug.Log("PlayerSpawned");
-        SceneManager.LoadScene("Main Game");
+        SceneManager.LoadScene("Reception");
     }
 }
