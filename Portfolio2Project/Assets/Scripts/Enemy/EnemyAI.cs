@@ -6,15 +6,15 @@ using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour, IDamage
 {
+    LevelManager levelManager;
+
     [Header("----- Components -----")]
     [SerializeField] Renderer rModel;
     [SerializeField] NavMeshAgent navAgent;
     [SerializeField] Transform tShootPos;
     [SerializeField] Transform tHeadPos;
     [SerializeField] GameObject drop;
-    [SerializeField] Animator anim;
-    LevelManager levelManager;
-    
+    [SerializeField] Animator anim;    
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int iHP;
@@ -44,11 +44,13 @@ public class EnemyAI : MonoBehaviour, IDamage
     
     void Start()
     {
-        cOrigColor = rModel.material.color;
-        hpBar.maxValue = iHP;
-        hpBar.value = hpBar.maxValue;
         levelManager = LevelManager.instance;
         ++levelManager.enemiesRemaining;
+
+        cOrigColor = rModel.material.color;
+        
+        hpBar.maxValue = iHP;
+        hpBar.value = hpBar.maxValue;
     }
 
 
@@ -136,7 +138,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
             if(Random.Range(0,100) <= DropRate && drop != null)
             {
-             Instantiate(drop, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), transform.rotation);
+                Instantiate(drop, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), transform.rotation);
             }
             --levelManager.enemiesRemaining;
             Destroy(gameObject);

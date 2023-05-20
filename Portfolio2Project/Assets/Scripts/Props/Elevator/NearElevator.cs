@@ -7,15 +7,19 @@ public class NearElevator : MonoBehaviour
     [SerializeField] GameObject door1;
     [SerializeField] GameObject door2;
 
-    // Start is called before the first frame update
-    void Start()
+    LevelManager levelManager;
+
+    private void Start()
     {
-        
+        levelManager = LevelManager.instance;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if(other.CompareTag("Player") && levelManager.enemiesRemaining <= 0)
+        {
+            door1.SetActive(false);
+            door2.SetActive(false);
+        }
     }
 }

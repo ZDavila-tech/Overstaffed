@@ -9,31 +9,40 @@ public class PlayerSelect : MonoBehaviour
 {
     [SerializeField] GameObject player;
     [SerializeField] GameObject levelManager;
+    [SerializeField] GameObject UI;
     public void SelectedFire()
     {
-        Instantiate(player);
+        PrePlayerElementSetup();
         player.GetComponent<PlayerController>().playerWeaponScript.element = NewStaff.Element.Fire;
-        postPlayerSelected();
+        PostPlayerElementSetup();
     }
 
     public void SelectedWater()
     {
-        Instantiate(player);
+        PrePlayerElementSetup();
         player.GetComponent<PlayerController>().playerWeaponScript.element = NewStaff.Element.Water;
-        postPlayerSelected();
+        PostPlayerElementSetup();
     }
 
     public void SelectedEarth()
     {
-        Instantiate(player);
+        PrePlayerElementSetup();
         player.GetComponent<PlayerController>().playerWeaponScript.element = NewStaff.Element.Earth;
-        postPlayerSelected();
+        PostPlayerElementSetup();
     }
 
-    public void postPlayerSelected()
+    public void PrePlayerElementSetup() //must happen before player element setup occurs
+    {
+        DestroyImmediate(Camera.main.gameObject);
+        Instantiate(player);
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+
+    public void PostPlayerElementSetup() //must happen after player element setup occurs
     {
         Debug.Log("PlayerSpawned");
         SceneManager.LoadScene("Reception");
         Instantiate(levelManager);
+        Instantiate(UI);
     }
 }

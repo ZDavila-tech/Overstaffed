@@ -31,9 +31,6 @@ public class GameManager : MonoBehaviour
     public Text hpText;
     public TextMeshProUGUI levelText;
 
-    [Header("----- Enemy Stuff -----")]
-    public int enemiesRemaining;
-
     [Header("-----Misc Stuff-----")]
 
     LevelManager levelManager;
@@ -58,7 +55,6 @@ public class GameManager : MonoBehaviour
         skillScript = player.GetComponent<Skills>();
         levelManager = LevelManager.instance;
         ResetHpBar();
-        enemiesRemaining = 0;
     }
 
     private void Start()
@@ -213,8 +209,6 @@ public class GameManager : MonoBehaviour
             ability2.fillAmount = 0;
             ability3.fillAmount = 0;
         }
-
-
     }
 
     public void ResetHpBar()

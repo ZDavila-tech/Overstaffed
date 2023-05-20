@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class buttonFunctions : MonoBehaviour
+public class ButtonFunctions : MonoBehaviour
 {
     //Resume the game
-   public void resume()
+   public void Resume()
     {
         GameManager.instance.UnpauseState();
     }
 
     //Restarts the level from the beginning
-    public void restart()
+    public void Restart()
     {
         Destroy(GameObject.FindGameObjectWithTag("Player"));
         Destroy(GameObject.FindGameObjectWithTag("LevelManager"));
+        Destroy(GameObject.FindGameObjectWithTag("UI"));
         Debug.Log("Player Character destroyed");
         SceneManager.LoadScene("Character Select");
     }
@@ -33,13 +34,13 @@ public class buttonFunctions : MonoBehaviour
     //    gameManager.instance.unPauseState();
     //}
 
-    public void goBackMenu()
+    public void GoBackMenu()
     {
         GameManager.instance.GoBack();
     }
    
     //Go to next level; doesn't work until next level is made
-    public void nextLevel()
+    public void NextLevel()
     {
 
     }
