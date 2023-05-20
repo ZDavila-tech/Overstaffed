@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     public GameObject settingsMenu;
     public GameObject flashDamage;
     public GameObject inventoryMenu;
-    public Image fadeOutImage;
+    public Image fadeInFadeOutImage;
     public Slider hpBar;
     public Text hpText;
     public TextMeshProUGUI levelText;
@@ -230,7 +230,7 @@ public class GameManager : MonoBehaviour
         {
             for(float i = 1; i>=0;i-=Time.deltaTime)
             {
-                fadeOutImage.color = new Color(0, 0, 0, i);
+                fadeInFadeOutImage.color = new Color(0, 0, 0, i);
                 yield return null;
             }
         }
@@ -238,7 +238,7 @@ public class GameManager : MonoBehaviour
         {
             for (float i = 0; i <= 1; i += Time.deltaTime)
             {
-                fadeOutImage.color = new Color(0, 0, 0, i);
+                fadeInFadeOutImage.color = new Color(0, 0, 0, i);
                 yield return null;
             }
         }

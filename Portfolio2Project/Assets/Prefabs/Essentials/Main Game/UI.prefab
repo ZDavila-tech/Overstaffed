@@ -1812,7 +1812,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   playerScript: {fileID: 0}
-  playerRespawn: {fileID: 0}
   playerSpawn: {fileID: 0}
   skillScript: {fileID: 0}
   pauseMenu: {fileID: 8177094150441434826}
@@ -1823,10 +1822,10 @@ MonoBehaviour:
   flashDamage: {fileID: 5922270969672879181}
   inventoryMenu: {fileID: 0}
   fadeOutImage: {fileID: 191503218020283492}
-  enemiesRemaining: 0
   hpBar: {fileID: 1918923009868625174}
   hpText: {fileID: 3206316789054888375}
   levelText: {fileID: 88375043}
+  enemiesRemaining: 0
   ability1: {fileID: 343457687}
   ability2: {fileID: 533125753}
   ability3: {fileID: 533677360}
@@ -4162,7 +4161,7 @@ GameObject:
   - component: {fileID: 1928997671}
   - component: {fileID: 1928997670}
   m_Layer: 5
-  m_Name: settingsMenu
+  m_Name: SettingsMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5514,7 +5513,7 @@ GameObject:
   - component: {fileID: 6946824868341079730}
   - component: {fileID: 191503218020283492}
   m_Layer: 5
-  m_Name: fadeInScreen
+  m_Name: FadeIn/OutScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

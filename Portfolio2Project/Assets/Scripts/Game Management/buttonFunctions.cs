@@ -8,13 +8,14 @@ public class buttonFunctions : MonoBehaviour
     //Resume the game
    public void resume()
     {
-        gameManager.instance.unPauseState();
+        GameManager.instance.UnpauseState();
     }
 
     //Restarts the level from the beginning
     public void restart()
     {
         Destroy(GameObject.FindGameObjectWithTag("Player"));
+        Destroy(GameObject.FindGameObjectWithTag("LevelManager"));
         Debug.Log("Player Character destroyed");
         SceneManager.LoadScene("Character Select");
     }
@@ -34,7 +35,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void goBackMenu()
     {
-        gameManager.instance.goBack();
+        GameManager.instance.GoBack();
     }
    
     //Go to next level; doesn't work until next level is made

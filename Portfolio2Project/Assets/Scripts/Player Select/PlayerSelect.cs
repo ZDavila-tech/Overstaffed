@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class PlayerSelect : MonoBehaviour
 {
     [SerializeField] GameObject player;
+    [SerializeField] GameObject levelManager;
     public void SelectedFire()
     {
         Instantiate(player);
@@ -33,5 +34,6 @@ public class PlayerSelect : MonoBehaviour
     {
         Debug.Log("PlayerSpawned");
         SceneManager.LoadScene("Reception");
+        Instantiate(levelManager);
     }
 }

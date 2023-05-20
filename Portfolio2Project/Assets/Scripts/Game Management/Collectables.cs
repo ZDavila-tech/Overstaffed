@@ -17,8 +17,8 @@ public class Collectables : MonoBehaviour
     {
             if (other.CompareTag("Player"))
             {
-                gameManager.instance.playerScript.TakeDamage(-value);
+                GameManager.instance.playerScript.TakeDamage(-value);
                 Destroy(gameObject);
             }
-     }
-  }
+    }
+}

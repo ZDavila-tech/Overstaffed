@@ -64,7 +64,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if (hpDisplay.activeSelf)
         {
-            hpDisplay.transform.LookAt(gameManager.instance.player.transform.position);
+            hpDisplay.transform.LookAt(GameManager.instance.player.transform.position);
         }
         if((bPlayerInRange || bBeenShot) && CanSeePlayer())
         {
@@ -74,7 +74,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     bool CanSeePlayer()
     {
-        playerDir = gameManager.instance.player.transform.position - tHeadPos.position;
+        playerDir = GameManager.instance.player.transform.position - tHeadPos.position;
         fAngleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
 
         Debug.DrawRay(tHeadPos.position, playerDir);
@@ -101,7 +101,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void AttackPlayer()
     {
-        navAgent.SetDestination(gameManager.instance.player.transform.position);
+        navAgent.SetDestination(GameManager.instance.player.transform.position);
         if (navAgent.remainingDistance < navAgent.stoppingDistance)
         {
             //Debug.Log("YARGH");
@@ -129,7 +129,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         StartCoroutine(ShowHealth());
         hpBar.value = iHP;
         StartCoroutine(FlashColor());//indicate damage taken
-        navAgent.SetDestination(gameManager.instance.player.transform.position);
+        navAgent.SetDestination(GameManager.instance.player.transform.position);
         StartCoroutine(BeenShot());
 
         if(iHP <= 0) //if it dies, get rid of it
