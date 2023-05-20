@@ -15,7 +15,7 @@ public class gameManager : MonoBehaviour
 
     public GameObject player;
     public PlayerController playerScript;
-    public GameObject playerRespawn;
+    //public GameObject playerRespawn;
     public GameObject playerSpawn;
     public Skills skillScript;
     /*public GameObject firePlayer;
@@ -235,13 +235,13 @@ public class gameManager : MonoBehaviour
         hpText.text = "HP: " + playerScript.getHealth();
     }
 
-    IEnumerator fadeScreen(bool toFade)
+    public IEnumerator fadeScreen(bool toFade)
     {
        if(toFade)   //Fade into level
         {
             for(float i = 1; i>=0;i-=Time.deltaTime)
             {
-                fadeOutImage.color = new Color(1, 1, 1, i);
+                fadeOutImage.color = new Color(0, 0, 0, i);
                 yield return null;
             }
         }
@@ -249,7 +249,7 @@ public class gameManager : MonoBehaviour
         {
             for (float i = 0; i <= 1; i += Time.deltaTime)
             {
-                fadeOutImage.color = new Color(1, 1, 1, i);
+                fadeOutImage.color = new Color(0, 0, 0, i);
                 yield return null;
             }
         }

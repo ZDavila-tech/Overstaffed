@@ -56,7 +56,7 @@ public class enemySpawn : MonoBehaviour
     void spawn()
     {
         Transform toSpawn = weightedEnemySelection();
-        Instantiate(toSpawn,transform.position + spawnCoords(),Quaternion.identity,transform);
+        Instantiate(toSpawn,transform.position + spawnCoords(), transform.rotation);
         lm.addCurr();
     }
 

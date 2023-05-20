@@ -39,7 +39,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     Vector3 playerDir;
     float fAngleToPlayer;
 
-    IDamage damageInterface;
+    //IDamage damageInterface;
     private Color cOrigColor;
     
     void Start()
@@ -54,9 +54,13 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void Update()
     {
-        float speed = 0;
-        speed = Mathf.Lerp(speed, navAgent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
-        anim.SetFloat("Speed", speed);
+        if (anim != null)
+        {
+            float speed = 0;
+            speed = Mathf.Lerp(speed, navAgent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
+            anim.SetFloat("Speed", speed);
+        }
+
 
         if (hpDisplay.activeSelf)
         {
@@ -127,11 +131,11 @@ public class EnemyAI : MonoBehaviour, IDamage
         hpBar.value = iHP;
         StartCoroutine(flashColor());//indicate damage taken
         navAgent.SetDestination(gameManager.instance.player.transform.position);
-        BeenShot();
+        StartCoroutine(BeenShot());
 
         if(iHP <= 0) //if it dies, get rid of it
         {
-            if(Random.Range(0,100) <= DropRate)
+            if(Random.Range(0,100) <= DropRate && drop != null)
             {
              Instantiate(drop, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), transform.rotation);
             }
