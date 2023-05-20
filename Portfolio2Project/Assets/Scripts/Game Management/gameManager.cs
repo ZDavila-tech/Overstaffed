@@ -15,13 +15,8 @@ public class gameManager : MonoBehaviour
 
     public GameObject player;
     public PlayerController playerScript;
-    //public GameObject playerRespawn;
     public GameObject playerSpawn;
     public Skills skillScript;
-    /*public GameObject firePlayer;
-    public GameObject waterPlayer;
-    public GameObject earthPlayer;*/
-
 
     [Header("----- UI Stuff -----")]
     public GameObject pauseMenu;
@@ -32,16 +27,18 @@ public class gameManager : MonoBehaviour
     public GameObject flashDamage;
     public GameObject inventoryMenu;
     public Image fadeOutImage;
+    public Slider hpBar;
+    public Text hpText;
+    public TextMeshProUGUI levelText;
 
     [Header("----- Enemy Stuff -----")]
     public int enemiesRemaining;
 
     [Header("-----Misc Stuff-----")]
 
-    [SerializeField] Slider hpBar;
-    [SerializeField] Text hpText;
-    [SerializeField] TextMeshProUGUI levelText;
     LevelManager levelManager;
+
+
     public Image ability1; //Hi-Jump
     public Image ability2; //Dash
     public Image ability3; //Blink
@@ -59,10 +56,8 @@ public class gameManager : MonoBehaviour
         timeScaleOrig = Time.timeScale;
         playerScript = player.GetComponent<PlayerController>();
         skillScript = player.GetComponent<Skills>();
-        //playerRespawn = GameObject.FindGameObjectWithTag("PlayerRespawn");
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
         ResetHpBar();
-        //SetElementIcon();
         enemiesRemaining = 0;
     }
 
@@ -80,10 +75,6 @@ public class gameManager : MonoBehaviour
             activeMenu = pauseMenu;
             showActiveMenu();
             pauseState();
-        }
-        if (instance.enemiesRemaining <= 0 && levelManager.isInLevel)
-        {
-            levelManager.levelComplete();
         }
         abilityCooldown();
     }
@@ -186,7 +177,7 @@ public class gameManager : MonoBehaviour
     //update level counter in UI
     public void updateLevelCount()
     {
-        int level = levelManager.getlevel();
+        int level = levelManager.currentLevel;
         levelText.text = level.ToString("F0");
     }
     //cooldownImage
@@ -228,8 +219,6 @@ public class gameManager : MonoBehaviour
 
     public void ResetHpBar()
     {
-        //hpBar.maxValue = playerScript.getOriginalHealth();
-        //hpBar.value = playerScript.getHealth();
         hpBar.maxValue = 1;
         hpBar.value = 1;
         hpText.text = "HP: " + playerScript.getHealth();
@@ -254,40 +243,4 @@ public class gameManager : MonoBehaviour
             }
         }
     }
-
-    //public void StartGame()
-    //{
-    //    player = GameObject.FindGameObjectWithTag("Player");
-    //    //Looking for which element the player has
-    //    waterPlayer = GameObject.Find("Water Player");
-    //    firePlayer = GameObject.Find("Fire Player");
-    //    earthPlayer = GameObject.Find("Earth Player");
-    //    timeScaleOrig = Time.timeScale;
-    //    playerScript = player.GetComponent<PlayerController>();
-    //    playerRespawn = GameObject.FindGameObjectWithTag("PlayerRespawn");
-    //    levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
-    //    ResetHpBar();
-    //    SetElementIcon();
-    //    enemiesRemaining = 0;
-    //    gameStarted = true;
-    //}
-
-    //public void SelectedFire()
-    //{
-    //    SceneManager.LoadScene("Main Game");
-    //    playerSpawn = GameObject.FindGameObjectWithTag("Player Spawn");
-    //    playerType = Instantiate(playerTypeFire);
-    //    playerType.transform.SetPositionAndRotation(playerSpawn.transform.position, playerSpawn.transform.rotation);
-    //    StartGame();
-    //}
-
-    //public void SelectedWater()
-    //{
-
-    //}
-
-    //public void SelectedEarth()
-    //{
-
-    //}
 }

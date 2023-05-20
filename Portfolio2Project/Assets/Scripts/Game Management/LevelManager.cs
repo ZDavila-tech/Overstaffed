@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
 
     public static LevelManager instance;
 
-    public int gameLevel;
+    public int currentLevel;
     public int enemiesRemaining;
 
     public bool inElevator; //player is in elevator
@@ -38,7 +38,7 @@ public class LevelManager : MonoBehaviour
     public void NewGame()
     {
         levelStarted = false;
-        gameLevel = 1;
+        currentLevel = 1;
         enemiesRemaining = 0;
         inElevator = false;
     }
@@ -46,6 +46,6 @@ public class LevelManager : MonoBehaviour
     public void LevelCompleted() //if levelStarted, no enemies, and player in elevator -> load new level
     {
         SceneManager.LoadScene(Random.Range(repeatableScenesMinIndex, repeatableScenesMaxIndex)); //loads a new level
-        ++gameLevel; //ups difficulty
+        ++currentLevel; //ups difficulty
     }
 }
