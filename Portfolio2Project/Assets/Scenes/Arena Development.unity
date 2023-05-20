@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 6b61193a3cee6a846a8d2cf828cab61c, type: 2}
 --- !u!1001 &35572712
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -132,11 +132,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6256373689337983845, guid: 45de30749b3650d43830070e711739ef, type: 3}
       propertyPath: field of view
-      value: 61.279438
+      value: 66.38331
       objectReference: {fileID: 0}
     - target: {fileID: 6256373689337983845, guid: 45de30749b3650d43830070e711739ef, type: 3}
       propertyPath: m_FOVAxisMode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256373689337983845, guid: 45de30749b3650d43830070e711739ef, type: 3}
+      propertyPath: m_RenderingPath
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256373689337983845, guid: 45de30749b3650d43830070e711739ef, type: 3}
+      propertyPath: m_projectionMatrixMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256373689337983845, guid: 45de30749b3650d43830070e711739ef, type: 3}
+      propertyPath: m_AllowDynamicResolution
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6256373689337983845, guid: 45de30749b3650d43830070e711739ef, type: 3}
       propertyPath: m_NormalizedViewPortRect.x
@@ -172,19 +184,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6256373690464243926, guid: 45de30749b3650d43830070e711739ef, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.07272305
       objectReference: {fileID: 0}
     - target: {fileID: 6256373690464243926, guid: 45de30749b3650d43830070e711739ef, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6256373690464243926, guid: 45de30749b3650d43830070e711739ef, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.9973522
       objectReference: {fileID: 0}
     - target: {fileID: 6256373690464243926, guid: 45de30749b3650d43830070e711739ef, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6256373690464243926, guid: 45de30749b3650d43830070e711739ef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -192,7 +204,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6256373690464243926, guid: 45de30749b3650d43830070e711739ef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 171.659
       objectReference: {fileID: 0}
     - target: {fileID: 6256373690464243926, guid: 45de30749b3650d43830070e711739ef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -264,9 +276,13 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4260260369507079309, guid: f40d5d09406fce448bda51519ae9818a, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4260260369507079309, guid: f40d5d09406fce448bda51519ae9818a, type: 3}
       propertyPath: tutorialLevel
       value: 
-      objectReference: {fileID: 3210244828979154540, guid: aff159c11d5ebb6449bfc2466e01fe21, type: 3}
+      objectReference: {fileID: 8431709171326798468, guid: 4ac29fecf71d61f4cbbe79c95aa76b87, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f40d5d09406fce448bda51519ae9818a, type: 3}
 --- !u!1001 &433983192
