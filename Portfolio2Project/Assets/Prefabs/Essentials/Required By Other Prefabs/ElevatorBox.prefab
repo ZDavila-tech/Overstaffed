@@ -1139,7 +1139,7 @@ GameObject:
   - component: {fileID: 4260260369507079296}
   - component: {fileID: 5136022731320389872}
   - component: {fileID: 4260260369507079310}
-  - component: {fileID: 4260260369507079311}
+  - component: {fileID: 9082040868397576144}
   m_Layer: 0
   m_Name: ElevatorBox
   m_TagString: Untagged
@@ -1177,6 +1177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767cd711b010f7048b21fe89756cb62c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  door1: {fileID: 4260260368099422775}
+  door2: {fileID: 4260260369093500702}
   levelManager: {fileID: 0}
 --- !u!54 &4260260369507079310
 Rigidbody:
@@ -1194,7 +1196,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &4260260369507079311
+--- !u!65 &9082040868397576144
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1202,8 +1204,8 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4260260369507079297}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.4736712, y: 4.5412984, z: 2.30895}
-  m_Center: {x: 1.9234396e-13, y: 2.140239, z: -1.6104176}
+  m_Size: {x: 2, y: 3, z: 2}
+  m_Center: {x: 0, y: 2, z: -1}
