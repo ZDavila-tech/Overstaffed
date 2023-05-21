@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //StartCoroutine(FadeScreen(fadeIn));
+        //FadeScreen();
 
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
@@ -210,22 +210,24 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public IEnumerator FadeScreen(bool toFadeIn)
+    public void FadeScreen()
     {
-       if(toFadeIn == true)   //Fade into level
+        if(fadeIn == true) //Fade into level
         {
             if (currentFade < 255)
             {
+                Debug.Log("Fading");
                 fadeInFadeOutImage.color = new Color(0, 0, 0, currentFade);
                 currentFade += fadeIntensity;
             }
             else
             {
                 currentFade = 255;
+                fadeIn = false;
+                Debug.Log("fadeIn false");
             }
-            yield return null;
         }
-        else           //Fade out of level
+        else //Fade out of level
         {
             if (currentFade > 0)
             {
@@ -236,7 +238,6 @@ public class GameManager : MonoBehaviour
             {
                 currentFade = 0;
             }
-            yield return null;
         }
     }
     public void SetElement()

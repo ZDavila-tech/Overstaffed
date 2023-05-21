@@ -39,7 +39,14 @@ public class PlayerSpawn : MonoBehaviour
             Debug.Log("Player spawn pulled player");
             levelManager.levelStarted = true;
             levelManager.loadingLevel = false;
-            gameManager.fadeIn = false;
+            if(gameManager.fadeIn == true)
+            {
+                Debug.Log("fadeIn true");
+            }
+            else
+            {
+                Debug.Log("fadeIn false");
+            }
             Destroy(this.gameObject);
         }
         else
