@@ -44,11 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d870b4dcbcfbf943912bf0c1281a6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnAreaX: 3
-  spawnAreaY: 3
-  spawnDelay: 0
-  enemies: []
-  weights: 
 --- !u!1 &442988285574810200
 GameObject:
   m_ObjectHideFlags: 0
@@ -94,13 +89,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d870b4dcbcfbf943912bf0c1281a6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnAreaX: 2
-  spawnAreaY: 2
-  spawnDelay: 1
-  enemies:
-  - {fileID: 4728235726989330132, guid: 8410533c5719b054980dc8019928826d, type: 3}
-  - {fileID: 2856267348468154937, guid: 8f7c1d08c441e8f4cb3cc94a791f997f, type: 3}
-  weights: 3c00000028000000
 --- !u!1 &686097900392634730
 GameObject:
   m_ObjectHideFlags: 0
@@ -1640,7 +1628,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6312129676543911377
 Transform:
   m_ObjectHideFlags: 0

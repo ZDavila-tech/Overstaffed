@@ -87,6 +87,10 @@ public class LevelManager : MonoBehaviour
     public int GetRandomLevelIndex()
     {
         int randomIndex = Random.Range(repeatableLevelsMinIndex, repeatableLevelsMaxIndex + 1);
+        while (randomIndex == SceneManager.GetActiveScene().buildIndex)
+        {
+            randomIndex = Random.Range(repeatableLevelsMinIndex, repeatableLevelsMaxIndex + 1);
+        }
         Debug.Log($"Random Index is {randomIndex}");
         return randomIndex;
     }
