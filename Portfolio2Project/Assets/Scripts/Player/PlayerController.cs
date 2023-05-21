@@ -32,7 +32,7 @@ public class PlayerController : MonoBehaviour, IDamage
     //the cooldown the player has between shots
     [SerializeField] float ShotCooldown;
     //checks if the player is currently shooting
-    bool isShooting;
+    private bool isShooting;
 
     //[SerializeField] GameObject playerWeaponHolder;
     public NewStaff playerWeaponScript;
@@ -67,7 +67,6 @@ public class PlayerController : MonoBehaviour, IDamage
         if (Input.GetButton("Shoot") && !isShooting && !GameManager.instance.isPaused)
         {
             StartCoroutine(Shoot());
-
         }
 
         if (Input.GetAxis("Movement1") != 0)
