@@ -22,7 +22,7 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         levelManager = LevelManager.instance;
-        if (levelManager.currentLevel > 1)
+        if (levelManager.currentLevel == 1)
         {
             totalToSpawn = baseNumberToSpawn;
         }
