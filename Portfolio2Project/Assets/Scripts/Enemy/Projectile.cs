@@ -34,16 +34,11 @@ public class Projectile : MonoBehaviour
         rb.velocity = (playerPosition - rb.position).normalized * bulletSpeed;
     }
 
-    private void Update()
-    {
-
-    }
-
     private void OnTriggerEnter(Collider other)
-    {  
-        IDamage damageable = other.GetComponent<IDamage>();
-        if (damageable != null)
+    {
+        if (other.GetComponent<IDamage>() != null)
         {
+            IDamage damageable = other.GetComponent<IDamage>();
             damageable.TakeDamage(shotDmg);
         }
         Destroy(gameObject);
