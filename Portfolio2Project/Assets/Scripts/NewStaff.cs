@@ -19,6 +19,9 @@ public class NewStaff : MonoBehaviour
     [SerializeField] private float meleeCooldown;
     [SerializeField] Collider hitbox;
     [SerializeField] GameObject[] weaponModels;
+    //[SerializeField] Texture fireStaff;
+    //[SerializeField] Texture waterStaff;
+    //[SerializeField] Texture earthStaff;
     
 
     public enum Element
@@ -44,6 +47,19 @@ public class NewStaff : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+
+        //switch (playerElement)
+        //{
+        //    case Element.Fire:
+        //        weaponModels[0].GetComponent<MeshRenderer>().material.SetTexture("_MainTex", fireStaff);
+        //        break;
+        //    case Element.Water:
+        //        weaponModels[0].GetComponent<MeshRenderer>().material.SetTexture("_MainTex", waterStaff);
+        //        break;
+        //    case Element.Earth:
+        //        weaponModels[0].GetComponent<MeshRenderer>().material.SetTexture("_MainTex", earthStaff);
+        //        break;
+        //}
     }
 
     // Update is called once per frame
@@ -126,7 +142,7 @@ public class NewStaff : MonoBehaviour
             hitbox.enabled = true;
             Animator anim = weapon.GetComponent<Animator>();
 
-            weaponModels[0].SetActive(false);
+            //weaponModels[0].SetActive(false);
             switch (playerElement)
             {
                 case Element.Fire:
@@ -169,7 +185,7 @@ public class NewStaff : MonoBehaviour
 
     public void ResetMeleeWeaponModel()
     {
-        weaponModels[0].SetActive(true);
+        //weaponModels[0].SetActive(true);
         weaponModels[1].SetActive(false);
         weaponModels[2].SetActive(false);
         weaponModels[3].SetActive(false);
