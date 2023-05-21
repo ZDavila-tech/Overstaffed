@@ -14,9 +14,12 @@ public class ButtonFunctions : MonoBehaviour
     //Restarts the level from the beginning
     public void Restart()
     {
+        LevelManager.instance = null;
+
         Destroy(GameObject.FindGameObjectWithTag("Player"));
         Destroy(GameObject.FindGameObjectWithTag("LevelManager"));
         Destroy(GameObject.FindGameObjectWithTag("UI"));
+        
         Debug.Log("Player Character destroyed");
         SceneManager.LoadScene("Character Select");
     }
