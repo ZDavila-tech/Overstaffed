@@ -41,10 +41,10 @@ public class PlayerSelect : MonoBehaviour
     public void PostPlayerElementSetup() //must happen after player element setup occurs
     {
         Debug.Log("PlayerSpawned");
-        SceneManager.LoadScene("Reception");
         Instantiate(levelManager);
         Debug.Log("Level Manager Created");
-        Instantiate(UI);
+        //Instantiate(UI);
         Debug.Log("UI Created");
+        SceneManager.LoadScene("Reception");
     }
 }
