@@ -13,21 +13,21 @@ public class PlayerSelect : MonoBehaviour
     public void SelectedFire()
     {
         PrePlayerElementSetup();
-        player.GetComponent<PlayerController>().playerWeaponScript.element = NewStaff.Element.Fire;
+        //player.GetComponent<PlayerController>().playerWeaponScript.element = NewStaff.Element.Fire;
         PostPlayerElementSetup();
     }
 
     public void SelectedWater()
     {
         PrePlayerElementSetup();
-        player.GetComponent<PlayerController>().playerWeaponScript.element = NewStaff.Element.Water;
+        //player.GetComponent<PlayerController>().playerWeaponScript.element = NewStaff.Element.Water;
         PostPlayerElementSetup();
     }
 
     public void SelectedEarth()
     {
         PrePlayerElementSetup();
-        player.GetComponent<PlayerController>().playerWeaponScript.element = NewStaff.Element.Earth;
+        //player.GetComponent<PlayerController>().playerWeaponScript.element = NewStaff.Element.Earth;
         PostPlayerElementSetup();
     }
 
@@ -43,6 +43,8 @@ public class PlayerSelect : MonoBehaviour
         Debug.Log("PlayerSpawned");
         SceneManager.LoadScene("Reception");
         Instantiate(levelManager);
+        Debug.Log("Level Manager Created");
         Instantiate(UI);
+        Debug.Log("UI Created");
     }
 }

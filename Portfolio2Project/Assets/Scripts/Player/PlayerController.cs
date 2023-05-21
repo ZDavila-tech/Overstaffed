@@ -161,7 +161,7 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         if (!isShooting)
         {
-            Debug.Log("Shot");
+            //Debug.Log("Shot");
             isShooting = true;
 
             if (playerWeaponScript != null)

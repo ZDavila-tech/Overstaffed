@@ -56,7 +56,7 @@ public class LevelManager : MonoBehaviour
         {
             if(levelCompleted == false)
             {
-                Debug.Log("levelStarted True + enemies < 0");
+                Debug.Log("levelStarted True + enemies < 0, level is completed");
                 levelCompleted = true;
             }
             if (inElevator == true) //if level is completed and player enters elevator go to next level
