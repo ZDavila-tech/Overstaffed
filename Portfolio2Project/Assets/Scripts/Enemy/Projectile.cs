@@ -18,6 +18,8 @@ public class Projectile : MonoBehaviour
     [Header("----- Components -----")]
     //this object's Rigidbody
     [SerializeField] Rigidbody rb;
+    GameObject player;
+    Vector3 playerPosition;
 
 
     // Start is called before the first frame update
@@ -27,7 +29,14 @@ public class Projectile : MonoBehaviour
         //destroy the bullet after it's lifespan ends
         Destroy(gameObject, bulletLife);
         //move the bullet
-        rb.velocity = transform.forward * bulletSpeed;
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerPosition = player.transform.position;
+        rb.velocity = (playerPosition - rb.position).normalized * bulletSpeed;
+    }
+
+    private void Update()
+    {
+
     }
 
     private void OnTriggerEnter(Collider other)
