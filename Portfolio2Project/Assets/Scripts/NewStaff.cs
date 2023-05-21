@@ -18,7 +18,8 @@ public class NewStaff : MonoBehaviour
     [Header("----- Melee Stuff -----")]
     [SerializeField] private float meleeCooldown;
     [SerializeField] Collider hitbox;
-    [SerializeField] private Renderer sWeapon;
+    [SerializeField] GameObject[] weaponModels;
+    
 
     public enum Element
     {
@@ -39,7 +40,6 @@ public class NewStaff : MonoBehaviour
     private void Awake()
     {
         hitbox.enabled = false;
-        sWeapon.enabled = false;
     }
     private void Start()
     {
@@ -52,16 +52,6 @@ public class NewStaff : MonoBehaviour
         if (playerElement != player.playerElement)
         {
             SetElement();
-        }
-
-        if (isAttacking)
-        {
-            sWeapon.enabled = true;
-        }
-
-        else
-        {
-            sWeapon.enabled = false;
         }
         Melee();
     }
@@ -133,18 +123,25 @@ public class NewStaff : MonoBehaviour
             isAttacking = true;
             hitbox.enabled = true;
             Animator anim = weapon.GetComponent<Animator>();
+
+            weaponModels[0].SetActive(false);
             switch (playerElement)
             {
                 case Element.Fire:
+                    Debug.Log("Melee Fire");
+                    weaponModels[1].SetActive(true);
                     anim.SetTrigger("SwordMelee");
                     break;
                 case Element.Water:
+                    weaponModels[2].SetActive(true);
                     anim.SetTrigger("SpearMelee");
                     break;
                 case Element.Earth:
+                    weaponModels[3].SetActive(true);
                     anim.SetTrigger("HammerMelee");
                     break;
             }
+
             StartCoroutine(ResetMeleeCooldown());
         }
     }
@@ -171,5 +168,13 @@ public class NewStaff : MonoBehaviour
     public void SetElement()
     {
         playerElement = player.playerElement;
+    }
+
+    public void ResetMeleeWeaponModel()
+    {
+        weaponModels[0].SetActive(true);
+        weaponModels[1].SetActive(false);
+        weaponModels[2].SetActive(false);
+        weaponModels[3].SetActive(false);
     }
 }

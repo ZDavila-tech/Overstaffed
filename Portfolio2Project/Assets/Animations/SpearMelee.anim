@@ -528,4 +528,11 @@ AnimationClip:
     script: {fileID: 0}
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.4
+    functionName: ResetMeleeWeaponModel
+    data: 
+    objectReferenceParameter: {fileID: 11500000, guid: 2862122995bb3084ea86494d5db34cf6, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
