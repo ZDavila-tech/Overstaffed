@@ -32,6 +32,11 @@ public class PlayerController : MonoBehaviour, IDamage
     private int iHPOriginal;
     private bool damagedRecently;
 
+    [Header("----- Audio -----")]
+    [SerializeField] AudioSource aud;
+    [SerializeField] float AttackVolume;
+    bool ShootSoundInPlay; //checks for the audio cooldown between shots
+
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -114,7 +119,7 @@ public class PlayerController : MonoBehaviour, IDamage
         if (damagedRecently == false)
         {
             StartCoroutine(ResetDamagedRecently());
-            
+
             //Debug.Log("my damage" + amount);        
             iHP -= amount; //-= used, negative amounts heal. 
             if (amount > 0)
@@ -153,6 +158,7 @@ public class PlayerController : MonoBehaviour, IDamage
             if (playerWeapon != null)
             {
                 playerWeapon.Shoot();
+                StartCoroutine(PlayShootSound());
             }
 
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out RaycastHit hit, ShootRange))
@@ -174,7 +180,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     public void UpdateHealthBar()
     {
-        GameManager.instance.playerHealthBar.fillAmount = (float) iHP / iHPOriginal;
+        GameManager.instance.playerHealthBar.fillAmount = (float)iHP / iHPOriginal;
     }
 
 
@@ -187,5 +193,22 @@ public class PlayerController : MonoBehaviour, IDamage
         float gravityOrig = gravityValue;
         gravityValue = ammount;
         return gravityOrig;
+    }
+
+    public void PlayExternalAudio(AudioClip clip)
+    {
+        aud.PlayOneShot(clip, AttackVolume);
+    }
+
+    IEnumerator PlayShootSound()
+    {
+        if (!ShootSoundInPlay)
+        {
+            aud.PlayOneShot(playerWeapon.GetShootAudio(), AttackVolume);
+            ShootSoundInPlay = true;
+        }
+        yield return new WaitForSeconds(1.5f);
+
+        ShootSoundInPlay = false;
     }
 }
