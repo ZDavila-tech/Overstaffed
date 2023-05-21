@@ -35,12 +35,15 @@ public class GameManager : MonoBehaviour
     [Header("-----Misc Stuff-----")]
 
     LevelManager levelManager;
+    [SerializeField] int fadeIntensity;
+    int currentFade;
 
     public Image ability1; //Hi-Jump
     public Image ability2; //Dash
     public Image ability3; //Blink
     public List<Sprite> spriteArray;
     public Image element;
+    public bool fadeIn;
 
     public bool isPaused;
     float timeScaleOrig;
@@ -57,6 +60,8 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         timeScaleOrig = Time.timeScale;
+        fadeIn = false;
+        currentFade = 0;
     }
 
     private void Start()
@@ -67,6 +72,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //StartCoroutine(FadeScreen(fadeIn));
+
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
             activeMenu = pauseMenu;
@@ -224,23 +231,33 @@ public class GameManager : MonoBehaviour
         hpText.text = "HP: " + playerScript.GetHealth();
     }
 
-    public IEnumerator FadeScreen(bool toFade)
+    public IEnumerator FadeScreen(bool toFadeIn)
     {
-       if(toFade)   //Fade into level
+       if(toFadeIn == true)   //Fade into level
         {
-            for(float i = 1; i>=0;i-=Time.deltaTime)
+            if (currentFade < 255)
             {
-                fadeInFadeOutImage.color = new Color(0, 0, 0, i);
-                yield return null;
+                fadeInFadeOutImage.color = new Color(0, 0, 0, currentFade);
+                currentFade += fadeIntensity;
             }
+            else
+            {
+                currentFade = 255;
+            }
+            yield return null;
         }
         else           //Fade out of level
         {
-            for (float i = 0; i <= 1; i += Time.deltaTime)
+            if (currentFade > 0)
             {
-                fadeInFadeOutImage.color = new Color(0, 0, 0, i);
-                yield return null;
+                fadeInFadeOutImage.color = new Color(0, 0, 0, currentFade);
+                currentFade -= fadeIntensity;
             }
+            else
+            {
+                currentFade = 0;
+            }
+            yield return null;
         }
     }
     public void SetElement()

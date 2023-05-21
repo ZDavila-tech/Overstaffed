@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour, IDamage
     public NewStaff.Element playerElement;
 
     [Header("----- Player Weapon -----")]
-    public NewStaff playerWeapon;
+    public NewStaff playerWeapon; //set in awake
     [SerializeField] int ShootRange; //the distance the player can shoot
     [SerializeField] float ShotCooldown; //the cooldown the player has between shots    
     private bool isShooting; //checks if the player is currently shooting
@@ -158,9 +158,10 @@ public class PlayerController : MonoBehaviour, IDamage
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out RaycastHit hit, ShootRange))
             {
                 //Debug.Log("Shot");
-                IDamage damageable = hit.collider.GetComponent<IDamage>();
-                if (damageable != null)
+
+                if (hit.collider.GetComponent<IDamage>() != null)
                 {
+                    IDamage damageable = hit.collider.GetComponent<IDamage>();
                     damageable.TakeDamage(1);
                 }
             }

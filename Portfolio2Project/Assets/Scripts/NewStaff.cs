@@ -162,11 +162,6 @@ public class NewStaff : MonoBehaviour
         canMelee = true;
     }
 
-    IEnumerator Wait(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-    }
-
     public void SetElement()
     {
         playerElement = player.playerElement;

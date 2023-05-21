@@ -69,10 +69,6 @@ public class LevelManager : MonoBehaviour
                 Debug.Log("levelStarted True + enemies < 0, level is completed");
                 levelCompleted = true;
             }
-            //if (inElevator == true) //if level is completed and player enters elevator go to next level
-            //{
-            //    GoToNextLevel();
-            //}
         }
         else
         {
@@ -81,10 +77,12 @@ public class LevelManager : MonoBehaviour
     }
     public void GoToNextLevel() //if levelStarted, no enemies, and player in elevator -> load new level
     {
-        StartCoroutine(GameManager.instance.FadeScreen(false));
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.fadeIn = true;
+        }
         NewLevel();
         SceneManager.LoadScene(GetRandomLevelIndex()); //loads a new level != the current level index
-        StartCoroutine(GameManager.instance.FadeScreen(true));
         ++currentLevel; //ups difficulty
     }
 

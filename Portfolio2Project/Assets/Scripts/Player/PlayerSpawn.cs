@@ -8,10 +8,12 @@ public class PlayerSpawn : MonoBehaviour
     GameObject player;
 
     LevelManager levelManager;
+    GameManager gameManager;
     bool playerInSpawn;
     private void Start()
     {
         levelManager = LevelManager.instance;
+        gameManager = GameManager.instance;
         player = GameObject.FindGameObjectWithTag("Player");
         playerSpawn = this.gameObject;
         PullPlayer();
@@ -37,6 +39,7 @@ public class PlayerSpawn : MonoBehaviour
             Debug.Log("Player spawn pulled player");
             levelManager.levelStarted = true;
             levelManager.loadingLevel = false;
+            gameManager.fadeIn = false;
             Destroy(this.gameObject);
         }
         else
