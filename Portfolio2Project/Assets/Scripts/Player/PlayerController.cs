@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour, IDamage
     public NewStaff.Element playerElement;
 
     [Header("----- Player Weapon -----")]
-    public NewStaff playerWeapon; //Set somehow
+    public NewStaff playerWeapon;
     [SerializeField] int ShootRange; //the distance the player can shoot
     [SerializeField] float ShotCooldown; //the cooldown the player has between shots    
     private bool isShooting; //checks if the player is currently shooting
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour, IDamage
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
-
+        playerWeapon = GetComponentInChildren<NewStaff>();
     }
 
     void Start()

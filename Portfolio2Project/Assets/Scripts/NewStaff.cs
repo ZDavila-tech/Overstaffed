@@ -58,8 +58,10 @@ public class NewStaff : MonoBehaviour
 
     public void Shoot()
     {
+        Debug.Log("Weapon Shoot Called");
         if (Input.GetButton("Shoot"))
         {
+
             isShooting = true;
             canMelee = false;
             if (lastShootTime + delay < Time.time)
