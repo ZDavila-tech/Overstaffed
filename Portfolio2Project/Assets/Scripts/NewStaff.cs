@@ -22,7 +22,7 @@ public class NewStaff : MonoBehaviour
     //[SerializeField] Texture fireStaff;
     //[SerializeField] Texture waterStaff;
     //[SerializeField] Texture earthStaff;
-    
+
 
     public enum Element
     {
@@ -39,6 +39,9 @@ public class NewStaff : MonoBehaviour
     public bool canMelee;
     public GameObject weapon;
     public bool isAttacking;
+
+    [Header("----- Audio Stuff -----")]
+    [SerializeField] List<AudioClip> audios = new List<AudioClip>();
 
     private void Awake()
     {
@@ -141,21 +144,23 @@ public class NewStaff : MonoBehaviour
             isAttacking = true;
             hitbox.enabled = true;
             Animator anim = weapon.GetComponent<Animator>();
-
             //weaponModels[0].SetActive(false);
             switch (playerElement)
             {
                 case Element.Fire:
                     Debug.Log("Melee Fire");
                     weaponModels[1].SetActive(true);
+                    GameManager.instance.playerScript.PlayExternalAudio(audios[3]);
                     anim.SetTrigger("SwordMelee");
                     break;
                 case Element.Water:
                     weaponModels[2].SetActive(true);
+                    GameManager.instance.playerScript.PlayExternalAudio(audios[4]);
                     anim.SetTrigger("SpearMelee");
                     break;
                 case Element.Earth:
                     weaponModels[3].SetActive(true);
+                    GameManager.instance.playerScript.PlayExternalAudio(audios[5]);
                     anim.SetTrigger("HammerMelee");
                     break;
             }
@@ -189,5 +194,11 @@ public class NewStaff : MonoBehaviour
         weaponModels[1].SetActive(false);
         weaponModels[2].SetActive(false);
         weaponModels[3].SetActive(false);
+    }
+
+
+    public AudioClip GetShootAudio()
+    {
+        return audios[(int)playerElement];
     }
 }
