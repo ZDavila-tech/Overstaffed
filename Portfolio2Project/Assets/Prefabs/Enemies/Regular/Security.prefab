@@ -189,9 +189,9 @@ GameObject:
   - component: {fileID: 2856267348468154937}
   - component: {fileID: 2856267348468154936}
   - component: {fileID: 2856267348468154941}
+  - component: {fileID: 2856267348468154940}
   - component: {fileID: 2856267348468154939}
   - component: {fileID: 2856267348468154938}
-  - component: {fileID: 2856267348468154940}
   - component: {fileID: 3721018375911575242}
   - component: {fileID: -6874611277532527384}
   - component: {fileID: 802692393371389125}
@@ -247,18 +247,40 @@ MonoBehaviour:
   tHeadPos: {fileID: 5929088233041525773}
   drop: {fileID: 4658357512159410959, guid: 59364d3133cbbe541bde47c1ee4298d3, type: 3}
   anim: {fileID: 7782623570078333734}
-  iHP: 6
+  iHP: 35
   hpBar: {fileID: 4156578680236791644}
   hpDisplay: {fileID: 2058829039921376284}
   fTurnRate: 5
-  fFieldOfView: 90
-  fChaseTime: 3
-  DropRate: 40
+  fFieldOfView: 165
+  fChaseTime: 10
+  DropRate: 30
   animTransSpeed: 0
   gOBullet: {fileID: 8060328068600632496, guid: 21d34616d4bd55d46ad893c2322ce70a, type: 3}
   iShootDistance: 100
   fShootRate: 1
   fShootAngle: 15
+--- !u!195 &2856267348468154940
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2856267348468154943}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 4
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!23 &2856267348468154939
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -315,28 +337,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!195 &2856267348468154940
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2856267348468154943}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 10
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!135 &3721018375911575242
 SphereCollider:
   m_ObjectHideFlags: 0
