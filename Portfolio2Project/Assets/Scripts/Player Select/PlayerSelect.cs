@@ -44,7 +44,7 @@ public class PlayerSelect : MonoBehaviour
         Instantiate(levelManager);
         Debug.Log("Level Manager Created");
         //Instantiate(UI);
-        Debug.Log("UI Created");
+        //Debug.Log("UI Created");
         SceneManager.LoadScene("Reception");
     }
 }
