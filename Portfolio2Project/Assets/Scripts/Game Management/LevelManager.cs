@@ -10,9 +10,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] int repeatableLevelsMinIndex; //list levels contiguously
     [SerializeField] int repeatableLevelsMaxIndex;
 
-    int currentLevelIndex;
-    int lastLevelIndex;
-
     public static LevelManager instance;
 
     public int currentLevel;
@@ -49,8 +46,6 @@ public class LevelManager : MonoBehaviour
         levelCompleted = false;
         levelStarted = false;
         currentLevel = 1;
-        currentLevelIndex = 2;
-        lastLevelIndex = 2;
         enemiesRemaining = 0;
         inElevator = false;
     }
@@ -59,8 +54,11 @@ public class LevelManager : MonoBehaviour
     {
         if (levelStarted == true && enemiesRemaining <= 0) //if level is started and all enemies are dead level is considered completed
         {
-            Debug.Log("levelStarted True + enemies < 0");
-            levelCompleted = true;
+            if(levelCompleted == false)
+            {
+                Debug.Log("levelStarted True + enemies < 0");
+                levelCompleted = true;
+            }
             if (inElevator == true) //if level is completed and player enters elevator go to next level
             {
                 GoToNextLevel();
@@ -73,18 +71,8 @@ public class LevelManager : MonoBehaviour
     }
     public void GoToNextLevel() //if levelStarted, no enemies, and player in elevator -> load new level
     {
-        if (loadingLevel == false)
-        {
-            loadingLevel = true;
-            levelCompleted = false;
-            levelStarted = false;
-            enemiesRemaining = 0;
-            inElevator = false;
-            lastLevelIndex = SceneManager.GetActiveScene().buildIndex;
-            SceneManager.LoadScene(GetRandomLevelIndex()); //loads a new level != the current level index
-            SceneManager.UnloadSceneAsync(lastLevelIndex);
-            ++currentLevel; //ups difficulty
-        }
+        SceneManager.LoadScene(GetRandomLevelIndex()); //loads a new level != the current level index
+        ++currentLevel; //ups difficulty
     }
 
     public int GetRandomLevelIndex()
