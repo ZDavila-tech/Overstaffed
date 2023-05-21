@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour, IDamage
                     iHP = iHPOriginal;
                 }
             }
-            GameManager.instance.UpdateHealthBar();
+            UpdateHealthBar();
         }
     }
 
@@ -172,15 +172,11 @@ public class PlayerController : MonoBehaviour, IDamage
         isShooting = false;
     }
 
-    public int GetHealth()
+    public void UpdateHealthBar()
     {
-        return iHP;
+        GameManager.instance.playerHealthBar.fillAmount = (float) iHP / iHPOriginal;
     }
 
-    public int GetOriginalHealth()
-    {
-        return iHPOriginal;
-    }
 
     public void ChangeJumpsUsed(int ammount)
     {

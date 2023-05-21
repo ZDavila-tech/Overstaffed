@@ -28,8 +28,7 @@ public class GameManager : MonoBehaviour
     public GameObject flashDamage;
     public GameObject inventoryMenu;
     public Image fadeInFadeOutImage;
-    public Slider hpBar;
-    public Text hpText;
+    public Image playerHealthBar;
     public TextMeshProUGUI levelText;
 
     [Header("-----Misc Stuff-----")]
@@ -56,7 +55,6 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<PlayerController>();
         skillScript = player.GetComponent<Skills>();
-        ResetHpBar();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         timeScaleOrig = Time.timeScale;
@@ -170,19 +168,7 @@ public class GameManager : MonoBehaviour
         element.sprite = spriteArray[(int) playerScript.playerElement];
     }
 
-    public void UpdateHealthBar()
-    {
-        hpBar.maxValue = playerScript.GetOriginalHealth();
-        hpBar.value = playerScript.GetHealth();
-        if (playerScript.GetHealth() <= 0)
-        {
-            hpText.text = "HP: 0";
-        }
-        else
-        {
-            hpText.text = "HP: " + playerScript.GetHealth();
-        }
-    }
+
     //update level counter in UI
     public void UpdateLevelCount()
     {
@@ -222,13 +208,6 @@ public class GameManager : MonoBehaviour
             ability2.fillAmount = 0;
             ability3.fillAmount = 0;
         }
-    }
-
-    public void ResetHpBar()
-    {
-        hpBar.maxValue = 1;
-        hpBar.value = 1;
-        hpText.text = "HP: " + playerScript.GetHealth();
     }
 
     public IEnumerator FadeScreen(bool toFadeIn)
