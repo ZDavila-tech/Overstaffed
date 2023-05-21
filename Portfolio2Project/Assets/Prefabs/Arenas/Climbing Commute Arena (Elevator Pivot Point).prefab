@@ -325,6 +325,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 75c8f1f757851b64f85992b8d8d18a31, type: 2}
+    - target: {fileID: 5002966869995311029, guid: eb6b533e47d77884dadf494ecfdfa4de, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6965947587687516733, guid: eb6b533e47d77884dadf494ecfdfa4de, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -724,13 +728,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d870b4dcbcfbf943912bf0c1281a6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnAreaX: 2
-  spawnAreaY: 2
-  spawnDelay: 1
-  enemies:
-  - {fileID: 4728235726989330132, guid: 8410533c5719b054980dc8019928826d, type: 3}
-  - {fileID: 2856267348468154937, guid: 8f7c1d08c441e8f4cb3cc94a791f997f, type: 3}
-  weights: 4b00000019000000
 --- !u!1 &1664048066879214993 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 374702221056748976, guid: eb6b533e47d77884dadf494ecfdfa4de, type: 3}
@@ -748,13 +745,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d870b4dcbcfbf943912bf0c1281a6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnAreaX: 2
-  spawnAreaY: 2
-  spawnDelay: 1
-  enemies:
-  - {fileID: 4728235726989330132, guid: 8410533c5719b054980dc8019928826d, type: 3}
-  - {fileID: 2856267348468154937, guid: 8f7c1d08c441e8f4cb3cc94a791f997f, type: 3}
-  weights: 4b00000019000000
 --- !u!1 &2502342418577911991 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3503462284651104406, guid: eb6b533e47d77884dadf494ecfdfa4de, type: 3}
@@ -772,13 +762,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d870b4dcbcfbf943912bf0c1281a6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnAreaX: 2
-  spawnAreaY: 2
-  spawnDelay: 1
-  enemies:
-  - {fileID: 4728235726989330132, guid: 8410533c5719b054980dc8019928826d, type: 3}
-  - {fileID: 2856267348468154937, guid: 8f7c1d08c441e8f4cb3cc94a791f997f, type: 3}
-  weights: 4b00000019000000
 --- !u!1 &2643960545210304325 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3933308590156775268, guid: eb6b533e47d77884dadf494ecfdfa4de, type: 3}
@@ -796,13 +779,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d870b4dcbcfbf943912bf0c1281a6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnAreaX: 2
-  spawnAreaY: 2
-  spawnDelay: 1
-  enemies:
-  - {fileID: 4728235726989330132, guid: 8410533c5719b054980dc8019928826d, type: 3}
-  - {fileID: 2856267348468154937, guid: 8f7c1d08c441e8f4cb3cc94a791f997f, type: 3}
-  weights: 4b00000019000000
 --- !u!1 &3317292145898639315 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4336320927728580594, guid: eb6b533e47d77884dadf494ecfdfa4de, type: 3}
@@ -820,13 +796,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d870b4dcbcfbf943912bf0c1281a6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnAreaX: 2
-  spawnAreaY: 2
-  spawnDelay: 1
-  enemies:
-  - {fileID: 4728235726989330132, guid: 8410533c5719b054980dc8019928826d, type: 3}
-  - {fileID: 2856267348468154937, guid: 8f7c1d08c441e8f4cb3cc94a791f997f, type: 3}
-  weights: 4b00000019000000
 --- !u!1 &4196601633291648282 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2889487671003825467, guid: eb6b533e47d77884dadf494ecfdfa4de, type: 3}
@@ -844,13 +813,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d870b4dcbcfbf943912bf0c1281a6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnAreaX: 2
-  spawnAreaY: 2
-  spawnDelay: 1
-  enemies:
-  - {fileID: 4728235726989330132, guid: 8410533c5719b054980dc8019928826d, type: 3}
-  - {fileID: 2856267348468154937, guid: 8f7c1d08c441e8f4cb3cc94a791f997f, type: 3}
-  weights: 4b00000019000000
 --- !u!1 &4497156034554597568 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3192432969394448609, guid: eb6b533e47d77884dadf494ecfdfa4de, type: 3}
@@ -868,13 +830,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d870b4dcbcfbf943912bf0c1281a6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnAreaX: 2
-  spawnAreaY: 2
-  spawnDelay: 1
-  enemies:
-  - {fileID: 4728235726989330132, guid: 8410533c5719b054980dc8019928826d, type: 3}
-  - {fileID: 2856267348468154937, guid: 8f7c1d08c441e8f4cb3cc94a791f997f, type: 3}
-  weights: 4b00000019000000
 --- !u!1 &8114704847921000417 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7113979156594513856, guid: eb6b533e47d77884dadf494ecfdfa4de, type: 3}
@@ -892,13 +847,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d870b4dcbcfbf943912bf0c1281a6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnAreaX: 2
-  spawnAreaY: 2
-  spawnDelay: 1
-  enemies:
-  - {fileID: 4728235726989330132, guid: 8410533c5719b054980dc8019928826d, type: 3}
-  - {fileID: 2856267348468154937, guid: 8f7c1d08c441e8f4cb3cc94a791f997f, type: 3}
-  weights: 4b00000019000000
 --- !u!4 &8253078476660287908 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6965947589529424261, guid: eb6b533e47d77884dadf494ecfdfa4de, type: 3}
@@ -921,13 +869,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d870b4dcbcfbf943912bf0c1281a6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnAreaX: 2
-  spawnAreaY: 2
-  spawnDelay: 1
-  enemies:
-  - {fileID: 4728235726989330132, guid: 8410533c5719b054980dc8019928826d, type: 3}
-  - {fileID: 2856267348468154937, guid: 8f7c1d08c441e8f4cb3cc94a791f997f, type: 3}
-  weights: 4b00000019000000
 --- !u!1 &8777509428551457801 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7776358766317036584, guid: eb6b533e47d77884dadf494ecfdfa4de, type: 3}
@@ -945,10 +886,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d870b4dcbcfbf943912bf0c1281a6d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnAreaX: 2
-  spawnAreaY: 2
-  spawnDelay: 1
-  enemies:
-  - {fileID: 4728235726989330132, guid: 8410533c5719b054980dc8019928826d, type: 3}
-  - {fileID: 2856267348468154937, guid: 8f7c1d08c441e8f4cb3cc94a791f997f, type: 3}
-  weights: 4b00000019000000
