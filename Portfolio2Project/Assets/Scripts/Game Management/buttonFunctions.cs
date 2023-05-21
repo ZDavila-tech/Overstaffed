@@ -19,9 +19,10 @@ public class ButtonFunctions : MonoBehaviour
 
         Destroy(GameObject.FindGameObjectWithTag("Player"));
         Destroy(GameObject.FindGameObjectWithTag("LevelManager"));
-        Destroy(GameObject.FindGameObjectWithTag("UI"));
-        
+        Destroy(GameObject.FindGameObjectWithTag("UI"));        
         Debug.Log("Player Character destroyed");
+
+        GameManager.instance.UnpauseState();
         SceneManager.LoadScene("Character Select");
     }
 

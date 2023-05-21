@@ -10,6 +10,17 @@ public class PlayerSelect : MonoBehaviour
     [SerializeField] GameObject player;
     [SerializeField] GameObject levelManager;
     [SerializeField] GameObject UI;
+
+    private void Start()
+    {
+        if(Cursor.visible == false)
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+    }
     public void SelectedFire()
     {
         PrePlayerElementSetup();

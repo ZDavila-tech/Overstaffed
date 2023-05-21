@@ -55,6 +55,8 @@ public class GameManager : MonoBehaviour
         skillScript = player.GetComponent<Skills>();
         levelManager = LevelManager.instance;
         ResetHpBar();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void Start()
