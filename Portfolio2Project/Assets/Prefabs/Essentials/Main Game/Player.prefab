@@ -625,7 +625,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1023
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -720,7 +720,7 @@ MonoBehaviour:
   jumpHeight: 8
   gravityValue: 12
   maxJumps: 1
-  sprintMod: 2
+  sprintMod: 1.5
   damagecoolDown: 0.1
   playerElement: 0
   playerWeapon: {fileID: 0}
