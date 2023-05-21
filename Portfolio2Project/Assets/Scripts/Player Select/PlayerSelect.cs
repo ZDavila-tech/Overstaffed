@@ -11,6 +11,8 @@ public class PlayerSelect : MonoBehaviour
     [SerializeField] GameObject levelManager;
     [SerializeField] GameObject UI;
 
+    PlayerController playerController;
+
     private void Start()
     {
         if(Cursor.visible == false)
@@ -24,21 +26,21 @@ public class PlayerSelect : MonoBehaviour
     public void SelectedFire()
     {
         PrePlayerElementSetup();
-        //player.GetComponent<PlayerController>().playerWeaponScript.element = NewStaff.Element.Fire;
+        playerController.playerElement = NewStaff.Element.Fire;
         PostPlayerElementSetup();
     }
 
     public void SelectedWater()
     {
         PrePlayerElementSetup();
-        //player.GetComponent<PlayerController>().playerWeaponScript.element = NewStaff.Element.Water;
+        playerController.playerElement = NewStaff.Element.Water;
         PostPlayerElementSetup();
     }
 
     public void SelectedEarth()
     {
         PrePlayerElementSetup();
-        //player.GetComponent<PlayerController>().playerWeaponScript.element = NewStaff.Element.Earth;
+        playerController.playerElement = NewStaff.Element.Earth;
         PostPlayerElementSetup();
     }
 
@@ -47,15 +49,16 @@ public class PlayerSelect : MonoBehaviour
         DestroyImmediate(Camera.main.gameObject);
         Instantiate(player);
         player = GameObject.FindGameObjectWithTag("Player");
+        Debug.Log("Player Spawned");
+        playerController = player.GetComponent<PlayerController>();
+        Debug.Log("Player Controller Set");
     }
 
     public void PostPlayerElementSetup() //must happen after player element setup occurs
     {
-        Debug.Log("PlayerSpawned");
+        Debug.Log("Player Element Set");
         Instantiate(levelManager);
         Debug.Log("Level Manager Created");
-        //Instantiate(UI);
-        //Debug.Log("UI Created");
         SceneManager.LoadScene("Reception");
     }
 }

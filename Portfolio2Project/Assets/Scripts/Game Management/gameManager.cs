@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public PlayerController playerScript;
     public GameObject playerSpawn;
     public Skills skillScript;
+    NewStaff.Element playerElement;
 
     [Header("----- UI Stuff -----")]
     public GameObject pauseMenu;
@@ -35,7 +36,6 @@ public class GameManager : MonoBehaviour
 
     LevelManager levelManager;
 
-
     public Image ability1; //Hi-Jump
     public Image ability2; //Dash
     public Image ability3; //Blink
@@ -49,14 +49,14 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        levelManager = LevelManager.instance;
         player = GameObject.FindGameObjectWithTag("Player");
-        timeScaleOrig = Time.timeScale;
         playerScript = player.GetComponent<PlayerController>();
         skillScript = player.GetComponent<Skills>();
-        levelManager = LevelManager.instance;
         ResetHpBar();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        timeScaleOrig = Time.timeScale;
     }
 
     private void Start()
@@ -67,7 +67,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //SetElementIcon();
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
             activeMenu = pauseMenu;
@@ -75,6 +74,11 @@ public class GameManager : MonoBehaviour
             PauseState();
         }
         AbilityCoolDown();
+
+        if (playerElement != playerScript.playerElement)
+        {
+            SetElement();
+        }
     }
 
     public void PauseState()
@@ -156,7 +160,7 @@ public class GameManager : MonoBehaviour
     public void SetElementIcon()
     {
         //Debug.Log(playerScript.GetWeapon());
-        element.sprite = spriteArray[playerScript.GetWeapon()];
+        element.sprite = spriteArray[(int) playerScript.playerElement];
     }
 
     public void UpdateHealthBar()
@@ -238,5 +242,9 @@ public class GameManager : MonoBehaviour
                 yield return null;
             }
         }
+    }
+    public void SetElement()
+    {
+        playerElement = playerScript.playerElement;
     }
 }

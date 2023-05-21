@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 334106367046308165}
   - component: {fileID: 334106367046308170}
   m_Layer: 9
-  m_Name: NStaff
+  m_Name: Staff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -337,8 +337,7 @@ MonoBehaviour:
   meleeCooldown: 0.5
   hitbox: {fileID: 334106367046308164}
   sWeapon: {fileID: 6853015764813239609}
-  weapons: []
-  element: 0
+  playerElement: 0
   isShooting: 0
   canMelee: 1
   weapon: {fileID: 4055193228901778526}
@@ -755,9 +754,10 @@ MonoBehaviour:
   maxJumps: 1
   sprintMod: 2
   damagecoolDown: 0.1
+  playerElement: 0
+  playerWeapon: {fileID: 0}
   ShootRange: 355
   ShotCooldown: 0.1
-  playerWeaponScript: {fileID: 334106367046308170}
 --- !u!114 &1055786313974128500
 MonoBehaviour:
   m_ObjectHideFlags: 0

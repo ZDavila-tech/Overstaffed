@@ -16,7 +16,13 @@ public class PlayerController : MonoBehaviour, IDamage
     [Range(1, 3)][SerializeField] int maxJumps;
     [Range(2, 5)][SerializeField] float sprintMod;
     [SerializeField] private float damagecoolDown;
+    public NewStaff.Element playerElement;
 
+    [Header("----- Player Weapon -----")]
+    public NewStaff playerWeapon; //Set somehow
+    [SerializeField] int ShootRange; //the distance the player can shoot
+    [SerializeField] float ShotCooldown; //the cooldown the player has between shots    
+    private bool isShooting; //checks if the player is currently shooting
 
     private int jumpsUsed;
     private Vector3 move;
@@ -26,24 +32,10 @@ public class PlayerController : MonoBehaviour, IDamage
     private int iHPOriginal;
     private bool damagedRecently;
 
-    [Header("----- Player Weapon -----")]
-    //the distance the player can shoot
-    [SerializeField] int ShootRange;
-    //the cooldown the player has between shots
-    [SerializeField] float ShotCooldown;
-    //checks if the player is currently shooting
-    private bool isShooting;
-
-    //[SerializeField] GameObject playerWeaponHolder;
-    public NewStaff playerWeaponScript;
-
-
-    //GameObject playerWeapon;
-
-    // Start is called before the first frame update
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+
     }
 
     void Start()
@@ -53,14 +45,12 @@ public class PlayerController : MonoBehaviour, IDamage
         //Debug.Log(iHP);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (skills.canMove())
         {
             Movement();
         }
-
 
         Sprint();
 
@@ -81,7 +71,6 @@ public class PlayerController : MonoBehaviour, IDamage
         {
             skills.useSkill(3);
         }
-
     }
 
     void Movement()
@@ -95,8 +84,6 @@ public class PlayerController : MonoBehaviour, IDamage
 
         move = (transform.right * Input.GetAxis("Horizontal")) + (transform.forward * Input.GetAxis("Vertical"));
         controller.Move(move * playerSpeed * Time.deltaTime);
-
-
 
         // Changes the height position of the player..
         if (Input.GetButtonDown("Jump") && jumpsUsed < maxJumps)
@@ -126,11 +113,10 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         if (damagedRecently == false)
         {
-            damagedRecently = true;
             StartCoroutine(ResetDamagedRecently());
-            Debug.Log("my damage" + amount);
-            //-= used, negative amounts heal.         
-            iHP -= amount;
+            
+            //Debug.Log("my damage" + amount);        
+            iHP -= amount; //-= used, negative amounts heal. 
             if (amount > 0)
             {
                 GameManager.instance.ShowDamage();
@@ -153,6 +139,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     IEnumerator ResetDamagedRecently()
     {
+        damagedRecently = true;
         yield return new WaitForSeconds(damagecoolDown);
         damagedRecently = false;
     }
@@ -161,42 +148,28 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         if (!isShooting)
         {
-            //Debug.Log("Shot");
             isShooting = true;
 
-            if (playerWeaponScript != null)
-                playerWeaponScript.Shoot();
-           /* else if (waterWeapon != null)
-                waterWeapon.Shoot(ShotCooldown);
-            else if (earthWeapon != null)
-                earthWeapon.Shoot(ShotCooldown);*/
+            if (playerWeapon != null)
+            {
+                playerWeapon.Shoot();
+            }
 
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out RaycastHit hit, ShootRange))
-            //if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward * ShootRange, out hit))
             {
+                //Debug.Log("Shot");
                 IDamage damageable = hit.collider.GetComponent<IDamage>();
                 if (damageable != null)
                 {
-                    damageable.TakeDamage(2);
+                    damageable.TakeDamage(1);
                 }
             }
-
         }
 
         yield return new WaitForSeconds(ShotCooldown);
 
         isShooting = false;
     }
-
-
-    //public void spawnPlayer()
-    //{
-    //    controller.enabled = false;
-    //    transform.position = gameManager.instance.playerSpawn.transform.position;
-    //    iHP = iHPOriginal;
-    //    gameManager.instance.ResetHpBar();
-    //    controller.enabled = true;
-    //}
 
     public int GetHealth()
     {
@@ -212,25 +185,10 @@ public class PlayerController : MonoBehaviour, IDamage
     {
         jumpsUsed += ammount;
     }
-
-    //Changer Gravity and Returns Original Gravity
-    public float ChangeGravity(float ammount)
+    public float ChangeGravity(float ammount) //Changes Gravity and Returns Original Gravity
     {
         float gravityOrig = gravityValue;
         gravityValue = ammount;
         return gravityOrig;
     }
-
-    public int GetWeapon()
-    {
-        return playerWeaponScript.GetElement();
-    }
-
-    //public void equipWeapon(GameObject newWeapon)
-    //{
-    //    playerWeapon = newWeapon;
-    //    playerWeapon.transform.SetParent(playerWeaponHolder.transform);
-    //    playerWeapon.transform.position = playerWeaponHolder.transform.position;
-    //    playerWeapon.transform.rotation = playerWeaponHolder.transform.rotation;
-    //}
 }
