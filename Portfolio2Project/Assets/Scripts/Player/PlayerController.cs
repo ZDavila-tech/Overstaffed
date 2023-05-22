@@ -222,6 +222,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         if (utCharge + amount <= 100)
         {
             utCharge += amount;
+            GameManager.instance.UpdateUtCharge(utCharge / 100);
         }
     }
 

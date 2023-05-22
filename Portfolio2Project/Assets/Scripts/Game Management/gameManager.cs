@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
 
     public Image playerHealthBar;
     public TextMeshProUGUI levelText;
+    [SerializeField] Image UtCharge;
 
     [Header("-----Fade Stuff-----")]
     public Image fadeOutImage;
@@ -172,6 +173,18 @@ public class GameManager : MonoBehaviour
     {
         //Debug.Log(playerScript.GetWeapon());
         element.sprite = spriteArray[(int) playerScript.playerElement];
+        switch (playerScript.playerElement)
+        {
+            case NewStaff.Element.Fire:
+                UtCharge.color = Color.yellow;
+                break;
+            case NewStaff.Element.Water:
+                UtCharge.color = Color.blue;
+                break;
+            case NewStaff.Element.Earth:
+                UtCharge.color = Color.green;
+                break;
+        }
     }
 
 
@@ -245,4 +258,10 @@ public class GameManager : MonoBehaviour
     {
         playerElement = playerScript.playerElement;
     }
+
+    public void UpdateUtCharge(float amount)
+    {
+        UtCharge.fillAmount = amount;
+    }
+
 }
