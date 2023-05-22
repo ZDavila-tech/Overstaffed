@@ -27,22 +27,25 @@ public class GameManager : MonoBehaviour
     public GameObject settingsMenu;
     public GameObject flashDamage;
     public GameObject inventoryMenu;
-    public Image fadeInFadeOutImage;
+
     public Image playerHealthBar;
     public TextMeshProUGUI levelText;
+
+    [Header("-----Fade Stuff-----")]
+    public Image fadeInFadeOutImage;
+    public int fadeSpeed;
+    public bool fadeIn;
 
     [Header("-----Misc Stuff-----")]
 
     LevelManager levelManager;
-    [SerializeField] int fadeIntensity;
-    int currentFade;
+
 
     public Image ability1; //Hi-Jump
     public Image ability2; //Dash
     public Image ability3; //Blink
     public List<Sprite> spriteArray;
     public Image element;
-    public bool fadeIn;
 
     public bool isPaused;
     float timeScaleOrig;
@@ -58,8 +61,6 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         timeScaleOrig = Time.timeScale;
-        fadeIn = false;
-        currentFade = 0;
     }
 
     private void Start()
@@ -70,8 +71,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //FadeScreen();
-
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
             activeMenu = pauseMenu;
@@ -84,6 +83,11 @@ public class GameManager : MonoBehaviour
         {
             SetElement();
         }
+
+        //if (true)
+        //{
+        //    StartCoroutine(FadeScreen());
+        //}
     }
 
     public void PauseState()
@@ -210,33 +214,30 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void FadeScreen()
+    public IEnumerator FadeScreen()
     {
-        if(fadeIn == true) //Fade into level
+        Color objectColor = fadeInFadeOutImage.color;
+        float fadeAmount;
+        if (fadeIn == true) //Fade into level
         {
-            if (currentFade < 255)
+            while (fadeInFadeOutImage.color.a < 1)
             {
-                Debug.Log("Fading");
-                fadeInFadeOutImage.color = new Color(0, 0, 0, currentFade);
-                currentFade += fadeIntensity;
-            }
-            else
-            {
-                currentFade = 255;
-                fadeIn = false;
-                Debug.Log("fadeIn false");
+                fadeAmount = fadeInFadeOutImage.color.a + (fadeSpeed * Time.deltaTime);
+                objectColor = new Color(objectColor.r, objectColor.g, objectColor.b, fadeAmount);
+                fadeInFadeOutImage.color = objectColor;
+
+                yield return null;
             }
         }
         else //Fade out of level
         {
-            if (currentFade > 0)
+            while (fadeInFadeOutImage.color.a > 0)
             {
-                fadeInFadeOutImage.color = new Color(0, 0, 0, currentFade);
-                currentFade -= fadeIntensity;
-            }
-            else
-            {
-                currentFade = 0;
+                fadeAmount = fadeInFadeOutImage.color.a - (fadeSpeed * Time.deltaTime);
+                objectColor = new Color(objectColor.r, objectColor.g, objectColor.b, fadeAmount);
+                fadeInFadeOutImage.color = objectColor;
+
+                yield return null;
             }
         }
     }

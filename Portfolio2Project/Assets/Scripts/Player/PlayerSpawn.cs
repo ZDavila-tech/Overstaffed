@@ -36,17 +36,9 @@ public class PlayerSpawn : MonoBehaviour
     {
         if (playerInSpawn == true)
         {
-            Debug.Log("Player spawn pulled player");
             levelManager.levelStarted = true;
             levelManager.loadingLevel = false;
-            if(gameManager.fadeIn == true)
-            {
-                Debug.Log("fadeIn true");
-            }
-            else
-            {
-                Debug.Log("fadeIn false");
-            }
+            Debug.Log("Player spawn pulled player");
             Destroy(this.gameObject);
         }
         else
