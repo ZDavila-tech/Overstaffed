@@ -232,14 +232,16 @@ public class NewStaff : MonoBehaviour
                     isShooting = true;
                     Debug.Log("Special");
                     Instantiate(fireball, shootPos.transform.position + Vector3.forward, shootPos.transform.rotation);
-                    //fb.GetComponent<Rigidbody>().AddForce(gameObject.transform.right * fireballSpeed);//.velocity = shootPos.transform.forward * 10 * Time.deltaTime;
-                    //Destroy(fb, 5);
                     break;
                 case Element.Water:
-
+                    //isShooting = true;
+                    Debug.Log("Special");
+                    //maybe do a constant freeze beam that stops enemies in place and instantiates a rock with the translucent blue material for visuals
                     break;
                 case Element.Earth:
-
+                    //isShooting = true;
+                    Debug.Log("Special");
+                    //no idea
                     break;
             }
         }

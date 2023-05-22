@@ -43,9 +43,10 @@ public class Fireball : MonoBehaviour
     {
             Instantiate(staff.explosion, fireball.transform.position, staff.explosion.transform.rotation);
             Destroy(gameObject);
-        if (!other.CompareTag("Player"))
+        if (!other.CompareTag("Enemy"))
         {
-
+            IDamage damageable = other.GetComponent<IDamage>();
+            damageable.TakeDamage(shotDmg);
         }
     }
 }
