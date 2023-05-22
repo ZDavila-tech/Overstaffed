@@ -97,7 +97,8 @@ public class LevelManager : MonoBehaviour
         NewLevel();
         ++currentLevel; //ups difficulty
         levelScaler();
-        SceneManager.LoadScene(GetRandomLevelIndex()); //loads a new level != the current level index
+        StartCoroutine(GameManager.instance.FadeOut());
+        //loads a new level != the current level index
     }
 
     public int GetRandomLevelIndex()

@@ -26,9 +26,14 @@ public class NewStaff : MonoBehaviour
     //[SerializeField] Texture waterStaff;
     //[SerializeField] Texture earthStaff;
 
-    [Header("----- Special Attack Stuff -----")]
+    [Header("----- Fire Special Attack Stuff -----")]
     [SerializeField] public GameObject explosion;
     [SerializeField] public ParticleSystem explosionEffect;
+
+    [Header("----- Water Special Attack Stuff -----")]
+    [SerializeField] GameObject wSpecialRange;
+    [SerializeField] float slowDuration;
+    
 
     private bool canSpecial;
 
@@ -59,6 +64,7 @@ public class NewStaff : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        //wSpecialRange.GetComponent<SphereCollider>().enabled = false;
 
         //switch (playerElement)
         //{
@@ -198,6 +204,11 @@ public class NewStaff : MonoBehaviour
         canMelee = true;
     }
 
+    IEnumerator Wait(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+    }
+
     public void SetElement()
     {
         playerElement = player.playerElement;
@@ -246,16 +257,29 @@ public class NewStaff : MonoBehaviour
                         Instantiate(explosionEffect, hit.point, Quaternion.LookRotation(hit.normal));
                         Instantiate(explosion, hit.point, Quaternion.LookRotation(hit.normal));
                     }
+                    ResetShooting();
+
                     break;
                     case Element.Water:
-                        //isShooting = true;
-                        Debug.Log("Special");
-                        //maybe do a constant freeze beam that stops enemies in place and instantiates a rock with the translucent blue material for visuals
+
+                    isShooting = true;
+                    Debug.Log("Water Special");
+
+                    wSpecialRange.GetComponent<SphereCollider>().enabled = true;
+                    StartCoroutine(Wait(slowDuration));
+                    wSpecialRange.GetComponent<SphereCollider>().enabled = false;
+
+                    ResetShooting();
+
                         break;
                     case Element.Earth:
-                        //isShooting = true;
+
+                        isShooting = true;
+
                         Debug.Log("Special");
-                        //no idea
+
+                    ResetShooting();
+
                         break;
                 }
             if (player.canUt())

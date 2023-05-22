@@ -252,9 +252,8 @@ MonoBehaviour:
   - {fileID: 4907289682166412524}
   - {fileID: 5704455047256438802}
   - {fileID: 5957258368493389606}
-  fireball: {fileID: 1257362083338437993, guid: ef0b8c53edf454e4ea67b4a2cab879e0, type: 3}
-  explosion: {fileID: 0}
-  fireballSpeed: 0
+  explosion: {fileID: 1257362083338437993, guid: ef0b8c53edf454e4ea67b4a2cab879e0, type: 3}
+  explosionEffect: {fileID: -4890253464117155711, guid: a905d8e5159ffeb46baa8d2a7624717f, type: 3}
   playerElement: 0
   isShooting: 0
   canMelee: 1
@@ -722,16 +721,19 @@ MonoBehaviour:
   controller: {fileID: 6256373690464243920}
   skills: {fileID: 1055786313974128500}
   iHP: 10
+  utCharge: 0
   playerSpeed: 7
   jumpHeight: 8
   gravityValue: 12
   maxJumps: 1
   sprintMod: 1.5
   damagecoolDown: 0.1
+  pushBackResolve: 2
   playerElement: 0
   playerWeapon: {fileID: 0}
   ShootRange: 355
   ShotCooldown: 0.1
+  pushBack: {x: 0, y: 0, z: 0}
   aud: {fileID: 1444516656452086230}
   AttackVolume: 0.5
 --- !u!114 &1055786313974128500
