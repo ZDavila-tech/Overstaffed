@@ -238,7 +238,6 @@ public class NewStaff : MonoBehaviour
                     {
                         if (hit.transform.tag == "Player")
                         {
-                            //player = GameObject.FindGameObjectWithTag("Player");
                             Physics.IgnoreCollision(hit.collider, player.GetComponent<Collider>());
                             Debug.Log("Player Ignored");
                         }
@@ -247,19 +246,6 @@ public class NewStaff : MonoBehaviour
                         Debug.Log("Did Hit");
                         Instantiate(explosion, hit.point, Quaternion.LookRotation(hit.normal));
                     }
-                    //if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, ~2))
-                    //{
-                    //    if (hit.transform.tag == "Player")
-                    //    {
-                    //    //player = GameObject.FindGameObjectWithTag("Player");
-                    //        Physics.IgnoreCollision(hit.collider, player.GetComponent<Collider>());
-                    //    Debug.Log("Player Ignored");
-                    //    }
-
-                    //    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
-                    //    Debug.Log("Did Hit");
-                    //    Instantiate(explosion, hit.point, Quaternion.LookRotation(hit.normal));
-                    //}
                     break;
                     case Element.Water:
                         //isShooting = true;
