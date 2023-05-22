@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     void Movement()
     {
         groundedPlayer = controller.isGrounded;
-        if (groundedPlayer && playerVelocity.y < 0)
+        if (groundedPlayer)
         {
             playerVelocity.y = 0f;
             jumpsUsed = 0;
@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         }
 
         playerVelocity.y -= gravityValue * Time.deltaTime;
-        controller.Move(playerVelocity /*+ pushBack*/ * Time.deltaTime);
+        controller.Move((playerVelocity + pushBack) * Time.deltaTime);
 
         pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushBackResolve);
     }
