@@ -34,7 +34,6 @@ public class GameManager : MonoBehaviour
     [Header("-----Fade Stuff-----")]
     public Image fadeInFadeOutImage;
     public int fadeSpeed;
-    public bool fadeIn;
 
     [Header("-----Misc Stuff-----")]
 
@@ -203,11 +202,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public IEnumerator FadeScreen()
+    public IEnumerator FadeScreen(bool fadeIn)
     {
         Color objectColor = fadeInFadeOutImage.color;
         float fadeAmount;
-        if (fadeIn == true) //Fade into level
+        if (fadeIn) //Fade into level
         {
             while (fadeInFadeOutImage.color.a > 0)
             {

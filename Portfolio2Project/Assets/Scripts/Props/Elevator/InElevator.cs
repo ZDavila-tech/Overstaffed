@@ -34,7 +34,9 @@ public class InElevator : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         levelManager.inElevator = true;
+        StartCoroutine(GameManager.instance.FadeScreen(false));
         levelManager.GoToNextLevel();
+        StartCoroutine(GameManager.instance.FadeScreen(true));
     }
 
     private void OnTriggerExit(Collider other)
