@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour, IDamage
+public class PlayerController : MonoBehaviour, IDamage, IPhysics
 {
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour, IDamage
     [Range(1, 3)][SerializeField] int maxJumps;
     [Range(2, 5)][SerializeField] float sprintMod;
     [SerializeField] private float damagecoolDown;
+    [SerializeField] float pushBackResolve;
     public NewStaff.Element playerElement;
 
     [Header("----- Player Weapon -----")]
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour, IDamage
     private int jumpsUsed;
     private Vector3 move;
     private Vector3 playerVelocity;
+    public Vector3 pushBack;
     private bool groundedPlayer;
     private bool isSprinting;
     private int iHPOriginal;
@@ -99,7 +101,9 @@ public class PlayerController : MonoBehaviour, IDamage
         }
 
         playerVelocity.y -= gravityValue * Time.deltaTime;
-        controller.Move(playerVelocity * Time.deltaTime);
+        controller.Move(playerVelocity /*+ pushBack*/ * Time.deltaTime);
+
+        pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushBackResolve);
     }
 
     void Sprint()
@@ -218,12 +222,17 @@ public class PlayerController : MonoBehaviour, IDamage
         if (utCharge + amount <= 100)
         {
             utCharge += amount;
-            GameManager.instance.UpdateUtCharge(utCharge/100);
         }
     }
 
     public bool canUt()
     {
         return utCharge >= 100;
+    }
+
+    public void Knockback(Vector3 dir)
+    {
+        pushBack += dir;
+        Debug.Log("Knocked Back");
     }
 }

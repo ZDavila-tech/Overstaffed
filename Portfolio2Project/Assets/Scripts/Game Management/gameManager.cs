@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using static Skills;
 using TMPro;
+using UnityEngine.UIElements.Experimental;
 
 public class GameManager : MonoBehaviour
 {
@@ -30,11 +31,11 @@ public class GameManager : MonoBehaviour
 
     public Image playerHealthBar;
     public TextMeshProUGUI levelText;
-    [SerializeField] Image UtCharge;
 
     [Header("-----Fade Stuff-----")]
-    public Image fadeInFadeOutImage;
+    public Image fadeOutImage;
     public int fadeSpeed;
+    public bool fading;
 
     [Header("-----Misc Stuff-----")]
 
@@ -83,7 +84,12 @@ public class GameManager : MonoBehaviour
         {
             SetElement();
         }
+        if (fading == true)
+        {
+            fading = false;
 
+            StartCoroutine(FadeIn());
+        }
 
     }
 
@@ -160,24 +166,12 @@ public class GameManager : MonoBehaviour
         ShowActiveMenu();
         PauseState();
     }
-
+ 
     //displays the correct element based on character type
     public void SetElementIcon()
     {
         //Debug.Log(playerScript.GetWeapon());
-        element.sprite = spriteArray[(int)playerScript.playerElement];
-        switch (playerScript.playerElement)
-        {
-            case NewStaff.Element.Fire:
-                UtCharge.color = Color.yellow;
-                break;
-            case NewStaff.Element.Water:
-                UtCharge.color = Color.blue;
-                break;
-            case NewStaff.Element.Earth:
-                UtCharge.color = Color.green;
-                break;
-        }
+        element.sprite = spriteArray[(int) playerScript.playerElement];
     }
 
 
@@ -190,64 +184,65 @@ public class GameManager : MonoBehaviour
     //cooldownImage
     public void AbilityCoolDown()
     {
-        if (skillScript.isDashCooldown())
+        if(skillScript.isDashCooldown())
         {
+            ability2.gameObject.SetActive(true);
             waitTime = skillScript.getCooldown(skill.Dash);
             ability2.fillAmount -= 1.0f / waitTime * Time.deltaTime;
         }
-
-        else if (skillScript.isJumpCooldown())
+           
+        else if(skillScript.isJumpCooldown())
         {
+            ability1.gameObject.SetActive(true);
             waitTime = skillScript.getCooldown(skill.HiJump);
             ability1.fillAmount -= 1.0f / waitTime * Time.deltaTime;
         }
-        else if (skillScript.isBlinkCooldown())
+        else if(skillScript.isBlinkCooldown())
         {
+            ability3.gameObject.SetActive(true);
             waitTime = skillScript.getCooldown(skill.Blink);
             ability3.fillAmount -= 1.0f / waitTime * Time.deltaTime;
         }
         else
         {
-            ability1.fillAmount = 1;
-            ability2.fillAmount = 1;
-            ability3.fillAmount = 1;
+            ability1.gameObject.SetActive(false);
+            ability2.gameObject.SetActive(false);
+            ability3.gameObject.SetActive(false);
         }
     }
 
-    public IEnumerator FadeScreen(bool fadeIn)
+    public IEnumerator FadeOut() //Goes to black
     {
-        Color objectColor = fadeInFadeOutImage.color;
-        float fadeAmount;
-        if (fadeIn) //Fade into level
+        Debug.Log("Fade out screen ");
+        for (float i = 0; i <= fadeSpeed; i += Time.deltaTime)
         {
-            while (fadeInFadeOutImage.color.a > 0)
-            {
-                fadeAmount = fadeInFadeOutImage.color.a - (fadeSpeed * Time.deltaTime);
-                objectColor = new Color(objectColor.r, objectColor.g, objectColor.b, fadeAmount);
-                fadeInFadeOutImage.color = objectColor;
-
-                yield return null;
-            }
+            fadeOutImage.color = new Color(0, 0, 0, i);
+            Debug.Log(i);
+            yield return null;
         }
-        else //Fade out of level
+        fading = true;
+        fadeOutImage.color = new Color(0, 0, 0, fadeSpeed);
+        yield return new WaitForSeconds(1.0f);
+        SceneManager.LoadScene(LevelManager.instance.GetRandomLevelIndex());
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public IEnumerator FadeIn() //Goes out of black
+    {
+        fadeOutImage.color = new Color(0, 0, 0, fadeSpeed);
+        Debug.Log("Transparency: " + fadeOutImage.color.a);
+
+        Debug.Log("Fade into screen ");
+        for (float i = fadeSpeed; i >= 0; i -= Time.deltaTime)
         {
-            while (fadeInFadeOutImage.color.a < 1)
-            {
-                fadeAmount = fadeInFadeOutImage.color.a + (fadeSpeed * Time.deltaTime);
-                objectColor = new Color(objectColor.r, objectColor.g, objectColor.b, fadeAmount);
-                fadeInFadeOutImage.color = objectColor;
-
-                yield return null;
-            }
+            fadeOutImage.color = new Color(0, 0, 0, i);
+            Debug.Log(fadeOutImage.color.a);
+            yield return null;
         }
+        yield return new WaitForSeconds(1.0f);
     }
     public void SetElement()
     {
         playerElement = playerScript.playerElement;
-    }
-
-    public void UpdateUtCharge(float amount)
-    {
-        UtCharge.fillAmount = amount;
     }
 }

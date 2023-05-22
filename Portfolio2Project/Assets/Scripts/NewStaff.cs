@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -26,9 +27,8 @@ public class NewStaff : MonoBehaviour
     //[SerializeField] Texture earthStaff;
 
     [Header("----- Special Attack Stuff -----")]
-    [SerializeField] GameObject fireball;
-    [SerializeField] public ParticleSystem explosion;
-    [SerializeField] float fireballSpeed;
+    [SerializeField] public GameObject explosion;
+    [SerializeField] public ParticleSystem explosionEffect;
 
     private bool canSpecial;
 
@@ -226,15 +226,27 @@ public class NewStaff : MonoBehaviour
                 return;
             }
 
-            if (player.canUt())
-            {
                 switch (playerElement)
                 {
                     case Element.Fire:
                         isShooting = true;
                         Debug.Log("Special");
-                        Instantiate(fireball, shootPos.transform.position + Vector3.forward, shootPos.transform.rotation);
-                        break;
+                        RaycastHit hit;
+                    Vector3 direction = GetDirection();
+                    if (Physics.Raycast(shootPos.position, direction, out hit, float.MaxValue, mask))
+                    {
+                        if (hit.transform.tag == "Player")
+                        {
+                            Physics.IgnoreCollision(hit.collider, player.GetComponent<Collider>());
+                            Debug.Log("Player Ignored");
+                        }
+
+                        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
+                        Debug.Log("Did Hit");
+                        Instantiate(explosionEffect, hit.point, Quaternion.LookRotation(hit.normal));
+                        Instantiate(explosion, hit.point, Quaternion.LookRotation(hit.normal));
+                    }
+                    break;
                     case Element.Water:
                         //isShooting = true;
                         Debug.Log("Special");
@@ -246,6 +258,8 @@ public class NewStaff : MonoBehaviour
                         //no idea
                         break;
                 }
+            if (player.canUt())
+            {
             }
             }
 

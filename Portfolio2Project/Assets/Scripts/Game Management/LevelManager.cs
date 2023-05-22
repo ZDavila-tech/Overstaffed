@@ -16,8 +16,8 @@ public class LevelManager : MonoBehaviour
     public static LevelManager instance;
 
     public int currentLevel;
-    public int totalEnemies;
-    public int enemiesRemaining;
+    public int totalEnemies; //total enemies to spawn
+    public int enemiesRemaining; //goes up when an enemyAI Start()'s and goes down on enemy death
 
     public bool inElevator; //player is in elevator
     public bool levelStarted; //player successfully teleported/close enough to spawn
@@ -37,7 +37,12 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
-        GameManager.instance.UpdateLevelCount();
+        
+        if(GameManager.instance != null)
+        {
+            GameManager.instance.UpdateLevelCount();
+        }
+
         if (loadingLevel == false)
         {
             LevelCompletionTracker();
@@ -51,11 +56,9 @@ public class LevelManager : MonoBehaviour
 
     public void NewGame()
     {
-        loadingLevel = false;
-        levelCompleted = false;
-        levelStarted = false;
         currentLevel = 1;
-        enemiesRemaining = 0;
+        loadingLevel = false;
+        NewLevel();
     }
 
     public void NewLevel()
@@ -94,7 +97,8 @@ public class LevelManager : MonoBehaviour
         NewLevel();
         ++currentLevel; //ups difficulty
         levelScaler();
-        SceneManager.LoadScene(GetRandomLevelIndex()); //loads a new level != the current level index
+        StartCoroutine(GameManager.instance.FadeOut());
+        //loads a new level != the current level index
     }
 
     public int GetRandomLevelIndex()
