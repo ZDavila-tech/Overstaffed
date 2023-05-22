@@ -12,7 +12,7 @@ public class NewStaff : MonoBehaviour
     [SerializeField] private ParticleSystem shootingSystem;
     [SerializeField] private Transform shootPos;
     [SerializeField] private ParticleSystem impactParticles;
-    [SerializeField] private TrailRenderer trailRenderer;
+    [SerializeField] private List<TrailRenderer> trailRenderer;
     [SerializeField] private float delay;
     [SerializeField] private LayerMask mask;
 
@@ -97,8 +97,8 @@ public class NewStaff : MonoBehaviour
                 Vector3 direction = GetDirection();
                 if (Physics.Raycast(shootPos.position, direction, out RaycastHit hit, float.MaxValue, mask))
                 {
-                    TrailRenderer trail = Instantiate(trailRenderer, shootPos.position, Quaternion.identity);
-                    StartCoroutine(SpawnTrail(trail, hit));
+                    GameObject trail = Instantiate(trailRenderer[(int)playerElement].gameObject, shootPos.position, Quaternion.identity);
+                    StartCoroutine(SpawnTrail(trail.GetComponent<TrailRenderer>(), hit));
                     lastShootTime = Time.time;
                 }
             }
