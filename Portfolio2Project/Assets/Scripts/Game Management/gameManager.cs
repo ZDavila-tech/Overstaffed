@@ -179,25 +179,28 @@ public class GameManager : MonoBehaviour
     {
         if(skillScript.isDashCooldown())
         {
+            ability2.gameObject.SetActive(true);
             waitTime = skillScript.getCooldown(skill.Dash);
             ability2.fillAmount -= 1.0f / waitTime * Time.deltaTime;
         }
            
         else if(skillScript.isJumpCooldown())
         {
+            ability1.gameObject.SetActive(true);
             waitTime = skillScript.getCooldown(skill.HiJump);
             ability1.fillAmount -= 1.0f / waitTime * Time.deltaTime;
         }
         else if(skillScript.isBlinkCooldown())
         {
+            ability3.gameObject.SetActive(true);
             waitTime = skillScript.getCooldown(skill.Blink);
             ability3.fillAmount -= 1.0f / waitTime * Time.deltaTime;
         }
         else
         {
-            ability1.fillAmount = 1;
-            ability2.fillAmount = 1;
-            ability3.fillAmount = 1;
+            ability1.gameObject.SetActive(false);
+            ability2.gameObject.SetActive(false);
+            ability3.gameObject.SetActive(false);
         }
     }
 
