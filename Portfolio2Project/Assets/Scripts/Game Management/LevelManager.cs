@@ -78,7 +78,11 @@ public class LevelManager : MonoBehaviour
     public void GoToNextLevel() //if levelStarted, no enemies, and player in elevator -> load new level
     {
         NewLevel();
+        GameManager.instance.fadeIn = false;
+        StartCoroutine(GameManager.instance.FadeScreen());
         SceneManager.LoadScene(GetRandomLevelIndex()); //loads a new level != the current level index
+        GameManager.instance.fadeIn = true;
+        StartCoroutine(GameManager.instance.FadeScreen());
         ++currentLevel; //ups difficulty
     }
 
