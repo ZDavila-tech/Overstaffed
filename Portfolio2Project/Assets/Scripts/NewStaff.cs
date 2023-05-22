@@ -128,21 +128,26 @@ public class NewStaff : MonoBehaviour
 
         while (time < 1)
         {
-            trail.transform.position = Vector3.Lerp(startPos, hit.point, time);
-            time += Time.deltaTime / trail.time;
+            if (trail.gameObject != null)
+            {
+                trail.transform.position = Vector3.Lerp(startPos, hit.point, time);
+                time += Time.deltaTime / trail.time;
+            }
             yield return null;
         }
 
-        trail.transform.position = hit.point;
+        if (trail.gameObject != null)
+        {
+            trail.transform.position = hit.point;
+        }
 
         Instantiate(impactParticles, hit.point, Quaternion.LookRotation(hit.normal)); //hit.point
 
-        if (trail.gameObject != null)
-        {
-            yield return new WaitForSeconds(1);
-            Destroy(trail.gameObject);
-        }
-
+        //if (trail.gameObject != null)
+        //{
+        //    Destroy(trail.gameObject);
+        //    yield return new WaitForSeconds(1);
+        //}
     }
 
     public void Melee()
