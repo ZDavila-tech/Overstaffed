@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
 
     public int currentLevel;
     public int enemiesRemaining;
+    int currentLevelIndex;
 
     public bool inElevator; //player is in elevator
     public bool levelStarted; //player successfully teleported/close enough to spawn
@@ -36,24 +37,47 @@ public class LevelManager : MonoBehaviour
         GameManager.instance.UpdateLevelCount();
         if (loadingLevel == false)
         {
-            LevelCompletionTracker();
+            if (loadingLevel == false)
+            {
+                if (levelStarted == true && enemiesRemaining <= 0) //if level is started and all enemies are dead level is considered completed
+                {
+                    if (levelCompleted == false)
+                    {
+                        Debug.Log("levelStarted True + enemies < 0, level is completed");
+                        levelCompleted = true;
+                    }
+
+                    if (inElevator)
+                    {
+                        inElevator = false; //FOR THE LOVE OF GOD HAVE THIS BEFORE GO TO NEXT LEVEL OR EVERYTHING BREAKS
+                        GoToNextLevel();
+                    }
+                }
+                else
+                {
+                    levelCompleted = false;
+                }
+            }
         }
 
+        if (inElevator)
+        {
+            inElevator = false;
+        }
     }
     
     public void NewGame()
     {
-        inElevator = false;
         loadingLevel = false;
         levelCompleted = false;
         levelStarted = false;
         currentLevel = 1;
         enemiesRemaining = 0;
+
     }
 
     public void NewLevel()
     {
-        inElevator = false;
         levelCompleted = false;
         levelStarted = false;
         enemiesRemaining = 0;
@@ -61,32 +85,12 @@ public class LevelManager : MonoBehaviour
 
     public void LevelCompletionTracker()
     {
-        if(loadingLevel == false)
-        {
-            if (levelStarted == true && enemiesRemaining <= 0) //if level is started and all enemies are dead level is considered completed
-            {
-                if (levelCompleted == false)
-                {
-                    Debug.Log("levelStarted True + enemies < 0, level is completed");
-                    levelCompleted = true;
-                }
 
-                if (inElevator == true)
-                {
-                    inElevator = false; //FOR THE LOVE OF GOD HAVE THIS BEFORE GO TO NEXT LEVEL OR EVERYTHING BREAKS
-                    GoToNextLevel();
-                }
-            }
-            else
-            {
-                levelCompleted = false;
-            }
-        }
     }
     public void GoToNextLevel() //if levelStarted, no enemies, and player in elevator -> load new level
     {
-        NewLevel();
         ++currentLevel; //ups difficulty
+        NewLevel();
         SceneManager.LoadScene(GetRandomLevelIndex()); //loads a new level != the current level index
     }
 
