@@ -93,7 +93,6 @@ public class GameManager : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
         flashDamage.SetActive(false);
-
     }
 
     public void UnpauseState()

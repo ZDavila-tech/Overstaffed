@@ -35,7 +35,6 @@ public class InElevator : MonoBehaviour
     {
         levelManager.inElevator = true;
         StartCoroutine(GameManager.instance.FadeScreen(false));
-        levelManager.GoToNextLevel();
         StartCoroutine(GameManager.instance.FadeScreen(true));
     }
 
