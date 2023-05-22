@@ -10,6 +10,7 @@ public class Fireball : MonoBehaviour
     public int shotDmg;
     [SerializeField] int critChance;
     [SerializeField] float bulletLife;
+    [SerializeField] float bulletRange;
     [SerializeField] int bulletSpeed;
 
     [Header("----- Components -----")]
@@ -29,13 +30,13 @@ public class Fireball : MonoBehaviour
         Destroy(gameObject, bulletLife);
         player = GameObject.FindGameObjectWithTag("Player");
         playerPosition = player.transform.position;
-        rb.velocity = (player.transform.position - rb.position).normalized * bulletSpeed;//* Time.deltaTime;
+        //rb.velocity = (player.transform.position - rb.position).normalized * bulletSpeed;//* Time.deltaTime;
         
-        direction = transform.parent.forward;
+        //direction = transform.parent.forward;
     }
     private void Update()
     {
-        
+        transform.RotateAround(GameManager.instance.player.transform.position, Vector3.up * bulletRange, bulletSpeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)

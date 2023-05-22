@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class NewStaff : MonoBehaviour
 {
@@ -230,7 +231,7 @@ public class NewStaff : MonoBehaviour
                 case Element.Fire:
                     isShooting = true;
                     Debug.Log("Special");
-                    Instantiate(fireball, shootPos.transform.position, shootPos.transform.rotation);
+                    Instantiate(fireball, shootPos.transform.position + Vector3.forward, shootPos.transform.rotation);
                     //fb.GetComponent<Rigidbody>().AddForce(gameObject.transform.right * fireballSpeed);//.velocity = shootPos.transform.forward * 10 * Time.deltaTime;
                     //Destroy(fb, 5);
                     break;
