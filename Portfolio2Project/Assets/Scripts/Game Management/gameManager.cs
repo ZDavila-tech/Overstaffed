@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     public Image playerHealthBar;
     public TextMeshProUGUI levelText;
+    [SerializeField] Image UtCharge;
 
     [Header("-----Fade Stuff-----")]
     public Image fadeInFadeOutImage;
@@ -83,7 +84,7 @@ public class GameManager : MonoBehaviour
             SetElement();
         }
 
-       
+
     }
 
     public void PauseState()
@@ -159,12 +160,24 @@ public class GameManager : MonoBehaviour
         ShowActiveMenu();
         PauseState();
     }
- 
+
     //displays the correct element based on character type
     public void SetElementIcon()
     {
         //Debug.Log(playerScript.GetWeapon());
-        element.sprite = spriteArray[(int) playerScript.playerElement];
+        element.sprite = spriteArray[(int)playerScript.playerElement];
+        switch (playerScript.playerElement)
+        {
+            case NewStaff.Element.Fire:
+                UtCharge.color = Color.yellow;
+                break;
+            case NewStaff.Element.Water:
+                UtCharge.color = Color.blue;
+                break;
+            case NewStaff.Element.Earth:
+                UtCharge.color = Color.green;
+                break;
+        }
     }
 
 
@@ -177,18 +190,18 @@ public class GameManager : MonoBehaviour
     //cooldownImage
     public void AbilityCoolDown()
     {
-        if(skillScript.isDashCooldown())
+        if (skillScript.isDashCooldown())
         {
             waitTime = skillScript.getCooldown(skill.Dash);
             ability2.fillAmount -= 1.0f / waitTime * Time.deltaTime;
         }
-           
-        else if(skillScript.isJumpCooldown())
+
+        else if (skillScript.isJumpCooldown())
         {
             waitTime = skillScript.getCooldown(skill.HiJump);
             ability1.fillAmount -= 1.0f / waitTime * Time.deltaTime;
         }
-        else if(skillScript.isBlinkCooldown())
+        else if (skillScript.isBlinkCooldown())
         {
             waitTime = skillScript.getCooldown(skill.Blink);
             ability3.fillAmount -= 1.0f / waitTime * Time.deltaTime;
@@ -231,5 +244,10 @@ public class GameManager : MonoBehaviour
     public void SetElement()
     {
         playerElement = playerScript.playerElement;
+    }
+
+    public void UpdateUtCharge(float amount)
+    {
+        UtCharge.fillAmount = amount;
     }
 }
