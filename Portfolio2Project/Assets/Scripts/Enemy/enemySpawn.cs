@@ -53,7 +53,7 @@ public class EnemySpawn : MonoBehaviour
     {
         Transform tospawn = weightedenemyselection();
         Instantiate(tospawn, transform.position + spawncoords(), transform.rotation);
-        LevelManager.instance.enemiesRemaining++;
+        //LevelManager.instance.enemiesRemaining++;
     }
 
     Vector3 spawncoords()
