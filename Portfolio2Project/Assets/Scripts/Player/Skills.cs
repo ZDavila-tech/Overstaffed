@@ -196,7 +196,7 @@ public class Skills : MonoBehaviour
                 {
                     blinkAimIndicator = Instantiate(blinkAimIndicatorPrefab);
                 }
-                blinkAimIndicator.position = hit.point;
+                blinkAimIndicator.position = hit.point + hit.normal;
             }
             else
             {
@@ -239,7 +239,7 @@ public class Skills : MonoBehaviour
         StopCoroutine(blinkAimCoroutine());
         if (blinkAimIndicator)
         {
-            transform.position = new Vector3(blinkAimIndicator.position.x, blinkAimIndicator.position.y + 1, blinkAimIndicator.position.z);
+            transform.position = new Vector3(blinkAimIndicator.position.x, blinkAimIndicator.position.y, blinkAimIndicator.position.z);
 
             Destroy(blinkAimIndicator.gameObject);
         }
