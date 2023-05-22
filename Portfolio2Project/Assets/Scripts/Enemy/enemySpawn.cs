@@ -4,117 +4,113 @@ using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
 {
-//    [Header("-----Dimensions-----")]
-//    [SerializeField] float spawnAreaX;
-//    [SerializeField] float spawnAreaY;
-//    [SerializeField] float spawnDelay;
+    [Header("-----dimensions-----")]
+    [SerializeField] float spawnAreaX;
+    [SerializeField] float spawnAreaY;
+    [SerializeField] float spawnDelay;
 
-//    [Header("-----Enemies-----")]
-//    [SerializeField] private Transform[] enemies;
-//    [Range(0,100)][SerializeField] private int[] weights;
-//    int totalWeight;
-
-
-//    LevelManager levelManager;
+    [Header("-----enemies-----")]
+    [SerializeField] private Transform[] enemies;
+    [Range(0, 100)][SerializeField] private int[] weights;
+    int totalweight;
 
 
-//    int arrayLen;
-//    // Start is called before the first frame update
-//    void Start()
-//    {
-//        initializeLength();
-//        sortArrays();
-//        levelManager = LevelManager.instance;
-//        totalWeight = initializeEnemyWeight();
-//    }
+    int arraylen;
+    // start is called before the first frame update
+    void start()
+    {
+        initializelength();
+        sortarrays();
+        totalweight = initializeEnemyWeight();
+    }
 
-//    int initializeEnemyWeight()
-//    {
-//        int total = 0;
-//        foreach (int f in weights)
-//        {
-//            total += f;
-//        }
-//        return total;
-//    }
+    int initializeEnemyWeight()
+    {
+        int total = 0;
+        foreach (int f in weights)
+        {
+            total += f;
+        }
+        return total;
+    }
 
-//    // Update is called once per frame
-//    void Update()
-//    {
-//        StartCoroutine(attemptSpawn());
-//    }
+    // update is called once per frame
+    void update()
+    {
+        StartCoroutine(attemptspawn());
+    }
 
-//    IEnumerator attemptSpawn()
-//    {
-//        yield return new WaitForSeconds(spawnDelay);
-//        if (levelManager.currLessThanTotal())
-//        {
-//            spawn();
-//        }
-//    }
+    IEnumerator attemptspawn()
+    {
+        yield return new WaitForSeconds(spawnDelay);
+        if (LevelManager.instance.totalEnemies > LevelManager.instance.enemiesRemaining)
+        {
+            spawn();
+        }
+    }
 
-//    void spawn()
-//    {
-//        Transform toSpawn = weightedEnemySelection();
-//        Instantiate(toSpawn,transform.position + spawnCoords(), transform.rotation);
-//        levelManager.addCurr();
-//    }
+    void spawn()
+    {
+        Transform tospawn = weightedenemyselection();
+        Instantiate(tospawn, transform.position + spawncoords(), transform.rotation);
+        LevelManager.instance.enemiesRemaining++;
+    }
 
-//    Vector3 spawnCoords()
-//    {
-//        return new Vector3(Random.Range(transform.position.x - (spawnAreaX / 2), transform.position.x + (spawnAreaX / 2)) , 0 , Random.Range(transform.position.y - (spawnAreaY / 2), transform.position.y + (spawnAreaY / 2)));
-//    }
+    Vector3 spawncoords()
+    {
+        return new Vector3(Random.Range(transform.position.x - (spawnAreaX / 2), transform.position.x + (spawnAreaX / 2)), 0, Random.Range(transform.position.y - (spawnAreaX / 2), transform.position.y + (spawnAreaX / 2)));
+    }
 
-//    Transform weightedEnemySelection()
-//    {
-//        int rand = Random.Range(0, totalWeight -1);
-//        for (int i = 0; i < arrayLen; i++)
-//        {
-            
-//            if (rand <= totalWeight * (weights[i] / 100))
-//            {
-//                return enemies[i];
-//            }
-            
-//        }
-//        return enemies[arrayLen - 1];
+    Transform weightedenemyselection()
+    {
+        int rand = Random.Range(0, totalweight - 1);
+        for (int i = 0; i < arraylen; i++)
+        {
 
-        
-//    }
+            if (rand <= totalweight * (weights[i] / 100))
+            {
+                return enemies[i];
+            }
 
-//    private void OnDrawGizmos()
-//    {
-//            Gizmos.DrawWireCube(new Vector3(transform.position.x,transform.position.y + 1,transform.position.z), new Vector3(spawnAreaX, 2, spawnAreaY));
-//    }
+        }
+        return enemies[arraylen - 1];
 
-//    void sortArrays()
-//    {
-//        for (int i = 0; i < arrayLen - 1; i++)
-//        {
-//            for (int j = 0; j < arrayLen - i - 1; j++)
-//                if (weights[j] > weights[j + 1])
-//                {
-//                    var temp = weights[j];
-//                    var temp2 = enemies[j];
-//                    weights[j] = weights[j + 1];
-//                    enemies[j] = enemies[j + 1];
-//                    weights[j + 1] = temp;
-//                    enemies[j + 1] = temp2;
-//                }
-//        }
-    
 
-//    }
-//void initializeLength()
-//{
-//        arrayLen = 0;
-//    foreach (int i in weights)
-//        {
-            
-//            arrayLen++;
+    }
 
-//        }
-//}
+    private void ondrawgizmos()
+    {
+        Gizmos.DrawWireCube(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), new Vector3(spawnAreaX, 2, spawnAreaY));
+    }
+
+    void sortarrays()
+    {
+        for (int i = 0; i < arraylen - 1; i++)
+        {
+            for (int j = 0; j < arraylen - i - 1; j++)
+                if (weights[j] > weights[j + 1])
+                {
+                    var temp = weights[j];
+                    var temp2 = enemies[j];
+                    weights[j] = weights[j + 1];
+                    enemies[j] = enemies[j + 1];
+                    weights[j + 1] = temp;
+                    enemies[j + 1] = temp2;
+                }
+        }
+
+
+    }
+    void initializelength()
+    {
+        arraylen = 0;
+        foreach (int i in weights)
+        {
+
+            arraylen++;
+
+        }
+    }
 
 }
 

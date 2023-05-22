@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
@@ -10,9 +9,14 @@ public class LevelManager : MonoBehaviour
     [SerializeField] int repeatableLevelsMinIndex; //list levels contiguously
     [SerializeField] int repeatableLevelsMaxIndex;
 
+    [Header("----- Settings -----")]
+    [SerializeField] int baseEnemyCount;
+    [SerializeField, Range(0f, 1f)] float enemyCountScale;
+
     public static LevelManager instance;
 
     public int currentLevel;
+    public int totalEnemies;
     public int enemiesRemaining;
 
     public bool inElevator; //player is in elevator
@@ -87,6 +91,7 @@ public class LevelManager : MonoBehaviour
     {
         NewLevel();
         ++currentLevel; //ups difficulty
+        levelScaler();
         SceneManager.LoadScene(GetRandomLevelIndex()); //loads a new level != the current level index
     }
 
@@ -103,5 +108,10 @@ public class LevelManager : MonoBehaviour
         }
         Debug.Log($"Random Index is {randomIndex}");
         return randomIndex;
+    }
+
+    void levelScaler() //Scales Number of enemies per level
+    {
+        totalEnemies = (int)(baseEnemyCount * ((currentLevel * enemyCountScale) + 1));
     }
 }
