@@ -44,8 +44,11 @@ public class EnemyAI : MonoBehaviour, IDamage
     
     void Start()
     {
+        if(LevelManager.instance != null)
+        {
         levelManager = LevelManager.instance;
         ++levelManager.enemiesRemaining;
+        }
 
         cOrigColor = rModel.material.color;
         
