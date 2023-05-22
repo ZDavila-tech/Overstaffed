@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -23,6 +24,12 @@ public class NewStaff : MonoBehaviour
     //[SerializeField] Texture waterStaff;
     //[SerializeField] Texture earthStaff;
 
+    [Header("----- Special Attack Stuff -----")]
+    [SerializeField] GameObject fireball;
+    [SerializeField] public ParticleSystem explosion;
+    [SerializeField] float fireballSpeed;
+
+    private bool canSpecial;
 
     public enum Element
     {
@@ -46,6 +53,7 @@ public class NewStaff : MonoBehaviour
     private void Awake()
     {
         hitbox.enabled = false;
+        canSpecial = true;
     }
     private void Start()
     {
@@ -73,6 +81,7 @@ public class NewStaff : MonoBehaviour
             SetElement();
         }
         Melee();
+        SpecialAttack();
     }
 
     public void Shoot()
@@ -200,5 +209,34 @@ public class NewStaff : MonoBehaviour
     public AudioClip GetShootAudio()
     {
         return audios[(int)playerElement];
+    }
+
+    public void SpecialAttack()
+    {
+        if (Input.GetButtonUp("Special"))   //When the button is held and then released
+        {
+            if (!canSpecial)
+            {
+                return;
+            }
+
+            switch (playerElement)
+            {
+                case Element.Fire:
+                    isShooting = true;
+                    Debug.Log("Special");
+                    Instantiate(fireball, shootPos.transform.position, shootPos.transform.rotation);
+                    //fb.GetComponent<Rigidbody>().AddForce(gameObject.transform.right * fireballSpeed);//.velocity = shootPos.transform.forward * 10 * Time.deltaTime;
+                    //Destroy(fb, 5);
+                    break;
+                case Element.Water:
+
+                    break;
+                case Element.Earth:
+
+                    break;
+            }
+        }
+        
     }
 }
