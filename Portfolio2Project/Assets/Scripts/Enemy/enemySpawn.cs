@@ -17,7 +17,7 @@ public class EnemySpawn : MonoBehaviour
 
     int arraylen;
     // start is called before the first frame update
-    void start()
+    void Start()
     {
         initializelength();
         sortarrays();
@@ -35,7 +35,7 @@ public class EnemySpawn : MonoBehaviour
     }
 
     // update is called once per frame
-    void update()
+    void Update()
     {
         StartCoroutine(attemptspawn());
     }
@@ -78,7 +78,7 @@ public class EnemySpawn : MonoBehaviour
 
     }
 
-    private void ondrawgizmos()
+    private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), new Vector3(spawnAreaX, 2, spawnAreaY));
     }
