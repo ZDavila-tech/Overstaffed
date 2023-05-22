@@ -62,24 +62,32 @@ public class LevelManager : MonoBehaviour
 
     public void LevelCompletionTracker()
     {
-        if (levelStarted == true && enemiesRemaining <= 0) //if level is started and all enemies are dead level is considered completed
+        if(loadingLevel == false)
         {
-            if(levelCompleted == false)
+            if (levelStarted == true && enemiesRemaining <= 0) //if level is started and all enemies are dead level is considered completed
             {
-                Debug.Log("levelStarted True + enemies < 0, level is completed");
-                levelCompleted = true;
+                if (levelCompleted == false)
+                {
+                    Debug.Log("levelStarted True + enemies < 0, level is completed");
+                    levelCompleted = true;
+                }
+
+                if (inElevator == true)
+                {
+                    GoToNextLevel();
+                }
             }
-        }
-        else
-        {
-            levelCompleted = false;
+            else
+            {
+                levelCompleted = false;
+            }
         }
     }
     public void GoToNextLevel() //if levelStarted, no enemies, and player in elevator -> load new level
     {
         NewLevel();
-        SceneManager.LoadScene(GetRandomLevelIndex()); //loads a new level != the current level index
         ++currentLevel; //ups difficulty
+        SceneManager.LoadScene(GetRandomLevelIndex()); //loads a new level != the current level index
     }
 
     public int GetRandomLevelIndex()
