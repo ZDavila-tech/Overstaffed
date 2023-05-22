@@ -43,11 +43,14 @@ public class LevelManager : MonoBehaviour
             LevelCompletionTracker();
         }
 
+        if(inElevator == true)
+        {
+            inElevator = false; //FOR THE LOVE OF GOD HAVE THIS BEFORE GO TO NEXT LEVEL OR EVERYTHING BREAKS #2
+        }
     }
 
     public void NewGame()
     {
-        inElevator = false;
         loadingLevel = false;
         levelCompleted = false;
         levelStarted = false;
@@ -57,7 +60,6 @@ public class LevelManager : MonoBehaviour
 
     public void NewLevel()
     {
-        inElevator = false;
         levelCompleted = false;
         levelStarted = false;
         enemiesRemaining = 0;
