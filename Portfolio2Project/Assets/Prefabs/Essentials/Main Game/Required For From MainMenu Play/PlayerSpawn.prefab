@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6000964227637343071}
   - component: {fileID: -5419177545023026045}
-  - component: {fileID: -5907045946416679496}
+  - component: {fileID: 4479845011996233999}
   m_Layer: 0
   m_Name: PlayerSpawn
   m_TagString: PlayerSpawn
@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dfdb68dc64c8ce40b8e423b19c8b923, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!135 &-5907045946416679496
-SphereCollider:
+--- !u!136 &4479845011996233999
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -55,6 +55,7 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Radius: 0.75
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
