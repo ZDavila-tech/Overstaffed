@@ -16,8 +16,8 @@ public class LevelManager : MonoBehaviour
     public static LevelManager instance;
 
     public int currentLevel;
-    public int totalEnemies;
-    public int enemiesRemaining;
+    public int totalEnemies; //total enemies to spawn
+    public int enemiesRemaining; //goes up when an enemyAI Start()'s and goes down on enemy death
 
     public bool inElevator; //player is in elevator
     public bool levelStarted; //player successfully teleported/close enough to spawn
