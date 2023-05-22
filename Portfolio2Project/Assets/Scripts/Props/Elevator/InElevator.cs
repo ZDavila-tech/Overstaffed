@@ -42,4 +42,9 @@ public class InElevator : MonoBehaviour
     {
         levelManager.inElevator = false;
     }
+
+    private void OnDestroy()
+    {
+        levelManager.inElevator = false;
+    }
 }

@@ -43,21 +43,20 @@ public class LevelManager : MonoBehaviour
     
     public void NewGame()
     {
+        inElevator = false;
         loadingLevel = false;
         levelCompleted = false;
         levelStarted = false;
         currentLevel = 1;
         enemiesRemaining = 0;
-        inElevator = false;
-
     }
 
     public void NewLevel()
     {
+        inElevator = false;
         levelCompleted = false;
         levelStarted = false;
         enemiesRemaining = 0;
-        inElevator = false;
     }
 
     public void LevelCompletionTracker()
@@ -74,6 +73,7 @@ public class LevelManager : MonoBehaviour
 
                 if (inElevator == true)
                 {
+                    inElevator = false;
                     GoToNextLevel();
                 }
             }

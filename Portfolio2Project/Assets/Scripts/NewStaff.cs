@@ -143,11 +143,11 @@ public class NewStaff : MonoBehaviour
 
         Instantiate(impactParticles, hit.point, Quaternion.LookRotation(hit.normal)); //hit.point
 
-        //if (trail.gameObject != null)
-        //{
-        //    Destroy(trail.gameObject);
-        //    yield return new WaitForSeconds(1);
-        //}
+        if (trail.gameObject != null)
+        {
+            Destroy(trail.gameObject);
+            yield return new WaitForSeconds(1);
+        }
     }
 
     public void Melee()
