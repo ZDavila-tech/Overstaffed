@@ -25,6 +25,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] float fChaseTime;
     [Range(0, 100)][SerializeField] int DropRate;
     [SerializeField] float animTransSpeed;
+    [SerializeField] int chargeValue;
 
     [Header("----- Weapon Stats -----")]
     [SerializeField] GameObject gOBullet;
@@ -140,10 +141,11 @@ public class EnemyAI : MonoBehaviour, IDamage
         if(iHP <= 0) //if it dies, get rid of it
         {
             anim.SetTrigger("Died");//play the death animation
-            if (Random.Range(0,100) <= DropRate && drop != null)
+            if (Random.Range(0, 100) <= DropRate && drop != null)
             {
                 Instantiate(drop, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), transform.rotation);
             }
+            GameManager.instance.playerScript.ChargeUt(chargeValue);
             --levelManager.enemiesRemaining;
             Destroy(gameObject);
         }
