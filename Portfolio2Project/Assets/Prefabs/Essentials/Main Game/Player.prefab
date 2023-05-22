@@ -237,7 +237,10 @@ MonoBehaviour:
   shootingSystem: {fileID: 0}
   shootPos: {fileID: 3299791067010535451}
   impactParticles: {fileID: 2955623459812423941, guid: f5507a8c6a22c404ab324980c4e8a11b, type: 3}
-  trailRenderer: {fileID: 6225980049285009244, guid: a1e34ea0cedd7a04899063d5b3d7a7b3, type: 3}
+  trailRenderer:
+  - {fileID: 6225980049285009244, guid: 3a10c19dad1cb494ebb887657deb1a42, type: 3}
+  - {fileID: 6225980049285009244, guid: 51481b9a0be218d449a9778fe14e1e98, type: 3}
+  - {fileID: 6225980049285009244, guid: 794981acf577d3e4f80e565398fbfa19, type: 3}
   delay: 0.1
   mask:
     serializedVersion: 2
@@ -249,6 +252,9 @@ MonoBehaviour:
   - {fileID: 4907289682166412524}
   - {fileID: 5704455047256438802}
   - {fileID: 5957258368493389606}
+  fireball: {fileID: 0}
+  explosion: {fileID: 0}
+  fireballSpeed: 0
   playerElement: 0
   isShooting: 0
   canMelee: 1
