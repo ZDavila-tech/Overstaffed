@@ -73,7 +73,7 @@ public class LevelManager : MonoBehaviour
 
                 if (inElevator == true)
                 {
-                    inElevator = false;
+                    inElevator = false; //FOR THE LOVE OF GOD HAVE THIS BEFORE GO TO NEXT LEVEL OR EVERYTHING BREAKS
                     GoToNextLevel();
                 }
             }
