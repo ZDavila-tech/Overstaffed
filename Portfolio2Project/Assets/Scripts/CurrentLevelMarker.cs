@@ -15,6 +15,7 @@ public class CurrentLevelMarker : MonoBehaviour
         levelManager.levelCompleted = false;
         levelManager.levelStarted = false;
         levelManager.enemiesRemaining = 0;
+        levelManager.inElevator = false;
         Debug.Log("bools reset");
     }
 }

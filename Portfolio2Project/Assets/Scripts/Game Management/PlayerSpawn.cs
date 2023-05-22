@@ -11,7 +11,6 @@ public class PlayerSpawn : MonoBehaviour
     GameManager gameManager;
     bool playerInSpawn;
     bool keepPullingPlayer;
-
     private void Start()
     {
         levelManager = LevelManager.instance;
@@ -50,6 +49,7 @@ public class PlayerSpawn : MonoBehaviour
         if (playerInSpawn == true)
         {
             levelManager.loadingLevel = false;
+            levelManager.NewLevel();
             Debug.Log("Player spawn pulled player");
         }
         else
