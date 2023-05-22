@@ -226,25 +226,28 @@ public class NewStaff : MonoBehaviour
                 return;
             }
 
-            switch (playerElement)
+            if (player.canUt())
             {
-                case Element.Fire:
-                    isShooting = true;
-                    Debug.Log("Special");
-                    Instantiate(fireball, shootPos.transform.position + Vector3.forward, shootPos.transform.rotation);
-                    break;
-                case Element.Water:
-                    //isShooting = true;
-                    Debug.Log("Special");
-                    //maybe do a constant freeze beam that stops enemies in place and instantiates a rock with the translucent blue material for visuals
-                    break;
-                case Element.Earth:
-                    //isShooting = true;
-                    Debug.Log("Special");
-                    //no idea
-                    break;
+                switch (playerElement)
+                {
+                    case Element.Fire:
+                        isShooting = true;
+                        Debug.Log("Special");
+                        Instantiate(fireball, shootPos.transform.position + Vector3.forward, shootPos.transform.rotation);
+                        break;
+                    case Element.Water:
+                        //isShooting = true;
+                        Debug.Log("Special");
+                        //maybe do a constant freeze beam that stops enemies in place and instantiates a rock with the translucent blue material for visuals
+                        break;
+                    case Element.Earth:
+                        //isShooting = true;
+                        Debug.Log("Special");
+                        //no idea
+                        break;
+                }
             }
+            }
+
         }
-        
-    }
 }

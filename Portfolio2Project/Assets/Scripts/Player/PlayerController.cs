@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour, IDamage
 
     [Header("----- Player Stats -----")]
     [Range(1, 25)][SerializeField] int iHP;
+    [Range(0, 100)][SerializeField] float utCharge;
     [Range(1, 20)][SerializeField] float playerSpeed;
     [Range(1, 20)][SerializeField] float jumpHeight;
     [Range(10, 50)][SerializeField] float gravityValue;
@@ -210,5 +211,18 @@ public class PlayerController : MonoBehaviour, IDamage
         yield return new WaitForSeconds(1.5f);
 
         ShootSoundInPlay = false;
+    }
+
+    public void ChargeUt(float amount)
+    {
+        if (utCharge + amount <= 100)
+        {
+            utCharge += amount;
+        }
+    }
+
+    public bool canUt()
+    {
+        return utCharge >= 100;
     }
 }
