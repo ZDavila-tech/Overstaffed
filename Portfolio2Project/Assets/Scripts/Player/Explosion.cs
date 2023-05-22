@@ -11,7 +11,7 @@ public class Explosion : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Destroy(gameObject, 3);
+        Destroy(gameObject, 1);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -22,6 +22,12 @@ public class Explosion : MonoBehaviour
         {
             Vector3 dir = other.transform.position - transform.position;
             physicsable.Knockback(dir * pushAmount);
+        }
+
+        if (other.GetComponent<IDamage>() != null)
+        {
+            IDamage damageable = other.GetComponent<IDamage>();
+            damageable.TakeDamage(damage);
         }
     }
 

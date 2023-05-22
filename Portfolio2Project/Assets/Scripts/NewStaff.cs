@@ -27,9 +27,8 @@ public class NewStaff : MonoBehaviour
     //[SerializeField] Texture earthStaff;
 
     [Header("----- Special Attack Stuff -----")]
-    [SerializeField] GameObject fireball;
-    [SerializeField] public ParticleSystem explosion;
-    [SerializeField] float fireballSpeed;
+    [SerializeField] public GameObject explosion;
+    [SerializeField] public ParticleSystem explosionEffect;
 
     private bool canSpecial;
 
@@ -244,6 +243,7 @@ public class NewStaff : MonoBehaviour
 
                         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
                         Debug.Log("Did Hit");
+                        Instantiate(explosionEffect, hit.point, Quaternion.LookRotation(hit.normal));
                         Instantiate(explosion, hit.point, Quaternion.LookRotation(hit.normal));
                     }
                     break;
