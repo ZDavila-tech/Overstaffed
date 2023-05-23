@@ -42,7 +42,6 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
-        
         if(gameManager.instance != null)
         {
             gameManager.instance.UpdateLevelCount();
@@ -67,6 +66,7 @@ public class LevelManager : MonoBehaviour
         levelCompleted = false;
         levelStarted = false;
         enemiesRemaining = 0;
+        inElevator = false;
     }
 
     public void LevelCompletionTracker()
