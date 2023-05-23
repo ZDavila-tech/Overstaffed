@@ -5,8 +5,7 @@ using UnityEngine;
 public class InElevator : MonoBehaviour
 {
     [Header("----- Elecvator Doors -----")]
-    [SerializeField] GameObject door1;
-    [SerializeField] GameObject door2;
+    [SerializeField] Animator doorAnim;
 
     [Header("----- Elecvator Light -----")]
     [SerializeField] GameObject lightOn;
@@ -24,23 +23,45 @@ public class InElevator : MonoBehaviour
     {
         if (levelManager.levelCompleted == true)
         {
-            door1.SetActive(false);
-            door2.SetActive(false);
+            doorAnim.SetBool("Open", true);
             lightOn.SetActive(true);
             lightOff.SetActive(false);
         }
-        else
+        else if (levelManager.levelCompleted == false && levelManager.inElevator == false)
         {
-            door1.SetActive(true);
-            door2.SetActive(true);
+
+            doorAnim.SetBool("Open", false);
             lightOn.SetActive(false);
             lightOff.SetActive(true);
-        }        
+        }
+        else
+        {
+
+            doorAnim.SetBool("Open", true);
+        }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        levelManager.inElevator = true;
-       
+        if (other.CompareTag("Player"))
+        {
+            doorAnim.SetBool("Open", true);
+            levelManager.inElevator = true;
+        }
+
+
+
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("NOT IN ELEVATOR");
+            doorAnim.SetBool("Open", false);
+            levelManager.inElevator = false;
+        }
+    }
+
+
 }
