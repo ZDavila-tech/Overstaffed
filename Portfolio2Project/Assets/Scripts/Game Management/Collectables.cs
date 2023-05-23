@@ -7,8 +7,8 @@ public class Collectables : MonoBehaviour
     [SerializeField] int value;
     enum PickupTupe
     {
-      Health,
-      Charge
+        Health,
+        Charge
     }
 
     [SerializeField] PickupTupe Pickup;
@@ -22,12 +22,12 @@ public class Collectables : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-            if (other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
+        {
+            switch (Pickup)
             {
-            switch (Pickup) 
-            { 
                 case PickupTupe.Health:
-                gameManager.instance.playerScript.TakeDamage(-value);
+                    gameManager.instance.playerScript.TakeDamage(-value);
                     Destroy(gameObject);
                     break;
                 case PickupTupe.Charge:
@@ -37,3 +37,4 @@ public class Collectables : MonoBehaviour
             }
         }
     }
+}
