@@ -16,9 +16,11 @@ public class LevelManager : MonoBehaviour
     public static LevelManager instance;
 
     public int currentLevel;
-    public int totalEnemies; //total enemies to spawn
+    public int totalEnemiesToSpawn; //total enemies to spawn
     public int enemiesRemaining; //goes up when an enemyAI Start()'s and goes down on enemy death
     public int enemiesSpawned;
+    public int maxEnemiesAtOneTime;
+    public int currentEnemies;
 
     public bool inElevator; //player is in elevator
     public bool levelStarted; //player successfully teleported/close enough to spawn
@@ -126,6 +128,6 @@ public class LevelManager : MonoBehaviour
 
     void levelScaler() //Scales Number of enemies per level
     {
-        totalEnemies = (int)(baseEnemyCount * ((currentLevel * enemyCountScale) + 1));
+        totalEnemiesToSpawn = (int)(baseEnemyCount * ((currentLevel * enemyCountScale) + 1));
     }
 }
