@@ -97,6 +97,10 @@ public class LevelManager : MonoBehaviour
     {
         NewLevel();
         ++currentLevel; //ups difficulty
+        if (currentLevel/5 == currentLevel%5)
+        {
+            MusicPlayer.instance.ChangeSong();
+        }
         levelScaler();
         StartCoroutine(gameManager.instance.FadeOut());
         //loads a new level != the current level index
