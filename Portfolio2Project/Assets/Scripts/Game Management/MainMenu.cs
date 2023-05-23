@@ -4,7 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
-{ 
+{
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+    }
     public void PlayGame() //Takes player to character select scene
     {
         Debug.Log("Play Button Pressed");
