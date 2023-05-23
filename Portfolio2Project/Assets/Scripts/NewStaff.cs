@@ -36,8 +36,10 @@ public class NewStaff : MonoBehaviour
     [SerializeField] float wSpecialRange;
     [SerializeField] public float slowDuration;
     GameObject[] enemies;
-    
 
+    [Header("----- Earth Special Attack Stuff -----")]
+    [SerializeField] float eSpecialRange;
+    [SerializeField] public int eSpecialDamage;
 
 
     private bool canSpecial;
@@ -243,7 +245,19 @@ public class NewStaff : MonoBehaviour
             {
                 
                 enemy.GetComponent<NavMeshAgent>().speed /= 2;
-                Debug.Log("In Range");
+            }
+        }
+    }
+
+    void EarthAOE()
+    {
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemies)
+        {
+            if (eSpecialRange >= Vector3.Distance(transform.position, enemy.transform.position))
+            {
+
+                enemy.GetComponent<EnemyAI>().TakeDamage(eSpecialDamage);
             }
         }
     }
@@ -285,9 +299,7 @@ public class NewStaff : MonoBehaviour
                         break;
                     case Element.Earth:
 
-                        isShooting = true;
-
-                        Debug.Log("Special");
+                        EarthAOE();
 
                     ResetShooting();
 
