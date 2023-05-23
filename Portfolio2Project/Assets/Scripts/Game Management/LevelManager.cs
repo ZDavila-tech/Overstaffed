@@ -42,7 +42,6 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
-        
         if(gameManager.instance != null)
         {
             gameManager.instance.UpdateLevelCount();
@@ -67,6 +66,7 @@ public class LevelManager : MonoBehaviour
         levelCompleted = false;
         levelStarted = false;
         enemiesRemaining = 0;
+        inElevator = false;
     }
 
     public void LevelCompletionTracker()
@@ -102,6 +102,7 @@ public class LevelManager : MonoBehaviour
             MusicPlayer.instance.ChangeSong();
         }
         levelScaler();
+        inElevator= false;
         StartCoroutine(gameManager.instance.FadeOut());
         //loads a new level != the current level index
     }
