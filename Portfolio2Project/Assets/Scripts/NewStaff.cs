@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Runtime.CompilerServices;
+using System.Xml.Schema;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 using static UnityEngine.GraphicsBuffer;
 
 public class NewStaff : MonoBehaviour
@@ -31,9 +33,12 @@ public class NewStaff : MonoBehaviour
     [SerializeField] public ParticleSystem explosionEffect;
 
     [Header("----- Water Special Attack Stuff -----")]
-    [SerializeField] GameObject wSpecialRange;
-    [SerializeField] float slowDuration;
+    [SerializeField] float wSpecialRange;
+    [SerializeField] public float slowDuration;
+    GameObject[] enemies;
     
+
+
 
     private bool canSpecial;
 
@@ -228,11 +233,19 @@ public class NewStaff : MonoBehaviour
         return audios[(int)playerElement];
     }
 
-    IEnumerator WaterSpecial()
+
+    void WaterAOE()
     {
-        wSpecialRange.GetComponent<SphereCollider>().enabled = true;
-        yield return new WaitForSeconds(slowDuration);
-        wSpecialRange.GetComponent<SphereCollider>().enabled = false;
+        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach(GameObject enemy in enemies)
+        {
+            if (wSpecialRange >= Vector3.Distance(transform.position, enemy.transform.position))
+            {
+                
+                enemy.GetComponent<NavMeshAgent>().speed /= 2;
+                Debug.Log("In Range");
+            }
+        }
     }
 
     public void SpecialAttack()
@@ -249,8 +262,7 @@ public class NewStaff : MonoBehaviour
             switch (playerElement)
                 {
                     case Element.Fire:
-                        isShooting = true;
-                    Debug.Log("Special");
+
                     player.ChargeUt(-100);
                     RaycastHit hit;
                     Vector3 direction = GetDirection();
@@ -259,24 +271,16 @@ public class NewStaff : MonoBehaviour
                         if (hit.transform.tag == "Player")
                         {
                             Physics.IgnoreCollision(hit.collider, player.GetComponent<Collider>());
-                            Debug.Log("Player Ignored");
                         }
 
-                        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.red);
-                        Debug.Log("Did Hit");
                         Instantiate(explosionEffect, hit.point, Quaternion.LookRotation(hit.normal));
                         Instantiate(explosion, hit.point, Quaternion.LookRotation(hit.normal));
                     }
-                    ResetShooting();
 
                     break;
                     case Element.Water:
 
-                    isShooting = true;
-
-                    StartCoroutine(WaterSpecial());
-
-                    ResetShooting();
+                    WaterAOE();
 
                         break;
                     case Element.Earth:

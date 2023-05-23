@@ -18,12 +18,10 @@ public class WaterSpecial : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
-        {
-            //other.GetComponent<NavMeshAgent>().speed /= slowRate;
-            //Debug.Log("Enemy Detected");
-            enemyRef.isSlowed = true;
-        }
+            if(other.tag == "Enemy")
+            {
+                enemyRef.isSlowed = true;
+            }
     }
 
     private void OnTriggerExit(Collider other)
