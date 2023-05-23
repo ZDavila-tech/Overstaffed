@@ -11,16 +11,18 @@ public class WaterSpecial : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.SetActive(false);
+        gameObject.GetComponent<SphereCollider>().enabled = false; 
         enemy = GameObject.FindGameObjectWithTag("Enemy");
+        enemyRef = enemy.GetComponent<EnemyAI>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
         {
-            other.GetComponent<NavMeshAgent>().speed /= slowRate;
-            Debug.Log("Enemy Detected");
+            //other.GetComponent<NavMeshAgent>().speed /= slowRate;
+            //Debug.Log("Enemy Detected");
+            enemyRef.isSlowed = true;
         }
     }
 
@@ -28,8 +30,9 @@ public class WaterSpecial : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            other.GetComponent<NavMeshAgent>().speed *= slowRate;
-            Debug.Log("Enemy Lost");
+            //other.GetComponent<NavMeshAgent>().speed *= slowRate;
+            //Debug.Log("Enemy Lost");
+            enemyRef.isSlowed = false;
         }
     }
 }
