@@ -65,7 +65,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnEnemy(Transform locationToSpawn)
     {
-        Vector3 randomPosition = new Vector3(locationToSpawn.position.x + (Random.Range(0, 250) * 0.01f), locationToSpawn.position.y, locationToSpawn.position.z + (Random.Range(0, 250) * 0.01f));
+        Vector3 randomPosition = new Vector3(locationToSpawn.position.x + Random.Range(0, 2.5f), locationToSpawn.position.y, locationToSpawn.position.z + Random.Range(0, 2.5f));
         Instantiate(enemyToSpawn, randomPosition, locationToSpawn.rotation);
         ++currentNumberSpawned;
     }
