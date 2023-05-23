@@ -246,7 +246,6 @@ public class gameManager : MonoBehaviour
         for (float i = 0; i <= fadeSpeed; i += Time.deltaTime)
         {
             fadeOutImage.color = new Color(0, 0, 0, i);
-            Debug.Log(i);
             yield return null;
         }
         fading = true;
@@ -259,13 +258,10 @@ public class gameManager : MonoBehaviour
     public IEnumerator FadeIn() //Goes out of black
     {
         fadeOutImage.color = new Color(0, 0, 0, fadeSpeed);
-        Debug.Log("Transparency: " + fadeOutImage.color.a);
-
         Debug.Log("Fade into screen ");
         for (float i = fadeSpeed; i >= 0; i -= Time.deltaTime)
         {
             fadeOutImage.color = new Color(0, 0, 0, i);
-            Debug.Log(fadeOutImage.color.a);
             yield return null;
         }
         yield return new WaitForSeconds(1.0f);
