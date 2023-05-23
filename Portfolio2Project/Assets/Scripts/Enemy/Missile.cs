@@ -18,9 +18,9 @@ public class Missile : MonoBehaviour
 
     [Header("----- Components -----")]
     //this object's Rigidbody
-    [SerializeField] Rigidbody rb;
-    GameObject player;
-    Vector3 playerPosition;
+    [SerializeField] Rigidbody _rb;
+    GameObject goPlayer;
+    Vector3 v3PlayerPos;
 
 
     // Start is called before the first frame update
@@ -30,12 +30,12 @@ public class Missile : MonoBehaviour
         //destroy the bullet after it's lifespan ends
         Destroy(gameObject, fMissileLife);
         //move the bullet
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerPosition = player.transform.position;
+        goPlayer = GameObject.FindGameObjectWithTag("Player");
+        v3PlayerPos = goPlayer.transform.position;
     }
 
     private void FixedUpdate() {
-        rb.velocity = (playerPosition - rb.position).normalized * iMissileSpeed;
+        _rb.velocity = (v3PlayerPos - _rb.position).normalized * iMissileSpeed;
         RotateMissile();
     }
 
@@ -43,7 +43,7 @@ public class Missile : MonoBehaviour
         var heading = transform.position;
 
         var rotation = Quaternion.LookRotation(heading);
-        rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, rotation, fRotateSpeed * Time.deltaTime));
+        _rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, rotation, fRotateSpeed * Time.deltaTime));
     }
 
     private void OnTriggerEnter(Collider other)
