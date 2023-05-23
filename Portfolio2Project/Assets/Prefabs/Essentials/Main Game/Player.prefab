@@ -254,6 +254,8 @@ MonoBehaviour:
   - {fileID: 5957258368493389606}
   explosion: {fileID: 1257362083338437993, guid: ef0b8c53edf454e4ea67b4a2cab879e0, type: 3}
   explosionEffect: {fileID: -4890253464117155711, guid: a905d8e5159ffeb46baa8d2a7624717f, type: 3}
+  wSpecialRange: {fileID: 0}
+  slowDuration: 0
   playerElement: 0
   isShooting: 0
   canMelee: 1
@@ -735,7 +737,9 @@ MonoBehaviour:
   ShotCooldown: 0.1
   pushBack: {x: 0, y: 0, z: 0}
   aud: {fileID: 1444516656452086230}
-  AttackVolume: 0.5
+  AttackVolume: 0.3
+  JumpVolume: 0.5
+  jumpAudio: {fileID: 8300000, guid: bd109bbf0935edd40bd80dbc4f55c07f, type: 3}
 --- !u!114 &1055786313974128500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -751,6 +755,10 @@ MonoBehaviour:
   controller: {fileID: 6256373690464243920}
   playerController: {fileID: 6256373690464243921}
   blinkAimIndicatorPrefab: {fileID: 2848004723096892248, guid: 9d2a42548f99c5042b79c8c622fcb472, type: 3}
+  hiJumpAudio: {fileID: 8300000, guid: aaaf6aaf44031b548af3e2cc54343f3d, type: 3}
+  blinkAudio: {fileID: 8300000, guid: b96801a66cbb31a4586dad9b98c60749, type: 3}
+  hiJumpVolume: 0.5
+  blinkVolume: 0.5
   DashSpeed: 21.9
   DashTime: 0.352
   DashCooldown: 3
