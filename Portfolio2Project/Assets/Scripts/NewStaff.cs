@@ -236,13 +236,16 @@ public class NewStaff : MonoBehaviour
             {
                 return;
             }
+            //if(!player.canUt())
+            //{ return; }
 
-                switch (playerElement)
+            switch (playerElement)
                 {
                     case Element.Fire:
                         isShooting = true;
-                        Debug.Log("Special");
-                        RaycastHit hit;
+                    Debug.Log("Special");
+                    player.ChargeUt(-100);
+                    RaycastHit hit;
                     Vector3 direction = GetDirection();
                     if (Physics.Raycast(shootPos.position, direction, out hit, float.MaxValue, mask))
                     {
