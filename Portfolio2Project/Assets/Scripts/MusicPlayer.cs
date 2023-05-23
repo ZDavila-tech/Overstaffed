@@ -25,7 +25,7 @@ public class MusicPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        UpdateBGVolume();
     }
 
     void PlaySong()
@@ -38,6 +38,15 @@ public class MusicPlayer : MonoBehaviour
     public void ChangeSong()
     {
         currSong++;
+        if (currSong >= bgms.Count)
+        {
+            currSong = 0;
+        }
         PlaySong();
+    }
+    public void UpdateBGVolume()
+    {
+        volume = gameManager.instance.volumeValue.value;
+        aud.volume = volume;
     }
 }
