@@ -340,9 +340,10 @@ MonoBehaviour:
   explosionEffect: {fileID: -4890253464117155711, guid: a905d8e5159ffeb46baa8d2a7624717f, type: 3}
   wSpecialRange: 10
   slowDuration: 5
+  waterEffect: {fileID: 5363903115907130760, guid: a95badd68e7d97043912e93bf5d43b03, type: 3}
   eSpecialRange: 10
   eSpecialDamage: 10
-  playerElement: 2
+  playerElement: 1
   isShooting: 0
   canMelee: 1
   weapon: {fileID: 4055193228901778526}
@@ -503,7 +504,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4927389929242567336
 Transform:
   m_ObjectHideFlags: 0
@@ -513,7 +514,7 @@ Transform:
   m_GameObject: {fileID: 5704455047256438802}
   m_LocalRotation: {x: -0, y: -0.9238787, z: 0.000000007450581, w: 0.38268554}
   m_LocalPosition: {x: 0.0032938416, y: 0.784807, z: -0.00006214778}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3678632124144082660}
@@ -817,7 +818,7 @@ MonoBehaviour:
   sprintMod: 1.5
   damagecoolDown: 0.1
   pushBackResolve: 2
-  playerElement: 2
+  playerElement: 1
   playerWeapon: {fileID: 0}
   ShootRange: 355
   ShotCooldown: 0.1
