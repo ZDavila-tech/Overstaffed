@@ -152,6 +152,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 887173971502633857}
     - target: {fileID: 5136022731320389872, guid: f40d5d09406fce448bda51519ae9818a, type: 3}
+      propertyPath: doorAnim
+      value: 
+      objectReference: {fileID: 887173971039063308}
+    - target: {fileID: 5136022731320389872, guid: f40d5d09406fce448bda51519ae9818a, type: 3}
       propertyPath: lightOff
       value: 
       objectReference: {fileID: 6896819529389033149}
@@ -191,9 +195,18 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9176200881169385799, guid: f40d5d09406fce448bda51519ae9818a, type: 3}
+      propertyPath: m_Intensity
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4260260369507079311, guid: f40d5d09406fce448bda51519ae9818a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f40d5d09406fce448bda51519ae9818a, type: 3}
+--- !u!95 &887173971039063308 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4260260368467271750, guid: f40d5d09406fce448bda51519ae9818a, type: 3}
+  m_PrefabInstance: {fileID: 3985857456246566218}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &887173971502633857 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4260260369077386955, guid: f40d5d09406fce448bda51519ae9818a, type: 3}
