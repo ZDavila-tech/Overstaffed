@@ -26,15 +26,14 @@ public class Missile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Bullet Made");
         //destroy the bullet after it's lifespan ends
         Destroy(gameObject, fMissileLife);
         //move the bullet
-        goPlayer = GameObject.FindGameObjectWithTag("Player");
-        v3PlayerPos = goPlayer.transform.position;
+        goPlayer = gameManager.instance.player;
     }
 
     private void FixedUpdate() {
+        v3PlayerPos = goPlayer.transform.position;
         _rb.velocity = (v3PlayerPos - _rb.position).normalized * iMissileSpeed;
         RotateMissile();
     }

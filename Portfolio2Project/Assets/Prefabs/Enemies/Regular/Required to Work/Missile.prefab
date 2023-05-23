@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8060328068600632500}
-  - component: {fileID: 8060328068600632501}
   - component: {fileID: 8060328068600632497}
   - component: {fileID: 8060328068600632507}
   - component: {fileID: 8060328068600632506}
+  - component: {fileID: 6856015211915415059}
   m_Layer: 7
   m_Name: Missile
   m_TagString: Untagged
@@ -35,23 +35,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8060328068600632501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8060328068600632496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ebe6b8fce1a2c024f840166486e73aa7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shotDmg: 1
-  critChance: 50
-  bulletLife: 3
-  bulletSpeed: 20
-  rb: {fileID: 8060328068600632507}
 --- !u!135 &8060328068600632497
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -216,3 +199,21 @@ TrailRenderer:
   m_MinVertexDistance: 0.1
   m_Autodestruct: 0
   m_Emitting: 1
+--- !u!114 &6856015211915415059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8060328068600632496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4dc9d4504ed85144929530b7c2d82e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iDmg: 5
+  critChance: 0
+  fMissileLife: 3
+  iMissileSpeed: 25
+  fRotateSpeed: 50
+  _rb: {fileID: 8060328068600632507}
