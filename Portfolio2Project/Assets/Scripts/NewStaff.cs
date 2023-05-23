@@ -171,17 +171,17 @@ public class NewStaff : MonoBehaviour
                 case Element.Fire:
                     Debug.Log("Melee Fire");
                     weaponModels[1].SetActive(true);
-                    GameManager.instance.playerScript.PlayExternalAudio(audios[3]);
+                    gameManager.instance.playerScript.PlayExternalAudio(audios[3]);
                     anim.SetTrigger("SwordMelee");
                     break;
                 case Element.Water:
                     weaponModels[2].SetActive(true);
-                    GameManager.instance.playerScript.PlayExternalAudio(audios[4]);
+                    gameManager.instance.playerScript.PlayExternalAudio(audios[4]);
                     anim.SetTrigger("SpearMelee");
                     break;
                 case Element.Earth:
                     weaponModels[3].SetActive(true);
-                    GameManager.instance.playerScript.PlayExternalAudio(audios[5]);
+                    gameManager.instance.playerScript.PlayExternalAudio(audios[5]);
                     anim.SetTrigger("HammerMelee");
                     break;
             }

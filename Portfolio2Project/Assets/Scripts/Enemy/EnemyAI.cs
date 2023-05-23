@@ -74,7 +74,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
         if (hpDisplay.activeSelf)
         {
-            hpDisplay.transform.LookAt(GameManager.instance.player.transform.position);
+            hpDisplay.transform.LookAt(gameManager.instance.player.transform.position);
         }
         if((bPlayerInRange || bBeenShot) && CanSeePlayer())
         {
@@ -84,7 +84,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     bool CanSeePlayer()
     {
-        playerDir = GameManager.instance.player.transform.position - headPosition.position;
+        playerDir = gameManager.instance.player.transform.position - headPosition.position;
         fAngleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
 
         Debug.DrawRay(headPosition.position, playerDir);
@@ -111,7 +111,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void AttackPlayer()
     {
-        navAgent.SetDestination(GameManager.instance.player.transform.position);
+        navAgent.SetDestination(gameManager.instance.player.transform.position);
         if (navAgent.remainingDistance < navAgent.stoppingDistance)
         {
             //Debug.Log("YARGH");
@@ -144,7 +144,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         StartCoroutine(ShowHealth());
         hpBar.value = iHP;
         StartCoroutine(FlashColor());//indicate damage taken
-        navAgent.SetDestination(GameManager.instance.player.transform.position);
+        navAgent.SetDestination(gameManager.instance.player.transform.position);
         StartCoroutine(BeenShot());
 
         if(iHP <= 0) //if it dies, get rid of it
@@ -154,7 +154,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             {
                 Instantiate(drop, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), transform.rotation);
             }
-            GameManager.instance.playerScript.ChargeUt(chargeValue);
+            gameManager.instance.playerScript.ChargeUt(chargeValue);
             --levelManager.enemiesRemaining;
             Destroy(gameObject);
         }

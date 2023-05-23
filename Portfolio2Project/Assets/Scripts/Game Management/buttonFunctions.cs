@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ButtonFunctions : MonoBehaviour
+public class buttonFunctions : MonoBehaviour
 {
     //Resume the game
    public void Resume()
     {
-        GameManager.instance.UnpauseState();
+        gameManager.instance.UnpauseState();
     }
 
     //Restarts the level from the beginning
@@ -22,7 +22,7 @@ public class ButtonFunctions : MonoBehaviour
         Destroy(GameObject.FindGameObjectWithTag("UI"));        
         Debug.Log("Player Character destroyed");
 
-        GameManager.instance.UnpauseState();
+        gameManager.instance.UnpauseState();
         SceneManager.LoadScene("Character Select");
     }
 
@@ -41,7 +41,7 @@ public class ButtonFunctions : MonoBehaviour
 
     public void GoBackMenu()
     {
-        GameManager.instance.GoBack();
+        gameManager.instance.GoBack();
     }
    
     //Go back to Main Menu
@@ -52,7 +52,7 @@ public class ButtonFunctions : MonoBehaviour
         Destroy(GameObject.FindGameObjectWithTag("UI"));
         Debug.Log("Player Character destroyed");
 
-        GameManager.instance.UnpauseState();
+        gameManager.instance.UnpauseState();
         SceneManager.LoadScene("Main Menu");
     }
 }

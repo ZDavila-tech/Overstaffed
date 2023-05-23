@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
         Sprint();
 
-        if (Input.GetButton("Shoot") && !isShooting && !GameManager.instance.isPaused)
+        if (Input.GetButton("Shoot") && !isShooting && !gameManager.instance.isPaused)
         {
             StartCoroutine(Shoot());
         }
@@ -129,11 +129,11 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             iHP -= amount; //-= used, negative amounts heal. 
             if (amount > 0)
             {
-                GameManager.instance.ShowDamage();
+                gameManager.instance.ShowDamage();
                 if (iHP <= 0)
                 {
                     iHP = 0;
-                    GameManager.instance.YouLose();
+                    gameManager.instance.YouLose();
                 }
             }
             else
@@ -185,7 +185,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     public void UpdateHealthBar()
     {
-        GameManager.instance.playerHealthBar.fillAmount = (float)iHP / iHPOriginal;
+        gameManager.instance.playerHealthBar.fillAmount = (float)iHP / iHPOriginal;
     }
 
 
@@ -222,11 +222,11 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         if (utCharge + amount < 100)
         {
             utCharge += amount;
-            GameManager.instance.UpdateUtCharge(utCharge / 100);
+            gameManager.instance.UpdateUtCharge(utCharge / 100);
         }
         else
         {
-            GameManager.instance.UpdateUtCharge(100);
+            gameManager.instance.UpdateUtCharge(100);
         }
     }
 

@@ -8,9 +8,9 @@ using static Skills;
 using TMPro;
 using UnityEngine.UIElements.Experimental;
 
-public class GameManager : MonoBehaviour
+public class gameManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static gameManager instance;
 
     [Header("------ Player Stuff -----")]
 
@@ -222,20 +222,20 @@ public class GameManager : MonoBehaviour
 
         if(!skillScript.isJumpCooldown())
         {
-            GameManager.instance.ability1.gameObject.SetActive(false);
-            GameManager.instance.ability1.fillAmount = 1;
+            gameManager.instance.ability1.gameObject.SetActive(false);
+            gameManager.instance.ability1.fillAmount = 1;
         }
 
         if (!skillScript.isDashCooldown())
         {
-            GameManager.instance.ability2.gameObject.SetActive(false);
-            GameManager.instance.ability2.fillAmount = 1;
+            gameManager.instance.ability2.gameObject.SetActive(false);
+            gameManager.instance.ability2.fillAmount = 1;
         }
 
         if (!skillScript.isBlinkCooldown())
         {
-            GameManager.instance.ability3.gameObject.SetActive(false);
-            GameManager.instance.ability3.fillAmount = 1;
+            gameManager.instance.ability3.gameObject.SetActive(false);
+            gameManager.instance.ability3.fillAmount = 1;
         }
     }
 

@@ -43,9 +43,9 @@ public class LevelManager : MonoBehaviour
     private void Update()
     {
         
-        if(GameManager.instance != null)
+        if(gameManager.instance != null)
         {
-            GameManager.instance.UpdateLevelCount();
+            gameManager.instance.UpdateLevelCount();
         }
 
         if (loadingLevel == false)
@@ -98,7 +98,7 @@ public class LevelManager : MonoBehaviour
         NewLevel();
         ++currentLevel; //ups difficulty
         levelScaler();
-        StartCoroutine(GameManager.instance.FadeOut());
+        StartCoroutine(gameManager.instance.FadeOut());
         //loads a new level != the current level index
     }
 
