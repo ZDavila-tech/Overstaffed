@@ -10,6 +10,11 @@ public class MusicPlayer : MonoBehaviour
     [SerializeField] int currSong;
 
     // Start is called before the first frame update
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     void Start()
     {
         aud.PlayOneShot(bgms[currSong]);
