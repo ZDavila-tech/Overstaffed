@@ -21,7 +21,7 @@ public class InElevator : MonoBehaviour
 
     private void Update()
     {
-        if (levelManager.levelCompleted == true)
+        if (levelManager.levelCompleted == true && levelManager.inElevator == false)
         {
             doorAnim.SetBool("Open", true);
             lightOn.SetActive(true);
@@ -34,10 +34,14 @@ public class InElevator : MonoBehaviour
             lightOn.SetActive(false);
             lightOff.SetActive(true);
         }
-        else
+        else if (levelManager.levelCompleted == true && levelManager.inElevator == true)
         {
 
-            doorAnim.SetBool("Open", true);
+            StartCoroutine(closeDoors());
+        }
+        else
+        {
+            doorAnim.SetBool("Open", false);
         }
     }
 
@@ -45,7 +49,7 @@ public class InElevator : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            doorAnim.SetBool("Open", true);
+            StartCoroutine(openDoors());
             levelManager.inElevator = true;
         }
 
@@ -61,6 +65,18 @@ public class InElevator : MonoBehaviour
             doorAnim.SetBool("Open", false);
             levelManager.inElevator = false;
         }
+    }
+
+    IEnumerator openDoors()
+    {
+        yield return new WaitForSeconds(3);
+        doorAnim.SetBool("Open", true);
+    }
+
+    IEnumerator closeDoors()
+    {
+        yield return new WaitForSeconds(3);
+        doorAnim.SetBool("Open", false);
     }
 
 
