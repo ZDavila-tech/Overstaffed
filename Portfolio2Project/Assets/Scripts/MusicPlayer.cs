@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MusicPlayer : MonoBehaviour
 {
+    public static MusicPlayer instance;
     [SerializeField] AudioSource aud;
     [SerializeField] List<AudioClip> bgms;
     [SerializeField] float volume;
@@ -12,17 +13,31 @@ public class MusicPlayer : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
+        instance = this;
         DontDestroyOnLoad(this.gameObject);
     }
 
     void Start()
     {
-        aud.PlayOneShot(bgms[currSong]);
+       PlaySong();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+
+    void PlaySong()
+    {
+        aud.Stop();
+        aud.clip = bgms[currSong];
+        aud.Play();
+        aud.loop = true;
+    }
+    public void ChangeSong()
+    {
+        currSong++;
+        PlaySong();
     }
 }
