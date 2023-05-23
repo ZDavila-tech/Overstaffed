@@ -5,8 +5,7 @@ using UnityEngine;
 public class InElevator : MonoBehaviour
 {
     [Header("----- Elecvator Doors -----")]
-    [SerializeField] GameObject door1;
-    [SerializeField] GameObject door2;
+    [SerializeField] Animator doorAnim;
 
     [Header("----- Elecvator Light -----")]
     [SerializeField] GameObject lightOn;
@@ -24,15 +23,13 @@ public class InElevator : MonoBehaviour
     {
         if (levelManager.levelCompleted == true)
         {
-            door1.SetActive(false);
-            door2.SetActive(false);
+            doorAnim.SetBool("Open", true);
             lightOn.SetActive(true);
             lightOff.SetActive(false);
         }
         else
         {
-            door1.SetActive(true);
-            door2.SetActive(true);
+            doorAnim.SetBool("Open", false);
             lightOn.SetActive(false);
             lightOff.SetActive(true);
         }        
