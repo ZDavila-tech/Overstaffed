@@ -15,8 +15,10 @@ public class Skills : MonoBehaviour
     [Header("----- Audio -----")]
     [SerializeField] AudioClip hiJumpAudio;
     [SerializeField] AudioClip blinkAudio;
+    [SerializeField] AudioClip dashAudio;
     [SerializeField] float hiJumpVolume;
     [SerializeField] float blinkVolume;
+    [SerializeField] float dashVolume;
     public enum skill
     {
         Dash, HiJump, SlowFall, Blink, Invisibility
@@ -69,6 +71,7 @@ public class Skills : MonoBehaviour
     IEnumerator dashCoroutine()
     {
         var startTime = Time.time;
+        gameManager.instance.playerScript.PlayExternalAudio(dashAudio, dashVolume);
         while (Time.time < startTime + DashTime)
         {
             controller.Move(transform.forward * DashSpeed * Time.deltaTime);
