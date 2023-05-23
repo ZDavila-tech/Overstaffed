@@ -38,6 +38,10 @@ public class MusicPlayer : MonoBehaviour
     public void ChangeSong()
     {
         currSong++;
+        if (currSong >= bgms.Count)
+        {
+            currSong = 0;
+        }
         PlaySong();
     }
     public void UpdateBGVolume()
