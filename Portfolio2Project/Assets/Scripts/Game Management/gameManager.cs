@@ -197,30 +197,45 @@ public class GameManager : MonoBehaviour
     //cooldownImage
     public void AbilityCoolDown()
     {
+        if(skillScript.isJumpCooldown())
+        {
+            ability1.gameObject.SetActive(true);
+
+            waitTime = skillScript.getCooldown(skill.HiJump);
+            ability1.fillAmount -= 1.0f / waitTime * Time.deltaTime;            
+        }           
         if(skillScript.isDashCooldown())
         {
             ability2.gameObject.SetActive(true);
+
             waitTime = skillScript.getCooldown(skill.Dash);
             ability2.fillAmount -= 1.0f / waitTime * Time.deltaTime;
         }
-           
-        else if(skillScript.isJumpCooldown())
-        {
-            ability1.gameObject.SetActive(true);
-            waitTime = skillScript.getCooldown(skill.HiJump);
-            ability1.fillAmount -= 1.0f / waitTime * Time.deltaTime;
-        }
-        else if(skillScript.isBlinkCooldown())
+
+        if(skillScript.isBlinkCooldown())
         {
             ability3.gameObject.SetActive(true);
+
             waitTime = skillScript.getCooldown(skill.Blink);
             ability3.fillAmount -= 1.0f / waitTime * Time.deltaTime;
         }
-        else
+
+        if(!skillScript.isJumpCooldown())
         {
-            ability1.gameObject.SetActive(false);
-            ability2.gameObject.SetActive(false);
-            ability3.gameObject.SetActive(false);
+            GameManager.instance.ability1.gameObject.SetActive(false);
+            GameManager.instance.ability1.fillAmount = 1;
+        }
+
+        if (!skillScript.isDashCooldown())
+        {
+            GameManager.instance.ability2.gameObject.SetActive(false);
+            GameManager.instance.ability2.fillAmount = 1;
+        }
+
+        if (!skillScript.isBlinkCooldown())
+        {
+            GameManager.instance.ability3.gameObject.SetActive(false);
+            GameManager.instance.ability3.fillAmount = 1;
         }
     }
 

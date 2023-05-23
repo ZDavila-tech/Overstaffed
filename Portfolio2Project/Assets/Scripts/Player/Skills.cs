@@ -58,8 +58,6 @@ public class Skills : MonoBehaviour
             StartCoroutine(dashCoroutine());
             StartCoroutine(dashCooldownCoroutine());
         }
-
-
     }
 
     IEnumerator dashCoroutine()
@@ -102,12 +100,10 @@ public class Skills : MonoBehaviour
             StartCoroutine(hiJumpCoroutine());
             StartCoroutine(hiJumpCooldownCoroutine());
         }
-
     }
 
     IEnumerator hiJumpCoroutine()
     {
-
         var startTime = Time.time;
         while (Time.time < startTime + JumpTime)
         {
@@ -116,7 +112,6 @@ public class Skills : MonoBehaviour
         }
         CanMove = true;
         StopCoroutine(hiJumpCoroutine());
-
     }
 
     IEnumerator hiJumpCooldownCoroutine()
@@ -163,7 +158,6 @@ public class Skills : MonoBehaviour
         }
         playerController.ChangeGravity(gravityOrig);
         StopCoroutine(slowFallCoroutine());
-
     }
 
     IEnumerator slowFallCooldownCoroutine()
@@ -185,7 +179,6 @@ public class Skills : MonoBehaviour
 
     IEnumerator blinkAimCoroutine()
     {
-
         while (aiming)
         {
             RaycastHit hit;
@@ -213,7 +206,6 @@ public class Skills : MonoBehaviour
 
             yield return null;
         }
-
     }
     public bool isBlinkCooldown()
     {
@@ -244,7 +236,6 @@ public class Skills : MonoBehaviour
             Destroy(blinkAimIndicator.gameObject);
         }
         controller.enabled = true;
-
     }
 
 
@@ -333,9 +324,5 @@ public class Skills : MonoBehaviour
                 }
         }
         return null;
-
-
     }
-
-
 }
