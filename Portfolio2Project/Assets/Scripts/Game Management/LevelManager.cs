@@ -33,6 +33,11 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         NewGame();
+
+        if (inElevator == true)
+        {
+            inElevator = false; //FOR THE LOVE OF GOD HAVE THIS BEFORE GO TO NEXT LEVEL OR EVERYTHING BREAKS #2
+        }
     }
 
     private void Update()
@@ -48,10 +53,6 @@ public class LevelManager : MonoBehaviour
             LevelCompletionTracker();
         }
 
-        if(inElevator == true)
-        {
-            inElevator = false; //FOR THE LOVE OF GOD HAVE THIS BEFORE GO TO NEXT LEVEL OR EVERYTHING BREAKS #2
-        }
     }
 
     public void NewGame()
