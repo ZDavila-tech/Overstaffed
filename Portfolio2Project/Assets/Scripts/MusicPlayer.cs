@@ -30,6 +30,7 @@ public class MusicPlayer : MonoBehaviour
 
     void PlaySong()
     {
+        aud.Stop();
         aud.clip = bgms[currSong];
         aud.Play();
         aud.loop = true;
@@ -37,7 +38,6 @@ public class MusicPlayer : MonoBehaviour
     public void ChangeSong()
     {
         currSong++;
-        aud.Stop();
         PlaySong();
     }
 }

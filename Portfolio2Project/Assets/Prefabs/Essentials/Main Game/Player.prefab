@@ -254,9 +254,9 @@ MonoBehaviour:
   - {fileID: 5957258368493389606}
   explosion: {fileID: 1257362083338437993, guid: ef0b8c53edf454e4ea67b4a2cab879e0, type: 3}
   explosionEffect: {fileID: -4890253464117155711, guid: a905d8e5159ffeb46baa8d2a7624717f, type: 3}
-  wSpecialRange: {fileID: 0}
-  slowDuration: 0
-  playerElement: 0
+  wSpecialRange: 10
+  slowDuration: 5
+  playerElement: 1
   isShooting: 0
   canMelee: 1
   weapon: {fileID: 4055193228901778526}
@@ -731,7 +731,7 @@ MonoBehaviour:
   sprintMod: 1.5
   damagecoolDown: 0.1
   pushBackResolve: 2
-  playerElement: 0
+  playerElement: 1
   playerWeapon: {fileID: 0}
   ShootRange: 355
   ShotCooldown: 0.1
