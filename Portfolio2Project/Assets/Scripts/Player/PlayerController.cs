@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     [Header("----- Audio -----")]
     [SerializeField] AudioSource aud;
     [SerializeField] float AttackVolume;
+    [SerializeField] float JumpVolume;
+    [SerializeField] AudioClip jumpAudio;
     bool ShootSoundInPlay; //checks for the audio cooldown between shots
 
     private void Awake()
@@ -98,6 +100,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         {
             jumpsUsed++;
             playerVelocity.y = jumpHeight;
+            aud.PlayOneShot(jumpAudio, JumpVolume);
         }
 
         playerVelocity.y -= gravityValue * Time.deltaTime;
@@ -203,6 +206,11 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     public void PlayExternalAudio(AudioClip clip)
     {
         aud.PlayOneShot(clip, AttackVolume);
+    }
+
+    public void PlayExternalAudio(AudioClip clip, float volume)
+    {
+        aud.PlayOneShot(clip, volume);
     }
 
     IEnumerator PlayShootSound()

@@ -11,6 +11,14 @@ public class Skills : MonoBehaviour
     [SerializeField] CharacterController controller;
     [SerializeField] PlayerController playerController;
     [SerializeField] Transform blinkAimIndicatorPrefab;
+
+    [Header("----- Audio -----")]
+    [SerializeField] AudioClip hiJumpAudio;
+    [SerializeField] AudioClip blinkAudio;
+    [SerializeField] AudioClip dashAudio;
+    [SerializeField] float hiJumpVolume;
+    [SerializeField] float blinkVolume;
+    [SerializeField] float dashVolume;
     public enum skill
     {
         Dash, HiJump, SlowFall, Blink, Invisibility
@@ -63,6 +71,7 @@ public class Skills : MonoBehaviour
     IEnumerator dashCoroutine()
     {
         var startTime = Time.time;
+        gameManager.instance.playerScript.PlayExternalAudio(dashAudio, dashVolume);
         while (Time.time < startTime + DashTime)
         {
             controller.Move(transform.forward * DashSpeed * Time.deltaTime);
@@ -105,6 +114,7 @@ public class Skills : MonoBehaviour
     IEnumerator hiJumpCoroutine()
     {
         var startTime = Time.time;
+        gameManager.instance.playerScript.PlayExternalAudio(hiJumpAudio, hiJumpVolume);
         while (Time.time < startTime + JumpTime)
         {
             controller.Move(transform.up * JumpForce * Time.deltaTime);
@@ -235,7 +245,7 @@ public class Skills : MonoBehaviour
         if (blinkAimIndicator)
         {
             transform.position = new Vector3(blinkAimIndicator.position.x, blinkAimIndicator.position.y, blinkAimIndicator.position.z);
-
+            gameManager.instance.playerScript.PlayExternalAudio(blinkAudio, blinkVolume);
             Destroy(blinkAimIndicator.gameObject,1.5f);
         }
         controller.enabled = true;
