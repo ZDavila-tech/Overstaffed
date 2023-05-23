@@ -236,8 +236,8 @@ public class NewStaff : MonoBehaviour
             {
                 return;
             }
-            if(!player.canUt())
-            { return; }
+            //if(!player.canUt())
+            //{ return; }
 
             switch (playerElement)
                 {
