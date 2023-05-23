@@ -340,8 +340,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rModel: {fileID: 4728235726989330134}
   navAgent: {fileID: 4728235726989330129}
-  tShootPos: {fileID: 6169411614852804308}
-  tHeadPos: {fileID: 6365879257754246016}
+  shootPosition: {fileID: 6169411614852804308}
+  headPosition: {fileID: 6365879257754246016}
   drop: {fileID: 4658357512159410959, guid: 59364d3133cbbe541bde47c1ee4298d3, type: 3}
   anim: {fileID: 2331917227492202658}
   iHP: 8
@@ -353,10 +353,10 @@ MonoBehaviour:
   DropRate: 15
   animTransSpeed: 0
   chargeValue: 10
-  gOBullet: {fileID: 8060328068600632496, guid: 21d34616d4bd55d46ad893c2322ce70a, type: 3}
-  iShootDistance: 100
-  fShootRate: 1
-  fShootAngle: 15
+  bullet: {fileID: 8060328068600632496, guid: 21d34616d4bd55d46ad893c2322ce70a, type: 3}
+  shootDistance: 15
+  shootRate: 1.25
+  shootAngle: 15
 --- !u!23 &4728235726989330134
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -508,7 +508,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6169411614852804308}
   m_Layer: 6
-  m_Name: shootPos
+  m_Name: shootPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -522,7 +522,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6169411614852804311}
   m_LocalRotation: {x: 0.7071069, y: -0, z: -0, w: 0.70710677}
-  m_LocalPosition: {x: -43.222565, y: -27.6687, z: -27.118446}
+  m_LocalPosition: {x: 0, y: -114.7, z: 0}
   m_LocalScale: {x: 100, y: 99.99998, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -95,23 +95,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rModel: {fileID: 1570852443671573165}
   navAgent: {fileID: 1570852443671573162}
-  tShootPos: {fileID: 129759429043411631}
-  tHeadPos: {fileID: 4764777375536020008}
-  drop: {fileID: 0}
+  shootPosition: {fileID: 129759429043411631}
+  headPosition: {fileID: 4764777375536020008}
+  drop: {fileID: 4658357512159410959, guid: 59364d3133cbbe541bde47c1ee4298d3, type: 3}
   anim: {fileID: -2653307999361650468}
-  iHP: 1
+  iHP: 3
   hpBar: {fileID: 7051353985056933245}
   hpDisplay: {fileID: 4964723009901755965}
   fTurnRate: 5
   fFieldOfView: 90
   fChaseTime: 3
-  DropRate: 0
+  DropRate: 5
   animTransSpeed: 0
   chargeValue: 5
-  gOBullet: {fileID: 8060328068600632496, guid: 21d34616d4bd55d46ad893c2322ce70a, type: 3}
-  iShootDistance: 10
-  fShootRate: 0.5
-  fShootAngle: 15
+  bullet: {fileID: 8060328068600632496, guid: 21d34616d4bd55d46ad893c2322ce70a, type: 3}
+  shootDistance: 5
+  shootRate: 2
+  shootAngle: 15
 --- !u!23 &1570852443671573165
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -182,7 +182,7 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 10
+  m_StoppingDistance: 5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
