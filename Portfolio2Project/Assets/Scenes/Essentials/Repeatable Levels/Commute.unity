@@ -175,7 +175,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1193010039562727632, guid: 28677263ada76d94e8466a89232e9898, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1193010039562727632, guid: 28677263ada76d94e8466a89232e9898, type: 3}
       propertyPath: m_LocalPosition.z
@@ -714,6 +714,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 2014218648}
     m_Modifications:
     - target: {fileID: 7621499029528465607, guid: 4364f8b174aa2d24b945e376b47980b5, type: 3}
+      propertyPath: spawnsOnLevelLoad
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7621499029528465607, guid: 4364f8b174aa2d24b945e376b47980b5, type: 3}
       propertyPath: spawnPositions.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -960,7 +964,7 @@ MonoBehaviour:
   - {fileID: 1279392105}
   baseNumberToSpawn: 3
   timeBetweenSpawns: 1
-  spawnsOnLevelLoad: 0
+  spawnsOnLevelLoad: 1
   playerDetected: 0
 --- !u!4 &8362239978703941127
 Transform:

@@ -43,7 +43,7 @@ public class enemySpawn : MonoBehaviour
     IEnumerator attemptspawn()
     {
         yield return new WaitForSeconds(spawnDelay);
-        if (LevelManager.instance.totalEnemies > LevelManager.instance.enemiesRemaining)
+        if (LevelManager.instance.totalEnemies > LevelManager.instance.enemiesRemaining && LevelManager.instance.enemiesSpawned < LevelManager.instance.totalEnemies)
         {
             spawn();
         }
@@ -54,7 +54,8 @@ public class enemySpawn : MonoBehaviour
         Transform tospawn = weightedenemyselection();
         Transform spawned = Instantiate(tospawn, transform.position + spawncoords(), transform.rotation);
         spawned.gameObject.GetComponent<EnemyAI>().spawnedBySpawner = true;
-        //LevelManager.instance.enemiesRemaining++;
+        LevelManager.instance.enemiesRemaining++;
+        LevelManager.instance.enemiesSpawned++;
     }
 
     Vector3 spawncoords()
