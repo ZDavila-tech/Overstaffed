@@ -65,7 +65,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
     void Update()
     {
-        StartCoroutine(SlowEnemy());
+        //StartCoroutine(SlowEnemy());
         if (anim != null)
         {
             float speed = 0;
@@ -84,20 +84,20 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
             AttackPlayer();
         }
     }
-    IEnumerator SlowEnemy()
-    {
-        if (isSlowed)
-        {
-            WaterSpecial wspec;
-            wspec = new WaterSpecial();
-            NewStaff st;
-            st = new NewStaff();
+    //IEnumerator SlowEnemy()
+    //{
+    //    if (isSlowed)
+    //    {
+    //        WaterSpecial wspec;
+    //        wspec = new WaterSpecial();
+    //        NewStaff st;
+    //        st = new NewStaff();
 
-            navAgent.speed /= wspec.slowRate;
-            yield return new WaitForSeconds(st.slowDuration);
-            navAgent.speed *= wspec.slowRate;
-        }
-    }
+    //        navAgent.speed /= wspec.slowRate;
+    //        yield return new WaitForSeconds(st.slowDuration);
+    //        navAgent.speed *= wspec.slowRate;
+    //    }
+    //}
 
     bool CanSeePlayer()
     {
@@ -221,8 +221,8 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         }
     }
 
-    void IPhysics.Knockback(Vector3 dir)
+    public void Knockback(Vector3 dir)
     {
-        
+        navAgent.velocity += dir;
     }
 }

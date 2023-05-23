@@ -41,7 +41,6 @@ public class NewStaff : MonoBehaviour
     [SerializeField] float eSpecialRange;
     [SerializeField] public int eSpecialDamage;
 
-
     private bool canSpecial;
 
     public enum Element
@@ -235,16 +234,32 @@ public class NewStaff : MonoBehaviour
         return audios[(int)playerElement];
     }
 
+    
 
-    void WaterAOE()
+    IEnumerator WaterAOE()
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach(GameObject enemy in enemies)
         {
             if (wSpecialRange >= Vector3.Distance(transform.position, enemy.transform.position))
             {
-                
                 enemy.GetComponent<NavMeshAgent>().speed /= 2;
+                if (enemy.GetComponent<IDamage>() != null)
+                {
+                    int timesDamaged = 0;
+                    while (true)
+                    {
+                        enemy.GetComponent<EnemyAI>().TakeDamage(1);
+                        timesDamaged++;
+                        yield return new WaitForSeconds(1);
+                        if (timesDamaged == slowDuration)
+                        {
+                            break;
+                        }
+                    }
+                }
+                //yield return new WaitForSeconds(slowDuration);
+                enemy.GetComponent<NavMeshAgent>().speed *= 2;
             }
         }
     }
@@ -294,7 +309,7 @@ public class NewStaff : MonoBehaviour
                     break;
                     case Element.Water:
 
-                    WaterAOE();
+                    StartCoroutine(WaterAOE());
 
                         break;
                     case Element.Earth:
