@@ -228,6 +228,13 @@ public class NewStaff : MonoBehaviour
         return audios[(int)playerElement];
     }
 
+    IEnumerator WaterSpecial()
+    {
+        wSpecialRange.GetComponent<SphereCollider>().enabled = true;
+        yield return new WaitForSeconds(slowDuration);
+        wSpecialRange.GetComponent<SphereCollider>().enabled = false;
+    }
+
     public void SpecialAttack()
     {
         if (Input.GetButtonUp("Special"))   //When the button is held and then released
@@ -266,11 +273,8 @@ public class NewStaff : MonoBehaviour
                     case Element.Water:
 
                     isShooting = true;
-                    Debug.Log("Water Special");
 
-                    wSpecialRange.GetComponent<SphereCollider>().enabled = true;
-                    StartCoroutine(Wait(slowDuration));
-                    wSpecialRange.GetComponent<SphereCollider>().enabled = false;
+                    StartCoroutine(WaterSpecial());
 
                     ResetShooting();
 

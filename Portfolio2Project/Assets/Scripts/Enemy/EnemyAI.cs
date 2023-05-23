@@ -36,6 +36,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     bool bIsShooting;
     bool bPlayerInRange;
     bool bBeenShot;
+    public bool isSlowed;
 
     Vector3 playerDir;
     float fAngleToPlayer;
@@ -45,6 +46,7 @@ public class EnemyAI : MonoBehaviour, IDamage
     
     void Start()
     {
+        isSlowed = false;
         if(LevelManager.instance != null)
         {
         levelManager = LevelManager.instance;
@@ -71,6 +73,10 @@ public class EnemyAI : MonoBehaviour, IDamage
             anim.SetFloat("Speed", speed);
         }
 
+        if (isSlowed)
+        {
+            navAgent.speed /= 2;
+        }
 
         if (hpDisplay.activeSelf)
         {
