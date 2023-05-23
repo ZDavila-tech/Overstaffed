@@ -22,7 +22,9 @@ public class NewStaff : MonoBehaviour
 
     [Header("----- Melee Stuff -----")]
     [SerializeField] private float meleeCooldown;
-    [SerializeField] Collider hitbox;
+    [SerializeField] Collider swordHitbox;
+    [SerializeField] Collider spearHitbox;
+    [SerializeField] Collider hammerHitbox;
     [SerializeField] GameObject[] weaponModels;
     //[SerializeField] Texture fireStaff;
     //[SerializeField] Texture waterStaff;
@@ -65,7 +67,9 @@ public class NewStaff : MonoBehaviour
 
     private void Awake()
     {
-        hitbox.enabled = false;
+        hammerHitbox.enabled = false;
+        spearHitbox.enabled = false;
+        swordHitbox.enabled = false;
         canSpecial = true;
     }
     private void Start()
@@ -175,24 +179,27 @@ public class NewStaff : MonoBehaviour
         {
             canMelee = false;
             isAttacking = true;
-            hitbox.enabled = true;
+
             Animator anim = weapon.GetComponent<Animator>();
             //weaponModels[0].SetActive(false);
             switch (playerElement)
             {
                 case Element.Fire:
                     Debug.Log("Melee Fire");
+                    swordHitbox.enabled = true;
                     weaponModels[1].SetActive(true);
                     gameManager.instance.playerScript.PlayExternalAudio(audios[3]);
                     anim.SetTrigger("SwordMelee");
                     break;
                 case Element.Water:
                     weaponModels[2].SetActive(true);
+                    spearHitbox.enabled = true;
                     gameManager.instance.playerScript.PlayExternalAudio(audios[4]);
                     anim.SetTrigger("SpearMelee");
                     break;
                 case Element.Earth:
                     weaponModels[3].SetActive(true);
+                    hammerHitbox.enabled = true;
                     gameManager.instance.playerScript.PlayExternalAudio(audios[5]);
                     anim.SetTrigger("HammerMelee");
                     break;
@@ -206,7 +213,9 @@ public class NewStaff : MonoBehaviour
         yield return new WaitForSeconds(meleeCooldown);
         canMelee = true;
         isAttacking = false;
-        hitbox.enabled = false;
+        hammerHitbox.enabled = false;
+        spearHitbox.enabled = false;
+        swordHitbox.enabled = false;
     }
 
     IEnumerator ResetShooting()
