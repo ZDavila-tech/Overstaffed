@@ -27,17 +27,41 @@ public class InElevator : MonoBehaviour
             lightOn.SetActive(true);
             lightOff.SetActive(false);
         }
-        else
+        else if (levelManager.levelCompleted == false && levelManager.inElevator == false)
         {
+
             doorAnim.SetBool("Open", false);
             lightOn.SetActive(false);
             lightOff.SetActive(true);
-        }        
+        }
+        else
+        {
+
+            doorAnim.SetBool("Open", true);
+        }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        levelManager.inElevator = true;
-       
+        if (other.CompareTag("Player"))
+        {
+            doorAnim.SetBool("Open", true);
+            levelManager.inElevator = true;
+        }
+
+
+
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("NOT IN ELEVATOR");
+            doorAnim.SetBool("Open", false);
+            levelManager.inElevator = false;
+        }
+    }
+
+
 }

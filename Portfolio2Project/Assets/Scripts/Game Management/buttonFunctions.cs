@@ -44,9 +44,15 @@ public class ButtonFunctions : MonoBehaviour
         GameManager.instance.GoBack();
     }
    
-    //Go to next level; doesn't work until next level is made
-    public void NextLevel()
+    //Go back to Main Menu
+    public void BacktoMainMenu()
     {
+        Destroy(GameObject.FindGameObjectWithTag("Player"));
+        Destroy(GameObject.FindGameObjectWithTag("LevelManager"));
+        Destroy(GameObject.FindGameObjectWithTag("UI"));
+        Debug.Log("Player Character destroyed");
 
+        GameManager.instance.UnpauseState();
+        SceneManager.LoadScene("Main Menu");
     }
 }
