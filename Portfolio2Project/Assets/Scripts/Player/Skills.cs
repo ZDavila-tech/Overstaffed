@@ -195,7 +195,7 @@ public class Skills : MonoBehaviour
             {
                 if (blinkAimIndicator)
                 {
-                    Destroy(blinkAimIndicator.gameObject);
+                    Destroy(blinkAimIndicator.gameObject,1.5f);
                 }
 
             }
@@ -236,7 +236,7 @@ public class Skills : MonoBehaviour
         {
             transform.position = new Vector3(blinkAimIndicator.position.x, blinkAimIndicator.position.y, blinkAimIndicator.position.z);
 
-            Destroy(blinkAimIndicator.gameObject);
+            Destroy(blinkAimIndicator.gameObject,1.5f);
         }
         controller.enabled = true;
     }
