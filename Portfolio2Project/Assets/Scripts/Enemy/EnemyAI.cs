@@ -66,6 +66,7 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     void Update()
     {
+        StartCoroutine(SlowEnemy());
         if (anim != null)
         {
             float speed = 0;
@@ -73,10 +74,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             anim.SetFloat("Speed", speed);
         }
 
-        if (isSlowed)
-        {
-            navAgent.speed /= 2;
-        }
+        
 
         if (hpDisplay.activeSelf)
         {
@@ -85,6 +83,20 @@ public class EnemyAI : MonoBehaviour, IDamage
         if((bPlayerInRange || bBeenShot) && CanSeePlayer())
         {
             AttackPlayer();
+        }
+    }
+    IEnumerator SlowEnemy()
+    {
+        if (isSlowed)
+        {
+            WaterSpecial wspec;
+            wspec = new WaterSpecial();
+            NewStaff st;
+            st = new NewStaff();
+
+            navAgent.speed /= wspec.slowRate;
+            yield return new WaitForSeconds(st.slowDuration);
+            navAgent.speed *= wspec.slowRate;
         }
     }
 
