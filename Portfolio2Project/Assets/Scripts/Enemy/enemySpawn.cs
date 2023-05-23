@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemySpawn : MonoBehaviour
+public class enemySpawn : MonoBehaviour
 {
     [Header("-----dimensions-----")]
     [SerializeField] float spawnAreaX;
