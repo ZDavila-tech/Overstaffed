@@ -170,10 +170,10 @@ public class Skills : MonoBehaviour
     {
         if (canBlink)
         {
-            canBlink = false;
+            //canBlink = false;
             aiming = true;
             StartCoroutine(blinkAimCoroutine());
-            StartCoroutine(blinkCooldownCoroutine());
+            //StartCoroutine(blinkCooldownCoroutine());
         }
     }
 
@@ -199,10 +199,12 @@ public class Skills : MonoBehaviour
                 }
 
             }
-                if (Input.GetAxis("Movement3") == 0)
-                {
-                    blinkFire();
-                }
+
+            if (Input.GetAxis("Movement3") == 0)
+            {
+                blinkFire();
+            StartCoroutine(blinkCooldownCoroutine());
+            }
 
             yield return null;
         }
@@ -220,6 +222,7 @@ public class Skills : MonoBehaviour
     }
     IEnumerator blinkCooldownCoroutine()
     {
+        canBlink = false;
         yield return new WaitForSeconds(BlinkCooldown);
         canBlink = true;
     }
