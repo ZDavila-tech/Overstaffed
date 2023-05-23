@@ -241,6 +241,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator FadeOut() //Goes to black
     {
+        yield return new WaitForSeconds(1.0f);
         Debug.Log("Fade out screen ");
         for (float i = 0; i <= fadeSpeed; i += Time.deltaTime)
         {
