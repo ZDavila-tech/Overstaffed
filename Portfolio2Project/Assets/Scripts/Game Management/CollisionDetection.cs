@@ -21,17 +21,18 @@ public class CollisionDetection : MonoBehaviour
         //        DamageCooldown();
         //    }
         //}
-
-        if (other.tag == "Enemy")
-        {
+        //if (other.tag == "Enemy")
+        //{
             Debug.Log("Enemy Hit");
-            IDamage damageable = other.GetComponent<IDamage>();
+            IDamage damageable = other.GetComponentInParent<IDamage>();
+
             if (damageable != null)
             {
+ 
                 damageable.TakeDamage(hitDmg);
                 DamageCooldown();
             }
-        }
+        //}
     }
 
     IEnumerator DamageCooldown()

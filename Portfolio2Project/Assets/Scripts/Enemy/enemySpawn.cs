@@ -13,7 +13,9 @@ public class enemySpawn : MonoBehaviour
     [SerializeField] private Transform[] enemies;
     [Range(0, 100)][SerializeField] private int[] weights;
     int totalweight;
+    int currentEnemies;
 
+    LevelManager levelManager;
 
     int arraylen;
     // start is called before the first frame update
@@ -22,6 +24,11 @@ public class enemySpawn : MonoBehaviour
         initializelength();
         sortarrays();
         totalweight = initializeEnemyWeight();
+        if(LevelManager.instance != null)
+        {
+            levelManager = LevelManager.instance;
+            levelManager.enemiesRemaining = levelManager.totalEnemiesToSpawn;
+        }
     }
 
     int initializeEnemyWeight()
@@ -37,13 +44,15 @@ public class enemySpawn : MonoBehaviour
     // update is called once per frame
     void Update()
     {
+        currentEnemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        levelManager.currentEnemies = currentEnemies;
         StartCoroutine(attemptspawn());
     }
 
     IEnumerator attemptspawn()
     {
         yield return new WaitForSeconds(spawnDelay);
-        if (LevelManager.instance.totalEnemies > LevelManager.instance.enemiesRemaining && LevelManager.instance.enemiesSpawned < LevelManager.instance.totalEnemies)
+        if (levelManager.totalEnemiesToSpawn > levelManager.enemiesSpawned && currentEnemies < levelManager.maxEnemiesAtOneTime)
         {
             spawn();
         }
@@ -54,7 +63,6 @@ public class enemySpawn : MonoBehaviour
         Transform tospawn = weightedenemyselection();
         Transform spawned = Instantiate(tospawn, transform.position + spawncoords(), transform.rotation);
         spawned.gameObject.GetComponent<EnemyAI>().spawnedBySpawner = true;
-        LevelManager.instance.enemiesRemaining++;
         LevelManager.instance.enemiesSpawned++;
     }
 
