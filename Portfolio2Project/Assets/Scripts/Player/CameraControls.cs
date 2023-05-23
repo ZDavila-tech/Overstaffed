@@ -10,7 +10,6 @@ public class CameraControls : MonoBehaviour
     [SerializeField] int lockVerMin;
     [SerializeField] int lockVerMax;
 
-    [SerializeField] bool invertY;
 
     float xRotation;
 
@@ -29,7 +28,7 @@ public class CameraControls : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * sensHor;
 
         //Convert input to rotation float and give the option for inverted controls
-        if (invertY)
+        if (gameManager.instance.invert.isOn)
         {
             xRotation += mouseY;
         }
@@ -37,8 +36,7 @@ public class CameraControls : MonoBehaviour
         {
             xRotation -= mouseY;
         }
-
-
+       
 
         //Clamp Camera rotation
         xRotation = Mathf.Clamp(xRotation, lockVerMin, lockVerMax);

@@ -39,9 +39,8 @@ public class gameManager : MonoBehaviour
     public bool fading;
 
     [Header("-----Misc Stuff-----")]
-
+    public Toggle invert;
     LevelManager levelManager;
-
 
     public Image ability1; //Hi-Jump
     public Image ability2; //Dash
