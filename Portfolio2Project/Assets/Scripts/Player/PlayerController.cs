@@ -219,10 +219,14 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     public void ChargeUt(float amount)
     {
-        if (utCharge + amount <= 100)
+        if (utCharge + amount < 100)
         {
             utCharge += amount;
             GameManager.instance.UpdateUtCharge(utCharge / 100);
+        }
+        else
+        {
+            GameManager.instance.UpdateUtCharge(100);
         }
     }
 
