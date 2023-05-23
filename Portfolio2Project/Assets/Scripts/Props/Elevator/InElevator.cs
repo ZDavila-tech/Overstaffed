@@ -70,6 +70,7 @@ public class InElevator : MonoBehaviour
         {
             Debug.Log("DING");
             aud.Play();
+            hasDinged= true;
         }
     }
 
