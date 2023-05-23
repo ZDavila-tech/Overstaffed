@@ -24,6 +24,7 @@ public class EnemySpawner : MonoBehaviour
     {
         levelManager = LevelManager.instance;
         totalToSpawn = levelManager.currentLevel + baseNumberToSpawn - 1;
+        levelManager.enemiesRemaining += totalToSpawn;
         currentNumberSpawned = 0;
     }
     void Update()
