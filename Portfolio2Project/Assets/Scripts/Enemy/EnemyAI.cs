@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class EnemyAI : MonoBehaviour, IDamage
+public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 {
     LevelManager levelManager;
 
@@ -49,8 +49,7 @@ public class EnemyAI : MonoBehaviour, IDamage
         isSlowed = false;
         if(LevelManager.instance != null)
         {
-        levelManager = LevelManager.instance;
-        ++levelManager.enemiesRemaining;
+            levelManager = LevelManager.instance;
         }
 
         cOrigColor = rModel.material.color;
@@ -220,5 +219,10 @@ public class EnemyAI : MonoBehaviour, IDamage
         {
             bPlayerInRange = false;
         }
+    }
+
+    void IPhysics.Knockback(Vector3 dir)
+    {
+        
     }
 }
