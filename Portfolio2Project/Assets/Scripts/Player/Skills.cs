@@ -203,7 +203,7 @@ public class Skills : MonoBehaviour
             if (Input.GetAxis("Movement3") == 0)
             {
                 blinkFire();
-            StartCoroutine(blinkCooldownCoroutine());
+                StartCoroutine(blinkCooldownCoroutine());
             }
 
             yield return null;
