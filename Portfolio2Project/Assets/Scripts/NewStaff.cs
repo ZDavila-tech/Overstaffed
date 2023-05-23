@@ -35,14 +35,15 @@ public class NewStaff : MonoBehaviour
     [Header("----- Water Special Attack Stuff -----")]
     [SerializeField] float wSpecialRange;
     [SerializeField] public float slowDuration;
+    [SerializeField] GameObject waterEffect;
     GameObject[] enemies;
 
     [Header("----- Earth Special Attack Stuff -----")]
     [SerializeField] float eSpecialRange;
     [SerializeField] public int eSpecialDamage;
 
+    
     private bool canSpecial;
-
     public enum Element
     {
         Fire,
@@ -70,7 +71,7 @@ public class NewStaff : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        //wSpecialRange.GetComponent<SphereCollider>().enabled = false;
+        
 
         //switch (playerElement)
         //{
@@ -95,6 +96,11 @@ public class NewStaff : MonoBehaviour
         }
         Melee();
         SpecialAttack();
+        //if(waterEffect != null)
+        //{
+        //    waterEffect.transform.position = player.transform.position;
+        //}
+        
     }
 
     public void Shoot()
@@ -243,12 +249,14 @@ public class NewStaff : MonoBehaviour
         {
             if (wSpecialRange >= Vector3.Distance(transform.position, enemy.transform.position))
             {
+                Instantiate(waterEffect, player.transform.position, Quaternion.identity);
                 enemy.GetComponent<NavMeshAgent>().speed /= 2;
                 if (enemy.GetComponent<IDamage>() != null)
                 {
                     int timesDamaged = 0;
                     while (true)
                     {
+                        //waterEffect.enableEmission = false;
                         enemy.GetComponent<EnemyAI>().TakeDamage(1);
                         timesDamaged++;
                         yield return new WaitForSeconds(1);
