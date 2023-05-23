@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -64,7 +65,8 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnEnemy(Transform locationToSpawn)
     {
-        Instantiate(enemyToSpawn, locationToSpawn.position, locationToSpawn.rotation);
+        Vector3 randomPosition = new Vector3(locationToSpawn.position.x + (Random.Range(0, 250) * 0.01f), locationToSpawn.position.y, locationToSpawn.position.z + (Random.Range(0, 250) * 0.01f));
+        Instantiate(enemyToSpawn, randomPosition, locationToSpawn.rotation);
         ++currentNumberSpawned;
     }
 

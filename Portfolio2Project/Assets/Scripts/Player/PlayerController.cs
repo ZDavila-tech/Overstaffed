@@ -212,7 +212,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             aud.PlayOneShot(playerWeapon.GetShootAudio(), AttackVolume);
             ShootSoundInPlay = true;
         }
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(ShotCooldown);
 
         ShootSoundInPlay = false;
     }

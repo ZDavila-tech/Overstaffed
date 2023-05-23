@@ -11,8 +11,8 @@ public class EnemyAI : MonoBehaviour, IDamage
     [Header("----- Components -----")]
     [SerializeField] Renderer rModel;
     [SerializeField] NavMeshAgent navAgent;
-    [SerializeField] Transform tShootPos;
-    [SerializeField] Transform tHeadPos;
+    [SerializeField] Transform shootPosition;
+    [SerializeField] Transform headPosition;
     [SerializeField] GameObject drop;
     [SerializeField] Animator anim;    
 
@@ -28,10 +28,10 @@ public class EnemyAI : MonoBehaviour, IDamage
     [SerializeField] int chargeValue;
 
     [Header("----- Weapon Stats -----")]
-    [SerializeField] GameObject gOBullet;
-    [Range(1, 100)][SerializeField] int iShootDistance;
-    [Range(0, 2.5f)][SerializeField] float fShootRate;
-    [SerializeField] float fShootAngle;
+    [SerializeField] GameObject bullet;
+    [Range(1, 100)][SerializeField] int shootDistance;
+    [Range(0, 2.5f)][SerializeField] float shootRate;
+    [SerializeField] float shootAngle;
 
     bool bIsShooting;
     bool bPlayerInRange;
@@ -55,6 +55,10 @@ public class EnemyAI : MonoBehaviour, IDamage
         
         hpBar.maxValue = iHP;
         hpBar.value = hpBar.maxValue;
+        if(anim !=  null)
+        {
+            anim.SetFloat("Shoot Rate", 1 / shootRate);
+        }
     }
 
 
@@ -80,13 +84,13 @@ public class EnemyAI : MonoBehaviour, IDamage
 
     bool CanSeePlayer()
     {
-        playerDir = GameManager.instance.player.transform.position - tHeadPos.position;
+        playerDir = GameManager.instance.player.transform.position - headPosition.position;
         fAngleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
 
-        Debug.DrawRay(tHeadPos.position, playerDir);
+        Debug.DrawRay(headPosition.position, playerDir);
         //Debug.Log(fAngleToPlayer);
 
-        if(Physics.Raycast(tHeadPos.position, playerDir, out RaycastHit hit))
+        if(Physics.Raycast(headPosition.position, playerDir, out RaycastHit hit))
         {
             if (hit.collider.CompareTag("Player") && fAngleToPlayer <= fFieldOfView)
             {
@@ -114,7 +118,7 @@ public class EnemyAI : MonoBehaviour, IDamage
             FacePlayer();
         }
 
-        if (!bIsShooting && fAngleToPlayer <= fShootAngle)
+        if (!bIsShooting && fAngleToPlayer <= shootAngle)
         {
             StartCoroutine(Shoot());
         }
@@ -122,11 +126,16 @@ public class EnemyAI : MonoBehaviour, IDamage
     
     IEnumerator Shoot(){
         bIsShooting = true;//tell update that this is running
-        Instantiate(gOBullet, transform.position, transform.rotation);//create bullet
         anim.SetTrigger("Attack");//play the shooting animation
-
-        yield return new WaitForSeconds(fShootRate);//cooldown
+        yield return new WaitForSeconds(shootRate * 0.5f);
+        CreateBullet();
+        yield return new WaitForSeconds(shootRate * 0.5f);//cooldown
         bIsShooting = false;//tell update that we're ready to shoot again
+    }
+
+    public void CreateBullet()
+    {
+        Instantiate(bullet, shootPosition.position, transform.rotation);//create bullet
     }
 
     public void TakeDamage(int dmg)

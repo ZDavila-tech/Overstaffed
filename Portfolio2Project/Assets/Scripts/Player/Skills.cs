@@ -58,8 +58,6 @@ public class Skills : MonoBehaviour
             StartCoroutine(dashCoroutine());
             StartCoroutine(dashCooldownCoroutine());
         }
-
-
     }
 
     IEnumerator dashCoroutine()
@@ -102,12 +100,10 @@ public class Skills : MonoBehaviour
             StartCoroutine(hiJumpCoroutine());
             StartCoroutine(hiJumpCooldownCoroutine());
         }
-
     }
 
     IEnumerator hiJumpCoroutine()
     {
-
         var startTime = Time.time;
         while (Time.time < startTime + JumpTime)
         {
@@ -116,7 +112,6 @@ public class Skills : MonoBehaviour
         }
         CanMove = true;
         StopCoroutine(hiJumpCoroutine());
-
     }
 
     IEnumerator hiJumpCooldownCoroutine()
@@ -163,7 +158,6 @@ public class Skills : MonoBehaviour
         }
         playerController.ChangeGravity(gravityOrig);
         StopCoroutine(slowFallCoroutine());
-
     }
 
     IEnumerator slowFallCooldownCoroutine()
@@ -176,16 +170,15 @@ public class Skills : MonoBehaviour
     {
         if (canBlink)
         {
-            canBlink = false;
+            //canBlink = false;
             aiming = true;
             StartCoroutine(blinkAimCoroutine());
-            StartCoroutine(blinkCooldownCoroutine());
+            //StartCoroutine(blinkCooldownCoroutine());
         }
     }
 
     IEnumerator blinkAimCoroutine()
     {
-
         while (aiming)
         {
             RaycastHit hit;
@@ -202,18 +195,19 @@ public class Skills : MonoBehaviour
             {
                 if (blinkAimIndicator)
                 {
-                    Destroy(blinkAimIndicator.gameObject);
+                    Destroy(blinkAimIndicator.gameObject,1.5f);
                 }
 
             }
-                if (Input.GetAxis("Movement3") == 0)
-                {
-                    blinkFire();
-                }
+
+            if (Input.GetAxis("Movement3") == 0)
+            {
+                blinkFire();
+                StartCoroutine(blinkCooldownCoroutine());
+            }
 
             yield return null;
         }
-
     }
     public bool isBlinkCooldown()
     {
@@ -228,6 +222,7 @@ public class Skills : MonoBehaviour
     }
     IEnumerator blinkCooldownCoroutine()
     {
+        canBlink = false;
         yield return new WaitForSeconds(BlinkCooldown);
         canBlink = true;
     }
@@ -241,10 +236,9 @@ public class Skills : MonoBehaviour
         {
             transform.position = new Vector3(blinkAimIndicator.position.x, blinkAimIndicator.position.y, blinkAimIndicator.position.z);
 
-            Destroy(blinkAimIndicator.gameObject);
+            Destroy(blinkAimIndicator.gameObject,1.5f);
         }
         controller.enabled = true;
-
     }
 
 
@@ -333,9 +327,5 @@ public class Skills : MonoBehaviour
                 }
         }
         return null;
-
-
     }
-
-
 }
