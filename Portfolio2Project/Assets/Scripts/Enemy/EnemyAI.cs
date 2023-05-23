@@ -37,6 +37,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     bool bPlayerInRange;
     bool bBeenShot;
     public bool isSlowed;
+    public bool spawnedBySpawner;
 
     Vector3 playerDir;
     float fAngleToPlayer;
@@ -59,6 +60,11 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         if(anim !=  null)
         {
             anim.SetFloat("Shoot Rate", 1 / shootRate);
+        }
+
+        if (spawnedBySpawner == false)
+        {
+            ++levelManager.enemiesRemaining;
         }
     }
 

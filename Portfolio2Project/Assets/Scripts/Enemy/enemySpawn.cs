@@ -52,7 +52,8 @@ public class enemySpawn : MonoBehaviour
     void spawn()
     {
         Transform tospawn = weightedenemyselection();
-        Instantiate(tospawn, transform.position + spawncoords(), transform.rotation);
+        Transform spawned = Instantiate(tospawn, transform.position + spawncoords(), transform.rotation);
+        spawned.gameObject.GetComponent<EnemyAI>().spawnedBySpawner = true;
         //LevelManager.instance.enemiesRemaining++;
     }
 

@@ -59,4 +59,9 @@ public class PlayerSelect : MonoBehaviour
         Debug.Log("Player Element Set");
         SceneManager.LoadScene("Reception");
     }
+
+    public void BackMainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
 }
