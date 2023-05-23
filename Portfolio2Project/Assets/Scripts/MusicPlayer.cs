@@ -17,7 +17,9 @@ public class MusicPlayer : MonoBehaviour
 
     void Start()
     {
-        aud.PlayOneShot(bgms[currSong]);
+        aud.clip = bgms[currSong];
+        aud.Play();
+        aud.loop= true;
     }
 
     // Update is called once per frame
