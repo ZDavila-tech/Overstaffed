@@ -5,6 +5,13 @@ using UnityEngine;
 public class Collectables : MonoBehaviour
 {
     [SerializeField] int value;
+    enum PickupTupe
+    {
+      Health,
+      Charge
+    }
+
+    [SerializeField] PickupTupe Pickup;
     /*enum CollectType 
     { 
       Health
@@ -17,8 +24,16 @@ public class Collectables : MonoBehaviour
     {
             if (other.CompareTag("Player"))
             {
+            switch (Pickup) 
+            { 
+                case PickupTupe.Health:
                 gameManager.instance.playerScript.TakeDamage(-value);
-                Destroy(gameObject);
+                    Destroy(gameObject);
+                    break;
+                case PickupTupe.Charge:
+                    gameManager.instance.playerScript.ChargeUt(value);
+                    Destroy(gameObject);
+                    break;
             }
+        }
     }
-}
