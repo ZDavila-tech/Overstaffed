@@ -328,10 +328,10 @@ public class NewStaff : MonoBehaviour
 
     public void SpecialAttack()
     {
-        //if (!canSpecial || !player.canUt())
-        //{
-        //    return;
-        //}
+        if (!canSpecial || !player.canUt())
+        {
+            return;
+        }
 
         Animator anim = weapon.GetComponent<Animator>();
         if (Input.GetButtonDown("Special"))
@@ -378,9 +378,6 @@ public class NewStaff : MonoBehaviour
                     EarthAOE();
                     ResetShooting();
                     break;
-            }
-            if (player.canUt())
-            {
             }
         }
         resetParticles();
