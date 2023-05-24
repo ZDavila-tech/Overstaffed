@@ -18,15 +18,17 @@ public class EnemySpawner : MonoBehaviour
     int currentNumberSpawned;
     int totalToSpawn;
     bool isSpawning;
+    bool addedToRemaining;
     LevelManager levelManager;
 
     private void Start()
     {
         levelManager = LevelManager.instance;
         totalToSpawn = levelManager.currentLevel + baseNumberToSpawn - 1;
-        if (spawnsOnLevelLoad == true)
+        if (spawnsOnLevelLoad == true && addedToRemaining == false)
         {
             levelManager.enemiesRemaining += totalToSpawn;
+            addedToRemaining = true;
         }
         currentNumberSpawned = 0;
     }
@@ -77,10 +79,11 @@ public class EnemySpawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && spawnsOnLevelLoad == false)
+        if (other.CompareTag("Player") && spawnsOnLevelLoad == false && addedToRemaining == false)
         {
             playerDetected = true;
             levelManager.enemiesRemaining += totalToSpawn;
+            addedToRemaining = true;
             Debug.Log("Player Detected");
         }
     }
