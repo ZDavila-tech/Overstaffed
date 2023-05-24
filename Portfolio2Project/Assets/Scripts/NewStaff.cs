@@ -310,8 +310,26 @@ public class NewStaff : MonoBehaviour
 
     public void SpecialAttack()
     {
+        Animator anim = weapon.GetComponent<Animator>();
+        if (Input.GetButtonDown("Special"))
+        {
+            switch (playerElement)
+            {
+                case Element.Fire:
+                    anim.SetTrigger("FSpecialHold");
+                    break;
+                case Element.Water:
+
+                    break;
+                case Element.Earth:
+                    anim.SetTrigger("ESpecialHold");
+                    break;
+            }
+        }
+
         if (Input.GetButtonUp("Special"))   //When the button is held and then released
         {
+            anim.SetBool("SpecialHeld", false);
             if (!canSpecial)
             {
                 return;
@@ -320,9 +338,10 @@ public class NewStaff : MonoBehaviour
             //{ return; }
 
             switch (playerElement)
-                {
-                    case Element.Fire:
-
+            {
+                case Element.Fire:
+                    //anim.ResetTrigger("FSpecialHeld");
+                    anim.SetTrigger("FSpecialRelease");
                     player.ChargeUt(-100);
                     RaycastHit hit;
                     Vector3 direction = GetDirection();
@@ -336,25 +355,25 @@ public class NewStaff : MonoBehaviour
                         Instantiate(explosionEffect, hit.point, Quaternion.LookRotation(hit.normal));
                         Instantiate(explosion, hit.point, Quaternion.LookRotation(hit.normal));
                     }
-
+                    //anim.ResetTrigger("FSpecialRelease");
                     break;
-                    case Element.Water:
+                case Element.Water:
 
                     StartCoroutine(WaterAOE());
 
-                        break;
-                    case Element.Earth:
+                    break;
+                case Element.Earth:
 
-                        EarthAOE();
-
+                    anim.SetTrigger("ESpecialRelease");
+                    EarthAOE();
+                    anim.SetTrigger("Idle");
                     ResetShooting();
 
-                        break;
-                }
+                    break;
+            }
             if (player.canUt())
             {
             }
-            }
-
         }
+    }
 }
