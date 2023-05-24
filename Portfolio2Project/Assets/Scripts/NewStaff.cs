@@ -340,7 +340,6 @@ public class NewStaff : MonoBehaviour
             switch (playerElement)
             {
                 case Element.Fire:
-                    //anim.ResetTrigger("FSpecialHeld");
                     anim.SetTrigger("FSpecialRelease");
                     player.ChargeUt(-100);
                     RaycastHit hit;
@@ -355,7 +354,6 @@ public class NewStaff : MonoBehaviour
                         Instantiate(explosionEffect, hit.point, Quaternion.LookRotation(hit.normal));
                         Instantiate(explosion, hit.point, Quaternion.LookRotation(hit.normal));
                     }
-                    //anim.ResetTrigger("FSpecialRelease");
                     break;
                 case Element.Water:
 
@@ -366,7 +364,6 @@ public class NewStaff : MonoBehaviour
 
                     anim.SetTrigger("ESpecialRelease");
                     EarthAOE();
-                    anim.SetTrigger("Idle");
                     ResetShooting();
 
                     break;
