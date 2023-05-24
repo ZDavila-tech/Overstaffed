@@ -1316,6 +1316,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bgm: {fileID: 0}
+  volumeSlider: {fileID: 0}
+  muteToggle: {fileID: 0}
 --- !u!1 &894447917
 GameObject:
   m_ObjectHideFlags: 0
@@ -2645,6 +2647,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 969449787}
     m_Modifications:
+    - target: {fileID: 670725861, guid: bc9f83b5016924b4da1e8d2bbc77daca, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 670725861, guid: bc9f83b5016924b4da1e8d2bbc77daca, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1788001351, guid: bc9f83b5016924b4da1e8d2bbc77daca, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1788001351, guid: bc9f83b5016924b4da1e8d2bbc77daca, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1788001351, guid: bc9f83b5016924b4da1e8d2bbc77daca, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8668668507354566520, guid: bc9f83b5016924b4da1e8d2bbc77daca, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
