@@ -6,49 +6,43 @@ using UnityEngine;
 public class Missile : MonoBehaviour
 {
     [Header("----- Missile Stats -----")]
-    //the base damage this kind of shot has
-    public int iDmg;
-    //the chance this shot has of being a critical hit (doubling the damage)
-    [SerializeField] int critChance;
-    //the amount of time this projectile takes to disappear (in seconds)
-    [SerializeField] float fMissileLife;
-    //the speed that the projectile travels at
-    [SerializeField] int iMissileSpeed;
-    [SerializeField] float fRotateSpeed;
-    private bool bStopTracking;
+    public int damage; //the base damage this kind of shot has
+    [SerializeField] float missileLife; //the amount of time this projectile takes to disappear (in seconds)
+    [SerializeField] int missileSpeed; //the speed that the projectile travels at
 
     [Header("----- Components -----")]
-    //this object's Rigidbody
-    [SerializeField] Rigidbody _rb;
-    GameObject goPlayer;
-    Vector3 v3PlayerPos;
 
+    [SerializeField] Rigidbody rigidBody; //this object's Rigidbody
+    GameObject player;
+    Vector3 playerPosition;
+    int tracksDone;
 
     // Start is called before the first frame update
     void Start()
     {
         //destroy the bullet after it's lifespan ends
-        Destroy(gameObject, fMissileLife);
+        Destroy(gameObject, missileLife);
         //move the bullet
-        goPlayer = gameManager.instance.player;
-        bStopTracking = false;
+        player = gameManager.instance.player;
+        playerPosition = player.transform.position;
+        rigidBody.velocity = (playerPosition - rigidBody.position).normalized * missileSpeed;
+        tracksDone = 0;
     }
 
-    private void FixedUpdate() {
-        v3PlayerPos = goPlayer.transform.position;
-        if(Vector3.Distance(v3PlayerPos, _rb.position) > 1 && !bStopTracking){
-            _rb.velocity = (v3PlayerPos - _rb.position).normalized * iMissileSpeed;
-            RotateMissile();
-            bStopTracking = true;
-        }        
+    private void Update()
+    {
+        if (tracksDone < 2)
+        {
+            StartCoroutine(TrackPlayer());
+        }
     }
 
-
-    private void RotateMissile(){
-        var heading = transform.position;
-
-        var rotation = Quaternion.LookRotation(heading);
-        _rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, rotation, fRotateSpeed * Time.deltaTime));
+    IEnumerator TrackPlayer()
+    {
+        yield return new WaitForSeconds(2);
+        playerPosition = player.transform.position;
+        rigidBody.velocity = (playerPosition - rigidBody.position).normalized * missileSpeed;
+        ++tracksDone;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -60,4 +54,21 @@ public class Missile : MonoBehaviour
         }
         Destroy(gameObject);
     }
+
+    //private void FixedUpdate() {
+    //    v3PlayerPos = player.transform.position;
+    //    if(Vector3.Distance(v3PlayerPos, _rb.position) > 1 && !bStopTracking){
+    //        _rb.velocity = (v3PlayerPos - _rb.position).normalized * iMissileSpeed;
+    //        RotateMissile();
+    //        bStopTracking = true;
+    //    }        
+    //}
+
+
+    //private void RotateMissile(){
+    //    var heading = transform.position;
+
+    //    var rotation = Quaternion.LookRotation(heading);
+    //    _rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, rotation, fRotateSpeed * Time.deltaTime));
+    //}
 }
