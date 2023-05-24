@@ -46,7 +46,7 @@ public class NewStaff : MonoBehaviour
     [SerializeField] public int eSpecialDamage;
 
     
-    private bool canSpecial;
+    public bool canSpecial;
     public enum Element
     {
         Fire,
@@ -116,6 +116,7 @@ public class NewStaff : MonoBehaviour
 
             isShooting = true;
             canMelee = false;
+            canSpecial = false;
             if (lastShootTime + delay < Time.time)
             {
                 Vector3 direction = GetDirection();
@@ -179,6 +180,7 @@ public class NewStaff : MonoBehaviour
         if (canMelee && Input.GetMouseButtonDown(1))
         {
             canMelee = false;
+            canSpecial = false;
             isAttacking = true;
 
             Animator anim = weapon.GetComponent<Animator>();
@@ -216,6 +218,7 @@ public class NewStaff : MonoBehaviour
     {
         yield return new WaitForSeconds(meleeCooldown);
         canMelee = true;
+        canSpecial = true;
         isAttacking = false;
         hammerHitbox.enabled = false;
         spearHitbox.enabled = false;
@@ -227,6 +230,7 @@ public class NewStaff : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         isShooting = false;
         canMelee = true;
+        canSpecial = true;
     }
 
     IEnumerator Wait(float seconds)
@@ -263,7 +267,21 @@ public class NewStaff : MonoBehaviour
         return audios[(int)playerElement];
     }
 
-    
+    private void FireSpecial()
+    {
+        RaycastHit hit;
+        Vector3 direction = GetDirection();
+        if (Physics.Raycast(shootPos.position, direction, out hit, float.MaxValue, mask))
+        {
+            if (hit.transform.tag == "Player")
+            {
+                Physics.IgnoreCollision(hit.collider, player.GetComponent<Collider>());
+            }
+
+            Instantiate(explosionEffect, hit.point, Quaternion.LookRotation(hit.normal));
+            Instantiate(explosion, hit.point, Quaternion.LookRotation(hit.normal));
+        }
+    }
 
     IEnumerator WaterAOE()
     {
@@ -310,6 +328,11 @@ public class NewStaff : MonoBehaviour
 
     public void SpecialAttack()
     {
+        //if (!canSpecial || !player.canUt())
+        //{
+        //    return;
+        //}
+
         Animator anim = weapon.GetComponent<Animator>();
         if (Input.GetButtonDown("Special"))
         {
@@ -317,61 +340,49 @@ public class NewStaff : MonoBehaviour
             {
                 case Element.Fire:
                     anim.SetTrigger("FSpecialHold");
+                    weaponParticles[0].SetActive(true);
                     break;
                 case Element.Water:
                     anim.SetTrigger("WSpecialHold");
+                    weaponParticles[1].SetActive(true);
                     break;
                 case Element.Earth:
                     anim.SetTrigger("ESpecialHold");
+                    weaponParticles[2].SetActive(true);
                     break;
             }
         }
 
         if (Input.GetButtonUp("Special"))   //When the button is held and then released
         {
-            anim.SetBool("SpecialHeld", false);
-            if (!canSpecial)
-            {
-                return;
-            }
-            //if(!player.canUt())
-            //{ return; }
-
             switch (playerElement)
             {
                 case Element.Fire:
+
                     anim.SetTrigger("FSpecialRelease");
                     player.ChargeUt(-100);
-                    RaycastHit hit;
-                    Vector3 direction = GetDirection();
-                    if (Physics.Raycast(shootPos.position, direction, out hit, float.MaxValue, mask))
-                    {
-                        if (hit.transform.tag == "Player")
-                        {
-                            Physics.IgnoreCollision(hit.collider, player.GetComponent<Collider>());
-                        }
-
-                        Instantiate(explosionEffect, hit.point, Quaternion.LookRotation(hit.normal));
-                        Instantiate(explosion, hit.point, Quaternion.LookRotation(hit.normal));
-                    }
+                    FireSpecial();
                     break;
+
                 case Element.Water:
 
                     anim.SetTrigger("WSpecialRelease");
+                    player.ChargeUt(-100);
                     StartCoroutine(WaterAOE());
-
                     break;
+
                 case Element.Earth:
 
                     anim.SetTrigger("ESpecialRelease");
+                    player.ChargeUt(-100);
                     EarthAOE();
                     ResetShooting();
-
                     break;
             }
             if (player.canUt())
             {
             }
         }
+        resetParticles();
     }
 }
