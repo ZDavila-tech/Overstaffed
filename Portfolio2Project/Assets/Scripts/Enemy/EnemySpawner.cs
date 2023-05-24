@@ -24,7 +24,10 @@ public class EnemySpawner : MonoBehaviour
     {
         levelManager = LevelManager.instance;
         totalToSpawn = levelManager.currentLevel + baseNumberToSpawn - 1;
-        levelManager.enemiesRemaining += totalToSpawn;
+        if (spawnsOnLevelLoad == true)
+        {
+            levelManager.enemiesRemaining += totalToSpawn;
+        }
         currentNumberSpawned = 0;
     }
     void Update()
@@ -74,9 +77,10 @@ public class EnemySpawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && spawnsOnLevelLoad == false)
         {
             playerDetected = true;
+            levelManager.enemiesRemaining += totalToSpawn;
             Debug.Log("Player Detected");
         }
     }
