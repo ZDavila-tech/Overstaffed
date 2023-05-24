@@ -26,6 +26,7 @@ public class NewStaff : MonoBehaviour
     [SerializeField] Collider spearHitbox;
     [SerializeField] Collider hammerHitbox;
     [SerializeField] GameObject[] weaponModels;
+    [SerializeField] GameObject[] weaponParticles;
     //[SerializeField] Texture fireStaff;
     //[SerializeField] Texture waterStaff;
     //[SerializeField] Texture earthStaff;
@@ -188,17 +189,20 @@ public class NewStaff : MonoBehaviour
                     Debug.Log("Melee Fire");
                     swordHitbox.enabled = true;
                     weaponModels[1].SetActive(true);
+                    weaponParticles[0].SetActive(true);
                     gameManager.instance.playerScript.PlayExternalAudio(audios[3]);
                     anim.SetTrigger("SwordMelee");
                     break;
                 case Element.Water:
                     weaponModels[2].SetActive(true);
+                    weaponParticles[1].SetActive(true);
                     spearHitbox.enabled = true;
                     gameManager.instance.playerScript.PlayExternalAudio(audios[4]);
                     anim.SetTrigger("SpearMelee");
                     break;
                 case Element.Earth:
                     weaponModels[3].SetActive(true);
+                    weaponParticles[2].SetActive(true);
                     hammerHitbox.enabled = true;
                     gameManager.instance.playerScript.PlayExternalAudio(audios[5]);
                     anim.SetTrigger("HammerMelee");
@@ -241,6 +245,16 @@ public class NewStaff : MonoBehaviour
         weaponModels[1].SetActive(false);
         weaponModels[2].SetActive(false);
         weaponModels[3].SetActive(false);
+        StartCoroutine(resetParticles());
+    }
+
+
+    IEnumerator resetParticles()
+    {
+        yield return new WaitForSeconds(0.5f);
+        weaponParticles[0].SetActive(false);
+        weaponParticles[1].SetActive(false);
+        weaponParticles[2].SetActive(false);
     }
 
 
