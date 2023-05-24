@@ -40,8 +40,9 @@ public class Missile : MonoBehaviour
             _rb.velocity = (v3PlayerPos - _rb.position).normalized * iMissileSpeed;
             RotateMissile();
             bStopTracking = true;
-        }
+        }        
     }
+
 
     private void RotateMissile(){
         var heading = transform.position;
