@@ -5,13 +5,13 @@ using UnityEngine;
 public class Collectables : MonoBehaviour
 {
     [SerializeField] int value;
-    enum PickupTupe
+    enum PickupType
     {
         Health,
-        Charge
+        UltimateCharge
     }
 
-    [SerializeField] PickupTupe Pickup;
+    [SerializeField] PickupType Pickup;
     /*enum CollectType 
     { 
       Health
@@ -26,11 +26,11 @@ public class Collectables : MonoBehaviour
         {
             switch (Pickup)
             {
-                case PickupTupe.Health:
+                case PickupType.Health:
                     gameManager.instance.playerScript.TakeDamage(-value);
                     Destroy(gameObject);
                     break;
-                case PickupTupe.Charge:
+                case PickupType.UltimateCharge:
                     gameManager.instance.playerScript.ChargeUt(value);
                     Destroy(gameObject);
                     break;
