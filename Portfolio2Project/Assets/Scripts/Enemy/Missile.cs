@@ -15,7 +15,7 @@ public class Missile : MonoBehaviour
     //the speed that the projectile travels at
     [SerializeField] int iMissileSpeed;
     [SerializeField] float fRotateSpeed;
-    private bool bStopTracking;
+    //private bool bStopTracking;
 
     [Header("----- Components -----")]
     //this object's Rigidbody
@@ -31,16 +31,14 @@ public class Missile : MonoBehaviour
         Destroy(gameObject, fMissileLife);
         //move the bullet
         goPlayer = gameManager.instance.player;
-        bStopTracking = false;
+        //bStopTracking = false;
     }
 
     private void FixedUpdate() {
         v3PlayerPos = goPlayer.transform.position;
-        if(Vector3.Distance(v3PlayerPos, _rb.position) > 1 && !bStopTracking){
-            _rb.velocity = (v3PlayerPos - _rb.position).normalized * iMissileSpeed;
-            RotateMissile();
-            bStopTracking = true;
-        }
+        _rb.velocity = (v3PlayerPos - _rb.position).normalized * iMissileSpeed;
+        RotateMissile();
+        //bStopTracking = true;
     }
 
     private void RotateMissile(){

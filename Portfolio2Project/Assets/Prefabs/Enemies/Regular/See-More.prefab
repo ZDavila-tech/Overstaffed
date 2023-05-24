@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1709654445}
   - component: {fileID: -1177048385087740270}
   - component: {fileID: 9222069149675123250}
+  - component: {fileID: 792398957675852936}
   m_Layer: 6
   m_Name: See-More
   m_TagString: Enemy
@@ -106,7 +107,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 8.63
+  m_Radius: 35
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &-1177048385087740270
 Rigidbody:
@@ -137,6 +138,24 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.45
   m_Center: {x: 0, y: 1.45, z: 0}
+--- !u!114 &792398957675852936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441211781995531608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4dc9d4504ed85144929530b7c2d82e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iDmg: 5
+  critChance: 0
+  fMissileLife: 4.5
+  iMissileSpeed: 10
+  fRotateSpeed: 45
+  _rb: {fileID: -1177048385087740270}
 --- !u!1 &2759098317724207949
 GameObject:
   m_ObjectHideFlags: 0
