@@ -5,8 +5,6 @@ using UnityEngine;
 public class CollisionDetection : MonoBehaviour
 {
 
-    public Staff staff;
-    public WaterStaff waterStaff;
     [SerializeField] int hitDmg;
 
     private void OnTriggerEnter(Collider other)
@@ -23,7 +21,7 @@ public class CollisionDetection : MonoBehaviour
         //}
         //if (other.tag == "Enemy")
         //{
-            Debug.Log("Enemy Hit");
+            //Debug.Log("Enemy Hit");
             IDamage damageable = other.GetComponentInParent<IDamage>();
 
             if (damageable != null)

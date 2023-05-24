@@ -48,5 +48,13 @@ public class MusicPlayer : MonoBehaviour
     {
         volume = gameManager.instance.volumeValue.value;
         aud.volume = volume;
+        if(gameManager.instance.volumeValue.value == 0)
+        {
+            gameManager.instance.bgToggle.isOn = true;
+        }
+        else
+        {
+            gameManager.instance.bgToggle.isOn = false;
+        }
     }
 }
