@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2630314057875298966}
   - component: {fileID: 4531740379933452979}
-  m_Layer: 0
+  - component: {fileID: 5123575576208624419}
+  m_Layer: 9
   m_Name: Spear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,10 +42,23 @@ BoxCollider:
   m_GameObject: {fileID: 472930247011065946}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 3.524112}
   m_Center: {x: 0, y: 0, z: 1.262056}
+--- !u!114 &5123575576208624419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472930247011065946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 620b6707099ccab4fa4fa7a8f2ac8327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitDmg: 1
 --- !u!1 &3199465538200053613
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,9 +333,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3678632124144082660}
   - component: {fileID: 334106367046308170}
-  - component: {fileID: 334106367046308165}
   - component: {fileID: 334106367046308163}
-  - component: {fileID: 334106367046308164}
   m_Layer: 9
   m_Name: Staff
   m_TagString: Untagged
@@ -402,21 +414,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f3082a75082824640b5e0d01f042ce45, type: 3}
   - {fileID: 8300000, guid: 26c3d4420510b4042a1e5bae6b1bf46d, type: 3}
   - {fileID: 8300000, guid: 5f0cda4207595394095b8943e9d7c6c5, type: 3}
---- !u!114 &334106367046308165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4055193228901778526}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 620b6707099ccab4fa4fa7a8f2ac8327, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  staff: {fileID: 0}
-  waterStaff: {fileID: 0}
-  hitDmg: 2
 --- !u!95 &334106367046308163
 Animator:
   serializedVersion: 5
@@ -438,19 +435,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!65 &334106367046308164
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4055193228901778526}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.26, y: 4.643919, z: 0.2}
-  m_Center: {x: 0.0000010726843, y: 1.1977676, z: 0.0000021655883}
 --- !u!1 &4907289682166412524
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,7 +528,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1937329280620080216}
   - component: {fileID: 3773167801377614847}
-  m_Layer: 0
+  - component: {fileID: 2663529763686345788}
+  m_Layer: 9
   m_Name: Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -575,10 +560,23 @@ BoxCollider:
   m_GameObject: {fileID: 5233201253902445134}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 2.4910965, y: 1, z: 2.1879938}
   m_Center: {x: 0.22152305, y: 0, z: 0.5939969}
+--- !u!114 &2663529763686345788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5233201253902445134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 620b6707099ccab4fa4fa7a8f2ac8327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitDmg: 2
 --- !u!1 &5555923127909841682
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,7 +586,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3038316592155686572}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: MeleeHitboxes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1173,7 +1171,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7153437083784475706}
   - component: {fileID: 22889135292615255}
-  m_Layer: 0
+  - component: {fileID: 5511086104027534032}
+  m_Layer: 9
   m_Name: Hammer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1204,7 +1203,20 @@ BoxCollider:
   m_GameObject: {fileID: 7458887084419644056}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 3.2136261, y: 1, z: 1.5080993}
   m_Center: {x: 0.122459054, y: 0, z: 0.25404966}
+--- !u!114 &5511086104027534032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7458887084419644056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 620b6707099ccab4fa4fa7a8f2ac8327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hitDmg: 3

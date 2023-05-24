@@ -5,8 +5,6 @@ using UnityEngine;
 public class CollisionDetection : MonoBehaviour
 {
 
-    public Staff staff;
-    public WaterStaff waterStaff;
     [SerializeField] int hitDmg;
 
     private void OnTriggerEnter(Collider other)
