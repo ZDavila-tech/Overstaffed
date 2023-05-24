@@ -82,6 +82,7 @@ public class gameManager : MonoBehaviour
             ShowActiveMenu();
             PauseState();
         }
+        UpdateToggles();
         AbilityCoolDown();
 
         if (playerElement != playerScript.playerElement)
@@ -279,5 +280,16 @@ public class gameManager : MonoBehaviour
         UtCharge.fillAmount = amount;
     }
 
+    public void UpdateToggles()
+    {
+        if(soundEffectsVolume.value == 0)
+        {
+            seToggle.isOn = true;
+        }
+        else
+        {
+            seToggle.isOn = false;
+        }
+    }
 
 }

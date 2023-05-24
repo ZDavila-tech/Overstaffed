@@ -69,6 +69,7 @@ public class InElevator : MonoBehaviour
         if (!hasDinged)
         {
             //Debug.Log("DING");
+            aud.volume = gameManager.instance.soundEffectsVolume.value;
             aud.Play();
             hasDinged= true;
         }

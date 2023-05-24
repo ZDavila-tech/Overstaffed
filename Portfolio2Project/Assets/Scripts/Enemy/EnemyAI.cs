@@ -24,8 +24,9 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] float fFieldOfView;
     [SerializeField] float fChaseTime;
     [Range(0, 100)][SerializeField] int DropRate;
-    [SerializeField] float animTransSpeed;
     [SerializeField] int chargeValue;
+    [SerializeField] float interuptionCoolDown;
+    [SerializeField] float moveSpeed;
 
     [Header("----- Weapon Stats -----")]
     [SerializeField] GameObject bullet;
@@ -38,6 +39,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     bool bBeenShot;
     public bool isSlowed;
     public bool spawnedBySpawner;
+    bool interrupted;
 
     Vector3 playerDir;
     float fAngleToPlayer;
@@ -66,20 +68,20 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         {
             ++levelManager.enemiesRemaining;
         }
+
+        interrupted = false;
     }
 
 
     void Update()
     {
         //StartCoroutine(SlowEnemy());
-        if (anim != null)
-        {
-            float speed = 0;
-            speed = Mathf.Lerp(speed, navAgent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
-            anim.SetFloat("Speed", speed);
-        }
-
-        
+        //if (anim != null)
+        //{
+        //    float speed = 0;
+        //    speed = Mathf.Lerp(speed, navAgent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
+        //    anim.SetFloat("Speed", speed);
+        //}
 
         if (hpDisplay.activeSelf)
         {
@@ -117,7 +119,6 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         {
             if (hit.collider.CompareTag("Player") && fAngleToPlayer <= fFieldOfView)
             {
-
                 return true;
             }
         }
@@ -127,7 +128,6 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
     void FacePlayer()
     {
-
         Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * fTurnRate);
     }
@@ -135,10 +135,16 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     void AttackPlayer()
     {
         navAgent.SetDestination(gameManager.instance.player.transform.position);
+
         if (navAgent.remainingDistance < navAgent.stoppingDistance)
         {
             //Debug.Log("YARGH");
             FacePlayer();
+            anim.SetFloat("Speed", 0);
+        }
+        else
+        {
+            anim.SetFloat("Speed", 1);
         }
 
         if (!bIsShooting && fAngleToPlayer <= shootAngle)
@@ -150,9 +156,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     IEnumerator Shoot(){
         bIsShooting = true;//tell update that this is running
         anim.SetTrigger("Attack");//play the shooting animation
-        yield return new WaitForSeconds(shootRate * 0.5f);
-        CreateBullet();
-        yield return new WaitForSeconds(shootRate * 0.5f);//cooldown
+        yield return new WaitForSeconds(shootRate);
         bIsShooting = false;//tell update that we're ready to shoot again
     }
 
@@ -183,7 +187,10 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         }
         else 
         {
-            anim.SetTrigger("GetHit");//play the hurt animation
+            if(interrupted == false)
+            {
+                StartCoroutine(GetInterrupted());
+            }
         }
     }
 
@@ -230,5 +237,15 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     public void Knockback(Vector3 dir)
     {
         navAgent.velocity += dir;
+    }
+
+    IEnumerator GetInterrupted()
+    {
+        interrupted = true;
+        anim.SetTrigger("GetHit");//play the hurt animation
+
+        yield return new WaitForSeconds(interuptionCoolDown);
+
+        interrupted = false;
     }
 }
