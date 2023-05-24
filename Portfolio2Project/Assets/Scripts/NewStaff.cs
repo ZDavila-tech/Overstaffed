@@ -319,7 +319,7 @@ public class NewStaff : MonoBehaviour
                     anim.SetTrigger("FSpecialHold");
                     break;
                 case Element.Water:
-
+                    anim.SetTrigger("WSpecialHold");
                     break;
                 case Element.Earth:
                     anim.SetTrigger("ESpecialHold");
@@ -357,6 +357,7 @@ public class NewStaff : MonoBehaviour
                     break;
                 case Element.Water:
 
+                    anim.SetTrigger("WSpecialRelease");
                     StartCoroutine(WaterAOE());
 
                     break;
