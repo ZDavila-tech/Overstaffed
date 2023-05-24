@@ -246,6 +246,6 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     public void Knockback(Vector3 dir)
     {
         pushBack += dir;
-        Debug.Log("Knocked Back");
+        //Debug.Log("Knocked Back");
     }
 }
