@@ -61,7 +61,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         {
             Movement();
         }
-
+        AttackVolume = gameManager.instance.soundEffectsVolume.value;
+        JumpVolume = gameManager.instance.soundEffectsVolume.value;
         Sprint();
 
         if (Input.GetButton("Shoot") && !isShooting && !gameManager.instance.isPaused)
