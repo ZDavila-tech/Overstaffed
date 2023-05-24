@@ -42,6 +42,8 @@ public class gameManager : MonoBehaviour
     public Toggle invert;
     public Slider volumeValue;
     public Slider soundEffectsVolume;
+    public Toggle bgToggle;
+    public Toggle seToggle;
     LevelManager levelManager;
 
     public Image ability1; //Hi-Jump
