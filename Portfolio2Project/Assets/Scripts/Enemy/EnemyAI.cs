@@ -26,6 +26,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [Range(0, 100)][SerializeField] int DropRate;
     [SerializeField] float animTransSpeed;
     [SerializeField] int chargeValue;
+    [SerializeField] float interuptionCoolDown;
 
     [Header("----- Weapon Stats -----")]
     [SerializeField] GameObject bullet;
@@ -38,6 +39,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     bool bBeenShot;
     public bool isSlowed;
     public bool spawnedBySpawner;
+    bool interrupted;
 
     Vector3 playerDir;
     float fAngleToPlayer;
@@ -66,6 +68,8 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         {
             ++levelManager.enemiesRemaining;
         }
+
+        interrupted = false;
     }
 
 
@@ -150,9 +154,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     IEnumerator Shoot(){
         bIsShooting = true;//tell update that this is running
         anim.SetTrigger("Attack");//play the shooting animation
-        yield return new WaitForSeconds(shootRate * 0.5f);
-        CreateBullet();
-        yield return new WaitForSeconds(shootRate * 0.5f);//cooldown
+        yield return new WaitForSeconds(shootRate);
         bIsShooting = false;//tell update that we're ready to shoot again
     }
 
@@ -183,7 +185,10 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         }
         else 
         {
-            anim.SetTrigger("GetHit");//play the hurt animation
+            if(interrupted == false)
+            {
+                StartCoroutine(GetInterrupted());
+            }
         }
     }
 
@@ -230,5 +235,15 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     public void Knockback(Vector3 dir)
     {
         navAgent.velocity += dir;
+    }
+
+    IEnumerator GetInterrupted()
+    {
+        interrupted = true;
+        anim.SetTrigger("GetHit");//play the hurt animation
+
+        yield return new WaitForSeconds(interuptionCoolDown);
+
+        interrupted = false;
     }
 }
