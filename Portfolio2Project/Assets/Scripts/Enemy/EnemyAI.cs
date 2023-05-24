@@ -27,6 +27,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] int chargeValue;
     [SerializeField] float interuptionCoolDown;
     [SerializeField] float moveSpeed;
+    [SerializeField] bool brokenAnimations;
 
     [Header("----- Weapon Stats -----")]
     [SerializeField] GameObject bullet;
@@ -155,8 +156,17 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     
     IEnumerator Shoot(){
         bIsShooting = true;//tell update that this is running
+        if(brokenAnimations == true)
+        {
+            yield return new WaitForSeconds(shootRate * 0.5f);
+            CreateBullet();
+            yield return new WaitForSeconds(shootRate * 0.5f);
+        }
+        else
+        {
         anim.SetTrigger("Attack");//play the shooting animation
         yield return new WaitForSeconds(shootRate);
+        }
         bIsShooting = false;//tell update that we're ready to shoot again
     }
 
