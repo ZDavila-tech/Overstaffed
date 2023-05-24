@@ -47,12 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4dc9d4504ed85144929530b7c2d82e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  iDmg: 5
-  critChance: 0
-  fMissileLife: 10
-  missileSpeed: 20
-  fRotateSpeed: 25
-  rb: {fileID: 8060328068600632507}
+  damage: 5
+  missileLife: 10
+  missileSpeed: 10
+  rigidBody: {fileID: 8060328068600632507}
 --- !u!54 &8060328068600632507
 Rigidbody:
   m_ObjectHideFlags: 0

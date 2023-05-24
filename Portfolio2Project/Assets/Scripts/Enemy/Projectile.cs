@@ -8,7 +8,6 @@ public class Projectile : MonoBehaviour
     [Header("----- Projectile Stats -----")]
     //the base damage this kind of shot has
     public int shotDmg;
-    
     //the amount of time this projectile takes to disappear (in seconds)
     [SerializeField] float bulletLife;
     //the speed that the projectile travels at
@@ -19,7 +18,6 @@ public class Projectile : MonoBehaviour
     [SerializeField] Rigidbody rb;
     GameObject player;
     Vector3 playerPosition;
-
 
     // Start is called before the first frame update
     void Start()

@@ -11,7 +11,6 @@ public class Missile : MonoBehaviour
     [SerializeField] int missileSpeed; //the speed that the projectile travels at
 
     [Header("----- Components -----")]
-
     [SerializeField] Rigidbody rigidBody; //this object's Rigidbody
     GameObject player;
     Vector3 playerPosition;
@@ -31,7 +30,7 @@ public class Missile : MonoBehaviour
 
     private void Update()
     {
-        if (tracksDone < 2)
+        if (tracksDone < 5)
         {
             StartCoroutine(TrackPlayer());
         }
@@ -39,7 +38,7 @@ public class Missile : MonoBehaviour
 
     IEnumerator TrackPlayer()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.75f);
         playerPosition = player.transform.position;
         rigidBody.velocity = (playerPosition - rigidBody.position).normalized * missileSpeed;
         ++tracksDone;
@@ -50,25 +49,8 @@ public class Missile : MonoBehaviour
         if (other.GetComponent<IDamage>() != null)
         {
             IDamage damageable = other.GetComponent<IDamage>();
-            damageable.TakeDamage(iDmg);
+            damageable.TakeDamage(damage);
         }
         Destroy(gameObject);
     }
-
-    //private void FixedUpdate() {
-    //    v3PlayerPos = player.transform.position;
-    //    if(Vector3.Distance(v3PlayerPos, _rb.position) > 1 && !bStopTracking){
-    //        _rb.velocity = (v3PlayerPos - _rb.position).normalized * iMissileSpeed;
-    //        RotateMissile();
-    //        bStopTracking = true;
-    //    }        
-    //}
-
-
-    //private void RotateMissile(){
-    //    var heading = transform.position;
-
-    //    var rotation = Quaternion.LookRotation(heading);
-    //    _rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, rotation, fRotateSpeed * Time.deltaTime));
-    //}
 }
