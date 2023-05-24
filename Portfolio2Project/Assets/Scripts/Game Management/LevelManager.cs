@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
     [Header("----- Settings -----")]
     [SerializeField] int baseEnemyCount;
     [SerializeField, Range(0f, 1f)] float enemyCountScale;
+    [SerializeField] int maxLevel;
 
     public static LevelManager instance;
 
@@ -101,6 +102,10 @@ public class LevelManager : MonoBehaviour
     {
         NewLevel();
         ++currentLevel; //ups difficulty
+        if (currentLevel > maxLevel)
+        {
+            gameManager.instance.YouWin();
+        }
         if (currentLevel/5 == currentLevel%5)
         {
             MusicPlayer.instance.ChangeSong();
