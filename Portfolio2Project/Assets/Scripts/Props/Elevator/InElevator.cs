@@ -29,14 +29,14 @@ public class InElevator : MonoBehaviour
         if (levelManager.levelCompleted == true && levelManager.inElevator == false)
         {
             ding();
-            Debug.Log("Opening");
+            //Debug.Log("Opening");
             doorAnim.SetBool("Open", true);
             lightOn.SetActive(true);
             lightOff.SetActive(false);
         }
         else if (levelManager.levelCompleted == false && levelManager.inElevator == false)
         {
-            Debug.Log("Closing");
+            //Debug.Log("Closing");
             doorAnim.SetBool("Open", false);
             lightOn.SetActive(false);
             lightOff.SetActive(true);
@@ -68,7 +68,7 @@ public class InElevator : MonoBehaviour
     {
         if (!hasDinged)
         {
-            Debug.Log("DING");
+            //Debug.Log("DING");
             aud.Play();
             hasDinged= true;
         }
@@ -78,7 +78,7 @@ public class InElevator : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("NOT IN ELEVATOR");
+            //Debug.Log("NOT IN ELEVATOR");
             doorAnim.SetBool("Open", false);
             levelManager.inElevator = false;
         }
@@ -86,14 +86,14 @@ public class InElevator : MonoBehaviour
 
     IEnumerator openDoors()
     {
-        Debug.Log("Opening Coroutine");
+        //Debug.Log("Opening Coroutine");
         yield return new WaitForSeconds(3);
         doorAnim.SetBool("Open", true);
     }
 
     IEnumerator closeDoors()
     {
-        Debug.Log("Closing");
+        //Debug.Log("Closing");
         yield return new WaitForSeconds(3);
         doorAnim.SetBool("Open", false);
     }

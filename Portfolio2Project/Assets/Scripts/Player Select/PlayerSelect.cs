@@ -49,14 +49,14 @@ public class PlayerSelect : MonoBehaviour
         DestroyImmediate(Camera.main.gameObject);
         Instantiate(player);
         player = GameObject.FindGameObjectWithTag("Player");
-        Debug.Log("Player Spawned");
+        //Debug.Log("Player Spawned");
         playerController = player.GetComponent<PlayerController>();
-        Debug.Log("Player Controller Set");
+        //Debug.Log("Player Controller Set");
     }
 
     public void PostPlayerElementSetup() //must happen after player element setup occurs
     {
-        Debug.Log("Player Element Set");
+        //Debug.Log("Player Element Set");
         SceneManager.LoadScene("Reception");
     }
 

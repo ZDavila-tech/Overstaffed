@@ -25,7 +25,7 @@ public class Projectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Bullet Made");
+        //Debug.Log("Bullet Made");
         //destroy the bullet after it's lifespan ends
         Destroy(gameObject, bulletLife);
         //move the bullet

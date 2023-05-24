@@ -81,7 +81,7 @@ public class LevelManager : MonoBehaviour
             {
                 if (levelCompleted == false)
                 {
-                    Debug.Log("levelStarted True + enemies < 0, level is completed");
+                    //Debug.Log("levelStarted True + enemies < 0, level is completed");
                     levelCompleted = true;
                 }
 
@@ -122,7 +122,7 @@ public class LevelManager : MonoBehaviour
                 break;
             }
         }
-        Debug.Log($"Random Index is {randomIndex}");
+        //Debug.Log($"Random Index is {randomIndex}");
         return randomIndex;
     }
 

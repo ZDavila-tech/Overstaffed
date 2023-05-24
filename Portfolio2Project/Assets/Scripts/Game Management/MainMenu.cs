@@ -12,13 +12,13 @@ public class MainMenu : MonoBehaviour
     }
     public void PlayGame() //Takes player to character select scene
     {
-        Debug.Log("Play Button Pressed");
+        //Debug.Log("Play Button Pressed");
         SceneManager.LoadScene("Character Select");
     }
 
     public void QuitGame()
     {
-        Debug.Log("Quit Button Pressed");
+        //Debug.Log("Quit Button Pressed");
         Application.Quit();
     }
 }

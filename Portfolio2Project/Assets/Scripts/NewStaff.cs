@@ -110,7 +110,7 @@ public class NewStaff : MonoBehaviour
 
     public void Shoot()
     {
-        Debug.Log("Weapon Shoot Called");
+        //Debug.Log("Weapon Shoot Called");
         if (Input.GetButton("Shoot"))
         {
 
@@ -186,7 +186,7 @@ public class NewStaff : MonoBehaviour
             switch (playerElement)
             {
                 case Element.Fire:
-                    Debug.Log("Melee Fire");
+                    //Debug.Log("Melee Fire");
                     swordHitbox.enabled = true;
                     weaponModels[1].SetActive(true);
                     weaponParticles[0].SetActive(true);
