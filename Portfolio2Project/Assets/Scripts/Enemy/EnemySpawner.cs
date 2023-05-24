@@ -37,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
         if ((playerDetected || spawnsOnLevelLoad) && isSpawning == false && currentNumberSpawned < totalToSpawn)
         {
             StartCoroutine(SpawnEnemies());
-            Debug.Log("Spawning Enemies");
+            //Debug.Log("Spawning Enemies");
         }
     }
 
@@ -50,18 +50,18 @@ public class EnemySpawner : MonoBehaviour
             if (spawnPositions.Length > 1)
             {
                 SpawnEnemy(spawnPositions[Random.Range(0, spawnPositions.Length)]);
-                Debug.Log("Enemy Spawned at Spawn random");
+                //Debug.Log("Enemy Spawned at Spawn random");
             }
             else
             {
                 SpawnEnemy(spawnPositions[0]);
-                Debug.Log("Enemy Spawned at Spawn 0");
+                //Debug.Log("Enemy Spawned at Spawn 0");
             }
         }
         else
         {
             SpawnEnemy(this.gameObject.transform);
-            Debug.Log("Enemy Spawned Locally");
+            //Debug.Log("Enemy Spawned Locally");
         }
 
         yield return new WaitForSeconds(timeBetweenSpawns);
@@ -84,7 +84,7 @@ public class EnemySpawner : MonoBehaviour
             playerDetected = true;
             levelManager.enemiesRemaining += totalToSpawn;
             addedToRemaining = true;
-            Debug.Log("Player Detected");
+            //Debug.Log("Player Detected");
         }
     }
 }

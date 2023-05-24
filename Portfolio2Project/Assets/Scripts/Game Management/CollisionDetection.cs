@@ -21,7 +21,7 @@ public class CollisionDetection : MonoBehaviour
         //}
         //if (other.tag == "Enemy")
         //{
-            Debug.Log("Enemy Hit");
+            //Debug.Log("Enemy Hit");
             IDamage damageable = other.GetComponentInParent<IDamage>();
 
             if (damageable != null)

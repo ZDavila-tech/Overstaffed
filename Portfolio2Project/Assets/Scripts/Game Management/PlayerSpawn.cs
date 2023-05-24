@@ -50,13 +50,13 @@ public class PlayerSpawn : MonoBehaviour
         if (playerInSpawn == true)
         {
             levelManager.loadingLevel = false;
-            Debug.Log("Player spawn pulled player");
+            //Debug.Log("Player spawn pulled player");
         }
         else
         {
             player.transform.SetPositionAndRotation(playerSpawn.transform.position, playerSpawn.transform.rotation);
             keepPullingPlayer = true;
-            Debug.Log("Player spawn tried to pull player player");
+            //Debug.Log("Player spawn tried to pull player player");
         }
     }
 }
