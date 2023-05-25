@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 90356ab1305f3ea488c65d942b2cc71e, type: 2}
 --- !u!1001 &238972881
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -196,6 +196,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6038600312438020499, guid: e2bb3a2e5c274c54a8300664c28b48ea, type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 23800000, guid: 45224296b7ad4eb48a5057893535a29a, type: 2}
     - target: {fileID: 8878911403180767277, guid: e2bb3a2e5c274c54a8300664c28b48ea, type: 3}
       propertyPath: m_Name
       value: Supervisor Horseshoe Arena (Elevator Prefab)
