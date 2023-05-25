@@ -6,22 +6,20 @@ using System.Text;
 
 public static class fileManager// : MonoBehaviour
 {
-    public static float masterVolume = 1;
-    public static float effectVolume = 1;
-    public static float musicVolume = 1;
+    public static int masterVolume;
+    public static int effectVolume;
+    public static int musicVolume;
 
-    public static bool invertY = false;
+    public static bool invertY;
 
     static DirectoryInfo dir = Directory.CreateDirectory("../saves");
-    static FileStream saveFile = new FileStream(dir.FullName + "/saveFile", FileMode.OpenOrCreate, FileAccess.ReadWrite);
     
 
 
     public static void save()
     {
-        using (StreamWriter writer = new StreamWriter(saveFile.Name,false))
+        using (StreamWriter writer = new StreamWriter(dir.FullName))
         {
-            //writer.
             writer.WriteLine(masterVolume + '\n');
             writer.WriteLine(effectVolume + "\n");
             writer.WriteLine(musicVolume + "\n");
@@ -32,11 +30,11 @@ public static class fileManager// : MonoBehaviour
 
     public static void load()
     {
-        using (StreamReader reader = new StreamReader(saveFile.Name,false))
+        using (StreamReader reader = new StreamReader(dir.FullName))
         {
-            masterVolume = float.Parse(reader.ReadLine());
-            effectVolume = float.Parse(reader.ReadLine());
-            musicVolume = float.Parse(reader.ReadLine());
+            masterVolume = int.Parse(reader.ReadLine());
+            effectVolume = int.Parse(reader.ReadLine());
+            musicVolume = int.Parse(reader.ReadLine());
             invertY= bool.Parse(reader.ReadLine());
         }
     }
