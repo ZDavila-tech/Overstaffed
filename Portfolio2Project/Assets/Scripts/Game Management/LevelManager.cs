@@ -106,7 +106,7 @@ public class LevelManager : MonoBehaviour
         {
             gameManager.instance.YouWin();
         }
-        if (currentLevel/5 == currentLevel%5)
+        if (currentLevel % 5 == 0)
         {
             MusicPlayer.instance.ChangeSong();
         }
