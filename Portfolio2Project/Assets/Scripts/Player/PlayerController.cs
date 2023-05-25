@@ -235,6 +235,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         }
         else
         {
+            utCharge = 100;
             gameManager.instance.UpdateUtCharge(100);
         }
     }
