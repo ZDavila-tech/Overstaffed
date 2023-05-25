@@ -135,18 +135,19 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
     void AttackPlayer()
     {
-        if(navAgent != null)
+        if (navAgent.isActiveAndEnabled)
         {
             navAgent.SetDestination(gameManager.instance.player.transform.position);
 
+            if (navAgent.remainingDistance < navAgent.stoppingDistance)
+            {
+                //Debug.Log("YARGH");
+                FacePlayer();
+
+            }
         }
 
-        if (navAgent.remainingDistance < navAgent.stoppingDistance)
-        {
-            //Debug.Log("YARGH");
-            FacePlayer();
 
-        }
 
         if (!bIsShooting && fAngleToPlayer <= shootAngle)
         {
@@ -181,7 +182,10 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         StartCoroutine(ShowHealth());
         hpBar.value = iHP;
         StartCoroutine(FlashColor());//indicate damage taken
-        navAgent.SetDestination(gameManager.instance.player.transform.position);
+        if (navAgent.isActiveAndEnabled)
+        {
+            navAgent.SetDestination(gameManager.instance.player.transform.position);
+        }
         StartCoroutine(BeenShot());
 
         if(iHP <= 0) //if it dies, get rid of it
@@ -246,7 +250,10 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
     public void Knockback(Vector3 dir)
     {
-        navAgent.velocity += dir;
+        if (navAgent.isActiveAndEnabled)
+        {
+            navAgent.velocity += dir;
+        }
     }
 
     IEnumerator GetInterrupted()
