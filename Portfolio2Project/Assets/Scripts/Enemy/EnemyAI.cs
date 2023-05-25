@@ -135,7 +135,11 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
     void AttackPlayer()
     {
-        navAgent.SetDestination(gameManager.instance.player.transform.position);
+        if(navAgent != null)
+        {
+            navAgent.SetDestination(gameManager.instance.player.transform.position);
+
+        }
 
         if (navAgent.remainingDistance < navAgent.stoppingDistance)
         {
