@@ -141,11 +141,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         {
             //Debug.Log("YARGH");
             FacePlayer();
-            anim.SetFloat("Speed", 0);
-        }
-        else
-        {
-            anim.SetFloat("Speed", 1);
+
         }
 
         if (!bIsShooting && fAngleToPlayer <= shootAngle)
