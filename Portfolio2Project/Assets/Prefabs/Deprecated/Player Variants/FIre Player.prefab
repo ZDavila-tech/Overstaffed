@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 6190940359032564600}
   - component: {fileID: 6190940359032564605}
   m_Layer: 3
-  m_Name: Fire Player
+  m_Name: FIre Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,15 +128,23 @@ MonoBehaviour:
   controller: {fileID: 6190940359032564605}
   skills: {fileID: 981593141161157849}
   iHP: 10
+  utCharge: 0
   playerSpeed: 7
   jumpHeight: 8
   gravityValue: 12
   maxJumps: 1
   sprintMod: 2
   damagecoolDown: 0.1
+  pushBackResolve: 0
+  playerElement: 0
+  playerWeapon: {fileID: 0}
   ShootRange: 355
   ShotCooldown: 0.2
-  playerWeaponHolder: {fileID: 0}
+  pushBack: {x: 0, y: 0, z: 0}
+  aud: {fileID: 0}
+  AttackVolume: 0
+  JumpVolume: 0
+  jumpAudio: {fileID: 0}
 --- !u!114 &981593141161157849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,6 +160,12 @@ MonoBehaviour:
   controller: {fileID: 6190940359032564605}
   playerController: {fileID: 6190940359032564604}
   blinkAimIndicatorPrefab: {fileID: 2848004723096892248, guid: 9d2a42548f99c5042b79c8c622fcb472, type: 3}
+  hiJumpAudio: {fileID: 0}
+  blinkAudio: {fileID: 0}
+  dashAudio: {fileID: 0}
+  hiJumpVolume: 0
+  blinkVolume: 0
+  dashVolume: 0
   DashSpeed: 21.9
   DashTime: 0.352
   DashCooldown: 1
@@ -347,7 +361,6 @@ MonoBehaviour:
   sensVert: 600
   lockVerMin: -90
   lockVerMax: 90
-  invertY: 0
 --- !u!1001 &2155961622416612088
 PrefabInstance:
   m_ObjectHideFlags: 0
