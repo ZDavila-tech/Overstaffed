@@ -38,7 +38,7 @@ public class Missile : MonoBehaviour
 
     IEnumerator TrackPlayer()
     {
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(1.5f);
         playerPosition = player.transform.position;
         rigidBody.velocity = (playerPosition - rigidBody.position).normalized * missileSpeed;
         ++tracksDone;
