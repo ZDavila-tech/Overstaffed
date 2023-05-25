@@ -44,8 +44,9 @@ public class NewStaff : MonoBehaviour
     [Header("----- Earth Special Attack Stuff -----")]
     [SerializeField] float eSpecialRange;
     [SerializeField] public int eSpecialDamage;
+    [SerializeField] GameObject earthEffect;
 
-    
+[Header("----- Other Stuff -----")]
     public bool canSpecial;
     public enum Element
     {
@@ -316,15 +317,21 @@ public class NewStaff : MonoBehaviour
     void EarthAOE()
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        Vector3 direction = GetDirection();
+        RaycastHit hit;
+        if (Physics.Raycast(shootPos.position, direction, out hit, float.MaxValue, mask))
+        {
+            Instantiate(earthEffect, hit.point, earthEffect.transform.rotation);
+        }
         foreach (GameObject enemy in enemies)
         {
             if (eSpecialRange >= Vector3.Distance(transform.position, enemy.transform.position))
             {
-
                 enemy.GetComponent<EnemyAI>().TakeDamage(eSpecialDamage);
             }
         }
     }
+
 
     public void SpecialAttack()
     {
