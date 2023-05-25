@@ -54,6 +54,7 @@ public class buttonFunctions : MonoBehaviour
         Debug.Log("Player Character destroyed");
 
         gameManager.instance.UnpauseState();
+        MusicPlayer.instance.StopSong();
         SceneManager.LoadScene("Main Menu");
     }
 }

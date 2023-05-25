@@ -28,6 +28,11 @@ public class MusicPlayer : MonoBehaviour
         UpdateBGVolume();
     }
 
+    public void StopSong()
+    {
+        aud.Stop();
+    }
+
     void PlaySong()
     {
         aud.Stop();
