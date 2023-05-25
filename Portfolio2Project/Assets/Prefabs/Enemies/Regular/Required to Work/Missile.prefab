@@ -49,7 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 3
   missileLife: 10
-  missileSpeed: 6
+  missileSpeed: 10
+  cooldownBetweenTracks: 0.3
   rigidBody: {fileID: 8060328068600632507}
 --- !u!54 &8060328068600632507
 Rigidbody:
@@ -132,24 +133,24 @@ TrailRenderer:
       - serializedVersion: 3
         time: 0
         value: 0
-        inSlope: 0
-        outSlope: 0
+        inSlope: 1.25746
+        outSlope: 1.25746
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 0
+        outWeight: 0.9779831
       - serializedVersion: 3
-        time: 0.10179732
-        value: 0.08162726
-        inSlope: 0
-        outSlope: 0
+        time: 0.015707947
+        value: 0.35642922
+        inSlope: 6.6753654
+        outSlope: 6.6753654
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0
-        outWeight: 0
+        inWeight: 1
+        outWeight: 0.7960007
       - serializedVersion: 3
-        time: 0.26646528
-        value: 0.2040727
+        time: 0.11746128
+        value: 0.61628467
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -157,34 +158,34 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.47006443
-        value: 0.08842822
-        inSlope: 0
-        outSlope: 0
+        time: 0.43364182
+        value: 0.25635958
+        inSlope: -2.02794
+        outSlope: -2.02794
         tangentMode: 0
         weightedMode: 0
         inWeight: 0
-        outWeight: 0
+        outWeight: 0.35497406
       - serializedVersion: 3
-        time: 0.6467066
+        time: 0.77915883
         value: 0
-        inSlope: 0
-        outSlope: 0
+        inSlope: -0.22037096
+        outSlope: -0.22037096
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0
+        inWeight: 0.5012737
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.17535657, g: 0.5, b: 0.06367925, a: 1}
-      key1: {r: 0.7073746, g: 0.7075472, b: 0.14351194, a: 1}
-      key2: {r: 0.21589208, g: 0.8679245, b: 0.07778566, a: 0}
+      key0: {r: 0.47037637, g: 0.5019608, b: 0.0627451, a: 1}
+      key1: {r: 0.066972226, g: 0.4056604, b: 0.07543502, a: 1}
+      key2: {r: 0.46636117, g: 0.6132076, b: 0.1475169, a: 0}
       key3: {r: 0.9339623, g: 0.91873634, b: 0.066082224, a: 0}
       key4: {r: 0.5727529, g: 0.8962264, b: 0.063412234, a: 0}
-      key5: {r: 0, g: 0, b: 0, a: 0}
+      key5: {r: 0.5727529, g: 0.8962264, b: 0.063412234, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
@@ -192,7 +193,7 @@ TrailRenderer:
       ctime2: 32960
       ctime3: 45682
       ctime4: 57825
-      ctime5: 0
+      ctime5: 57825
       ctime6: 0
       ctime7: 0
       atime0: 16769

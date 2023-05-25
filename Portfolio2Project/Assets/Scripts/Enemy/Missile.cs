@@ -9,12 +9,14 @@ public class Missile : MonoBehaviour
     public int damage; //the base damage this kind of shot has
     [SerializeField] float missileLife; //the amount of time this projectile takes to disappear (in seconds)
     [SerializeField] int missileSpeed; //the speed that the projectile travels at
+    [SerializeField] float cooldownBetweenTracks;
 
     [Header("----- Components -----")]
     [SerializeField] Rigidbody rigidBody; //this object's Rigidbody
     GameObject player;
     Vector3 playerPosition;
     int tracksDone;
+    bool trackingCoolingDown;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +32,7 @@ public class Missile : MonoBehaviour
 
     private void Update()
     {
-        if (tracksDone < 5)
+        if (trackingCoolingDown == false && tracksDone < 5)
         {
             StartCoroutine(TrackPlayer());
         }
@@ -38,10 +40,14 @@ public class Missile : MonoBehaviour
 
     IEnumerator TrackPlayer()
     {
-        yield return new WaitForSeconds(1.5f);
+        trackingCoolingDown = true;
         playerPosition = player.transform.position;
         rigidBody.velocity = (playerPosition - rigidBody.position).normalized * missileSpeed;
         ++tracksDone;
+
+        yield return new WaitForSeconds(cooldownBetweenTracks);
+
+        trackingCoolingDown = false;
     }
 
     private void OnTriggerEnter(Collider other)
