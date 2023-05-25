@@ -28,7 +28,7 @@ public class enemySpawn : MonoBehaviour
         if(LevelManager.instance != null)
         {
             levelManager = LevelManager.instance;
-            levelManager.enemiesRemaining = levelManager.totalEnemiesToSpawn;
+            levelManager.enemiesRemaining += levelManager.totalEnemiesToSpawn;
         }
     }
 
