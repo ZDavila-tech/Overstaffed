@@ -218,7 +218,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     {
         if (!ShootSoundInPlay)
         {
-            aud.PlayOneShot(playerWeapon.GetShootAudio(), AttackVolume);
+            aud.PlayOneShot(playerWeapon.GetShootAudio(), AttackVolume *0.17f);
             ShootSoundInPlay = true;
         }
         yield return new WaitForSeconds(ShotCooldown);
@@ -235,6 +235,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         }
         else
         {
+            utCharge = 100;
             gameManager.instance.UpdateUtCharge(100);
         }
     }

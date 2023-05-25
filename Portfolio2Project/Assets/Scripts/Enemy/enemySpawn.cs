@@ -8,6 +8,7 @@ public class enemySpawn : MonoBehaviour
     [SerializeField] float spawnAreaX;
     [SerializeField] float spawnAreaY;
     [SerializeField] float spawnDelay;
+    [SerializeField] GameObject spawnRotation;
 
     [Header("-----enemies-----")]
     [SerializeField] private Transform[] enemies;
@@ -61,7 +62,7 @@ public class enemySpawn : MonoBehaviour
     void spawn()
     {
         Transform tospawn = weightedenemyselection();
-        Transform spawned = Instantiate(tospawn, transform.position + spawncoords(), transform.rotation);
+        Transform spawned = Instantiate(tospawn, transform.position + spawncoords(), spawnRotation.transform.rotation);
         spawned.gameObject.GetComponent<EnemyAI>().spawnedBySpawner = true;
         LevelManager.instance.enemiesSpawned++;
     }
