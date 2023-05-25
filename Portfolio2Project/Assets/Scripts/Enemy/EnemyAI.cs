@@ -138,6 +138,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         if (navAgent.isActiveAndEnabled)
         {
             navAgent.SetDestination(gameManager.instance.player.transform.position);
+        }
 
             if (navAgent.remainingDistance < navAgent.stoppingDistance)
             {
@@ -145,8 +146,6 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
                 FacePlayer();
 
             }
-        }
-
 
 
         if (!bIsShooting && fAngleToPlayer <= shootAngle)
@@ -250,10 +249,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
     public void Knockback(Vector3 dir)
     {
-        if (navAgent.isActiveAndEnabled)
-        {
-            navAgent.velocity += dir;
-        }
+        navAgent.velocity += dir;
     }
 
     IEnumerator GetInterrupted()
