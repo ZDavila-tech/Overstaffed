@@ -13,13 +13,13 @@ public static class fileManager// : MonoBehaviour
     public static bool invertY = false;
 
     static DirectoryInfo dir = Directory.CreateDirectory("../saves");
-    static FileStream saveFile = new FileStream(dir.FullName + "/saveFile", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+    static FileStream saveFile = new FileStream(dir.FullName + "/saveFile", FileMode.Create, FileAccess.ReadWrite);
     
 
 
     public static void save()
     {
-        using (StreamWriter writer = new StreamWriter(saveFile.Name,false))
+        using (StreamWriter writer = new StreamWriter(saveFile))
         {
             //writer.
             writer.WriteLine(masterVolume + '\n');
