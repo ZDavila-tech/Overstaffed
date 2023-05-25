@@ -5224,7 +5224,12 @@ MonoBehaviour:
   eSpecialDamage: 10
   earthEffect: {fileID: 6225980049285009219, guid: b3b85d1e46d3c00439beb2e7ba321fe1, type: 3}
   canSpecial: 0
-  playerElement: 1
+  cWeapon: {fileID: 3395235527453676197}
+  materials:
+  - {fileID: 2800000, guid: a2a432064ac343f4e8c58601a01d728d, type: 3}
+  - {fileID: 2800000, guid: be6b3f66d99c2bf4cbfbf690a82bdcca, type: 3}
+  - {fileID: 2800000, guid: 44b966ecfa464b541b27e1d09f524088, type: 3}
+  playerElement: 0
   isShooting: 0
   canMelee: 1
   weapon: {fileID: 4055193228901778526}
@@ -10569,7 +10574,7 @@ MonoBehaviour:
   controller: {fileID: 6256373690464243920}
   skills: {fileID: 1055786313974128500}
   iHP: 10
-  utCharge: 0
+  utCharge: 100
   playerSpeed: 7
   jumpHeight: 8
   gravityValue: 12

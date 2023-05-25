@@ -48,6 +48,9 @@ public class NewStaff : MonoBehaviour
 
 [Header("----- Other Stuff -----")]
     public bool canSpecial;
+    [SerializeField] GameObject cWeapon;
+    public List<Texture> materials;
+
     public enum Element
     {
         Fire,
@@ -77,20 +80,23 @@ public class NewStaff : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        
 
-        //switch (playerElement)
-        //{
-        //    case Element.Fire:
-        //        weaponModels[0].GetComponent<MeshRenderer>().material.SetTexture("_MainTex", fireStaff);
-        //        break;
-        //    case Element.Water:
-        //        weaponModels[0].GetComponent<MeshRenderer>().material.SetTexture("_MainTex", waterStaff);
-        //        break;
-        //    case Element.Earth:
-        //        weaponModels[0].GetComponent<MeshRenderer>().material.SetTexture("_MainTex", earthStaff);
-        //        break;
-        //}
+
+        switch (player.playerElement)
+        {
+            case Element.Fire:
+                //weaponModels[0].GetComponent<MeshRenderer>().material.SetTexture("_MainTex", fireStaff);
+                cWeapon.GetComponent<Renderer>().material.SetTexture("_MainTex", materials[0]); //= materials[0];
+                break;
+            case Element.Water:
+                //weaponModels[0].GetComponent<MeshRenderer>().material.SetTexture("_MainTex", waterStaff);
+                cWeapon.GetComponent<Renderer>().material.SetTexture("_MainTex", materials[1]);
+                break;
+            case Element.Earth:
+                //weaponModels[0].GetComponent<MeshRenderer>().material.SetTexture("_MainTex", earthStaff);
+                cWeapon.GetComponent<Renderer>().material.SetTexture("_MainTex", materials[2]);
+                break;
+        }
     }
 
     // Update is called once per frame
@@ -114,7 +120,6 @@ public class NewStaff : MonoBehaviour
         //Debug.Log("Weapon Shoot Called");
         if (Input.GetButton("Shoot"))
         {
-
             isShooting = true;
             canMelee = false;
             canSpecial = false;
@@ -129,6 +134,9 @@ public class NewStaff : MonoBehaviour
                 }
             }
         }
+        
+            
+        
         StartCoroutine(ResetShooting());
     }
 
