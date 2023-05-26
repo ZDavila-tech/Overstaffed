@@ -9,7 +9,8 @@ public class MainMenu : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
-        //fileManager.load();
+        fileManager.save();
+        fileManager.load();
     }
     public void PlayGame() //Takes player to character select scene
     {
