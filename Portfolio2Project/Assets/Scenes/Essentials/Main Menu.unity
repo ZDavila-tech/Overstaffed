@@ -207,6 +207,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be933e967a632be41bd7b964abbd7373, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &623898492 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7662511765174309655, guid: 020ce68f5f0f0b9468276c49a15fee42, type: 3}
+  m_PrefabInstance: {fileID: 978627311397687861}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 003af2e7b1c74dd4398d0e6d2b382596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &627219891
 GameObject:
   m_ObjectHideFlags: 0
@@ -316,6 +327,10 @@ PrefabInstance:
       propertyPath: uiManager
       value: 
       objectReference: {fileID: 1745445222}
+    - target: {fileID: 7047133151981182265, guid: 52e3eba71d869d74a97de4993da0b240, type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 623898492}
     - target: {fileID: 7047133151981182265, guid: 52e3eba71d869d74a97de4993da0b240, type: 3}
       propertyPath: levelManager
       value: 
