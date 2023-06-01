@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3337242403167304962
+--- !u!1 &8595041946791215725
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3337242403167304963}
-  - component: {fileID: 3337242403167304972}
-  - component: {fileID: 2883416269303960581}
+  - component: {fileID: 6979552653048248221}
+  - component: {fileID: 7662511765174309655}
+  - component: {fileID: 3070007370155966373}
   m_Layer: 0
-  m_Name: Level Manager
-  m_TagString: LevelManager
+  m_Name: Audio Manager
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3337242403167304963
+--- !u!4 &6979552653048248221
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3337242403167304962}
+  m_GameObject: {fileID: 8595041946791215725}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -33,40 +33,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3337242403167304972
+--- !u!114 &7662511765174309655
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3337242403167304962}
+  m_GameObject: {fileID: 8595041946791215725}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be933e967a632be41bd7b964abbd7373, type: 3}
+  m_Script: {fileID: 11500000, guid: 003af2e7b1c74dd4398d0e6d2b382596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  repeatableLevelsMinIndex: 3
-  repeatableLevelsMaxIndex: 8
-  baseEnemyCount: 0
-  enemyCountScale: 0
-  maxPlayableLevel: 0
-  currentLevel: 0
-  totalEnemiesToSpawn: 0
-  enemiesRemaining: 0
-  enemiesSpawned: 0
-  maxEnemiesAtOneTime: 0
-  currentEnemies: 0
-  inElevator: 0
-  levelStarted: 0
-  levelCompleted: 0
-  loadingLevel: 0
---- !u!114 &2883416269303960581
+--- !u!114 &3070007370155966373
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3337242403167304962}
+  m_GameObject: {fileID: 8595041946791215725}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5dbee6896575f6479267b98a8df930d, type: 3}

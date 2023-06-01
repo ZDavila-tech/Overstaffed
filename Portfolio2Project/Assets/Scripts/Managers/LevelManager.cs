@@ -5,19 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    [Header("----- LevelIndexes -----")]
-    [SerializeField] int repeatableLevelsMinIndex; //list levels contiguously
+    public static LevelManager instance;
+
+    [Header("----- Level Indexes -----")]
+    [SerializeField] int repeatableLevelsMinIndex; //list repeatable levels contiguously in Build Settings
     [SerializeField] int repeatableLevelsMaxIndex;
 
     [Header("----- Settings -----")]
     [SerializeField] int baseEnemyCount;
     [SerializeField, Range(0f, 1f)] float enemyCountScale;
-    [SerializeField] int maxLevel;
+    [SerializeField] int maxPlayableLevel;
 
-    public static LevelManager instance;
-
-    UIManager uiManager;
-
+    [Header("----- For Spawners To Know -----")]
     public int currentLevel;
     public int totalEnemiesToSpawn; //total enemies to spawn
     public int enemiesRemaining; //goes up when an enemyAI Start()'s and goes down on enemy death
@@ -25,16 +24,17 @@ public class LevelManager : MonoBehaviour
     public int maxEnemiesAtOneTime;
     public int currentEnemies;
 
+    [Header("----- Level Transition Stuff (Ignore)-----")]
     public bool inElevator; //player is in elevator
     public bool levelStarted; //player successfully teleported/close enough to spawn
     public bool levelCompleted; //for use by other scripts, makes life easier -> if levelStarted, no enemies, and player in elevator -> load new level
-
     public bool loadingLevel;
+
+    private UIManager uiManager;
 
     private void Awake()
     {
         instance = this;
-        DontDestroyOnLoad(this.gameObject);
     }
     void Start()
     {
@@ -109,7 +109,7 @@ public class LevelManager : MonoBehaviour
     {
         NewLevel();
         ++currentLevel; //ups difficulty
-        if (currentLevel > maxLevel)
+        if (currentLevel > maxPlayableLevel)
         {
             uiManager.YouWin();
         }

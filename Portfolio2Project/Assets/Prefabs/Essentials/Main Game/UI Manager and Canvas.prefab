@@ -1139,7 +1139,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3132585985007684412}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
         m_MethodName: BacktoMainMenu
         m_Mode: 1
@@ -2482,7 +2482,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7511924921256980289}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: GoBack
         m_Mode: 1
@@ -3612,7 +3612,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3132585985007684412}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
         m_MethodName: GoBackMenu
         m_Mode: 1
@@ -5216,7 +5216,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7511924921256980289}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: GoToSettings
         m_Mode: 1
@@ -5344,7 +5344,7 @@ RectTransform:
   - {fileID: 46004554}
   - {fileID: 202888948}
   m_Father: {fileID: 8177094150598617813}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5646,7 +5646,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3132585985007684412}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
         m_MethodName: BacktoMainMenu
         m_Mode: 1
@@ -7282,93 +7282,6 @@ MonoBehaviour:
   m_FillOrigin: 1
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &4656500234614553631
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8305304018295902086}
-  - component: {fileID: 7511924921256980289}
-  - component: {fileID: 3132585985007684412}
-  m_Layer: 5
-  m_Name: UIManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &8305304018295902086
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4656500234614553631}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8177094150598617813}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7511924921256980289
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4656500234614553631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5db2bc689b033c4283314f46b3ed81c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  activeMenu: {fileID: 0}
-  pauseMenu: {fileID: 8177094150441434826}
-  loseMenu: {fileID: 8177094150871440207}
-  winMenu: {fileID: 8177094150393831460}
-  settingsMenu: {fileID: 1928997668}
-  flashDamage: {fileID: 5922270969672879181}
-  playerHealthBar: {fileID: 7748937549668574394}
-  levelText: {fileID: 88375043}
-  UtCharge: {fileID: 5312609800976647544}
-  fadeOutImage: {fileID: 191503218020283492}
-  fadeSpeed: 3
-  fading: 0
-  invert: {fileID: 422513059}
-  volumeValue: {fileID: 2033684084}
-  soundEffectsVolume: {fileID: 2221515450121539103}
-  bgToggle: {fileID: 46004555}
-  seToggle: {fileID: 202888949}
-  ability1: {fileID: 2312746610654292033}
-  ability2: {fileID: 5113820783695345951}
-  ability3: {fileID: 6300488614591958208}
-  spriteArray:
-  - {fileID: 21300000, guid: dfbffb416678bd743a061fac329bc247, type: 3}
-  - {fileID: 21300000, guid: 3d9ba4146a55d8e4f86d4fc9a112681e, type: 3}
-  - {fileID: 21300000, guid: d58b4197033797b4bb19594e2edb13d1, type: 3}
-  element: {fileID: 740090291}
---- !u!114 &3132585985007684412
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4656500234614553631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6958eddd368fb7b4ca30f02277de0f47, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &4885973419230558468
 GameObject:
   m_ObjectHideFlags: 0
@@ -7552,7 +7465,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8177094150598617813}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -8112,7 +8025,7 @@ Transform:
   - {fileID: 566511693}
   - {fileID: 9152180421466953876}
   m_Father: {fileID: 8177094150598617813}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7341922444665107939
 GameObject:
@@ -8831,7 +8744,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3132585985007684412}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
@@ -9009,7 +8922,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8177094150598617813}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8177094149661264101
 MonoBehaviour:
@@ -9438,7 +9351,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3132585985007684412}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
@@ -9484,7 +9397,7 @@ RectTransform:
   - {fileID: 8177094149552358604}
   - {fileID: 1117766412}
   m_Father: {fileID: 8177094150598617813}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9565,7 +9478,7 @@ RectTransform:
   - {fileID: 1879984923}
   - {fileID: 1953143832}
   m_Father: {fileID: 8177094150598617813}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9755,11 +9668,12 @@ GameObject:
   m_Component:
   - component: {fileID: 8177094150598617813}
   - component: {fileID: 5136862695488603820}
+  - component: {fileID: 2418822507137804676}
   - component: {fileID: 8177094150598617834}
   - component: {fileID: 8177094150598617835}
   - component: {fileID: 8177094150598617832}
   m_Layer: 5
-  m_Name: UI
+  m_Name: UI Manager and Canvas
   m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9777,7 +9691,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8305304018295902086}
   - {fileID: 8177094149661264123}
   - {fileID: 7899493476224669430}
   - {fileID: 891601484840636271}
@@ -9805,6 +9718,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5dbee6896575f6479267b98a8df930d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2418822507137804676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8177094150598617833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5db2bc689b033c4283314f46b3ed81c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activeMenu: {fileID: 0}
+  pauseMenu: {fileID: 8177094150441434826}
+  loseMenu: {fileID: 8177094150871440207}
+  winMenu: {fileID: 8177094150393831460}
+  settingsMenu: {fileID: 1928997668}
+  flashDamage: {fileID: 5922270969672879181}
+  playerHealthBar: {fileID: 7748937549668574394}
+  levelText: {fileID: 88375043}
+  UtCharge: {fileID: 5312609800976647544}
+  fadeOutImage: {fileID: 191503218020283492}
+  fadeSpeed: 3
+  fading: 0
+  invert: {fileID: 422513059}
+  volumeValue: {fileID: 2033684084}
+  soundEffectsVolume: {fileID: 2221515450121539103}
+  bgToggle: {fileID: 46004555}
+  seToggle: {fileID: 202888949}
+  ability1: {fileID: 2312746610654292033}
+  ability2: {fileID: 5113820783695345951}
+  ability3: {fileID: 6300488614591958208}
+  spriteArray:
+  - {fileID: 21300000, guid: dfbffb416678bd743a061fac329bc247, type: 3}
+  - {fileID: 21300000, guid: 3d9ba4146a55d8e4f86d4fc9a112681e, type: 3}
+  - {fileID: 21300000, guid: d58b4197033797b4bb19594e2edb13d1, type: 3}
+  element: {fileID: 740090291}
 --- !u!223 &8177094150598617834
 Canvas:
   m_ObjectHideFlags: 0
@@ -9988,7 +9938,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3132585985007684412}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
@@ -10034,7 +9984,7 @@ RectTransform:
   - {fileID: 8177094150647561556}
   - {fileID: 242025791}
   m_Father: {fileID: 8177094150598617813}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10201,7 +10151,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3132585985007684412}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
         m_MethodName: Resume
         m_Mode: 1

@@ -45,15 +45,13 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        GameManager.instance.SetPlayerVariables(this.gameObject);
         playerWeapon = GetComponentInChildren<NewStaff>();
     }
 
     void Start()
     {
         iHPOriginal = iHP;
-        //Debug.Log(iHPOriginal);
-        //Debug.Log(iHP);
         uiManager = UIManager.instance;
     }
 
@@ -74,7 +72,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         }
         Sprint();
 
-        if (Input.GetButton("Shoot") && !isShooting && !gameManager.instance.isPaused)
+        if (Input.GetButton("Shoot") && !isShooting && !GameManager.instance.isPaused)
         {
             StartCoroutine(Shoot());
         }

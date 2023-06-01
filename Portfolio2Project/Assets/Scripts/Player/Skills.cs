@@ -85,7 +85,7 @@ public class Skills : MonoBehaviour
     {
         var startTime = Time.time;
         dashVolume = uiManager.soundEffectsVolume.value;
-        gameManager.instance.playerScript.PlayExternalAudio(dashAudio, dashVolume);
+        GameManager.instance.playerController.PlayExternalAudio(dashAudio, dashVolume);
         while (Time.time < startTime + DashTime)
         {
             controller.Move(transform.forward * DashSpeed * Time.deltaTime);
@@ -129,7 +129,7 @@ public class Skills : MonoBehaviour
     {
         var startTime = Time.time;
         hiJumpVolume = uiManager.soundEffectsVolume.value;
-        gameManager.instance.playerScript.PlayExternalAudio(hiJumpAudio, hiJumpVolume);
+        GameManager.instance.playerController.PlayExternalAudio(hiJumpAudio, hiJumpVolume);
         while (Time.time < startTime + JumpTime)
         {
             controller.Move(transform.up * JumpForce * Time.deltaTime);
@@ -261,7 +261,7 @@ public class Skills : MonoBehaviour
         {
             transform.position = new Vector3(blinkAimIndicator.position.x, blinkAimIndicator.position.y, blinkAimIndicator.position.z);
             blinkVolume = uiManager.soundEffectsVolume.value;
-            gameManager.instance.playerScript.PlayExternalAudio(blinkAudio, blinkVolume);
+            GameManager.instance.playerController.PlayExternalAudio(blinkAudio, blinkVolume);
             Destroy(blinkAimIndicator.gameObject,1.5f);
         }
         controller.enabled = true;

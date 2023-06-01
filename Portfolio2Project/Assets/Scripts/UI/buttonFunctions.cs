@@ -14,7 +14,7 @@ public class buttonFunctions : MonoBehaviour
     //Resume the game
     public void Resume()
     {
-        gameManager.instance.UnpauseState();
+        GameManager.instance.UnpauseState();
     }
 
     //Restarts the level from the beginning
@@ -29,7 +29,7 @@ public class buttonFunctions : MonoBehaviour
         Destroy(GameObject.FindGameObjectWithTag("BGM"));        
         Debug.Log("Player Character destroyed");
 
-        gameManager.instance.UnpauseState();
+        GameManager.instance.UnpauseState();
         SceneManager.LoadScene("Character Select");
     }
 
@@ -59,7 +59,7 @@ public class buttonFunctions : MonoBehaviour
         Destroy(GameObject.FindGameObjectWithTag("UI"));
         Debug.Log("Player Character destroyed");
 
-        gameManager.instance.UnpauseState();
+        GameManager.instance.UnpauseState();
         MusicPlayer.instance.StopSong();
         SceneManager.LoadScene("Main Menu");
     }

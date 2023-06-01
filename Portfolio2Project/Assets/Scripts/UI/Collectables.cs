@@ -27,11 +27,11 @@ public class Collectables : MonoBehaviour
             switch (Pickup)
             {
                 case PickupType.Health:
-                    gameManager.instance.playerScript.TakeDamage(-value);
+                    GameManager.instance.playerController.TakeDamage(-value);
                     Destroy(gameObject);
                     break;
                 case PickupType.UltimateCharge:
-                    gameManager.instance.playerScript.ChargeUt(value);
+                    GameManager.instance.playerController.ChargeUt(value);
                     Destroy(gameObject);
                     break;
             }

@@ -36,6 +36,6 @@ public class Fireball : MonoBehaviour
     }
     private void Update()
     {
-        transform.RotateAround(gameManager.instance.player.transform.position, Vector3.up * bulletRange, bulletSpeed * Time.deltaTime);
+        transform.RotateAround(GameManager.instance.playerCharacter.transform.position, Vector3.up * bulletRange, bulletSpeed * Time.deltaTime);
     }
 }

@@ -40,7 +40,7 @@ public class UIManager : MonoBehaviour
     public List<Sprite> spriteArray;
     public UnityEngine.UI.Image element;
 
-    private gameManager gameManager;
+    private GameManager gameManager;
     private NewStaff.Element playerElement;
 
     private LevelManager levelManager;
@@ -55,10 +55,10 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        gameManager = gameManager.instance;
+        gameManager = GameManager.instance;
         playerElement = gameManager.playerElement;
         levelManager = LevelManager.instance;
-        skillScript = gameManager.skillScript;
+        skillScript = gameManager.playerSkills;
     }
 
     void Update()
@@ -73,7 +73,7 @@ public class UIManager : MonoBehaviour
         UpdateToggles();
         AbilityCoolDown();
 
-        if (playerElement != gameManager.playerScript.playerElement)
+        if (playerElement != gameManager.playerController.playerElement)
         {
             SetElement();
             SetElementIcon();
@@ -244,7 +244,7 @@ public class UIManager : MonoBehaviour
 
     public void SetElement()
     {
-        playerElement = gameManager.playerScript.playerElement;
+        playerElement = gameManager.playerController.playerElement;
     }
 
     public void UpdateUtCharge(float amount)
