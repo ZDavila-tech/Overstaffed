@@ -8,14 +8,14 @@ public class PlayerSpawn : MonoBehaviour
     GameObject player;
 
     LevelManager levelManager;
-    GameManager gameManager;
+    gameManager gameManager;
     bool playerInSpawn;
     bool keepPullingPlayer;
 
     private void Start()
     {
         levelManager = LevelManager.instance;
-        gameManager = GameManager.instance;
+        gameManager = gameManager.instance;
         player = GameObject.FindGameObjectWithTag("Player");
         playerSpawn = this.gameObject;
         PullPlayer();

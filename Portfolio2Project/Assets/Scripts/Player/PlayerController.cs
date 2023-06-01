@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     private void Awake()
     {
-        GameManager.instance.SetPlayerVariables(this.gameObject);
+        gameManager.instance.SetPlayerVariables(this.gameObject);
         playerWeapon = GetComponentInChildren<NewStaff>();
     }
 
@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         }
         Sprint();
 
-        if (Input.GetButton("Shoot") && !isShooting && !GameManager.instance.isPaused)
+        if (Input.GetButton("Shoot") && !isShooting && !gameManager.instance.isPaused)
         {
             StartCoroutine(Shoot());
         }

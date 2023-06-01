@@ -86,7 +86,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
         if (hpDisplay.activeSelf)
         {
-            hpDisplay.transform.LookAt(GameManager.instance.playerCharacter.transform.position);
+            hpDisplay.transform.LookAt(gameManager.instance.playerCharacter.transform.position);
         }
         if((bPlayerInRange || bBeenShot) && CanSeePlayer())
         {
@@ -110,7 +110,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
     bool CanSeePlayer()
     {
-        playerDir = GameManager.instance.playerCharacter.transform.position - headPosition.position;
+        playerDir = gameManager.instance.playerCharacter.transform.position - headPosition.position;
         fAngleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
 
         Debug.DrawRay(headPosition.position, playerDir);
@@ -137,7 +137,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     {
         if (navAgent.isActiveAndEnabled)
         {
-            navAgent.SetDestination(GameManager.instance.playerCharacter.transform.position);
+            navAgent.SetDestination(gameManager.instance.playerCharacter.transform.position);
         }
 
             if (navAgent.remainingDistance < navAgent.stoppingDistance)
@@ -183,7 +183,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         StartCoroutine(FlashColor());//indicate damage taken
         if (navAgent.isActiveAndEnabled)
         {
-            navAgent.SetDestination(GameManager.instance.playerCharacter.transform.position);
+            navAgent.SetDestination(gameManager.instance.playerCharacter.transform.position);
         }
         StartCoroutine(BeenShot());
 
@@ -194,7 +194,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
             {
                 Instantiate(drop, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), transform.rotation);
             }
-            GameManager.instance.playerController.ChargeUt(chargeValue);
+            gameManager.instance.playerController.ChargeUt(chargeValue);
             --levelManager.enemiesRemaining;
             Destroy(gameObject);
         }

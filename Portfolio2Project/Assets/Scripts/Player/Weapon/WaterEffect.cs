@@ -27,6 +27,6 @@ public class WaterEffect : MonoBehaviour
     private void Update()
     {
         playerPosition = player.transform.position;
-        transform.RotateAround(GameManager.instance.playerCharacter.transform.position, Vector3.up * bulletRange, bulletSpeed * Time.deltaTime);
+        transform.RotateAround(gameManager.instance.playerCharacter.transform.position, Vector3.up * bulletRange, bulletSpeed * Time.deltaTime);
     }
 }

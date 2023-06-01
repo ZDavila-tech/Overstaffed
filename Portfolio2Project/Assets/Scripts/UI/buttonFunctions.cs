@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ButtonFunctions : MonoBehaviour
+public class buttonFunctions : MonoBehaviour
 {
     [SerializeField] GameObject playerPrefabToSpawn;
     private GameObject player;
@@ -19,7 +19,7 @@ public class ButtonFunctions : MonoBehaviour
     //Resume the game
     public void Resume()
     {
-        GameManager.instance.UnpauseState();
+        gameManager.instance.UnpauseState();
     }
 
     //Restarts the level from the beginning
@@ -32,7 +32,7 @@ public class ButtonFunctions : MonoBehaviour
         uiManager.HUD.SetActive(false);
         uiManager.activeMenu = uiManager.playerSelect;
         uiManager.ShowActiveMenu();
-        Time.timeScale = GameManager.instance.timeScaleOriginal;
+        Time.timeScale = gameManager.instance.timeScaleOriginal;
 
         SceneManager.LoadScene("Character Select");
     }
@@ -58,7 +58,7 @@ public class ButtonFunctions : MonoBehaviour
         Destroy(GameObject.FindGameObjectWithTag("AudioManager"));
 
         Debug.Log("Player Character destroyed");
-        Time.timeScale = GameManager.instance.timeScaleOriginal;
+        Time.timeScale = gameManager.instance.timeScaleOriginal;
 
         //MusicPlayer.instance.StopSong();
         SceneManager.LoadScene("Main Menu");

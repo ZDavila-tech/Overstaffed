@@ -24,7 +24,7 @@ public class Missile : MonoBehaviour
         //destroy the bullet after it's lifespan ends
         Destroy(gameObject, missileLife);
         //move the bullet
-        player = GameManager.instance.playerCharacter;
+        player = gameManager.instance.playerCharacter;
         playerPosition = player.transform.position;
         rigidBody.velocity = (playerPosition - rigidBody.position).normalized * missileSpeed;
         tracksDone = 0;

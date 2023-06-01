@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour
     public List<Sprite> spriteArray;
     public UnityEngine.UI.Image element;
 
-    private GameManager gameManager;
+    private gameManager gameManager;
     private NewStaff.Element playerElement;
 
     private LevelManager levelManager;
@@ -58,7 +58,7 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        gameManager = GameManager.instance;
+        gameManager = gameManager.instance;
         activeMenu = mainMenu;
         //playerElement = gameManager.playerElement;
         levelManager = LevelManager.instance;
