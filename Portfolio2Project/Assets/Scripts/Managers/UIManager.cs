@@ -52,7 +52,7 @@ public class UIManager : MonoBehaviour
     {
         if(UIManager.instance != null)
         {
-            Destroy(this.gameObject);
+            DestroyImmediate(this.gameObject);
         }
         else
         {
@@ -84,7 +84,7 @@ public class UIManager : MonoBehaviour
         {
             AbilityCoolDown();
 
-            if (playerElement != gameManager.playerController.playerElement)
+            if (playerElement != gameManager.playerElement)
             {
                 SetElement();
                 SetElementIcon();
@@ -160,8 +160,8 @@ public class UIManager : MonoBehaviour
     public void SetElementIcon()
     {
         //Debug.Log(playerScript.GetWeapon());
-        element.sprite = spriteArray[(int)gameManager.playerElement];
-        switch (gameManager.playerElement)
+        element.sprite = spriteArray[(int)playerElement];
+        switch (playerElement)
         {
             case NewStaff.Element.Fire:
                 UtCharge.color = Color.yellow;
@@ -256,7 +256,7 @@ public class UIManager : MonoBehaviour
 
     public void SetElement()
     {
-        playerElement = gameManager.playerController.playerElement;
+        playerElement = gameManager.playerElement;
     }
 
     public void UpdateUtCharge(float amount)
@@ -269,5 +269,6 @@ public class UIManager : MonoBehaviour
     public void SetPlayerVariables()
     {
         playerSkills = gameManager.playerSkills;
+        playerElement = gameManager.playerElement;
     }
 }

@@ -73,6 +73,7 @@ public class gameManager : MonoBehaviour
         if (playerCharacter != null)
         {
             playerController = playerCharacter.GetComponent<PlayerController>();
+            playerElement = playerController.playerElement;
             playerSkills = playerCharacter.GetComponent<Skills>();
             uiManager.SetPlayerVariables();
         }
