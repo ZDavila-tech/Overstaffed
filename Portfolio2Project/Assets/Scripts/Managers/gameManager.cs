@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [Header("------ Managers -----")]
     public LevelManager levelManager;
     public UIManager uiManager;
+    public AudioManager audioManager;
 
     [Header("------ Player Stuff -----")]
     public GameObject playerCharacter;
