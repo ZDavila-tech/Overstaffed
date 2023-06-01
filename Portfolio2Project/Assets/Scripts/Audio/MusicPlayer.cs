@@ -11,6 +11,7 @@ public class MusicPlayer : MonoBehaviour
     [SerializeField] int currSong;
 
     UIManager uiManager;
+    AudioManager audioManager;
 
     // Start is called before the first frame update
     private void Awake()
@@ -22,6 +23,7 @@ public class MusicPlayer : MonoBehaviour
     void Start()
     {
         uiManager = UIManager.instance;
+        audioManager = AudioManager.instance;
         PlaySong();
     }
 
@@ -54,15 +56,15 @@ public class MusicPlayer : MonoBehaviour
     }
     public void UpdateBGVolume()
     {
-        volume = uiManager.volumeValue.value;
+        volume = audioManager.volumeValue.value;
         aud.volume = volume;
-        if(uiManager.volumeValue.value == 0)
+        if(audioManager.volumeValue.value == 0)
         {
-            uiManager.bgToggle.isOn = true;
+            audioManager.bgToggle.isOn = true;
         }
         else
         {
-            uiManager.bgToggle.isOn = false;
+            audioManager.bgToggle.isOn = false;
         }
     }
 }

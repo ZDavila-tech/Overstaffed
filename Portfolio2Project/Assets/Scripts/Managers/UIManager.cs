@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using static Skills;
-using Toggle = UnityEngine.UI.Toggle;
+
 
 public class UIManager : MonoBehaviour
 {
@@ -21,27 +22,23 @@ public class UIManager : MonoBehaviour
     public GameObject settingsMenu;
     public GameObject flashDamage;
 
-    public UnityEngine.UI.Image playerHealthBar;
+    public Image playerHealthBar;
     public TextMeshProUGUI levelText;
-    [SerializeField] UnityEngine.UI.Image UtCharge;
+    [SerializeField] Image UtCharge;
 
     [Header("-----Fade Stuff-----")]
-    public UnityEngine.UI.Image fadeOutImage;
+    public Image fadeOutImage;
     public int fadeSpeed;
     public bool fading;
 
     [Header("-----Misc Stuff-----")]
     public Toggle invert;
-    public UnityEngine.UI.Slider volumeValue;
-    public UnityEngine.UI.Slider soundEffectsVolume;
-    public Toggle bgToggle;
-    public Toggle seToggle;
 
-    public UnityEngine.UI.Image ability1; //Hi-Jump
-    public UnityEngine.UI.Image ability2; //Dash
-    public UnityEngine.UI.Image ability3; //Blink
+    public Image ability1; //Hi-Jump
+    public Image ability2; //Dash
+    public Image ability3; //Blink
     public List<Sprite> spriteArray;
-    public UnityEngine.UI.Image element;
+    public Image element;
 
     private gameManager gameManager;
     private NewStaff.Element playerElement;
@@ -86,7 +83,6 @@ public class UIManager : MonoBehaviour
                 SetElementIcon();
             }
         }
-        UpdateToggles();
 
         if (fading == true)
         {
@@ -261,17 +257,7 @@ public class UIManager : MonoBehaviour
         UtCharge.fillAmount = amount;
     }
 
-    public void UpdateToggles()
-    {
-        if (soundEffectsVolume.value == 0)
-        {
-            seToggle.isOn = true;
-        }
-        else
-        {
-            seToggle.isOn = false;
-        }
-    }
+
 
     public void SetPlayerVariables()
     {

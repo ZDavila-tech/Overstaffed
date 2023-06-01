@@ -11,6 +11,7 @@ public class Skills : MonoBehaviour
     [SerializeField] PlayerController playerController;
     [SerializeField] Transform blinkAimIndicatorPrefab;
     UIManager uiManager;
+    AudioManager audioManager;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioClip hiJumpAudio;
@@ -60,6 +61,7 @@ public class Skills : MonoBehaviour
     private void Start()
     {
         uiManager = UIManager.instance;
+        audioManager = AudioManager.instance;
     }
 
     private void Update()
@@ -84,7 +86,7 @@ public class Skills : MonoBehaviour
     IEnumerator dashCoroutine()
     {
         var startTime = Time.time;
-        dashVolume = uiManager.soundEffectsVolume.value;
+        dashVolume = audioManager.soundEffectsVolume.value;
         gameManager.instance.playerController.PlayExternalAudio(dashAudio, dashVolume);
         while (Time.time < startTime + DashTime)
         {
@@ -128,7 +130,7 @@ public class Skills : MonoBehaviour
     IEnumerator hiJumpCoroutine()
     {
         var startTime = Time.time;
-        hiJumpVolume = uiManager.soundEffectsVolume.value;
+        hiJumpVolume = audioManager.soundEffectsVolume.value;
         gameManager.instance.playerController.PlayExternalAudio(hiJumpAudio, hiJumpVolume);
         while (Time.time < startTime + JumpTime)
         {
@@ -260,7 +262,7 @@ public class Skills : MonoBehaviour
         if (blinkAimIndicator)
         {
             transform.position = new Vector3(blinkAimIndicator.position.x, blinkAimIndicator.position.y, blinkAimIndicator.position.z);
-            blinkVolume = uiManager.soundEffectsVolume.value;
+            blinkVolume = audioManager.soundEffectsVolume.value;
             gameManager.instance.playerController.PlayExternalAudio(blinkAudio, blinkVolume);
             Destroy(blinkAimIndicator.gameObject,1.5f);
         }
