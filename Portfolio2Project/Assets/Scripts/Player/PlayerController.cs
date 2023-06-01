@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     [SerializeField] CharacterController controller;
     [SerializeField] Skills skills;
     UIManager uiManager;
+    AudioManager audioManager;
 
     [Header("----- Player Stats -----")]
     [SerializeField] Stats playerStats;
@@ -55,6 +56,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         UpdateSpeed();
         iHP = playerStats.GetHealth();
         uiManager = UIManager.instance;
+        audioManager = AudioManager.instance;
     }
 
     void Update()
@@ -67,10 +69,10 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         {
             Movement();
         }
-        if (uiManager != null)
+        if (audioManager != null)
         {
-            AttackVolume = uiManager.soundEffectsVolume.value;
-            JumpVolume = uiManager.soundEffectsVolume.value;
+            AttackVolume = audioManager.soundEffectsVolume.value;
+            JumpVolume = audioManager.soundEffectsVolume.value;
         }
         Sprint();
 
