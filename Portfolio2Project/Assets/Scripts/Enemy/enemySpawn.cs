@@ -46,14 +46,14 @@ public class enemySpawn : MonoBehaviour
     void Update()
     {
         currentEnemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
-        levelManager.currentEnemies = currentEnemies;
+        levelManager.currentEnemiesAlive = currentEnemies;
         StartCoroutine(attemptspawn());
     }
 
     IEnumerator attemptspawn()
     {
         yield return new WaitForSeconds(spawnDelay);
-        if (levelManager.totalEnemiesToSpawn > levelManager.enemiesSpawned && currentEnemies < levelManager.maxEnemiesAtOneTime)
+        if (levelManager.totalEnemiesToSpawn > levelManager.currentEnemiesSpawned && currentEnemies < levelManager.maxEnemiesAtOneTime)
         {
             spawn();
         }
@@ -64,7 +64,7 @@ public class enemySpawn : MonoBehaviour
         GameObject tospawn = weightedenemyselection();
         GameObject spawned = Instantiate(tospawn, transform.position + spawncoords(), spawnRotation.transform.rotation);
         spawned.gameObject.GetComponent<EnemyAI>().spawnedBySpawner = true;
-        LevelManager.instance.enemiesSpawned++;
+        LevelManager.instance.currentEnemiesSpawned++;
     }
 
     Vector3 spawncoords()
