@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2039379257155128617}
   m_Layer: 11
   m_Name: MultiEnemySpawner
-  m_TagString: Untagged
+  m_TagString: MultiSpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -80,6 +80,7 @@ MonoBehaviour:
   spawnAreaX: 3
   spawnAreaY: 3
   spawnDelay: 1
+  spawnRotation: {fileID: 0}
   enemies: []
   weights: 
 --- !u!1001 &8884880547617892390
