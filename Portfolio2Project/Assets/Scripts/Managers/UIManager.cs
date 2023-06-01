@@ -156,11 +156,16 @@ public class UIManager : MonoBehaviour
         gameManager.PauseState();
     }
 
+    public void SetElement()
+    {
+        playerElement = gameManager.playerElement;
+    }
+
     //displays the correct element based on character type
     public void SetElementIcon()
     {
         //Debug.Log(playerScript.GetWeapon());
-        element.sprite = spriteArray[(int)playerElement];
+        element.sprite = spriteArray[(int) playerElement];
         switch (playerElement)
         {
             case NewStaff.Element.Fire:
@@ -254,17 +259,10 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
     }
 
-    public void SetElement()
-    {
-        playerElement = gameManager.playerElement;
-    }
-
     public void UpdateUtCharge(float amount)
     {
         UtCharge.fillAmount = amount;
     }
-
-
 
     public void SetPlayerVariables()
     {
