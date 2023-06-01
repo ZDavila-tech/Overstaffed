@@ -10720,8 +10720,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5196937610604099688}
-        m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
-        m_MethodName: BacktoMainMenu
+        m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
+        m_MethodName: GoToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13775,10 +13775,6 @@ MonoBehaviour:
   fadeSpeed: 3
   fading: 0
   invert: {fileID: 422513059}
-  volumeValue: {fileID: 2033684084}
-  soundEffectsVolume: {fileID: 2221515450121539103}
-  bgToggle: {fileID: 46004555}
-  seToggle: {fileID: 202888949}
   ability1: {fileID: 2312746610654292033}
   ability2: {fileID: 5113820783695345951}
   ability3: {fileID: 6300488614591958208}
@@ -13799,7 +13795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6958eddd368fb7b4ca30f02277de0f47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 6256373690464243930, guid: 45de30749b3650d43830070e711739ef, type: 3}
+  playerPrefabToSpawn: {fileID: 0}
 --- !u!223 &8177094150598617834
 Canvas:
   m_ObjectHideFlags: 0

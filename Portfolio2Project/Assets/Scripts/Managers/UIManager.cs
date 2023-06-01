@@ -50,7 +50,14 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        if(UIManager.instance != null)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
     }
 
     private void Start()

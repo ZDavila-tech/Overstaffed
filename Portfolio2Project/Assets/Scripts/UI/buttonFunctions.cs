@@ -31,8 +31,8 @@ public class buttonFunctions : MonoBehaviour
         uiManager.HideActiveMenu();
         uiManager.HUD.SetActive(false);
         uiManager.activeMenu = uiManager.playerSelect;
-        AudioManager.instance.currSong = 0;
-        AudioManager.instance.ChangeSong();
+        AudioManager.instance.currSong = 1;
+        AudioManager.instance.PlaySong();
         uiManager.ShowActiveMenu();
         Time.timeScale = gameManager.instance.timeScaleOriginal;
 
@@ -54,11 +54,14 @@ public class buttonFunctions : MonoBehaviour
     public void GoToMainMenu()
     {
         Destroy(GameObject.FindGameObjectWithTag("Player"));
-        Destroy(GameObject.FindGameObjectWithTag("UI"));
-        Destroy(GameObject.FindGameObjectWithTag("LevelManager"));
-        Destroy(GameObject.FindGameObjectWithTag("GameManager"));
-        Destroy(GameObject.FindGameObjectWithTag("AudioManager"));
-        
+
+        uiManager.HideActiveMenu();
+        uiManager.HUD.SetActive(false);
+        uiManager.activeMenu = uiManager.mainMenu;
+        AudioManager.instance.currSong = 0;
+        AudioManager.instance.PlaySong();
+        uiManager.ShowActiveMenu();
+
         Debug.Log("Player Character destroyed");
         Time.timeScale = gameManager.instance.timeScaleOriginal;
 

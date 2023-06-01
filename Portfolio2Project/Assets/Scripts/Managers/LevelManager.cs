@@ -35,7 +35,14 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        if (LevelManager.instance != null)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
     }
     void Start()
     {

@@ -24,7 +24,14 @@ public class gameManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        if (gameManager.instance != null)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
         timeScaleOriginal = Time.timeScale;
     }
 
