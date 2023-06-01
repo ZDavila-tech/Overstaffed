@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraControls : MonoBehaviour
 {
+    UIManager uiManager;
+
     [SerializeField] int sensHor;
     [SerializeField] int sensVert;
 
@@ -16,6 +18,7 @@ public class CameraControls : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        uiManager = UIManager.instance;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -28,7 +31,7 @@ public class CameraControls : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * sensHor;
 
         //Convert input to rotation float and give the option for inverted controls
-        if (gameManager.instance.invert.isOn)
+        if (uiManager != null && uiManager.invert.isOn)
         {
             xRotation += mouseY;
         }

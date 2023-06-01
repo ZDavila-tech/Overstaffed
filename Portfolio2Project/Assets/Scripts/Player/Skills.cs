@@ -10,6 +10,7 @@ public class Skills : MonoBehaviour
     [SerializeField] CharacterController controller;
     [SerializeField] PlayerController playerController;
     [SerializeField] Transform blinkAimIndicatorPrefab;
+    UIManager uiManager;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioClip hiJumpAudio;
@@ -55,6 +56,19 @@ public class Skills : MonoBehaviour
     bool CanMove = true;
     float gravityOrig;
     Transform blinkAimIndicator;
+
+    private void Start()
+    {
+        uiManager = UIManager.instance;
+    }
+
+    private void Update()
+    {
+        if(UIManager.instance != null && uiManager == null)
+        {
+            uiManager = UIManager.instance;
+        }
+    }
     public void Dash()
     {
         if (canDash)
@@ -70,7 +84,7 @@ public class Skills : MonoBehaviour
     IEnumerator dashCoroutine()
     {
         var startTime = Time.time;
-        dashVolume = gameManager.instance.soundEffectsVolume.value;
+        dashVolume = uiManager.soundEffectsVolume.value;
         gameManager.instance.playerScript.PlayExternalAudio(dashAudio, dashVolume);
         while (Time.time < startTime + DashTime)
         {
@@ -114,7 +128,7 @@ public class Skills : MonoBehaviour
     IEnumerator hiJumpCoroutine()
     {
         var startTime = Time.time;
-        hiJumpVolume = gameManager.instance.soundEffectsVolume.value;
+        hiJumpVolume = uiManager.soundEffectsVolume.value;
         gameManager.instance.playerScript.PlayExternalAudio(hiJumpAudio, hiJumpVolume);
         while (Time.time < startTime + JumpTime)
         {
@@ -246,7 +260,7 @@ public class Skills : MonoBehaviour
         if (blinkAimIndicator)
         {
             transform.position = new Vector3(blinkAimIndicator.position.x, blinkAimIndicator.position.y, blinkAimIndicator.position.z);
-            blinkVolume = gameManager.instance.soundEffectsVolume.value;
+            blinkVolume = uiManager.soundEffectsVolume.value;
             gameManager.instance.playerScript.PlayExternalAudio(blinkAudio, blinkVolume);
             Destroy(blinkAimIndicator.gameObject,1.5f);
         }

@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
     [SerializeField] Skills skills;
+    UIManager uiManager;
 
     [Header("----- Player Stats -----")]
     [Range(1, 25)][SerializeField] int iHP;
@@ -53,16 +54,24 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         iHPOriginal = iHP;
         //Debug.Log(iHPOriginal);
         //Debug.Log(iHP);
+        uiManager = UIManager.instance;
     }
 
     void Update()
     {
+        if(UIManager.instance != null && uiManager == null)
+        {
+            uiManager = UIManager.instance;
+        }
         if (skills.canMove())
         {
             Movement();
         }
-        AttackVolume = gameManager.instance.soundEffectsVolume.value;
-        JumpVolume = gameManager.instance.soundEffectsVolume.value;
+        if(uiManager != null)
+        {
+            AttackVolume = uiManager.soundEffectsVolume.value;
+            JumpVolume = uiManager.soundEffectsVolume.value;
+        }
         Sprint();
 
         if (Input.GetButton("Shoot") && !isShooting && !gameManager.instance.isPaused)
@@ -94,7 +103,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         }
 
         move = (transform.right * Input.GetAxis("Horizontal")) + (transform.forward * Input.GetAxis("Vertical"));
-        controller.Move(move * playerSpeed * Time.deltaTime);
+        controller.Move(playerSpeed * Time.deltaTime * move);
 
         // Changes the height position of the player..
         if (Input.GetButtonDown("Jump") && jumpsUsed < maxJumps)
@@ -133,11 +142,11 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             iHP -= amount; //-= used, negative amounts heal. 
             if (amount > 0)
             {
-                gameManager.instance.ShowDamage();
+                uiManager.ShowDamage();
                 if (iHP <= 0)
                 {
                     iHP = 0;
-                    gameManager.instance.YouLose();
+                    uiManager.YouLose();
                 }
             }
             else
@@ -189,7 +198,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     public void UpdateHealthBar()
     {
-        gameManager.instance.playerHealthBar.fillAmount = (float)iHP / iHPOriginal;
+        uiManager.playerHealthBar.fillAmount = (float)iHP / iHPOriginal;
     }
 
 
@@ -231,16 +240,22 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         if (utCharge + amount < 100)
         {
             utCharge += amount;
-            gameManager.instance.UpdateUtCharge(utCharge / 100);
+            if (uiManager != null)
+            {
+                uiManager.UpdateUtCharge(utCharge / 100);
+            }
         }
         else
         {
             utCharge = 100;
-            gameManager.instance.UpdateUtCharge(100);
+            if (uiManager != null)
+            {
+                uiManager.UpdateUtCharge(100);
+            }
         }
     }
 
-    public bool canUt()
+    public bool CanUltimate()
     {
         return utCharge >= 100;
     }

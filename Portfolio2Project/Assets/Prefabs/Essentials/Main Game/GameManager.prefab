@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &637310294035931536
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7991985557486829471}
+  - component: {fileID: 2697338202709217617}
+  - component: {fileID: 4915912855448595117}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7991985557486829471
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637310294035931536}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 960, y: 540, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2697338202709217617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637310294035931536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5dbee6896575f6479267b98a8df930d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4915912855448595117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637310294035931536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b03f1f15374c6d44ac4564fe2cc5e78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  playerScript: {fileID: 0}
+  playerSpawn: {fileID: 0}
+  skillScript: {fileID: 0}
+  playerElement: 0
+  pauseMenu: {fileID: 0}
+  activeMenu: {fileID: 0}
+  loseMenu: {fileID: 0}
+  winMenu: {fileID: 0}
+  settingsMenu: {fileID: 0}
+  flashDamage: {fileID: 0}
+  inventoryMenu: {fileID: 0}
+  playerHealthBar: {fileID: 0}
+  levelText: {fileID: 0}
+  UtCharge: {fileID: 0}
+  fadeOutImage: {fileID: 0}
+  fadeSpeed: 0
+  fading: 0
+  invert: {fileID: 0}
+  volumeValue: {fileID: 0}
+  soundEffectsVolume: {fileID: 0}
+  bgToggle: {fileID: 0}
+  seToggle: {fileID: 0}
+  ability1: {fileID: 0}
+  ability2: {fileID: 0}
+  ability3: {fileID: 0}
+  spriteArray: []
+  element: {fileID: 0}
+  isPaused: 0

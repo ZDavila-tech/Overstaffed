@@ -343,7 +343,7 @@ public class NewStaff : MonoBehaviour
 
     public void SpecialAttack()
     {
-        if (!canSpecial || !player.canUt())
+        if (!canSpecial || !player.CanUltimate())
         {
             return;
         }

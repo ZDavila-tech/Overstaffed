@@ -16,6 +16,8 @@ public class LevelManager : MonoBehaviour
 
     public static LevelManager instance;
 
+    UIManager uiManager;
+
     public int currentLevel;
     public int totalEnemiesToSpawn; //total enemies to spawn
     public int enemiesRemaining; //goes up when an enemyAI Start()'s and goes down on enemy death
@@ -36,6 +38,7 @@ public class LevelManager : MonoBehaviour
     }
     void Start()
     {
+        uiManager = UIManager.instance;
         NewGame();
 
         if (inElevator == true)
@@ -46,9 +49,9 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
-        if(gameManager.instance != null)
+        if(uiManager != null)
         {
-            gameManager.instance.UpdateLevelCount();
+            uiManager.UpdateLevelCount();
         }
 
         if (loadingLevel == false)
@@ -56,6 +59,10 @@ public class LevelManager : MonoBehaviour
             LevelCompletionTracker();
         }
 
+        if (UIManager.instance != null && uiManager == null)
+        {
+            uiManager = UIManager.instance;
+        }
     }
 
     public void NewGame()
@@ -104,7 +111,7 @@ public class LevelManager : MonoBehaviour
         ++currentLevel; //ups difficulty
         if (currentLevel > maxLevel)
         {
-            gameManager.instance.YouWin();
+            uiManager.YouWin();
         }
         if (currentLevel % 3 == 0)
         {
@@ -112,7 +119,7 @@ public class LevelManager : MonoBehaviour
         }
         levelScaler();
         inElevator= false;
-        StartCoroutine(gameManager.instance.FadeOut());
+        StartCoroutine(uiManager.FadeOut());
         //loads a new level != the current level index
     }
 

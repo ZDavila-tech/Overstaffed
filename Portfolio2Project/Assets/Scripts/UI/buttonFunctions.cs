@@ -5,8 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class buttonFunctions : MonoBehaviour
 {
+    UIManager uiManager;
+
+    private void Start()
+    {
+        uiManager = UIManager.instance;
+    }
     //Resume the game
-   public void Resume()
+    public void Resume()
     {
         gameManager.instance.UnpauseState();
     }
@@ -42,7 +48,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void GoBackMenu()
     {
-        gameManager.instance.GoBack();
+        uiManager.GoBack();
     }
    
     //Go back to Main Menu

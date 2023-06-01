@@ -17,11 +17,13 @@ public class InElevator : MonoBehaviour
     [Header("----- Set By Script -----")]
     public LevelManager levelManager;
 
+    UIManager uiManager;
 
     bool hasDinged = false;
     private void Start()
     {
         levelManager = LevelManager.instance;
+        uiManager = UIManager.instance;
     }
 
     private void Update()
@@ -69,7 +71,7 @@ public class InElevator : MonoBehaviour
         if (!hasDinged)
         {
             //Debug.Log("DING");
-            aud.volume = gameManager.instance.soundEffectsVolume.value;
+            aud.volume = uiManager.soundEffectsVolume.value;
             aud.Play();
             hasDinged= true;
         }
