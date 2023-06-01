@@ -268,6 +268,6 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     public void UpdateSpeed()
     {
-        playerSpeed = playerStats.GetSpeed();
+        playerSpeed = 5 + (playerStats.GetSpeed()/10);
     }
 }
