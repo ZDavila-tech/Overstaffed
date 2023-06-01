@@ -31,6 +31,7 @@ public class LevelManager : MonoBehaviour
     public bool loadingLevel;
 
     private UIManager uiManager;
+    private AudioManager audioManager;
 
     private void Awake()
     {
@@ -39,6 +40,7 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         uiManager = UIManager.instance;
+        audioManager = AudioManager.instance;
         NewGame();
 
         if (inElevator == true)
@@ -116,7 +118,7 @@ public class LevelManager : MonoBehaviour
         }
         if (currentLevel % 3 == 0)
         {
-            MusicPlayer.instance.ChangeSong();
+            audioManager.ChangeSong();
         }
         inElevator= false;
         StartCoroutine(uiManager.FadeOut());
