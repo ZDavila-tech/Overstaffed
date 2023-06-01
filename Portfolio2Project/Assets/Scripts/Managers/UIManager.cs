@@ -11,7 +11,10 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
 
     [Header("----- UI Stuff -----")]
+    public GameObject HUD;
     public GameObject activeMenu;
+    public GameObject mainMenu;
+    public GameObject playerSelect;
     public GameObject pauseMenu;
     public GameObject loseMenu;
     public GameObject winMenu;
@@ -45,7 +48,7 @@ public class UIManager : MonoBehaviour
 
     private LevelManager levelManager;
 
-    private Skills skillScript;
+    private Skills playerSkills;
     float waitTime;
 
     private void Awake()
@@ -56,9 +59,12 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         gameManager = GameManager.instance;
-        playerElement = gameManager.playerElement;
+        activeMenu = mainMenu;
+        //playerElement = gameManager.playerElement;
         levelManager = LevelManager.instance;
-        skillScript = gameManager.playerSkills;
+        //skillScript = gameManager.playerSkills;
+        fileManager.save();
+        fileManager.load();
     }
 
     void Update()
@@ -70,21 +76,24 @@ public class UIManager : MonoBehaviour
             gameManager.PauseState();
             flashDamage.SetActive(false);
         }
-        UpdateToggles();
-        AbilityCoolDown();
-
-        if (playerElement != gameManager.playerController.playerElement)
+        if(gameManager.playerCharacter != null)
         {
-            SetElement();
-            SetElementIcon();
+            AbilityCoolDown();
+
+            if (playerElement != gameManager.playerController.playerElement)
+            {
+                SetElement();
+                SetElementIcon();
+            }
         }
+        UpdateToggles();
+
         if (fading == true)
         {
             fading = false;
 
             StartCoroutine(FadeIn());
         }
-
     }
     public void GoBack() //Go back to pause menu
     {
@@ -172,42 +181,42 @@ public class UIManager : MonoBehaviour
 
     public void AbilityCoolDown()
     {
-        if (skillScript.isJumpCooldown())
+        if (playerSkills.isJumpCooldown())
         {
             ability1.gameObject.SetActive(true);
 
-            waitTime = skillScript.getCooldown(skill.HiJump);
+            waitTime = playerSkills.getCooldown(skill.HiJump);
             ability1.fillAmount -= 1.0f / waitTime * Time.deltaTime;
         }
-        if (skillScript.isDashCooldown())
+        if (playerSkills.isDashCooldown())
         {
             ability2.gameObject.SetActive(true);
 
-            waitTime = skillScript.getCooldown(skill.Dash);
+            waitTime = playerSkills.getCooldown(skill.Dash);
             ability2.fillAmount -= 1.0f / waitTime * Time.deltaTime;
         }
 
-        if (skillScript.isBlinkCooldown())
+        if (playerSkills.isBlinkCooldown())
         {
             ability3.gameObject.SetActive(true);
 
-            waitTime = skillScript.getCooldown(skill.Blink);
+            waitTime = playerSkills.getCooldown(skill.Blink);
             ability3.fillAmount -= 1.0f / waitTime * Time.deltaTime;
         }
 
-        if (!skillScript.isJumpCooldown())
+        if (!playerSkills.isJumpCooldown())
         {
             ability1.gameObject.SetActive(false);
             ability1.fillAmount = 1;
         }
 
-        if (!skillScript.isDashCooldown())
+        if (!playerSkills.isDashCooldown())
         {
             ability2.gameObject.SetActive(false);
             ability2.fillAmount = 1;
         }
 
-        if (!skillScript.isBlinkCooldown())
+        if (!playerSkills.isBlinkCooldown())
         {
             ability3.gameObject.SetActive(false);
             ability3.fillAmount = 1;
@@ -262,5 +271,10 @@ public class UIManager : MonoBehaviour
         {
             seToggle.isOn = false;
         }
+    }
+
+    public void SetPlayerVariables()
+    {
+        playerSkills = gameManager.playerSkills;
     }
 }

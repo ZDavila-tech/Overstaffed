@@ -24,17 +24,13 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
-
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
-
         timeScaleOriginal = Time.timeScale;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playerElement != playerController.playerElement)
+        if (playerCharacter != null && playerElement != playerController.playerElement)
         {
             SetElement();
         }
@@ -70,6 +66,7 @@ public class GameManager : MonoBehaviour
         {
             playerController = playerCharacter.GetComponent<PlayerController>();
             playerSkills = playerCharacter.GetComponent<Skills>();
+            uiManager.SetPlayerVariables();
         }
     }
 }
