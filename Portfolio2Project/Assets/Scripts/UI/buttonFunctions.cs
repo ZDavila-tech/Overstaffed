@@ -58,7 +58,8 @@ public class buttonFunctions : MonoBehaviour
         Destroy(GameObject.FindGameObjectWithTag("LevelManager"));
         Destroy(GameObject.FindGameObjectWithTag("GameManager"));
         Destroy(GameObject.FindGameObjectWithTag("AudioManager"));
-        
+
+
         Debug.Log("Player Character destroyed");
         Time.timeScale = gameManager.instance.timeScaleOriginal;
 
