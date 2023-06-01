@@ -36,6 +36,7 @@ public class AudioManager : MonoBehaviour
     {
         UpdateBGVolume();
         UpdateToggles();
+        PlaySong();
     }
     public void UpdateToggles()
     {
