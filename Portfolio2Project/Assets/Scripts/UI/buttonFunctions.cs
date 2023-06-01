@@ -25,11 +25,9 @@ public class ButtonFunctions : MonoBehaviour
     //Restarts the level from the beginning
     public void Restart()
     {
-        //LevelManager.instance = null;
-        //GameManager.instance = null;
-
         Destroy(GameObject.FindGameObjectWithTag("Player"));
         Debug.Log("Player Character destroyed");
+
         uiManager.HideActiveMenu();
         uiManager.HUD.SetActive(false);
         uiManager.activeMenu = uiManager.playerSelect;
@@ -51,15 +49,18 @@ public class ButtonFunctions : MonoBehaviour
     }
 
     //Go back to Main Menu
-    public void BacktoMainMenu()
+    public void GoToMainMenu()
     {
         Destroy(GameObject.FindGameObjectWithTag("Player"));
-        Destroy(GameObject.FindGameObjectWithTag("LevelManager"));
         Destroy(GameObject.FindGameObjectWithTag("UI"));
-        Debug.Log("Player Character destroyed");
+        Destroy(GameObject.FindGameObjectWithTag("LevelManager"));
+        Destroy(GameObject.FindGameObjectWithTag("GameManager"));
+        Destroy(GameObject.FindGameObjectWithTag("AudioManager"));
 
-        GameManager.instance.UnpauseState();
-        MusicPlayer.instance.StopSong();
+        Debug.Log("Player Character destroyed");
+        Time.timeScale = GameManager.instance.timeScaleOriginal;
+
+        //MusicPlayer.instance.StopSong();
         SceneManager.LoadScene("Main Menu");
     }
 
