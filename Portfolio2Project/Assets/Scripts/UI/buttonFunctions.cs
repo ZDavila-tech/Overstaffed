@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class ButtonFunctions : MonoBehaviour
 {
-    [SerializeField] GameObject player;
+    [SerializeField] GameObject playerPrefabToSpawn;
+    private GameObject player;
 
     private UIManager uiManager;
 
@@ -28,9 +29,6 @@ public class ButtonFunctions : MonoBehaviour
         //GameManager.instance = null;
 
         Destroy(GameObject.FindGameObjectWithTag("Player"));
-        Destroy(GameObject.FindGameObjectWithTag("LevelManager"));
-        Destroy(GameObject.FindGameObjectWithTag("UI"));
-        Destroy(GameObject.FindGameObjectWithTag("BGM"));
         Debug.Log("Player Character destroyed");
 
         GameManager.instance.UnpauseState();
@@ -42,13 +40,6 @@ public class ButtonFunctions : MonoBehaviour
     {
         Application.Quit();
     }
-
-    //Respawn player from respawn location
-    //public void respawnPLayer()
-    //{
-    //    gameManager.instance.playerScript.spawnPlayer();
-    //    gameManager.instance.unPauseState();
-    //}
 
     public void GoBackMenu()
     {
@@ -103,7 +94,7 @@ public class ButtonFunctions : MonoBehaviour
         DestroyImmediate(Camera.main.gameObject);
         uiManager.HideActiveMenu();
         uiManager.HUD.SetActive(true);
-        player = Instantiate(player);
+        player = Instantiate(playerPrefabToSpawn);
         //Debug.Log("Player Spawned");
         playerController = player.GetComponent<PlayerController>();
         //Debug.Log("Player Controller Set");
