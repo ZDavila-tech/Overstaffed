@@ -56,7 +56,7 @@ public class buttonFunctions : MonoBehaviour
         Destroy(GameObject.FindGameObjectWithTag("LevelManager"));
         Destroy(GameObject.FindGameObjectWithTag("GameManager"));
         Destroy(GameObject.FindGameObjectWithTag("AudioManager"));
-
+        AudioManager.instance.currSong = 0;
         Debug.Log("Player Character destroyed");
         Time.timeScale = gameManager.instance.timeScaleOriginal;
 
@@ -69,6 +69,7 @@ public class buttonFunctions : MonoBehaviour
         //Debug.Log("Play Button Pressed");
         uiManager.HideActiveMenu();
         uiManager.activeMenu = uiManager.playerSelect;
+        AudioManager.instance.ChangeSong();
         uiManager.ShowActiveMenu();
         SceneManager.LoadScene("Character Select");
     }
@@ -108,7 +109,7 @@ public class buttonFunctions : MonoBehaviour
     public void PostPlayerElementSetup() //must happen after player element setup occurs
     {
         //Debug.Log("Player Element Set");
-
+        AudioManager.instance.ChangeSong();
         SceneManager.LoadScene("Reception");
     }
 }

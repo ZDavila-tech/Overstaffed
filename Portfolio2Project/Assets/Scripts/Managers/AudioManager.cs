@@ -14,12 +14,10 @@ public class AudioManager : MonoBehaviour
     public Toggle seToggle;
 
     [Header("----- Audio Stuff -----")]
-    [SerializeField] AudioSource aud;
-    [SerializeField] List<AudioClip> bgms;
-    [SerializeField] AudioClip mainMenu;
-    [SerializeField] AudioClip charSelect;
+    public AudioSource aud;
+    public List<AudioClip> bgms;
     [SerializeField] float volume;
-    [SerializeField] int currSong;
+    public int currSong;
 
     // Start is called before the first frame update
     void Awake()
@@ -66,18 +64,9 @@ public class AudioManager : MonoBehaviour
     void PlaySong()
     {
         aud.Stop();
-        if(UIManager.instance.activeMenu = UIManager.instance.mainMenu)
-        {
-            aud.clip = mainMenu;
-        }
-        else if(UIManager.instance.activeMenu = UIManager.instance.playerSelect)
-        {
-            aud.clip = charSelect;
-        }
-        else
-        {
-            aud.clip = bgms[currSong];
-        }
+    
+        aud.clip = bgms[currSong];
+        
         aud.Play();
         aud.loop = true;
     }
@@ -86,7 +75,7 @@ public class AudioManager : MonoBehaviour
         currSong++;
         if (currSong >= bgms.Count)
         {
-            currSong = 0;
+            currSong = 2;
         }
         PlaySong();
     }
@@ -103,4 +92,5 @@ public class AudioManager : MonoBehaviour
             bgToggle.isOn = false;
         }
     }
+
 }
