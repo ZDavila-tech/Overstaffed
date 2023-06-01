@@ -30,8 +30,11 @@ public class ButtonFunctions : MonoBehaviour
 
         Destroy(GameObject.FindGameObjectWithTag("Player"));
         Debug.Log("Player Character destroyed");
+        uiManager.HideActiveMenu();
+        uiManager.activeMenu = uiManager.playerSelect;
+        uiManager.ShowActiveMenu();
+        Time.timeScale = GameManager.instance.timeScaleOriginal;
 
-        GameManager.instance.UnpauseState();
         SceneManager.LoadScene("Character Select");
     }
 
