@@ -34,5 +34,14 @@ public class AudioManager : MonoBehaviour
         {
             seToggle.isOn = false;
         }
+
+        if (volumeValue.value == 0)
+        {
+            bgToggle.isOn = true;
+        }
+        else
+        {
+            bgToggle.isOn = false;
+        }
     }
 }

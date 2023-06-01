@@ -574,6 +574,50 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3aaf7647d5fa8b84297699c4b258282b, type: 3}
+--- !u!114 &2014553389 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 202888949, guid: 3aaf7647d5fa8b84297699c4b258282b, type: 3}
+  m_PrefabInstance: {fileID: 2014553388}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2014553390 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 46004555, guid: 3aaf7647d5fa8b84297699c4b258282b, type: 3}
+  m_PrefabInstance: {fileID: 2014553388}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2014553391 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2221515450121539103, guid: 3aaf7647d5fa8b84297699c4b258282b, type: 3}
+  m_PrefabInstance: {fileID: 2014553388}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2014553392 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2033684084, guid: 3aaf7647d5fa8b84297699c4b258282b, type: 3}
+  m_PrefabInstance: {fileID: 2014553388}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2063984283
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,6 +753,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7662511765174309655, guid: 020ce68f5f0f0b9468276c49a15fee42, type: 3}
+      propertyPath: bgToggle
+      value: 
+      objectReference: {fileID: 2014553390}
+    - target: {fileID: 7662511765174309655, guid: 020ce68f5f0f0b9468276c49a15fee42, type: 3}
+      propertyPath: seToggle
+      value: 
+      objectReference: {fileID: 2014553389}
+    - target: {fileID: 7662511765174309655, guid: 020ce68f5f0f0b9468276c49a15fee42, type: 3}
+      propertyPath: volumeValue
+      value: 
+      objectReference: {fileID: 2014553392}
+    - target: {fileID: 7662511765174309655, guid: 020ce68f5f0f0b9468276c49a15fee42, type: 3}
+      propertyPath: soundEffectsVolume
+      value: 
+      objectReference: {fileID: 2014553391}
     - target: {fileID: 8595041946791215725, guid: 020ce68f5f0f0b9468276c49a15fee42, type: 3}
       propertyPath: m_Name
       value: Audio Manager
