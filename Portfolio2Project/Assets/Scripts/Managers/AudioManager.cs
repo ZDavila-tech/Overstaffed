@@ -16,6 +16,8 @@ public class AudioManager : MonoBehaviour
     [Header("----- Audio Stuff -----")]
     [SerializeField] AudioSource aud;
     [SerializeField] List<AudioClip> bgms;
+    [SerializeField] AudioClip mainMenu;
+    [SerializeField] AudioClip charSelect;
     [SerializeField] float volume;
     [SerializeField] int currSong;
 
@@ -64,7 +66,18 @@ public class AudioManager : MonoBehaviour
     void PlaySong()
     {
         aud.Stop();
-        aud.clip = bgms[currSong];
+        if(UIManager.instance.activeMenu = UIManager.instance.mainMenu)
+        {
+            aud.clip = mainMenu;
+        }
+        else if(UIManager.instance.activeMenu = UIManager.instance.playerSelect)
+        {
+            aud.clip = charSelect;
+        }
+        else
+        {
+            aud.clip = bgms[currSong];
+        }
         aud.Play();
         aud.loop = true;
     }
