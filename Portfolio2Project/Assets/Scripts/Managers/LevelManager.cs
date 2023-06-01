@@ -12,16 +12,16 @@ public class LevelManager : MonoBehaviour
     [SerializeField] int repeatableLevelsMaxIndex;
 
     [Header("----- Settings -----")]
-    [SerializeField] int baseEnemyCount;
-    [SerializeField, Range(0f, 1f)] float enemyCountScale;
+    [SerializeField] int baseNumberOfEnemiesToSpawn;
+    [SerializeField, Range(0f, 1f)] float numberOfEnemiesScaling;
     [SerializeField] int maxPlayableLevel;
+    public int maxEnemiesAtOneTime;
 
     [Header("----- For Spawners To Know -----")]
     public int currentLevel;
     public int totalEnemiesToSpawn; //total enemies to spawn
     public int enemiesRemaining; //goes up when an enemyAI Start()'s and goes down on enemy death
     public int enemiesSpawned;
-    public int maxEnemiesAtOneTime;
     public int currentEnemies;
 
     [Header("----- Level Transition Stuff (Ignore)-----")]
@@ -109,6 +109,7 @@ public class LevelManager : MonoBehaviour
     {
         NewLevel();
         ++currentLevel; //ups difficulty
+        ScaleLevel();
         if (currentLevel > maxPlayableLevel)
         {
             uiManager.YouWin();
@@ -117,7 +118,6 @@ public class LevelManager : MonoBehaviour
         {
             MusicPlayer.instance.ChangeSong();
         }
-        levelScaler();
         inElevator= false;
         StartCoroutine(uiManager.FadeOut());
         //loads a new level != the current level index
@@ -138,8 +138,8 @@ public class LevelManager : MonoBehaviour
         return randomIndex;
     }
 
-    void levelScaler() //Scales Number of enemies per level
+    void ScaleLevel() //Scales Number of enemies per level
     {
-        totalEnemiesToSpawn = (int)(baseEnemyCount * ((currentLevel * enemyCountScale) + 1));
+        totalEnemiesToSpawn = (int)(baseNumberOfEnemiesToSpawn * ((currentLevel * numberOfEnemiesScaling) + 1));
     }
 }
