@@ -10,9 +10,11 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     UIManager uiManager;
 
     [Header("----- Player Stats -----")]
-    [Range(1, 25)][SerializeField] int iHP;
+    [SerializeField] Stats playerStats;
+    int iHP;
+    float playerSpeed;
+    int playerDamage;
     [Range(0, 100)][SerializeField] float utCharge;
-    [Range(1, 20)][SerializeField] float playerSpeed;
     [Range(1, 20)][SerializeField] float jumpHeight;
     [Range(10, 50)][SerializeField] float gravityValue;
     [Range(1, 3)][SerializeField] int maxJumps;
@@ -33,7 +35,6 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     public Vector3 pushBack;
     private bool groundedPlayer;
     private bool isSprinting;
-    private int iHPOriginal;
     private bool damagedRecently;
 
     [Header("----- Audio -----")]
@@ -51,13 +52,14 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     void Start()
     {
-        iHPOriginal = iHP;
+        UpdateSpeed();
+        iHP = playerStats.GetHealth();
         uiManager = UIManager.instance;
     }
 
     void Update()
     {
-        if(UIManager.instance != null && uiManager == null)
+        if (UIManager.instance != null && uiManager == null)
         {
             uiManager = UIManager.instance;
         }
@@ -65,7 +67,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         {
             Movement();
         }
-        if(uiManager != null)
+        if (uiManager != null)
         {
             AttackVolume = uiManager.soundEffectsVolume.value;
             JumpVolume = uiManager.soundEffectsVolume.value;
@@ -149,9 +151,9 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             }
             else
             {
-                if (iHP > iHPOriginal)
+                if (iHP > playerStats.GetHealth())
                 {
-                    iHP = iHPOriginal;
+                    iHP = playerStats.GetHealth();
                 }
             }
             UpdateHealthBar();
@@ -196,7 +198,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     public void UpdateHealthBar()
     {
-        uiManager.playerHealthBar.fillAmount = (float)iHP / iHPOriginal;
+        uiManager.playerHealthBar.fillAmount = (float)iHP / playerStats.GetHealth();
     }
 
 
@@ -225,7 +227,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     {
         if (!ShootSoundInPlay)
         {
-            aud.PlayOneShot(playerWeapon.GetShootAudio(), AttackVolume *0.17f);
+            aud.PlayOneShot(playerWeapon.GetShootAudio(), AttackVolume * 0.17f);
             ShootSoundInPlay = true;
         }
         yield return new WaitForSeconds(ShotCooldown);
@@ -262,5 +264,10 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     {
         pushBack += dir;
         //Debug.Log("Knocked Back");
+    }
+
+    public void UpdateSpeed()
+    {
+        playerSpeed = playerStats.GetSpeed();
     }
 }

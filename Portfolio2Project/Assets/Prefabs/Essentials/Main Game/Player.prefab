@@ -10532,6 +10532,7 @@ GameObject:
   - component: {fileID: 8132328926872428045}
   - component: {fileID: 6256373690464243921}
   - component: {fileID: 1055786313974128500}
+  - component: {fileID: 5227066611642462926}
   - component: {fileID: 6256373690464243927}
   - component: {fileID: 6256373690464243924}
   - component: {fileID: 6256373690464243925}
@@ -10586,9 +10587,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 6256373690464243920}
   skills: {fileID: 1055786313974128500}
-  iHP: 10
+  playerStats: {fileID: 0}
   utCharge: 0
-  playerSpeed: 7
   jumpHeight: 8
   gravityValue: 12
   maxJumps: 1
@@ -10635,6 +10635,22 @@ MonoBehaviour:
   SlowFallCooldown: 1
   BlinkDistance: 50
   BlinkCooldown: 10
+--- !u!114 &5227066611642462926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6256373690464243930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cf04abe5ec0432429fd173c729a8e77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 10
+  Speed: 5
+  Attack: 3
+  Exp: 0
 --- !u!33 &6256373690464243927
 MeshFilter:
   m_ObjectHideFlags: 0
