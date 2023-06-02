@@ -34,6 +34,7 @@ public class PlayerSpawn : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInSpawn = true;
+            levelManager.inElevator = false;
             keepPullingPlayer = false;
         }
     }
