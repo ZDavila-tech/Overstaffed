@@ -10,6 +10,8 @@ public class Skills : MonoBehaviour
     [SerializeField] CharacterController controller;
     [SerializeField] PlayerController playerController;
     [SerializeField] Transform blinkAimIndicatorPrefab;
+    UIManager uiManager;
+    AudioManager audioManager;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioClip hiJumpAudio;
@@ -28,6 +30,7 @@ public class Skills : MonoBehaviour
     [Range(1, 50)][SerializeField] float DashSpeed;
     [Range(0, 1)][SerializeField] float DashTime;
     [Range(1, 20)][SerializeField] float DashCooldown;
+    public bool directionalDash;
     bool canDash = true;
 
     [Header("~High Jump~")]
@@ -55,6 +58,20 @@ public class Skills : MonoBehaviour
     bool CanMove = true;
     float gravityOrig;
     Transform blinkAimIndicator;
+
+    private void Start()
+    {
+        uiManager = UIManager.instance;
+        audioManager = AudioManager.instance;
+    }
+
+    private void Update()
+    {
+        if(UIManager.instance != null && uiManager == null)
+        {
+            uiManager = UIManager.instance;
+        }
+    }
     public void Dash()
     {
         if (canDash)
@@ -70,11 +87,19 @@ public class Skills : MonoBehaviour
     IEnumerator dashCoroutine()
     {
         var startTime = Time.time;
-        dashVolume = gameManager.instance.soundEffectsVolume.value;
-        gameManager.instance.playerScript.PlayExternalAudio(dashAudio, dashVolume);
+        dashVolume = audioManager.soundEffectsVolume.value;
+        gameManager.instance.playerController.PlayExternalAudio(dashAudio, dashVolume);
         while (Time.time < startTime + DashTime)
         {
-            controller.Move(transform.forward * DashSpeed * Time.deltaTime);
+            if(directionalDash == false || playerController.move.Equals(Vector3.zero))
+            {
+                controller.Move(transform.forward * DashSpeed * Time.deltaTime);
+            }
+            else
+            {
+                controller.Move(playerController.move.normalized * DashSpeed * Time.deltaTime);
+            }
+            
             yield return null;
         }
         CanMove = true;
@@ -114,8 +139,8 @@ public class Skills : MonoBehaviour
     IEnumerator hiJumpCoroutine()
     {
         var startTime = Time.time;
-        hiJumpVolume = gameManager.instance.soundEffectsVolume.value;
-        gameManager.instance.playerScript.PlayExternalAudio(hiJumpAudio, hiJumpVolume);
+        hiJumpVolume = audioManager.soundEffectsVolume.value;
+        gameManager.instance.playerController.PlayExternalAudio(hiJumpAudio, hiJumpVolume);
         while (Time.time < startTime + JumpTime)
         {
             controller.Move(transform.up * JumpForce * Time.deltaTime);
@@ -246,8 +271,8 @@ public class Skills : MonoBehaviour
         if (blinkAimIndicator)
         {
             transform.position = new Vector3(blinkAimIndicator.position.x, blinkAimIndicator.position.y, blinkAimIndicator.position.z);
-            blinkVolume = gameManager.instance.soundEffectsVolume.value;
-            gameManager.instance.playerScript.PlayExternalAudio(blinkAudio, blinkVolume);
+            blinkVolume = audioManager.soundEffectsVolume.value;
+            gameManager.instance.playerController.PlayExternalAudio(blinkAudio, blinkVolume);
             Destroy(blinkAimIndicator.gameObject,1.5f);
         }
         controller.enabled = true;

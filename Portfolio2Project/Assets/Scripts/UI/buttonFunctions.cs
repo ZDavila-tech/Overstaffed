@@ -5,8 +5,19 @@ using UnityEngine.SceneManagement;
 
 public class buttonFunctions : MonoBehaviour
 {
+    [SerializeField] GameObject playerPrefabToSpawn;
+    private GameObject player;
+
+    private UIManager uiManager;
+
+    PlayerController playerController;
+
+    private void Start()
+    {
+        uiManager = UIManager.instance;
+    }
     //Resume the game
-   public void Resume()
+    public void Resume()
     {
         gameManager.instance.UnpauseState();
     }
@@ -14,16 +25,17 @@ public class buttonFunctions : MonoBehaviour
     //Restarts the level from the beginning
     public void Restart()
     {
-        //LevelManager.instance = null;
-        //GameManager.instance = null;
-
         Destroy(GameObject.FindGameObjectWithTag("Player"));
-        Destroy(GameObject.FindGameObjectWithTag("LevelManager"));
-        Destroy(GameObject.FindGameObjectWithTag("UI"));        
-        Destroy(GameObject.FindGameObjectWithTag("BGM"));        
         Debug.Log("Player Character destroyed");
 
-        gameManager.instance.UnpauseState();
+        uiManager.HideActiveMenu();
+        uiManager.HUD.SetActive(false);
+        uiManager.activeMenu = uiManager.playerSelect;
+        AudioManager.instance.currSong = 1;
+        AudioManager.instance.PlaySong();
+        uiManager.ShowActiveMenu();
+        Time.timeScale = gameManager.instance.timeScaleOriginal;
+
         SceneManager.LoadScene("Character Select");
     }
 
@@ -33,28 +45,76 @@ public class buttonFunctions : MonoBehaviour
         Application.Quit();
     }
 
-    //Respawn player from respawn location
-    //public void respawnPLayer()
-    //{
-    //    gameManager.instance.playerScript.spawnPlayer();
-    //    gameManager.instance.unPauseState();
-    //}
-
     public void GoBackMenu()
     {
-        gameManager.instance.GoBack();
+        uiManager.GoBack();
     }
-   
+
     //Go back to Main Menu
-    public void BacktoMainMenu()
+    public void GoToMainMenu()
     {
         Destroy(GameObject.FindGameObjectWithTag("Player"));
-        Destroy(GameObject.FindGameObjectWithTag("LevelManager"));
-        Destroy(GameObject.FindGameObjectWithTag("UI"));
-        Debug.Log("Player Character destroyed");
 
-        gameManager.instance.UnpauseState();
-        MusicPlayer.instance.StopSong();
+        uiManager.HideActiveMenu();
+        uiManager.HUD.SetActive(false);
+        uiManager.activeMenu = uiManager.mainMenu;
+        AudioManager.instance.currSong = 0;
+        AudioManager.instance.PlaySong();
+        uiManager.ShowActiveMenu();
+
+        Debug.Log("Player Character destroyed");
+        Time.timeScale = gameManager.instance.timeScaleOriginal;
+
+        //MusicPlayer.instance.StopSong();
         SceneManager.LoadScene("Main Menu");
+    }
+
+    public void PlayGame() //Takes player to character select scene
+    {
+        //Debug.Log("Play Button Pressed");
+        uiManager.HideActiveMenu();
+        uiManager.activeMenu = uiManager.playerSelect;
+        AudioManager.instance.ChangeSong();
+        uiManager.ShowActiveMenu();
+        SceneManager.LoadScene("Character Select");
+    }
+
+    public void SelectedFire()
+    {
+        PrePlayerElementSetup();
+        playerController.playerElement = NewStaff.Element.Fire;
+        PostPlayerElementSetup();
+    }
+
+    public void SelectedWater()
+    {
+        PrePlayerElementSetup();
+        playerController.playerElement = NewStaff.Element.Water;
+        PostPlayerElementSetup();
+    }
+
+    public void SelectedEarth()
+    {
+        PrePlayerElementSetup();
+        playerController.playerElement = NewStaff.Element.Earth;
+        PostPlayerElementSetup();
+    }
+
+    public void PrePlayerElementSetup() //must happen before player element setup occurs
+    {
+        DestroyImmediate(Camera.main.gameObject);
+        uiManager.HideActiveMenu();
+        uiManager.HUD.SetActive(true);
+        player = Instantiate(playerPrefabToSpawn);
+        //Debug.Log("Player Spawned");
+        playerController = player.GetComponent<PlayerController>();
+        //Debug.Log("Player Controller Set");
+    }
+
+    public void PostPlayerElementSetup() //must happen after player element setup occurs
+    {
+        //Debug.Log("Player Element Set");
+        AudioManager.instance.ChangeSong();
+        SceneManager.LoadScene("Home");
     }
 }

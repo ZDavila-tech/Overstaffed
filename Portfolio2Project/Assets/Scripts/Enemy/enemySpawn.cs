@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class enemySpawn : MonoBehaviour
 {
-    [Header("-----dimensions-----")]
+    [Header("----- Dimensions -----")]
     [SerializeField] float spawnAreaX;
     [SerializeField] float spawnAreaY;
     [SerializeField] float spawnDelay;
     [SerializeField] GameObject spawnRotation;
 
-    [Header("-----enemies-----")]
-    [SerializeField] private Transform[] enemies;
-    [Range(0, 100)][SerializeField] private int[] weights;
-    int totalweight;
-    int currentEnemies;
+    [Header("----- Enemies -----")]
+    [SerializeField] GameObject[] enemyTypesToSpawn;
+    [Range(0, 100)][SerializeField] int[] enemyTypeSpawnWeighting;
+    int totalWeight;
 
     LevelManager levelManager;
 
@@ -24,18 +23,19 @@ public class enemySpawn : MonoBehaviour
     {
         initializelength();
         sortarrays();
-        totalweight = initializeEnemyWeight();
+        totalWeight = initializeEnemyWeight();
         if(LevelManager.instance != null)
         {
             levelManager = LevelManager.instance;
-            levelManager.enemiesRemaining += levelManager.totalEnemiesToSpawn;
+            int numberOfMultiSpawners = GameObject.FindGameObjectsWithTag("MultiSpawner").Length;
+            levelManager.enemiesRemaining += (levelManager.totalEnemiesToSpawn / numberOfMultiSpawners);
         }
     }
 
     int initializeEnemyWeight()
     {
         int total = 0;
-        foreach (int f in weights)
+        foreach (int f in enemyTypeSpawnWeighting)
         {
             total += f;
         }
@@ -45,15 +45,13 @@ public class enemySpawn : MonoBehaviour
     // update is called once per frame
     void Update()
     {
-        currentEnemies = GameObject.FindGameObjectsWithTag("Enemy").Length;
-        levelManager.currentEnemies = currentEnemies;
         StartCoroutine(attemptspawn());
     }
 
     IEnumerator attemptspawn()
     {
         yield return new WaitForSeconds(spawnDelay);
-        if (levelManager.totalEnemiesToSpawn > levelManager.enemiesSpawned && currentEnemies < levelManager.maxEnemiesAtOneTime)
+        if (levelManager.totalEnemiesToSpawn > levelManager.currentEnemiesSpawned && levelManager.currentEnemiesAlive < levelManager.maxEnemiesAtOneTime)
         {
             spawn();
         }
@@ -61,10 +59,10 @@ public class enemySpawn : MonoBehaviour
 
     void spawn()
     {
-        Transform tospawn = weightedenemyselection();
-        Transform spawned = Instantiate(tospawn, transform.position + spawncoords(), spawnRotation.transform.rotation);
+        GameObject tospawn = weightedenemyselection();
+        GameObject spawned = Instantiate(tospawn, transform.position + spawncoords(), spawnRotation.transform.rotation);
         spawned.gameObject.GetComponent<EnemyAI>().spawnedBySpawner = true;
-        LevelManager.instance.enemiesSpawned++;
+        LevelManager.instance.currentEnemiesSpawned++;
     }
 
     Vector3 spawncoords()
@@ -72,19 +70,19 @@ public class enemySpawn : MonoBehaviour
         return new Vector3(Random.Range(transform.position.x - (spawnAreaX / 2), transform.position.x + (spawnAreaX / 2)), 0, Random.Range(transform.position.y - (spawnAreaX / 2), transform.position.y + (spawnAreaX / 2)));
     }
 
-    Transform weightedenemyselection()
+    GameObject weightedenemyselection()
     {
-        int rand = Random.Range(0, totalweight - 1);
+        int rand = Random.Range(0, totalWeight - 1);
         for (int i = 0; i < arraylen; i++)
         {
 
-            if (rand <= totalweight * (weights[i] / 100))
+            if (rand <= totalWeight * (enemyTypeSpawnWeighting[i] / 100))
             {
-                return enemies[i];
+                return enemyTypesToSpawn[i];
             }
 
         }
-        return enemies[arraylen - 1];
+        return enemyTypesToSpawn[arraylen - 1];
 
 
     }
@@ -99,14 +97,14 @@ public class enemySpawn : MonoBehaviour
         for (int i = 0; i < arraylen - 1; i++)
         {
             for (int j = 0; j < arraylen - i - 1; j++)
-                if (weights[j] > weights[j + 1])
+                if (enemyTypeSpawnWeighting[j] > enemyTypeSpawnWeighting[j + 1])
                 {
-                    var temp = weights[j];
-                    var temp2 = enemies[j];
-                    weights[j] = weights[j + 1];
-                    enemies[j] = enemies[j + 1];
-                    weights[j + 1] = temp;
-                    enemies[j + 1] = temp2;
+                    var temp = enemyTypeSpawnWeighting[j];
+                    var temp2 = enemyTypesToSpawn[j];
+                    enemyTypeSpawnWeighting[j] = enemyTypeSpawnWeighting[j + 1];
+                    enemyTypesToSpawn[j] = enemyTypesToSpawn[j + 1];
+                    enemyTypeSpawnWeighting[j + 1] = temp;
+                    enemyTypesToSpawn[j + 1] = temp2;
                 }
         }
 
@@ -115,7 +113,7 @@ public class enemySpawn : MonoBehaviour
     void initializelength()
     {
         arraylen = 0;
-        foreach (int i in weights)
+        foreach (int i in enemyTypeSpawnWeighting)
         {
 
             arraylen++;

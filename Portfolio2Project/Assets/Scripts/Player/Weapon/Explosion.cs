@@ -16,19 +16,19 @@ public class Explosion : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        IPhysics physicsable = other.GetComponent<IPhysics>();
+            IPhysics physicsable = other.GetComponent<IPhysics>();
 
-        if (physicsable != null)
-        {
-            Vector3 dir = other.transform.position - transform.position;
-            physicsable.Knockback(dir * pushAmount);
-        }
+            if (physicsable != null)
+            {
+                Vector3 dir = other.transform.position - transform.position;
+                physicsable.Knockback(dir * pushAmount);
+            }
 
-        if (other.GetComponent<IDamage>() != null)
-        {
-            IDamage damageable = other.GetComponent<IDamage>();
-            damageable.TakeDamage(damage);
-        }
+            if (other.GetComponent<IDamage>() != null)
+            {
+                IDamage damageable = other.GetComponent<IDamage>();
+                damageable.TakeDamage(damage);
+            }
     }
 
     // Update is called once per frame

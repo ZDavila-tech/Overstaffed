@@ -5,37 +5,49 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    [Header("----- LevelIndexes -----")]
-    [SerializeField] int repeatableLevelsMinIndex; //list levels contiguously
+    public static LevelManager instance;
+
+    [Header("----- Level Indexes -----")]
+    [SerializeField] int repeatableLevelsMinIndex; //list repeatable levels contiguously in Build Settings
     [SerializeField] int repeatableLevelsMaxIndex;
 
     [Header("----- Settings -----")]
-    [SerializeField] int baseEnemyCount;
-    [SerializeField, Range(0f, 1f)] float enemyCountScale;
-    [SerializeField] int maxLevel;
+    [SerializeField] int baseNumberOfEnemiesToSpawn;
+    [SerializeField, Range(0f, 1f)] float numberOfEnemiesScaling;
+    [SerializeField] int maxPlayableLevel;
+    public int maxEnemiesAtOneTime;
 
-    public static LevelManager instance;
-
+    [Header("----- For Spawners To Know -----")]
     public int currentLevel;
     public int totalEnemiesToSpawn; //total enemies to spawn
     public int enemiesRemaining; //goes up when an enemyAI Start()'s and goes down on enemy death
-    public int enemiesSpawned;
-    public int maxEnemiesAtOneTime;
-    public int currentEnemies;
+    public int currentEnemiesSpawned; //
+    public int currentEnemiesAlive;
 
+    [Header("----- Level Transition Stuff (Ignore)-----")]
     public bool inElevator; //player is in elevator
     public bool levelStarted; //player successfully teleported/close enough to spawn
     public bool levelCompleted; //for use by other scripts, makes life easier -> if levelStarted, no enemies, and player in elevator -> load new level
-
     public bool loadingLevel;
+
+    private UIManager uiManager;
+    private AudioManager audioManager;
 
     private void Awake()
     {
-        instance = this;
-        DontDestroyOnLoad(this.gameObject);
+        if (LevelManager.instance != null)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
     }
     void Start()
     {
+        uiManager = UIManager.instance;
+        audioManager = AudioManager.instance;
         NewGame();
 
         if (inElevator == true)
@@ -46,9 +58,9 @@ public class LevelManager : MonoBehaviour
 
     private void Update()
     {
-        if(gameManager.instance != null)
+        if(uiManager != null)
         {
-            gameManager.instance.UpdateLevelCount();
+            uiManager.UpdateLevelCount();
         }
 
         if (loadingLevel == false)
@@ -56,6 +68,12 @@ public class LevelManager : MonoBehaviour
             LevelCompletionTracker();
         }
 
+        if (UIManager.instance != null && uiManager == null)
+        {
+            uiManager = UIManager.instance;
+        }
+
+        currentEnemiesAlive = GameObject.FindGameObjectsWithTag("Enemy").Length;
     }
 
     public void NewGame()
@@ -70,7 +88,7 @@ public class LevelManager : MonoBehaviour
         levelCompleted = false;
         levelStarted = false;
         enemiesRemaining = 0;
-        enemiesSpawned = 0;
+        currentEnemiesSpawned = 0;
         inElevator = false;
     }
 
@@ -102,17 +120,17 @@ public class LevelManager : MonoBehaviour
     {
         NewLevel();
         ++currentLevel; //ups difficulty
-        if (currentLevel > maxLevel)
+        ScaleLevel();
+        if (currentLevel > maxPlayableLevel)
         {
-            gameManager.instance.YouWin();
+            uiManager.YouWin();
         }
         if (currentLevel % 3 == 0)
         {
-            MusicPlayer.instance.ChangeSong();
+            audioManager.ChangeSong();
         }
-        levelScaler();
         inElevator= false;
-        StartCoroutine(gameManager.instance.FadeOut());
+        StartCoroutine(uiManager.FadeOut());
         //loads a new level != the current level index
     }
 
@@ -131,8 +149,21 @@ public class LevelManager : MonoBehaviour
         return randomIndex;
     }
 
-    void levelScaler() //Scales Number of enemies per level
+    void ScaleLevel() //Scales Number of enemies per level
     {
-        totalEnemiesToSpawn = (int)(baseEnemyCount * ((currentLevel * enemyCountScale) + 1));
+        totalEnemiesToSpawn = (int)(baseNumberOfEnemiesToSpawn * ((currentLevel * numberOfEnemiesScaling) + 1));
+    }
+
+    public void LoadNextLevel()
+    {
+        if (SceneManager.GetActiveScene().buildIndex < repeatableLevelsMinIndex)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else
+        {
+            SceneManager.LoadScene(GetRandomLevelIndex());
+        }
+        
     }
 }

@@ -7,11 +7,15 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
     [SerializeField] Skills skills;
+    UIManager uiManager;
+    AudioManager audioManager;
 
     [Header("----- Player Stats -----")]
-    [Range(1, 25)][SerializeField] int iHP;
+    [SerializeField] Stats playerStats;
+    int iHP;
+    float playerSpeed;
+    int playerDamage;
     [Range(0, 100)][SerializeField] float utCharge;
-    [Range(1, 20)][SerializeField] float playerSpeed;
     [Range(1, 20)][SerializeField] float jumpHeight;
     [Range(10, 50)][SerializeField] float gravityValue;
     [Range(1, 3)][SerializeField] int maxJumps;
@@ -27,12 +31,11 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     private bool isShooting; //checks if the player is currently shooting
 
     private int jumpsUsed;
-    private Vector3 move;
+    public Vector3 move;
     private Vector3 playerVelocity;
     public Vector3 pushBack;
     private bool groundedPlayer;
     private bool isSprinting;
-    private int iHPOriginal;
     private bool damagedRecently;
 
     [Header("----- Audio -----")]
@@ -44,25 +47,33 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        gameManager.instance.SetPlayerVariables(this.gameObject);
         playerWeapon = GetComponentInChildren<NewStaff>();
     }
 
     void Start()
     {
-        iHPOriginal = iHP;
-        //Debug.Log(iHPOriginal);
-        //Debug.Log(iHP);
+        UpdateSpeed();
+        iHP = playerStats.GetHealth();
+        uiManager = UIManager.instance;
+        audioManager = AudioManager.instance;
     }
 
     void Update()
     {
+        if (UIManager.instance != null && uiManager == null)
+        {
+            uiManager = UIManager.instance;
+        }
         if (skills.canMove())
         {
             Movement();
         }
-        AttackVolume = gameManager.instance.soundEffectsVolume.value;
-        JumpVolume = gameManager.instance.soundEffectsVolume.value;
+        if (audioManager != null)
+        {
+            AttackVolume = audioManager.soundEffectsVolume.value;
+            JumpVolume = audioManager.soundEffectsVolume.value;
+        }
         Sprint();
 
         if (Input.GetButton("Shoot") && !isShooting && !gameManager.instance.isPaused)
@@ -94,7 +105,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         }
 
         move = (transform.right * Input.GetAxis("Horizontal")) + (transform.forward * Input.GetAxis("Vertical"));
-        controller.Move(move * playerSpeed * Time.deltaTime);
+        controller.Move(playerSpeed * Time.deltaTime * move);
 
         // Changes the height position of the player..
         if (Input.GetButtonDown("Jump") && jumpsUsed < maxJumps)
@@ -133,18 +144,18 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             iHP -= amount; //-= used, negative amounts heal. 
             if (amount > 0)
             {
-                gameManager.instance.ShowDamage();
+                uiManager.ShowDamage();
                 if (iHP <= 0)
                 {
                     iHP = 0;
-                    gameManager.instance.YouLose();
+                    uiManager.YouLose();
                 }
             }
             else
             {
-                if (iHP > iHPOriginal)
+                if (iHP > playerStats.GetHealth())
                 {
-                    iHP = iHPOriginal;
+                    iHP = playerStats.GetHealth();
                 }
             }
             UpdateHealthBar();
@@ -189,7 +200,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     public void UpdateHealthBar()
     {
-        gameManager.instance.playerHealthBar.fillAmount = (float)iHP / iHPOriginal;
+        uiManager.playerHealthBar.fillAmount = (float)iHP / playerStats.GetHealth();
     }
 
 
@@ -218,7 +229,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     {
         if (!ShootSoundInPlay)
         {
-            aud.PlayOneShot(playerWeapon.GetShootAudio(), AttackVolume *0.17f);
+            aud.PlayOneShot(playerWeapon.GetShootAudio(), AttackVolume * 0.17f);
             ShootSoundInPlay = true;
         }
         yield return new WaitForSeconds(ShotCooldown);
@@ -231,16 +242,22 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         if (utCharge + amount < 100)
         {
             utCharge += amount;
-            gameManager.instance.UpdateUtCharge(utCharge / 100);
+            if (uiManager != null)
+            {
+                uiManager.UpdateUtCharge(utCharge / 100);
+            }
         }
         else
         {
             utCharge = 100;
-            gameManager.instance.UpdateUtCharge(100);
+            if (uiManager != null)
+            {
+                uiManager.UpdateUtCharge(100);
+            }
         }
     }
 
-    public bool canUt()
+    public bool CanUltimate()
     {
         return utCharge >= 100;
     }
@@ -249,5 +266,10 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     {
         pushBack += dir;
         //Debug.Log("Knocked Back");
+    }
+
+    public void UpdateSpeed()
+    {
+        playerSpeed = 5 + (playerStats.GetSpeed()/10);
     }
 }
