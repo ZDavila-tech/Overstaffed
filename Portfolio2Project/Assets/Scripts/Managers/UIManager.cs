@@ -266,6 +266,7 @@ public class UIManager : MonoBehaviour
 
     public void SetPlayerVariables()
     {
+        Debug.Log(gameManager.playerSkills);
         playerSkills = gameManager.playerSkills;
         playerElement = gameManager.playerElement;
     }
