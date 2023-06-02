@@ -118,9 +118,11 @@ public class NewStaff : MonoBehaviour
 
     public void Shoot()
     {
+        Animator anim = weapon.GetComponent<Animator>();
         //Debug.Log("Weapon Shoot Called");
         if (Input.GetButton("Shoot"))
         {
+            
             isShooting = true;
             canMelee = false;
             canSpecial = false;
@@ -129,16 +131,21 @@ public class NewStaff : MonoBehaviour
                 Vector3 direction = GetDirection();
                 if (Physics.Raycast(shootPos.position, direction, out RaycastHit hit, float.MaxValue, mask))
                 {
+                    anim.SetTrigger("Shooting");
                     GameObject trail = Instantiate(trailRenderer[(int)playerElement].gameObject, shootPos.position, Quaternion.identity);
                     StartCoroutine(SpawnTrail(trail.GetComponent<TrailRenderer>(), hit));
                     lastShootTime = Time.time;
+                    
+
                 }
+                
             }
         }
         
             
         
         StartCoroutine(ResetShooting());
+        StartCoroutine(ResetShootingAnimation());
     }
 
     private Vector3 GetDirection()
@@ -241,6 +248,19 @@ public class NewStaff : MonoBehaviour
         isShooting = false;
         canMelee = true;
         canSpecial = true;
+    }
+
+    IEnumerator ResetShootingAnimation()
+    {
+        yield return new WaitForSeconds(1f);
+        
+        if(isShooting == false)
+        {
+            Animator anim = weapon.GetComponent<Animator>();
+            anim.SetTrigger("NotShooting");
+        }
+
+        
     }
 
     IEnumerator Wait(float seconds)
