@@ -115,6 +115,6 @@ public class buttonFunctions : MonoBehaviour
     {
         //Debug.Log("Player Element Set");
         AudioManager.instance.ChangeSong();
-        SceneManager.LoadScene("Reception");
+        SceneManager.LoadScene("Tut 01");
     }
 }

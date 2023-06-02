@@ -243,7 +243,7 @@ public class UIManager : MonoBehaviour
         fading = true;
         fadeOutImage.color = new Color(0, 0, 0, fadeSpeed);
         yield return new WaitForSeconds(1.0f);
-        SceneManager.LoadScene(LevelManager.instance.GetRandomLevelIndex());
+        levelManager.LoadNextLevel();
         //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

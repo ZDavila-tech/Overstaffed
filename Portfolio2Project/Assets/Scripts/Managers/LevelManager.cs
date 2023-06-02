@@ -153,4 +153,9 @@ public class LevelManager : MonoBehaviour
     {
         totalEnemiesToSpawn = (int)(baseNumberOfEnemiesToSpawn * ((currentLevel * numberOfEnemiesScaling) + 1));
     }
+
+    public void LoadNextLevel()
+    {
+        SceneManager.LoadScene(GetRandomLevelIndex());
+    }
 }
