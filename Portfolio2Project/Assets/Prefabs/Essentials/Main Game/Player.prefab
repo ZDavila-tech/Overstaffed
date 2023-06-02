@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 472930247011065946}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3038316592155686572}
@@ -4983,7 +4983,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3299791067010535450}
   m_LocalRotation: {x: -0.08010459, y: 0.80954355, z: 0.27148402, w: 0.51431406}
-  m_LocalPosition: {x: 0.001, y: 0.778, z: -0.001}
+  m_LocalPosition: {x: 0.001, y: 0.836, z: -0.004}
   m_LocalScale: {x: 0.09589599, y: 0.09589599, z: 0.09589599}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5202,7 +5202,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 1
-  meleeCooldown: 1
+  meleeCooldown: 0.1
   swordHitbox: {fileID: 3773167801377614847}
   spearHitbox: {fileID: 4531740379933452979}
   hammerHitbox: {fileID: 22889135292615255}
@@ -10184,7 +10184,7 @@ Transform:
   m_GameObject: {fileID: 5233201253902445134}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3038316592155686572}
@@ -10599,6 +10599,7 @@ MonoBehaviour:
   playerWeapon: {fileID: 0}
   ShootRange: 355
   ShotCooldown: 0.1
+  move: {x: 0, y: 0, z: 0}
   pushBack: {x: 0, y: 0, z: 0}
   aud: {fileID: 1444516656452086230}
   AttackVolume: 0.3
@@ -10628,6 +10629,7 @@ MonoBehaviour:
   DashSpeed: 21.9
   DashTime: 0.352
   DashCooldown: 3
+  directionalDash: 0
   JumpForce: 20.6
   JumpTime: 0.336
   HiJumpCooldown: 3
@@ -15668,7 +15670,7 @@ Transform:
   m_GameObject: {fileID: 7458887084419644056}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3038316592155686572}
