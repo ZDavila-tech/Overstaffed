@@ -192,7 +192,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
             anim.SetTrigger("Died");//play the death animation
             if (Random.Range(0, 100) <= DropRate && drop != null)
             {
-                Instantiate(drop, new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z), transform.rotation);
+                Instantiate(drop, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
             }
             gameManager.instance.playerController.ChargeUt(chargeValue);
             --levelManager.enemiesRemaining;
