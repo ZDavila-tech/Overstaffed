@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     [SerializeField] private float damagecoolDown;
     [SerializeField] float pushBackResolve;
     public NewStaff.Element playerElement;
+    [SerializeField] float coyoteTime;
+    private float timeSinceLastGroundTouch = Mathf.Infinity;
 
     [Header("----- Player Weapon -----")]
     public NewStaff playerWeapon; //set in awake
@@ -101,15 +103,27 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer)
         {
+            timeSinceLastGroundTouch = 0;
             playerVelocity.y = 0f;
             jumpsUsed = 0;
         }
-
+        else if(timeSinceLastGroundTouch < coyoteTime)
+        {
+            //Starting the timer
+            timeSinceLastGroundTouch += Time.deltaTime;
+        }
         move = (transform.right * Input.GetAxis("Horizontal")) + (transform.forward * Input.GetAxis("Vertical"));
         controller.Move(playerSpeed * Time.deltaTime * move);
 
-        // Changes the height position of the player..
-        if (Input.GetButtonDown("Jump") && jumpsUsed < maxJumps)
+        bool canJump = false;
+
+        if (timeSinceLastGroundTouch < coyoteTime)
+        {
+            canJump = true;
+        }
+
+            // Changes the height position of the player..
+        if (Input.GetButtonDown("Jump") && jumpsUsed < maxJumps && canJump)
         {
             jumpsUsed++;
             playerVelocity.y = jumpHeight;
@@ -120,6 +134,11 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         controller.Move((playerVelocity + pushBack) * Time.deltaTime);
 
         pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushBackResolve);
+    }
+
+    IEnumerator CoyoteTime()
+    {
+        yield return new WaitForSeconds(0.5f);
     }
 
     void Sprint()
