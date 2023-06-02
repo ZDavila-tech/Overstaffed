@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     private bool isShooting; //checks if the player is currently shooting
 
     private int jumpsUsed;
-    private Vector3 move;
+    public Vector3 move;
     private Vector3 playerVelocity;
     public Vector3 pushBack;
     private bool groundedPlayer;

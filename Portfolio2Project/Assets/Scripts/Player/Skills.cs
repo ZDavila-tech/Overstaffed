@@ -30,6 +30,7 @@ public class Skills : MonoBehaviour
     [Range(1, 50)][SerializeField] float DashSpeed;
     [Range(0, 1)][SerializeField] float DashTime;
     [Range(1, 20)][SerializeField] float DashCooldown;
+    public bool directionalDash;
     bool canDash = true;
 
     [Header("~High Jump~")]
@@ -90,7 +91,15 @@ public class Skills : MonoBehaviour
         gameManager.instance.playerController.PlayExternalAudio(dashAudio, dashVolume);
         while (Time.time < startTime + DashTime)
         {
-            controller.Move(transform.forward * DashSpeed * Time.deltaTime);
+            if(directionalDash == false || playerController.move.Equals(Vector3.zero))
+            {
+                controller.Move(transform.forward * DashSpeed * Time.deltaTime);
+            }
+            else
+            {
+                controller.Move(playerController.move.normalized * DashSpeed * Time.deltaTime);
+            }
+            
             yield return null;
         }
         CanMove = true;
