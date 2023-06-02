@@ -57,17 +57,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be933e967a632be41bd7b964abbd7373, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  repeatableLevelsMinIndex: 3
-  repeatableLevelsMaxIndex: 8
-  baseEnemyCount: 0
-  enemyCountScale: 0
+  repeatableLevelsMinIndex: 7
+  repeatableLevelsMaxIndex: 11
+  baseNumberOfEnemiesToSpawn: 0
+  numberOfEnemiesScaling: 0
   maxPlayableLevel: 0
+  maxEnemiesAtOneTime: 0
   currentLevel: 0
   totalEnemiesToSpawn: 0
   enemiesRemaining: 0
-  enemiesSpawned: 0
-  maxEnemiesAtOneTime: 0
-  currentEnemies: 0
+  currentEnemiesSpawned: 0
+  currentEnemiesAlive: 0
   inElevator: 0
   levelStarted: 0
   levelCompleted: 0

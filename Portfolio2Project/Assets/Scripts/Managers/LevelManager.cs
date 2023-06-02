@@ -156,6 +156,14 @@ public class LevelManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        SceneManager.LoadScene(GetRandomLevelIndex());
+        if (SceneManager.GetActiveScene().buildIndex < repeatableLevelsMinIndex)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else
+        {
+            SceneManager.LoadScene(GetRandomLevelIndex());
+        }
+        
     }
 }
