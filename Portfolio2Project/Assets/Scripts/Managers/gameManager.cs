@@ -75,7 +75,7 @@ public class gameManager : MonoBehaviour
             playerController = playerCharacter.GetComponent<PlayerController>();
             playerElement = playerController.playerElement;
             playerSkills = playerCharacter.GetComponent<Skills>();
-            uiManager.SetPlayerVariables();
+            UIManager.instance.SetPlayerVariables();
         }
     }
 }

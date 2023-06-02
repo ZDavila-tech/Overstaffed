@@ -47,12 +47,13 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     private void Awake()
     {
-        gameManager.instance.SetPlayerVariables(this.gameObject);
+
         playerWeapon = GetComponentInChildren<NewStaff>();
     }
 
     void Start()
     {
+        gameManager.instance.SetPlayerVariables(this.gameObject);
         UpdateSpeed();
         iHP = playerStats.GetHealth();
         uiManager = UIManager.instance;
@@ -71,8 +72,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         }
         if (audioManager != null)
         {
-            AttackVolume = audioManager.soundEffectsVolume.value;
-            JumpVolume = audioManager.soundEffectsVolume.value;
+            AttackVolume = AudioManager.instance.soundEffectsVolume.value;
+            JumpVolume = AudioManager.instance.soundEffectsVolume.value;
         }
         Sprint();
 
