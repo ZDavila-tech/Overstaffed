@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
     public GameObject winMenu;
     public GameObject settingsMenu;
     public GameObject flashDamage;
+    public GameObject levelSelect;
 
     public Image playerHealthBar;
     public TextMeshProUGUI levelText;
