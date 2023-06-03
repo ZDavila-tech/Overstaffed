@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class LevelSelect : MonoBehaviour, IInteract
 {
+    [SerializeField] string interactionText;
+    public string InteractionPrompt => interactionText;
+
     private UIManager uiManager;
+
 
     // Start is called before the first frame update
     void Start()
@@ -12,8 +16,11 @@ public class LevelSelect : MonoBehaviour, IInteract
         uiManager = UIManager.instance;
     }
 
-    public void Interact()
+    public bool Interact(PlayerInteractionSystem player)
     {
+        uiManager.activeMenu = uiManager.levelSelect;
+        uiManager.ShowActiveMenu();
 
+        return true;
     }
 }
