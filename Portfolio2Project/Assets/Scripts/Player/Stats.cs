@@ -6,8 +6,9 @@ public class Stats : MonoBehaviour
 {
     [Header("----- Stats -----")]
     [Range(10, 250)][SerializeField] int Health;
-    [Range(1, 100)][SerializeField] int Speed;
-    [Range(1, 100)][SerializeField] int Attack;
+    [Range(1, 100)][SerializeField] public float Speed;
+    [Range(1, 100)][SerializeField] public int Attack;
+    [Range(1, 100)][SerializeField] public float wallrunSpeed;
 
     [Header("----- Experience -----")]
     [SerializeField] int Exp;
