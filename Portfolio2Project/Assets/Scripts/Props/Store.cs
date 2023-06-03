@@ -11,7 +11,7 @@ public class Store : MonoBehaviour, IInteract
     //checks if this store is a mimic (only set once)
     [SerializeField] bool isMimic;
     //chance for the store to be a mimic on first interaction
-    [SerializeField] int mimicChance;
+    [SerializeField][Range(0,100)] int mimicChance;
     //checks if this is the fist interaction with the store
     bool FirstInteraction;
 
