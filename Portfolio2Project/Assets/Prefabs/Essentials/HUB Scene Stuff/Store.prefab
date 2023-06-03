@@ -176,7 +176,8 @@ GameObject:
   m_Component:
   - component: {fileID: 259284113618747328}
   - component: {fileID: 8008034816416004799}
-  m_Layer: 0
+  - component: {fileID: 722005381560023825}
+  m_Layer: 13
   m_Name: Store
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,3 +215,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionText: Shop
   isMimic: 0
+--- !u!65 &722005381560023825
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256213544865257520}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.25, y: 0.2, z: 0.25}
+  m_Center: {x: 0, y: 0.1, z: -0.02}
