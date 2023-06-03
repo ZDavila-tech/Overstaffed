@@ -6,12 +6,32 @@ public class LevelSelectButtons : MonoBehaviour
 {
     private UIManager uiManager;
     private LevelManager levelManager;
+    private AudioManager audioManager;
+
+    [Header("----- Deactivated Buttons -----")]
+    [SerializeField] GameObject levelSixButtonOff;
+    [SerializeField] GameObject levelElevenButtonOff;
+    [SerializeField] GameObject levelSixteenButtonOff;
+    [SerializeField] GameObject levelTwentyOneButtonOff;
+    [SerializeField] GameObject levelInfiniteButtonOff;
+
+    [Header("----- Activated Buttons -----")]
+    [SerializeField] GameObject tutorialButton;
+    [SerializeField] GameObject levelSixButtonOn;
+    [SerializeField] GameObject levelElevenButtonOn;
+    [SerializeField] GameObject levelSixteenButtonOn;
+    [SerializeField] GameObject levelTwentyOneButtonOn;
+    [SerializeField] GameObject levelInfiniteButtonOn;
+
+    [Header("----- Close Me Button -----")]
+    [SerializeField] GameObject closeLevelSelectButton;
 
     // Start is called before the first frame update
     void Start()
     {
         uiManager = UIManager.instance;
         levelManager = LevelManager.instance;
+        audioManager = AudioManager.instance;
     }
 
     // Update is called once per frame
@@ -19,33 +39,39 @@ public class LevelSelectButtons : MonoBehaviour
     {
         if (levelManager.highestLevelCompleted >= 5)
         {
-            //Make 6 button visible. 
+            ButtonSwap(levelSixButtonOff, levelSixButtonOn);
         }
 
         if (levelManager.highestLevelCompleted >= 10)
         {
-            //Make 11 button visible. 
+            ButtonSwap(levelElevenButtonOff, levelElevenButtonOff);
         }
 
         if (levelManager.highestLevelCompleted >= 15)
         {
-            //Make 16 button visible. 
+            ButtonSwap(levelSixteenButtonOff, levelSixteenButtonOn);
         }
 
         if (levelManager.highestLevelCompleted >= 20)
         {
-            //Make 21 button visible. 
+            ButtonSwap(levelTwentyOneButtonOff, levelTwentyOneButtonOn);
         }
 
         if (levelManager.highestLevelCompleted >= 20)
         {
-            //Make Infinity button visible. 
+            ButtonSwap(levelInfiniteButtonOff, levelInfiniteButtonOn);
         }
     }
 
     public void NotUnlocked()
     {
         //Make a fizzle sound
+    }
+
+    public void ButtonSwap(GameObject toDeactivate, GameObject toActivate)
+    {
+        toActivate.SetActive(true);
+        toDeactivate.SetActive(false);
     }
 
     public void TutorialButtonPressed()
@@ -76,5 +102,10 @@ public class LevelSelectButtons : MonoBehaviour
     public void InfinityButtonPressed()
     {
         levelManager.SetCurrentLevel(22);
+    }
+
+    public void CloseLevelSelect()
+    {
+        uiManager.HideActiveMenu();
     }
 }
