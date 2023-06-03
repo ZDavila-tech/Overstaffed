@@ -8,10 +8,13 @@ public class Collectables : MonoBehaviour
     enum PickupType
     {
         Health,
-        UltimateCharge
+        UltimateCharge,
+        Mimic
     }
 
     [SerializeField] PickupType Pickup;
+
+    [SerializeField] GameObject mimic;
     /*enum CollectType 
     { 
       Health
@@ -32,6 +35,10 @@ public class Collectables : MonoBehaviour
                     break;
                 case PickupType.UltimateCharge:
                     gameManager.instance.playerController.ChargeUt(value);
+                    Destroy(gameObject);
+                    break;
+                case PickupType.Mimic:
+                    Instantiate(mimic, transform.position, mimic.transform.rotation);
                     Destroy(gameObject);
                     break;
             }

@@ -21,7 +21,7 @@ public class LevelSelect : MonoBehaviour, IInteract
     public bool Interact(PlayerInteractionSystem player)
     {
         gameManager.PauseState();
-        uiManager.activeMenu = uiManager.levelSelect;
+        uiManager.activeMenu = uiManager.levelSelectMenu;
         uiManager.ShowActiveMenu();
 
         return true;
