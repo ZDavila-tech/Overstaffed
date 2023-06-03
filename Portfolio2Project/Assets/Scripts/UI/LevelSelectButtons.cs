@@ -34,8 +34,18 @@ public class LevelSelectButtons : MonoBehaviour
 
         if (levelManager.highestLevelCompleted >= 20)
         {
+            //Make 21 button visible. 
+        }
+
+        if (levelManager.highestLevelCompleted >= 20)
+        {
             //Make Infinity button visible. 
         }
+    }
+
+    public void NotUnlocked()
+    {
+        //Make a fizzle sound
     }
 
     public void TutorialButtonPressed()
