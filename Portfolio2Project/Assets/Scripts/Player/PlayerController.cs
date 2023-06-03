@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     [Range(0, 100)][SerializeField] float utCharge;
     [Range(1, 20)][SerializeField] float jumpHeight;
     [Range(10, 50)][SerializeField] float gravityValue;
+    [Range(1, 50)][SerializeField] float wallrunGravity;
     [Range(1, 3)][SerializeField] int maxJumps;
     [Range(2, 5)][SerializeField] float sprintMod;
     [SerializeField] private float damagecoolDown;
@@ -48,8 +49,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     [SerializeField] AudioClip jumpAudio;
     bool ShootSoundInPlay; //checks for the audio cooldown between shots
 
-    float origGrav;
-    float origSpeed;
+    public float origGrav;
+    public float origSpeed;
 
     private void Awake()
     {
@@ -59,8 +60,9 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     void Start()
     {
+        playerSpeed = playerStats.Speed;
         origGrav = gravityValue;
-        origSpeed = playerSpeed;
+        origSpeed = playerStats.Speed;
         gameManager.instance.SetPlayerVariables(this.gameObject);
         UpdateSpeed();
         iHP = playerStats.GetHealth();
@@ -146,15 +148,18 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         //Wall Running
-        if (hit.gameObject.tag == "Wall")
+        if (hit.gameObject.tag == "Wall" && !groundedPlayer)
         {
-            gravityValue = 2f;
-            //playerSpeed += 5f;
+            gravityValue = wallrunGravity;
+            playerSpeed =  playerStats.wallrunSpeed;
         }
         else if (hit.gameObject.tag != "Wall")
         {
             gravityValue = origGrav;
-            //playerSpeed = origSpeed;
+            if (!isSprinting)
+            {
+                playerSpeed = origSpeed;
+            }
         }
     }
 
