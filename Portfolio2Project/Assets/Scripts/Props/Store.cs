@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelSelect : MonoBehaviour, IInteract
+public class Store : MonoBehaviour, IInteract
 {
     [SerializeField] string interactionText;
     public string InteractionPrompt => interactionText;
+    public bool isMimic;
 
     private UIManager uiManager;
     private gameManager gameManager;
@@ -21,7 +22,7 @@ public class LevelSelect : MonoBehaviour, IInteract
     public bool Interact(PlayerInteractionSystem player)
     {
         gameManager.PauseState();
-        uiManager.activeMenu = uiManager.levelSelectMenu;
+        uiManager.activeMenu = uiManager.storeMenu;
         uiManager.ShowActiveMenu();
 
         return true;

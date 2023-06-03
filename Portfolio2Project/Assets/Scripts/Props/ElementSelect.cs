@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelSelect : MonoBehaviour, IInteract
+public class ElementSelect : MonoBehaviour, IInteract
 {
     [SerializeField] string interactionText;
     public string InteractionPrompt => interactionText;
@@ -21,7 +21,7 @@ public class LevelSelect : MonoBehaviour, IInteract
     public bool Interact(PlayerInteractionSystem player)
     {
         gameManager.PauseState();
-        uiManager.activeMenu = uiManager.levelSelectMenu;
+        uiManager.activeMenu = uiManager.elementSelectMenu;
         uiManager.ShowActiveMenu();
 
         return true;
