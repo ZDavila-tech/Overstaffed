@@ -58,8 +58,13 @@ public class LevelSelectButtons : MonoBehaviour
         levelManager.SetCurrentLevel(16);
     }
 
-    public void InfinityButtonPressed()
+    public void TwentyOneButtonPressed()
     {
         levelManager.SetCurrentLevel(21);
+    }
+
+    public void InfinityButtonPressed()
+    {
+        levelManager.SetCurrentLevel(22);
     }
 }
