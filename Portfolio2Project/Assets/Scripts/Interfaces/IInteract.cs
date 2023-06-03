@@ -4,5 +4,7 @@ using UnityEngine;
 
 public interface IInteract
 {
-    public void Interact();
+    public string InteractionPrompt { get; }
+
+    public bool Interact(PlayerInteractionSystem player);
 }

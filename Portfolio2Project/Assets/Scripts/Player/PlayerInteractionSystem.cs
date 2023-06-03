@@ -14,7 +14,5 @@ public class PlayerInteractionSystem : MonoBehaviour
     void Update()
     {
         numberOfInteractablesFound = Physics.OverlapSphereNonAlloc(interactScanCenter.position, interactScanRadius, interactables, (int)interactableLayerMask);
-    }
-
-    
+    }    
 }
