@@ -200,6 +200,34 @@ PrefabInstance:
       propertyPath: m_NavMeshData
       value: 
       objectReference: {fileID: 23800000, guid: 45224296b7ad4eb48a5057893535a29a, type: 2}
+    - target: {fileID: 8878911401282222893, guid: e2bb3a2e5c274c54a8300664c28b48ea, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 8878911401517304457, guid: e2bb3a2e5c274c54a8300664c28b48ea, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 8878911402266304224, guid: e2bb3a2e5c274c54a8300664c28b48ea, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 8878911402309257540, guid: e2bb3a2e5c274c54a8300664c28b48ea, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 8878911402501581262, guid: e2bb3a2e5c274c54a8300664c28b48ea, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 8878911402511527552, guid: e2bb3a2e5c274c54a8300664c28b48ea, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 8878911402588689393, guid: e2bb3a2e5c274c54a8300664c28b48ea, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 8878911403180767277, guid: e2bb3a2e5c274c54a8300664c28b48ea, type: 3}
       propertyPath: m_Name
       value: Supervisor Horseshoe Arena (Elevator Prefab)
@@ -247,6 +275,10 @@ PrefabInstance:
     - target: {fileID: 8878911403180767278, guid: e2bb3a2e5c274c54a8300664c28b48ea, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8878911403393680829, guid: e2bb3a2e5c274c54a8300664c28b48ea, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2bb3a2e5c274c54a8300664c28b48ea, type: 3}
@@ -779,10 +811,8 @@ MonoBehaviour:
   spawnAreaY: 20
   spawnDelay: 1
   spawnRotation: {fileID: 7117864672431336999}
-  enemies:
-  - {fileID: 4728235726989330132, guid: 8410533c5719b054980dc8019928826d, type: 3}
-  - {fileID: 2856267348468154937, guid: 8f7c1d08c441e8f4cb3cc94a791f997f, type: 3}
-  weights: 3c00000028000000
+  enemyTypesToSpawn: []
+  enemyTypeSpawnWeighting: 
 --- !u!4 &5000505474150983644
 Transform:
   m_ObjectHideFlags: 0
