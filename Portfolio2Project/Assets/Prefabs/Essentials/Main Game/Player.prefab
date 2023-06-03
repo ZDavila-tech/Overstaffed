@@ -10636,10 +10636,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 6256373690464243920}
   skills: {fileID: 1055786313974128500}
+  screenShake: {fileID: 0}
   playerStats: {fileID: 5227066611642462926}
   utCharge: 0
   jumpHeight: 8
-  gravityValue: 12
+  gravityValue: 15
+  wallrunGravity: 8
   maxJumps: 1
   sprintMod: 1.5
   damagecoolDown: 0.1
@@ -10655,6 +10657,8 @@ MonoBehaviour:
   AttackVolume: 0.3
   JumpVolume: 0.5
   jumpAudio: {fileID: 8300000, guid: bd109bbf0935edd40bd80dbc4f55c07f, type: 3}
+  origGrav: 0
+  origSpeed: 0
 --- !u!114 &1055786313974128500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10700,8 +10704,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 10
-  Speed: 5
+  Speed: 10
   Attack: 3
+  wallrunSpeed: 15
   Exp: 0
 --- !u!114 &5409566226741756279
 MonoBehaviour:
