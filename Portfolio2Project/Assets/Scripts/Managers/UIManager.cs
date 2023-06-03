@@ -99,14 +99,6 @@ public class UIManager : MonoBehaviour
             StartCoroutine(FadeIn());
         }
     }
-    public void GoBack() //Go back to pause menu
-    {
-        //gameManager.PauseState();
-        settingsMenu.SetActive(false);
-        //activeMenu = pauseMenu;
-        //ShowActiveMenu();
-    }
-
     public void YouLose()
     {
         gameManager.PauseState();
@@ -114,13 +106,6 @@ public class UIManager : MonoBehaviour
         ShowActiveMenu();
     }
 
-    public void GoToSettings() //goes to settings menu
-    {
-       // gameManager.PauseState();
-        settingsMenu.SetActive(true);
-        //activeMenu = settingsMenu;
-        //ShowActiveMenu();
-    }
 
     public void ShowActiveMenu() //shows active menu if there is one.
     {

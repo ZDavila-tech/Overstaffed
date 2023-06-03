@@ -47,9 +47,12 @@ public class buttonFunctions : MonoBehaviour
 
     public void GoBackMenu()
     {
-        uiManager.GoBack();
+        uiManager.settingsMenu.SetActive(false);
     }
-
+    public void GoToSettings() //goes to settings menu
+    {
+        uiManager.settingsMenu.SetActive(true);
+    }
     //Go back to Main Menu
     public void GoToMainMenu()
     {
