@@ -10,14 +10,15 @@ public class LevelManager : MonoBehaviour
     [Header("----- Level Indexes -----")]
     [SerializeField] int repeatableLevelsMinIndex; //list repeatable levels contiguously in Build Settings
     [SerializeField] int repeatableLevelsMaxIndex;
+    [SerializeField] int hubSceneIndex;
+    [SerializeField] int maxPlayableLevel;
 
-    [Header("----- Settings -----")]
+    [Header("----- Spawner Settings -----")]
     [SerializeField] int baseNumberOfEnemiesToSpawn;
     [SerializeField, Range(0f, 1f)] float numberOfEnemiesScaling;
-    [SerializeField] int maxPlayableLevel;
     public int maxEnemiesAtOneTime;
 
-    [Header("----- For Spawners To Know -----")]
+    [Header("----- For Spawners To Know (Ignore)-----")]
     public int currentLevel;
     public int totalEnemiesToSpawn; //total enemies to spawn
     public int enemiesRemaining; //goes up when an enemyAI Start()'s and goes down on enemy death
@@ -29,6 +30,10 @@ public class LevelManager : MonoBehaviour
     public bool levelStarted; //player successfully teleported/close enough to spawn
     public bool levelCompleted; //for use by other scripts, makes life easier -> if levelStarted, no enemies, and player in elevator -> load new level
     public bool loadingLevel;
+    public bool hasBeatenTutorial;
+
+    [Header("----- High Score Stuff (Ignore)-----")]
+    public int highestLevelCompleted;
 
     private UIManager uiManager;
     private AudioManager audioManager;
@@ -80,10 +85,10 @@ public class LevelManager : MonoBehaviour
     {
         currentLevel = 1;
         loadingLevel = false;
-        NewLevel();
+        NewLevelVariableResets();
     }
 
-    public void NewLevel()
+    public void NewLevelVariableResets()
     {
         levelCompleted = false;
         levelStarted = false;
@@ -107,7 +112,7 @@ public class LevelManager : MonoBehaviour
                 if (inElevator == true)
                 {
                     inElevator = false; //FOR THE LOVE OF GOD HAVE THIS BEFORE GO TO NEXT LEVEL OR EVERYTHING BREAKS
-                    GoToNextLevel();
+                    LevelTransitionSequence();
                 }
             }
             else
@@ -116,20 +121,9 @@ public class LevelManager : MonoBehaviour
             }
         }
     }
-    public void GoToNextLevel() //if levelStarted, no enemies, and player in elevator -> load new level
+    public void LevelTransitionSequence() //if levelStarted, no enemies, and player in elevator -> load new level
     {
-        NewLevel();
-        ++currentLevel; //ups difficulty
-        ScaleLevel();
-        if (currentLevel > maxPlayableLevel)
-        {
-            uiManager.YouWin();
-        }
-        if (currentLevel % 3 == 0)
-        {
-            audioManager.ChangeSong();
-        }
-        inElevator= false;
+        NewLevelVariableResets();
         StartCoroutine(uiManager.FadeOut());
         //loads a new level != the current level index
     }
@@ -149,21 +143,55 @@ public class LevelManager : MonoBehaviour
         return randomIndex;
     }
 
-    void ScaleLevel() //Scales Number of enemies per level
+    void ScaleSpawners() //Scales Number of enemies per level
     {
         totalEnemiesToSpawn = (int)(baseNumberOfEnemiesToSpawn * ((currentLevel * numberOfEnemiesScaling) + 1));
     }
 
     public void LoadNextLevel()
     {
-        if (SceneManager.GetActiveScene().buildIndex < repeatableLevelsMinIndex)
+        if(currentLevel > highestLevelCompleted)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            highestLevelCompleted = currentLevel;
+        }
+
+        if (currentLevel > maxPlayableLevel)
+        {
+            uiManager.YouWin();
         }
         else
         {
-            SceneManager.LoadScene(GetRandomLevelIndex());
-        }
-        
+            if (SceneManager.GetActiveScene().buildIndex == hubSceneIndex)
+            {
+                SceneManager.LoadScene(GetRandomLevelIndex());
+            }
+            else
+            {
+                if (currentLevel % 3 == 0)
+                {
+                    audioManager.ChangeSong();
+                }
+
+                if (currentLevel % 5 == 0)
+                {
+                    ++currentLevel; //ups difficulty
+                    ScaleSpawners();
+                    SceneManager.LoadScene(hubSceneIndex);
+                }
+                else
+                {
+                    ++currentLevel; //ups difficulty
+                    ScaleSpawners();
+                    if (SceneManager.GetActiveScene().buildIndex < repeatableLevelsMinIndex)
+                    {
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                    }
+                    else
+                    {
+                        SceneManager.LoadScene(GetRandomLevelIndex());
+                    }
+                }
+            }
+        }        
     }
 }
