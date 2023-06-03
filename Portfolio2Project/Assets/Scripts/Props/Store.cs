@@ -11,7 +11,7 @@ public class Store : MonoBehaviour, IInteract
     //checks if this store is a mimic (only set once)
     [SerializeField] bool isMimic;
     //chance for the store to be a mimic on first interaction
-    [SerializeField][Range(0,100)] int mimicChance;
+    [SerializeField][Range(0, 100)] int mimicChance;
     //checks if this is the fist interaction with the store
     bool FirstInteraction;
 
@@ -23,7 +23,7 @@ public class Store : MonoBehaviour, IInteract
     void Start()
     {
         FirstInteraction = true;
-        isMimic= false;
+        isMimic = false;
         uiManager = UIManager.instance;
         gameManager = gameManager.instance;
     }
@@ -31,7 +31,7 @@ public class Store : MonoBehaviour, IInteract
     public bool Interact(PlayerInteractionSystem player)
     {
         //checks if this is the first interaction
-        if(FirstInteraction)
+        if (FirstInteraction)
         {
             //if it is, comapares the chance to be a mimic with a random number from 0 to 100 to see if the store will be one
             isMimic = (mimicChance > Random.Range(0, 100));
@@ -50,5 +50,18 @@ public class Store : MonoBehaviour, IInteract
             uiManager.ShowActiveMenu();
         }
         return true;
+    }
+
+    public void BuyAttack(int amount)
+    {
+        gameManager.playerStats.AttackUp(amount);
+    }
+    public void BuyHealth(int amount)
+    {
+        gameManager.playerStats.HealthUp(amount);
+    }
+    public void BuySpeed(int amount)
+    {
+        gameManager.playerStats.SpeedUp(amount);
     }
 }
