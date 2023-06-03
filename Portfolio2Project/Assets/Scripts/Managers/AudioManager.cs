@@ -19,6 +19,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] float volume;
     public int currSong;
 
+    [Header("----- UI Sound Effects -----")]
+    public AudioClip buttonClick;
+    public AudioClip transactionSound;
+
     // Start is called before the first frame update
     void Awake()
     {
