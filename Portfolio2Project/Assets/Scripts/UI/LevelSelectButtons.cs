@@ -7,6 +7,7 @@ public class LevelSelectButtons : MonoBehaviour
     private UIManager uiManager;
     private LevelManager levelManager;
     private AudioManager audioManager;
+    private gameManager gameManager;
 
     [Header("----- Deactivated Buttons -----")]
     [SerializeField] GameObject levelSixButtonOff;
@@ -32,6 +33,7 @@ public class LevelSelectButtons : MonoBehaviour
         uiManager = UIManager.instance;
         levelManager = LevelManager.instance;
         audioManager = AudioManager.instance;
+        gameManager = gameManager.instance;
     }
 
     // Update is called once per frame
@@ -44,7 +46,7 @@ public class LevelSelectButtons : MonoBehaviour
 
         if (levelManager.highestLevelCompleted >= 10)
         {
-            ButtonSwap(levelElevenButtonOff, levelElevenButtonOff);
+            ButtonSwap(levelElevenButtonOff, levelElevenButtonOn);
         }
 
         if (levelManager.highestLevelCompleted >= 15)
@@ -106,6 +108,7 @@ public class LevelSelectButtons : MonoBehaviour
 
     public void CloseLevelSelect()
     {
+        gameManager.UnpauseState();
         uiManager.HideActiveMenu();
     }
 }

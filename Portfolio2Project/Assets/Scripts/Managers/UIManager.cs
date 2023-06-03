@@ -22,6 +22,8 @@ public class UIManager : MonoBehaviour
     public GameObject settingsMenu;
     public GameObject flashDamage;
     public GameObject levelSelect;
+    public GameObject interactTextGameObject;
+    public TextMeshProUGUI interactText;
 
     public Image playerHealthBar;
     public TextMeshProUGUI levelText;
@@ -256,5 +258,24 @@ public class UIManager : MonoBehaviour
         Debug.Log(gameManager.playerSkills);
         playerSkills = gameManager.playerSkills;
         playerElement = gameManager.playerElement;
+    }
+
+    public void UpdateInteractText(int interactionScenario, string textToShow = "")
+    {
+        switch(interactionScenario)
+        {
+            case 0: //nothing found
+                {
+                    interactText.text = textToShow;
+                    interactTextGameObject.SetActive(false);
+                    break;
+                }
+            case 1:
+                {
+                    interactText.text = textToShow;
+                    interactTextGameObject.SetActive(true);
+                    break;
+                }
+        }
     }
 }
