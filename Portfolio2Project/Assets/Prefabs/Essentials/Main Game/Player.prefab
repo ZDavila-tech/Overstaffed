@@ -10497,6 +10497,7 @@ Transform:
   - {fileID: 5206612201000735796}
   - {fileID: 3678632124144082660}
   - {fileID: 3038316592155686572}
+  - {fileID: 16281879873814441}
   m_Father: {fileID: 6256373690464243926}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10580,6 +10581,7 @@ GameObject:
   - component: {fileID: 6256373690464243921}
   - component: {fileID: 1055786313974128500}
   - component: {fileID: 5227066611642462926}
+  - component: {fileID: 5409566226741756279}
   - component: {fileID: 6256373690464243927}
   - component: {fileID: 6256373690464243924}
   - component: {fileID: 6256373690464243925}
@@ -10701,6 +10703,24 @@ MonoBehaviour:
   Speed: 5
   Attack: 3
   Exp: 0
+--- !u!114 &5409566226741756279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6256373690464243930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67002fb37d478d14095b5a85229bc9b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactScanCenter: {fileID: 16281879873814441}
+  interactScanRadius: 0.5
+  interactableLayerMask:
+    serializedVersion: 2
+    m_Bits: 8192
+  numberOfInteractablesFound: 0
 --- !u!33 &6256373690464243927
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -15750,6 +15770,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitDmg: 10
+--- !u!1 &7854184499260813984
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 16281879873814441}
+  m_Layer: 0
+  m_Name: Interaction Sphere Center
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &16281879873814441
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7854184499260813984}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.25, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6256373689337983844}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8269890165627314419
 GameObject:
   m_ObjectHideFlags: 0
