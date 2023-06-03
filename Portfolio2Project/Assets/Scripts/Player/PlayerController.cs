@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     [Header("----- Components -----")]
     [SerializeField] CharacterController controller;
     [SerializeField] Skills skills;
+    [SerializeField] public GameObject screenShake;
     UIManager uiManager;
     AudioManager audioManager;
 
@@ -47,6 +48,9 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     [SerializeField] AudioClip jumpAudio;
     bool ShootSoundInPlay; //checks for the audio cooldown between shots
 
+    float origGrav;
+    float origSpeed;
+
     private void Awake()
     {
 
@@ -55,6 +59,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     void Start()
     {
+        origGrav = gravityValue;
+        origSpeed = playerSpeed;
         gameManager.instance.SetPlayerVariables(this.gameObject);
         UpdateSpeed();
         iHP = playerStats.GetHealth();
@@ -112,6 +118,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             //Starting the timer
             timeSinceLastGroundTouch += Time.deltaTime;
         }
+
         move = (transform.right * Input.GetAxis("Horizontal")) + (transform.forward * Input.GetAxis("Vertical"));
         controller.Move(playerSpeed * Time.deltaTime * move);
 
@@ -136,9 +143,19 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushBackResolve);
     }
 
-    IEnumerator CoyoteTime()
+    void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        yield return new WaitForSeconds(0.5f);
+        //Wall Running
+        if (hit.gameObject.tag == "Wall")
+        {
+            gravityValue = 2f;
+            //playerSpeed += 5f;
+        }
+        else if (hit.gameObject.tag != "Wall")
+        {
+            gravityValue = origGrav;
+            //playerSpeed = origSpeed;
+        }
     }
 
     void Sprint()
@@ -199,6 +216,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             {
                 playerWeapon.Shoot();
                 StartCoroutine(PlayShootSound());
+                //StartCoroutine(TriggerScreenShake(0.1f));
             }
 
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out RaycastHit hit, ShootRange))
@@ -291,5 +309,13 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     public void UpdateSpeed()
     {
         playerSpeed = 5 + (playerStats.GetSpeed()/10);
+    }
+
+    public IEnumerator TriggerScreenShake(float duration)
+    {
+        screenShake.GetComponent<ScreenShake>().duration = duration;
+
+        screenShake.GetComponent<ScreenShake>().start = true;
+        yield return new WaitForSeconds(0.5f);
     }
 }
