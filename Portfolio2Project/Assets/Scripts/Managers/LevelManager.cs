@@ -194,4 +194,10 @@ public class LevelManager : MonoBehaviour
             }
         }        
     }
+
+    public void SetCurrentLevel(int levelToSetTo)
+    {
+        currentLevel = levelToSetTo;
+        ScaleSpawners();
+    }
 }
