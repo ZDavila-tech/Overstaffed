@@ -62,12 +62,11 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     [SerializeField] AudioClip jumpAudio;
     bool ShootSoundInPlay; //checks for the audio cooldown between shots
 
-    public float origGrav;
-    public float origSpeed;
+    float origGrav;
+    float origSpeed;
 
     private void Awake()
     {
-
         playerWeapon = GetComponentInChildren<NewStaff>();
     }
 
@@ -203,7 +202,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     {
         yield return new WaitForSeconds(slideLimit);
         isCrouching = false;
-        controller.height = standingHeight;
+        //controller.height = standingHeight;
         playerSpeed = origSpeed;
     }
 
