@@ -18,10 +18,15 @@ public class buttonFunctions : MonoBehaviour
     {
         uiManager = UIManager.instance;
     }
+    private void Update()
+    {
+        buttonAudio.volume = AudioManager.instance.soundEffectsVolume.value;
+    }
     //Resume the game
     public void Resume()
     {
         buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
+
         gameManager.instance.UnpauseState();
     }
 
