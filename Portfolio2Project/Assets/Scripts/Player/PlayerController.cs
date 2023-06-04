@@ -14,10 +14,11 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     [Header("----- Player Stats -----")]
     [SerializeField] Stats playerStats;
     int iHP;
-    float playerSpeed;
+    public float playerSpeed;
     int playerDamage;
     [Range(0, 100)][SerializeField] float utCharge;
     [Range(1, 20)][SerializeField] float jumpHeight;
+    
     [Range(10, 50)][SerializeField] float gravityValue;
     [Range(1, 50)][SerializeField] float wallrunGravity;
     [Range(1, 3)][SerializeField] int maxJumps;
@@ -27,6 +28,17 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     public NewStaff.Element playerElement;
     [SerializeField] float coyoteTime;
     private float timeSinceLastGroundTouch = Mathf.Infinity;
+    [Header("----- Sliding Stats -----")]
+    [SerializeField] float crouchHeight;
+    float standingHeight;
+    [SerializeField] float slideMultiplier; // How much speed is increased while sliding
+    [SerializeField] float slideLimit; //How long you can slide
+
+    public float height
+    {
+        get => controller.height;
+        set => controller.height = value;
+    }
 
     [Header("----- Player Weapon -----")]
     public NewStaff playerWeapon; //set in awake
@@ -41,6 +53,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     private bool groundedPlayer;
     private bool isSprinting;
     private bool damagedRecently;
+    public bool isCrouching;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioSource aud;
@@ -49,18 +62,18 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     [SerializeField] AudioClip jumpAudio;
     bool ShootSoundInPlay; //checks for the audio cooldown between shots
 
-    public float origGrav;
-    public float origSpeed;
+    float origGrav;
+    float origSpeed;
 
     private void Awake()
     {
-
         playerWeapon = GetComponentInChildren<NewStaff>();
     }
 
     void Start()
     {
         playerSpeed = playerStats.Speed;
+        standingHeight = height;
         origGrav = gravityValue;
         origSpeed = playerStats.Speed;
         gameManager.instance.SetPlayerVariables(this.gameObject);
@@ -86,6 +99,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             JumpVolume = AudioManager.instance.soundEffectsVolume.value;
         }
         Sprint();
+        Crouching();
 
         if (Input.GetButton("Shoot") && !isShooting && !gameManager.instance.isPaused)
         {
@@ -156,11 +170,40 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         else if (hit.gameObject.tag != "Wall")
         {
             gravityValue = origGrav;
-            if (!isSprinting)
+            if (!isSprinting && !isCrouching)
             {
                 playerSpeed = origSpeed;
             }
         }
+    }
+    void Crouching()
+    {
+        if (Input.GetButtonDown("Crouch") && groundedPlayer && isSprinting)
+        {
+            isCrouching = true;
+            controller.height = crouchHeight;
+            playerSpeed *= slideMultiplier;
+            StartCoroutine(Slide());
+        }
+        else if (Input.GetButtonDown("Crouch") && groundedPlayer)
+        {
+            isCrouching = true;
+            controller.height = crouchHeight;
+            playerSpeed *= 0.6f;
+        }
+        else if (Input.GetButtonUp("Crouch"))
+        {
+            isCrouching = false;
+            controller.height = standingHeight;
+            playerSpeed = origSpeed;
+        }
+    }
+    IEnumerator Slide()
+    {
+        yield return new WaitForSeconds(slideLimit);
+        isCrouching = false;
+        //controller.height = standingHeight;
+        playerSpeed = origSpeed;
     }
 
     void Sprint()
