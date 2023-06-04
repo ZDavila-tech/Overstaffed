@@ -5,9 +5,9 @@ using UnityEngine;
 public class Store : MonoBehaviour, IInteract
 {
     [SerializeField] string interactionText;
+    public string InteractionPrompt => interactionText;
     //Mimic prefab to instantiate if this store is a mimic
     [SerializeField] GameObject mimic;
-    public string InteractionPrompt => interactionText;
     //checks if this store is a mimic (only set once)
     [SerializeField] bool isMimic;
     //chance for the store to be a mimic on first interaction
@@ -50,18 +50,5 @@ public class Store : MonoBehaviour, IInteract
             uiManager.ShowActiveMenu();
         }
         return true;
-    }
-
-    public void BuyAttack(int amount)
-    {
-        gameManager.playerStats.AttackUp(amount);
-    }
-    public void BuyHealth(int amount)
-    {
-        gameManager.playerStats.HealthUp(amount);
-    }
-    public void BuySpeed(int amount)
-    {
-        gameManager.playerStats.SpeedUp(amount);
     }
 }
