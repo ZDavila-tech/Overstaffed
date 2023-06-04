@@ -2087,7 +2087,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &416272081
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11640,9 +11640,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Jacob McLain
-
-'
+  m_text: Lead Level Designer
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -12259,7 +12257,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Xavier Williams
+  m_text: 'Lead Game Programmer
 
 '
   m_isRightToLeft: 0
@@ -12803,7 +12801,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Systems Engineer
+  m_text: Lead Systems Engineer
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -13453,7 +13451,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Victor Pinheiro Serra Pinto
+  m_text: 'Lead Programmer
 
 '
   m_isRightToLeft: 0
@@ -13724,7 +13722,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Producer
+  m_text: 'Lead Producer
 
 '
   m_isRightToLeft: 0
@@ -19772,7 +19770,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6078696787746901895}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5196937610604099688}
+        m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
+        m_MethodName: BackFromCred
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5352857082786687891
 GameObject:
   m_ObjectHideFlags: 0
@@ -22982,8 +22992,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5196937610604099688}
-        m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
-        m_MethodName: Quit
+        m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
+        m_MethodName: GoToCredits
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -25211,6 +25221,7 @@ MonoBehaviour:
   storeMenu: {fileID: 0}
   elementSelectMenu: {fileID: 4651665054188061651}
   saveMenu: {fileID: 8376903872863355961}
+  creditsMenu: {fileID: 416272080}
   interactTextGameObject: {fileID: 2782344869641192977}
   interactText: {fileID: 5436064145452998148}
   playerHealthBar: {fileID: 7748937549668574394}
