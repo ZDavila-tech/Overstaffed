@@ -5,9 +5,9 @@ using UnityEngine;
 public class Store : MonoBehaviour, IInteract
 {
     [SerializeField] string interactionText;
+    public string InteractionPrompt => interactionText;
     //Mimic prefab to instantiate if this store is a mimic
     [SerializeField] GameObject mimic;
-    public string InteractionPrompt => interactionText;
     //checks if this store is a mimic (only set once)
     [SerializeField] bool isMimic;
     //chance for the store to be a mimic on first interaction
