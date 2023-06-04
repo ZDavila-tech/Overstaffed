@@ -30,4 +30,17 @@ public static class fileManager// : MonoBehaviour
 
     }
 
+    public static void resetData()
+    {
+        PlayerPrefs.DeleteAll();
+        masterVolume = 0.5f;
+        effectVolume = 0.5f;
+        AudioManager.instance.soundEffectsVolume.value = effectVolume;
+        musicVolume = 0.5f;
+        AudioManager.instance.volumeValue.value = musicVolume;
+        invertY = false;
+        UIManager.instance.invert.isOn = invertY;
+
+    }
+
 }

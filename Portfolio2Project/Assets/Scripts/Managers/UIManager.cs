@@ -24,6 +24,7 @@ public class UIManager : MonoBehaviour
     public GameObject levelSelectMenu;
     public GameObject storeMenu;
     public GameObject elementSelectMenu;
+    public GameObject saveMenu;
     public GameObject interactTextGameObject;
     public TextMeshProUGUI interactText;
 
