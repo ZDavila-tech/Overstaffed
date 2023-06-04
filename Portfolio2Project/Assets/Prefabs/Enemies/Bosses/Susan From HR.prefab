@@ -40,6 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 860515691522087886}
+  - component: {fileID: -2476902282636150745}
   m_Layer: 0
   m_Name: Susan From HR
   m_TagString: Untagged
@@ -63,6 +64,43 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-2476902282636150745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8339039089149912607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2370cd4ab69f44845b566083ed1855e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBarOne: 50
+  healthBarTwo: 50
+  healthBarThree: 50
+  bossIsInvulnerable: 0
+  phaseOneSpawners: []
+  phaseOneThingToSpawn: {fileID: 0}
+  phaseTwoSpawners: []
+  phaseTwoThingToSpawn: {fileID: 0}
+  PhaseThreeProps: []
+  PhaseThreePropsFinalPositions: []
+  transitionCubeOne: {fileID: 0}
+  transitionCubeTwo: {fileID: 0}
+  transitionCubeThree: {fileID: 0}
+  transitionCubeFour: {fileID: 0}
+  transitionCubeOneBroken: 0
+  transitionCubeTwoBroken: 0
+  transitionCubeThreeBroken: 0
+  transitionCubeFourBroken: 0
+  transitionShieldOne: {fileID: 0}
+  transitionShieldTwo: {fileID: 0}
+  transitionShieldThree: {fileID: 0}
+  transitionSpawnerOne: {fileID: 0}
+  transitionSpawnerTwo: {fileID: 0}
+  transitionSpawnerThree: {fileID: 0}
+  transitionSpawnerFour: {fileID: 0}
 --- !u!1001 &6662729689219731585
 PrefabInstance:
   m_ObjectHideFlags: 0
