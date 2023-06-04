@@ -71,10 +71,31 @@ public class buttonFunctions : MonoBehaviour
     //Go back to Main Menu
     public void GoToMainMenu()
     {
+        uiManager.saveMenu.SetActive(true);
+        //buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
+
+        //Destroy(GameObject.FindGameObjectWithTag("Player"));
+
+        //uiManager.HideActiveMenu();
+        //uiManager.HUD.SetActive(false);
+        //uiManager.activeMenu = uiManager.mainMenu;
+        //AudioManager.instance.currSong = 0;
+        //AudioManager.instance.PlaySong();
+        //uiManager.ShowActiveMenu();
+
+        //Debug.Log("Player Character destroyed");
+        //Time.timeScale = gameManager.instance.timeScaleOriginal;
+
+        //SceneManager.LoadScene("Main Menu");
+    }
+
+    //If they want to save their game
+    public void YesSave()
+    {
         buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
-
+        fileManager.save();
         Destroy(GameObject.FindGameObjectWithTag("Player"));
-
+        uiManager.saveMenu.SetActive(false);
         uiManager.HideActiveMenu();
         uiManager.HUD.SetActive(false);
         uiManager.activeMenu = uiManager.mainMenu;
@@ -85,14 +106,44 @@ public class buttonFunctions : MonoBehaviour
         Debug.Log("Player Character destroyed");
         Time.timeScale = gameManager.instance.timeScaleOriginal;
 
-        //MusicPlayer.instance.StopSong();
         SceneManager.LoadScene("Main Menu");
     }
 
-    public void PlayGame() //Takes player to character select scene
+    //If they don't want to save their game
+    public void NoSave()
     {
         buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
+        fileManager.resetData();
+        Destroy(GameObject.FindGameObjectWithTag("Player"));
+        uiManager.saveMenu.SetActive(false);
+        uiManager.HideActiveMenu();
+        uiManager.HUD.SetActive(false);
+        uiManager.activeMenu = uiManager.mainMenu;
+        AudioManager.instance.currSong = 0;
+        AudioManager.instance.PlaySong();
+        uiManager.ShowActiveMenu();
 
+        Debug.Log("Player Character destroyed");
+        Time.timeScale = gameManager.instance.timeScaleOriginal;
+
+        SceneManager.LoadScene("Main Menu");
+    }
+    public void PlaySaveGame() //Takes player to character select scene
+    {
+        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
+       
+        //Debug.Log("Play Button Pressed");
+        uiManager.HideActiveMenu();
+        uiManager.activeMenu = uiManager.playerSelect;
+        AudioManager.instance.ChangeSong();
+        uiManager.ShowActiveMenu();
+        SceneManager.LoadScene("Character Select");
+    }
+
+    public void PlayNewGame() //Takes player to character select scene
+    {
+        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
+        fileManager.resetData();
         //Debug.Log("Play Button Pressed");
         uiManager.HideActiveMenu();
         uiManager.activeMenu = uiManager.playerSelect;
