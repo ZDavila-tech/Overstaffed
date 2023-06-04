@@ -14,12 +14,13 @@ public class SusanFromHR : MonoBehaviour
 
     [Header("----- Phase One Stuff -----")]
     [SerializeField] GameObject[] phaseOneSpawners;
-    [SerializeField] GameObject phaseOneThingToSpawn;
+    [SerializeField] GameObject[] phaseOneThingToSpawn;
+    [SerializeField] GameObject phaseOneBigThingToSpawn;
     private int phaseOneCurrentSpawner;
 
     [Header("----- Phase Two Stuff -----")]
     [SerializeField] GameObject[] phaseTwoSpawners;
-    [SerializeField] GameObject phaseTwoThingToSpawn;
+    [SerializeField] GameObject[] phaseTwoThingToSpawn;
     private int phaseTwoCurrentSpawner;
 
     [Header("----- Phase Three Stuff -----")]
@@ -40,6 +41,8 @@ public class SusanFromHR : MonoBehaviour
     [SerializeField] GameObject transitionShieldOne;
     [SerializeField] GameObject transitionShieldTwo;
     [SerializeField] GameObject transitionShieldThree;
+
+    [SerializeField] GameObject transitionEnemy;
 
     [SerializeField] GameObject transitionSpawnerOne;
     [SerializeField] GameObject transitionSpawnerTwo;
@@ -112,7 +115,7 @@ public class SusanFromHR : MonoBehaviour
             {
                 doTransitionOne = false;
                 doPhaseTwoSetUp = true;
-                ResetCubes();
+                SetCubeBoolsToFalse();
             }
             else
             {
@@ -157,7 +160,7 @@ public class SusanFromHR : MonoBehaviour
             {
                 doTransitionTwo = false;
                 doPhaseThreeSetUp = true;
-                ResetCubes();
+                SetCubeBoolsToFalse();
             }
             else
             {
@@ -250,11 +253,31 @@ public class SusanFromHR : MonoBehaviour
 
     }
 
-    private void ResetCubes()
+    private void SetCubeBoolsToFalse()
     {
         transitionCubeOneBroken = false;
         transitionCubeTwoBroken = false;
         transitionCubeThreeBroken = false;
         transitionCubeFourBroken = false;
+    }
+
+    public int GetBossPhase()
+    {
+        if(doPhaseOne)
+        {
+            return 1;
+        }
+        else if(doPhaseTwo)
+        {
+            return 2;
+        }
+        else if(doPhaseThree)
+        {
+            return 3;
+        }
+        else
+        {
+            return 4;
+        }
     }
 }
