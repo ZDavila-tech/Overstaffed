@@ -10638,6 +10638,7 @@ MonoBehaviour:
   skills: {fileID: 1055786313974128500}
   screenShake: {fileID: 0}
   playerStats: {fileID: 5227066611642462926}
+  playerSpeed: 0
   utCharge: 0
   jumpHeight: 8
   gravityValue: 15
@@ -10648,11 +10649,15 @@ MonoBehaviour:
   pushBackResolve: 2
   playerElement: 3
   coyoteTime: 0.5
+  crouchHeight: 0
+  slideMultiplier: 1.2
+  slideLimit: 2
   playerWeapon: {fileID: 0}
   ShootRange: 355
   ShotCooldown: 0.1
   move: {x: 0, y: 0, z: 0}
   pushBack: {x: 0, y: 0, z: 0}
+  isCrouching: 0
   aud: {fileID: 1444516656452086230}
   AttackVolume: 0.3
   JumpVolume: 0.5
