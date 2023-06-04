@@ -20,6 +20,7 @@ public class VanishingFloor : MonoBehaviour
         var shape = particleComp.shape;
         shape.scale = transform.localScale;
         this.gameObject.SetActive(false);
+        StartCoroutine(appear());
     }
 
     IEnumerator appear()
