@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] int repeatableLevelsMinIndex; //list repeatable levels contiguously in Build Settings
     [SerializeField] int repeatableLevelsMaxIndex;
     [SerializeField] int hubSceneIndex;
+    [SerializeField] int bossLevelOne;
     [SerializeField] int maxPlayableLevel;
 
     [Header("----- Spawner Settings -----")]
@@ -155,44 +156,80 @@ public class LevelManager : MonoBehaviour
             highestLevelCompleted = currentLevel;
         }
 
-        if (currentLevel > maxPlayableLevel)
+        if (SceneManager.GetActiveScene().buildIndex == hubSceneIndex)
         {
-            uiManager.YouWin();
-        }
-        else
-        {
-            if (SceneManager.GetActiveScene().buildIndex == hubSceneIndex)
+            if (currentLevel == bossLevelOne)
             {
-                SceneManager.LoadScene(GetRandomLevelIndex());
+                SceneManager.LoadScene("HR");
             }
             else
             {
-                if (currentLevel % 3 == 0)
-                {
-                    audioManager.ChangeSong();
-                }
+                SceneManager.LoadScene(GetRandomLevelIndex());
+            }
+        }
+        else
+        {
+            if (currentLevel % 3 == 0)
+            {
+                audioManager.ChangeSong();
+            }
 
-                if (currentLevel % 5 == 0)
+            if (currentLevel % 5 == 0)
+            {
+                ++currentLevel; //ups difficulty
+                ScaleSpawners();
+                SceneManager.LoadScene(hubSceneIndex);
+            }
+            else
+            {
+                ++currentLevel; //ups difficulty
+                if (currentLevel > maxPlayableLevel)
                 {
-                    ++currentLevel; //ups difficulty
-                    ScaleSpawners();
-                    SceneManager.LoadScene(hubSceneIndex);
+                    uiManager.YouWin();
                 }
                 else
                 {
-                    ++currentLevel; //ups difficulty
                     ScaleSpawners();
-                    if (SceneManager.GetActiveScene().buildIndex < repeatableLevelsMinIndex)
+                    if (currentLevel < 6)
+                    //if (SceneManager.GetActiveScene().buildIndex < repeatableLevelsMinIndex)
                     {
-                        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                        switch (currentLevel)
+                        {
+                            case 1:
+                                {
+                                    SceneManager.LoadScene("Home");
+                                    break;
+                                }
+                            case 2:
+                                {
+                                    SceneManager.LoadScene("UpTheCliffs");
+                                    break;
+                                }
+                            case 3:
+                                {
+                                    SceneManager.LoadScene("AcrossTheGap");
+                                    break;
+                                }
+                            case 4:
+                                {
+                                    SceneManager.LoadScene("RoadBlock");
+                                    break;
+                                }
+                            case 5:
+                                {
+                                    SceneManager.LoadScene("Reception");
+                                    break;
+                                }
+                        }
                     }
                     else
                     {
                         SceneManager.LoadScene(GetRandomLevelIndex());
                     }
                 }
+
             }
-        }        
+        }
     }
 
     public void SetCurrentLevel(int levelToSetTo)

@@ -59,11 +59,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   repeatableLevelsMinIndex: 7
   repeatableLevelsMaxIndex: 11
-  baseNumberOfEnemiesToSpawn: 0
-  numberOfEnemiesScaling: 0
-  maxPlayableLevel: 0
-  maxEnemiesAtOneTime: 0
-  currentLevel: 0
+  hubSceneIndex: 2
+  bossLevelOne: 21
+  maxPlayableLevel: 21
+  baseNumberOfEnemiesToSpawn: 8
+  numberOfEnemiesScaling: 0.2
+  maxEnemiesAtOneTime: 15
+  currentLevel: 1
   totalEnemiesToSpawn: 0
   enemiesRemaining: 0
   currentEnemiesSpawned: 0
@@ -72,3 +74,5 @@ MonoBehaviour:
   levelStarted: 0
   levelCompleted: 0
   loadingLevel: 0
+  hasBeatenTutorial: 0
+  highestLevelCompleted: 0
