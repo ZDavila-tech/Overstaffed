@@ -9,43 +9,53 @@ public class BossHitBox : MonoBehaviour, IDamage
 
     private void Update()
     {
-        this.gameObject.transform.position = objectToFollow.transform.position;
+        if (objectToFollow != null)
+        {
+            this.gameObject.transform.position = objectToFollow.transform.position;
+        }
     }
 
     public void TakeDamage(int damage)
     {
-        if (susan.bossIsInvulnerable)
+        if(susan != null)
         {
-            //play Boss Invulnerable Audio and show a message that it's not working. 
-        }
-        else
-        {
-            switch (susan.GetBossPhase())
+            if (susan.bossIsInvulnerable)
             {
-                case 1:
-                    {
-                        //play audio and animation
-                        susan.healthBarOne -= damage;
-                        break;
-                    }
-                case 2:
-                    {
-                        //play audio and animation
-                        susan.healthBarTwo -= damage;
-                        break;
-                    }
-                case 3:
-                    {
-                        //play audio and animation
-                        susan.healthBarThree -= damage;
-                        break;
-                    }
-                case 4:
-                    {
-                        //needed to have something for the "else statement" in Susan's boss code.
-                        //play audio or something the boss is probably dead or glitched.
-                        break;
-                    }
+                //play Boss Invulnerable Audio and show a message that it's not working. 
+                StartCoroutine(susan.InvulnerableColorFlash());
+            }
+            else
+            {
+                switch (susan.GetBossPhase())
+                {
+                    case 1:
+                        {
+                            //play audio and animation
+                            susan.healthBarOne -= damage;
+                            StartCoroutine(susan.TakeDamageColorFlash());
+                            break;
+                        }
+                    case 2:
+                        {
+                            //play audio and animation
+                            susan.healthBarTwo -= damage;
+                            StartCoroutine(susan.TakeDamageColorFlash());
+                            break;
+                        }
+                    case 3:
+                        {
+                            //play audio and animation
+                            susan.healthBarThree -= damage;
+                            StartCoroutine(susan.TakeDamageColorFlash());
+                            break;
+                        }
+                    case 4:
+                        {
+                            //needed to have something for the "else statement" in Susan's boss code.
+                            //play audio or something the boss is probably dead or glitched.
+                            break;
+                        }
+                }
             }
         }
     }

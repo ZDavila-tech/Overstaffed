@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class SusanFromHR : MonoBehaviour
 {
-    UIManager uiManager;
+    private UIManager uiManager;
+    [Header("----- Art -----")]
+    [SerializeField] Renderer model;
+    private Color originalColor;
 
     [Header("----- Health Bars -----")]
     public int healthBarOne;
@@ -14,14 +17,18 @@ public class SusanFromHR : MonoBehaviour
 
     [Header("----- Phase One Stuff -----")]
     [SerializeField] GameObject[] phaseOneSpawners;
+    [SerializeField] GameObject[] phaseOneCatchers;
     [SerializeField] GameObject[] phaseOneThingToSpawn;
     [SerializeField] GameObject phaseOneBigThingToSpawn;
     private int phaseOneCurrentSpawner;
+    private bool phaseOneIsFiring;
 
     [Header("----- Phase Two Stuff -----")]
     [SerializeField] GameObject[] phaseTwoSpawners;
+    [SerializeField] GameObject[] phaseTwoCatchers;
     [SerializeField] GameObject[] phaseTwoThingToSpawn;
     private int phaseTwoCurrentSpawner;
+    private bool phaseTwoIsFiring;
 
     [Header("----- Phase Three Stuff -----")]
     [SerializeField] GameObject[] PhaseThreeProps;
@@ -64,6 +71,7 @@ public class SusanFromHR : MonoBehaviour
 
     private void Awake()
     {
+        originalColor = model.material.color;
         phaseOneCurrentSpawner = 0;
         phaseTwoCurrentSpawner = 0;
     }
@@ -280,5 +288,19 @@ public class SusanFromHR : MonoBehaviour
         {
             return 4;
         }
+    }
+
+    public IEnumerator TakeDamageColorFlash()
+    {
+        model.material.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        model.material.color = originalColor;
+    }
+
+    public IEnumerator InvulnerableColorFlash()
+    {
+        model.material.color = Color.blue;
+        yield return new WaitForSeconds(0.1f);
+        model.material.color = originalColor;
     }
 }

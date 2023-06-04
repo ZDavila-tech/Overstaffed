@@ -76,31 +76,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2370cd4ab69f44845b566083ed1855e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  model: {fileID: 6662729689225054369}
   healthBarOne: 50
   healthBarTwo: 50
   healthBarThree: 50
   bossIsInvulnerable: 0
   phaseOneSpawners: []
-  phaseOneThingToSpawn: {fileID: 0}
+  phaseOneThingToSpawn:
+  - {fileID: 7955525370091394292, guid: 7d1e1f9e7bf426c4886a9231409e8f7c, type: 3}
+  phaseOneBigThingToSpawn: {fileID: 0}
   phaseTwoSpawners: []
-  phaseTwoThingToSpawn: {fileID: 0}
+  phaseTwoThingToSpawn:
+  - {fileID: 0}
   PhaseThreeProps: []
   PhaseThreePropsFinalPositions: []
   transitionCubeOne: {fileID: 0}
   transitionCubeTwo: {fileID: 0}
   transitionCubeThree: {fileID: 0}
   transitionCubeFour: {fileID: 0}
-  transitionCubeOneBroken: 0
-  transitionCubeTwoBroken: 0
-  transitionCubeThreeBroken: 0
-  transitionCubeFourBroken: 0
   transitionShieldOne: {fileID: 0}
   transitionShieldTwo: {fileID: 0}
   transitionShieldThree: {fileID: 0}
+  transitionEnemy: {fileID: 0}
   transitionSpawnerOne: {fileID: 0}
   transitionSpawnerTwo: {fileID: 0}
   transitionSpawnerThree: {fileID: 0}
   transitionSpawnerFour: {fileID: 0}
+  transitionCubeOneBroken: 0
+  transitionCubeTwoBroken: 0
+  transitionCubeThreeBroken: 0
+  transitionCubeFourBroken: 0
 --- !u!1001 &6662729689219731585
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -178,5 +183,10 @@ Transform:
 --- !u!4 &6662729689219698099 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 498994, guid: 415c1049b61b2a5479b871c6ddd4b2fd, type: 3}
+  m_PrefabInstance: {fileID: 6662729689219731585}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &6662729689225054369 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 13719584, guid: 415c1049b61b2a5479b871c6ddd4b2fd, type: 3}
   m_PrefabInstance: {fileID: 6662729689219731585}
   m_PrefabAsset: {fileID: 0}
