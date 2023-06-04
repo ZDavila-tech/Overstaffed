@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SpikeFloor : MonoBehaviour
@@ -39,6 +40,7 @@ public class SpikeFloor : MonoBehaviour
 
     void extend()
     {
+        isActive = true;
         Debug.Log("Extending");
         int row = 0;
         int column = 0;
@@ -68,12 +70,32 @@ public class SpikeFloor : MonoBehaviour
             spikes[i].Clear();
         }
         spikes.Clear();
+        isActive= false;
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        StartCoroutine(timedExtend());
+        if(mode == spikeModes.triggered)
+        {
+            StartCoroutine(timedExtend());
+        }
+
+
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (isActive)
+        {
+            IDamage damageable = other.GetComponentInParent<IDamage>();
+
+            if (damageable != null)
+            {
+
+                damageable.TakeDamage(damage);
+            }
+        }
     }
 
     IEnumerator timedExtend()
@@ -97,6 +119,7 @@ public class SpikeFloor : MonoBehaviour
             StartCoroutine(timedExtend());
         }
     }
+
 
     private void OnDrawGizmos()
     {
