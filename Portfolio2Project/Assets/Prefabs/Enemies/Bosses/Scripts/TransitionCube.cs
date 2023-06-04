@@ -16,35 +16,38 @@ public class TransitionCube : MonoBehaviour, IDamage
 
     public void TakeDamage(int damage)
     {
-        healthPoints -= damage;
-        if (healthPoints <= 0 )
+        if (susan != null)
         {
-            switch(myCubeNumber)
+            healthPoints -= damage;
+            if (healthPoints <= 0)
             {
-                case 1:
-                    {
-                        susan.transitionCubeOneBroken = true;
-                        break;
-                    }
-                case 2:
-                    {
-                        susan.transitionCubeTwoBroken = true;
-                        break;
-                    }
-                case 3:
-                    {
-                        susan.transitionCubeThreeBroken = true;
-                        break;
-                    }
-                case 4:
-                    {
-                        susan.transitionCubeFourBroken = true;
-                        break;
-                    }
+                switch (myCubeNumber)
+                {
+                    case 1:
+                        {
+                            susan.transitionCubeOneBroken = true;
+                            break;
+                        }
+                    case 2:
+                        {
+                            susan.transitionCubeTwoBroken = true;
+                            break;
+                        }
+                    case 3:
+                        {
+                            susan.transitionCubeThreeBroken = true;
+                            break;
+                        }
+                    case 4:
+                        {
+                            susan.transitionCubeFourBroken = true;
+                            break;
+                        }
+                }
+                this.gameObject.SetActive(false);
+                ResetHealth();
             }
-            this.gameObject.SetActive(false);
-            ResetHealth();
-        }
+        }       
     }
 
     public void ResetHealth()

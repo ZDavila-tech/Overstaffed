@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class BossProjectileCatcher : MonoBehaviour
 {
-    public GameObject expectedEnemy;
+    public GameObject expectedProjectile;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (expectedEnemy != null)
+        if (expectedProjectile != null)
         {
-            if (other.gameObject == expectedEnemy)
+            if (other.gameObject == expectedProjectile)
             {
                 //Do an explosion or something
-                Destroy(expectedEnemy);
+                Destroy(expectedProjectile);
             }
         }
     }
