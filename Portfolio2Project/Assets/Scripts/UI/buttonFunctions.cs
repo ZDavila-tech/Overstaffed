@@ -68,6 +68,19 @@ public class buttonFunctions : MonoBehaviour
 
         uiManager.settingsMenu.SetActive(true);
     }
+
+    public void GoToCredits()
+    {
+        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
+
+        uiManager.creditsMenu.SetActive(true);
+    }
+    public void BackFromCred()
+    {
+        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
+
+        uiManager.creditsMenu.SetActive(false);
+    }
     //Go back to Main Menu
     public void GoToMainMenu()
     {
