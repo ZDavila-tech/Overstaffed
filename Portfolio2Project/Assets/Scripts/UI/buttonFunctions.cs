@@ -84,9 +84,9 @@ public class buttonFunctions : MonoBehaviour
     //Go back to Main Menu
     public void GoToMainMenu()
     {
+        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
         uiManager.saveMenu.SetActive(true);
-        //buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
-
+      
         //Destroy(GameObject.FindGameObjectWithTag("Player"));
 
         //uiManager.HideActiveMenu();
@@ -140,6 +140,11 @@ public class buttonFunctions : MonoBehaviour
         Time.timeScale = gameManager.instance.timeScaleOriginal;
 
         SceneManager.LoadScene("Main Menu");
+    }
+    public void ExitSave()
+    {
+        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
+        uiManager.saveMenu.SetActive(false);
     }
     public void PlaySaveGame() //Takes player to character select scene
     {
