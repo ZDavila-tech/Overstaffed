@@ -16,6 +16,7 @@ public class gameManager : MonoBehaviour
     public PlayerController playerController;
     public GameObject playerSpawn;
     public Skills playerSkills;
+    public Stats playerStats;
     public NewStaff.Element playerElement;
 
     [Header("------ Pause Stuff -----")]
@@ -75,6 +76,7 @@ public class gameManager : MonoBehaviour
             playerController = playerCharacter.GetComponent<PlayerController>();
             playerElement = playerController.playerElement;
             playerSkills = playerCharacter.GetComponent<Skills>();
+            playerStats = playerCharacter.GetComponent<Stats>();
             UIManager.instance.SetPlayerVariables();
         }
     }
