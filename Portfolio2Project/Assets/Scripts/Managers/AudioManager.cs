@@ -18,10 +18,8 @@ public class AudioManager : MonoBehaviour
     public List<AudioClip> bgms;
     [SerializeField] float volume;
     public int currSong;
-
-    [Header("----- UI Sound Effects -----")]
     public AudioClip buttonClick;
-    public AudioClip transactionSound;
+    public AudioClip transactionClick;
 
     // Start is called before the first frame update
     void Awake()
@@ -75,9 +73,9 @@ public class AudioManager : MonoBehaviour
     public void PlaySong()
     {
         aud.Stop();
-    
+
         aud.clip = bgms[currSong];
-        
+
         aud.Play();
         aud.loop = true;
     }
