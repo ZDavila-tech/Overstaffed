@@ -51,17 +51,4 @@ public class Store : MonoBehaviour, IInteract
         }
         return true;
     }
-
-    public void BuyAttack(int amount)
-    {
-        gameManager.playerStats.AttackUp(amount);
-    }
-    public void BuyHealth(int amount)
-    {
-        gameManager.playerStats.HealthUp(amount);
-    }
-    public void BuySpeed(int amount)
-    {
-        gameManager.playerStats.SpeedUp(amount);
-    }
 }
