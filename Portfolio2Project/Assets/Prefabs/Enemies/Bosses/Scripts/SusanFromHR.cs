@@ -33,11 +33,6 @@ public class SusanFromHR : MonoBehaviour
     [SerializeField] GameObject transitionCubeThree;
     [SerializeField] GameObject transitionCubeFour;
 
-    public bool transitionCubeOneBroken;
-    public bool transitionCubeTwoBroken;
-    public bool transitionCubeThreeBroken;
-    public bool transitionCubeFourBroken;
-
     [SerializeField] GameObject transitionShieldOne;
     [SerializeField] GameObject transitionShieldTwo;
     [SerializeField] GameObject transitionShieldThree;
@@ -48,6 +43,12 @@ public class SusanFromHR : MonoBehaviour
     [SerializeField] GameObject transitionSpawnerTwo;
     [SerializeField] GameObject transitionSpawnerThree;
     [SerializeField] GameObject transitionSpawnerFour;
+
+    [Header("----- Handled by the Game (Ignore) -----")]
+    public bool transitionCubeOneBroken;
+    public bool transitionCubeTwoBroken;
+    public bool transitionCubeThreeBroken;
+    public bool transitionCubeFourBroken;
 
     private bool doPhaseOneSetUp = true;
     private bool doPhaseOne;
