@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class BossProjectileCatcher : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject expectedEnemy;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (expectedEnemy != null)
+        {
+            if (other.gameObject == expectedEnemy)
+            {
+                //Do an explosion or something
+                Destroy(expectedEnemy);
+            }
+        }
     }
 }

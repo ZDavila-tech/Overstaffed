@@ -24,22 +24,26 @@ public class BossHitBox : MonoBehaviour, IDamage
             {
                 case 1:
                     {
+                        //play audio and animation
                         susan.healthBarOne -= damage;
                         break;
                     }
                 case 2:
                     {
+                        //play audio and animation
                         susan.healthBarTwo -= damage;
                         break;
                     }
                 case 3:
                     {
+                        //play audio and animation
                         susan.healthBarThree -= damage;
                         break;
                     }
                 case 4:
                     {
-                        //play audio or something the boss is probably dead or glitched
+                        //needed to have something for the "else statement" in Susan's boss code.
+                        //play audio or something the boss is probably dead or glitched.
                         break;
                     }
             }
