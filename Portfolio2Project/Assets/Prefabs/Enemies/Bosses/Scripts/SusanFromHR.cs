@@ -472,6 +472,11 @@ public class SusanFromHR : MonoBehaviour
         bossIsInvulnerable = true;
     }
 
+    public void StartFight()
+    {
+        doPhaseOneSetUp = true;
+    }
+
     public int GetBossPhase()
     {
         if(doPhaseOne)
