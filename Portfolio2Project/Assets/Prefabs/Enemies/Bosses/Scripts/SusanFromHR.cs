@@ -44,12 +44,12 @@ public class SusanFromHR : MonoBehaviour
     [SerializeField] GameObject transitionShieldTwo;
     [SerializeField] GameObject transitionShieldThree;
 
+    [SerializeField] float timeBetweenTransitionSpawns;
     [SerializeField] GameObject transitionEnemy;
 
-    [SerializeField] GameObject transitionSpawnerOne;
-    [SerializeField] GameObject transitionSpawnerTwo;
-    [SerializeField] GameObject transitionSpawnerThree;
-    [SerializeField] GameObject transitionSpawnerFour;
+    [SerializeField] Transform[] transitionSpawnLocations;
+
+    private bool transitionIsSpawning;
 
     [Header("----- Handled by the Game (Ignore) -----")]
     public bool transitionCubeOneBroken;
@@ -219,7 +219,28 @@ public class SusanFromHR : MonoBehaviour
 
     private void TransitionOneStuff()
     {
+        if(transitionCubeOneBroken)
+        {
+            //play sound
+            transitionShieldOne.SetActive(false);
+        }
 
+        if(transitionCubeTwoBroken && transitionCubeThreeBroken)
+        {
+            //play sound
+            transitionShieldTwo.SetActive(false);
+        }
+
+        if (transitionCubeFourBroken)
+        {
+            //play sound
+            transitionShieldThree.SetActive(false);
+        }
+
+        if(!transitionIsSpawning)
+        {
+            StartCoroutine(TransitionSpawnEnemies());
+        }
     }
 
     private void PhaseTwoSetup()
@@ -363,5 +384,16 @@ public class SusanFromHR : MonoBehaviour
         transitionShieldOne.SetActive(true);
         transitionShieldTwo.SetActive(true);
         transitionShieldThree.SetActive(true);
+    }
+
+    IEnumerator TransitionSpawnEnemies()
+    {
+        transitionIsSpawning = true;
+
+
+
+        yield return new WaitForSeconds(timeBetweenTransitionSpawns);
+
+        transitionIsSpawning = false;
     }
 }
