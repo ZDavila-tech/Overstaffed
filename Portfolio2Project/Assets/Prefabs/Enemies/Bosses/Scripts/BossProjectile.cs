@@ -13,6 +13,9 @@ public class BossProjectile : MonoBehaviour
 
     private void Start()
     {
-        rigidBody.velocity = (targetToMoveTo.position - spawnPosition.position).normalized * projectileSpeed;
+        if(spawnPosition != null && targetToMoveTo != null)
+        {
+            rigidBody.velocity = (targetToMoveTo.position - spawnPosition.position).normalized * projectileSpeed;
+        }
     }
 }

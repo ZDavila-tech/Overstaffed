@@ -15,6 +15,7 @@ public class SusanFromHR : MonoBehaviour
     public int healthBarTwo;
     public int healthBarThree;
     public bool bossIsInvulnerable;
+    public GameObject hitBoxCenter;
 
     [Header("----- Phase One Stuff -----")]
     [SerializeField] GameObject[] phaseOneSpawners;

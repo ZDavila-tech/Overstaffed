@@ -12,6 +12,9 @@ public class LaunchableProp : MonoBehaviour
 
     public void LaunchYourself()
     {
-        rigidBody.velocity = (targetToMoveTo.position - this.gameObject.transform.position).normalized * projectileSpeed;
+        if (targetToMoveTo != null)
+        {
+            rigidBody.velocity = (targetToMoveTo.position - this.gameObject.transform.position).normalized * projectileSpeed;
+        }
     }
 }

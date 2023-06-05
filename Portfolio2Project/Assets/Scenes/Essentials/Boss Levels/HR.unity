@@ -524,7 +524,7 @@ Transform:
   - {fileID: 528471006}
   - {fileID: 1459785068}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &138966418
 GameObject:
@@ -697,7 +697,7 @@ Transform:
   - {fileID: 1588285176}
   - {fileID: 811761386}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &251185575
 PrefabInstance:
@@ -2467,7 +2467,7 @@ Transform:
   m_Children:
   - {fileID: 8022671587362056520}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1092890366
 GameObject:
@@ -2499,7 +2499,7 @@ Transform:
   m_Children:
   - {fileID: 4665333690759383952}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1099313779
 GameObject:
@@ -3317,7 +3317,7 @@ Transform:
   - {fileID: 121728170}
   - {fileID: 2001334749}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1390868067
 PrefabInstance:
@@ -3586,7 +3586,7 @@ Transform:
   - {fileID: 625139426}
   - {fileID: 756290882}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1519596402
 PrefabInstance:
@@ -4737,6 +4737,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
+      propertyPath: hitBoxCenter
+      value: 
+      objectReference: {fileID: 1645824376063377794}
+    - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
       propertyPath: transitionEnemy
       value: 
       objectReference: {fileID: 4728235726989330130, guid: 8410533c5719b054980dc8019928826d, type: 3}
@@ -4793,6 +4797,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
+      propertyPath: phaseOneTimeBetweenFirings
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
+      propertyPath: phaseThreeProps.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
+      propertyPath: phaseTwoTimeBetweenFirings
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
       propertyPath: phaseOneCatchers.Array.size
       value: 7
       objectReference: {fileID: 0}
@@ -4809,7 +4825,15 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
+      propertyPath: timeBetweenTransitionSpawns
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
       propertyPath: PhaseThreeProps.Array.data[0]
+      value: 
+      objectReference: {fileID: 8022671587362056521}
+    - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
+      propertyPath: phaseThreeProps.Array.data[0]
       value: 
       objectReference: {fileID: 8022671587362056521}
     - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
@@ -4925,11 +4949,55 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 811761387}
     - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
+      propertyPath: transitionSpawnLocations.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
+      propertyPath: transitionSpawnLocations.Array.data[0]
+      value: 
+      objectReference: {fileID: 1519596403}
+    - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
+      propertyPath: transitionSpawnLocations.Array.data[1]
+      value: 
+      objectReference: {fileID: 784395138}
+    - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
+      propertyPath: transitionSpawnLocations.Array.data[2]
+      value: 
+      objectReference: {fileID: 394906854}
+    - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
+      propertyPath: transitionSpawnLocations.Array.data[3]
+      value: 
+      objectReference: {fileID: 1359302598}
+    - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
+      propertyPath: transitionSpawnLocations.Array.data[4]
+      value: 
+      objectReference: {fileID: 1519596403}
+    - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
+      propertyPath: transitionSpawnLocations.Array.data[5]
+      value: 
+      objectReference: {fileID: 784395138}
+    - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
+      propertyPath: transitionSpawnLocations.Array.data[6]
+      value: 
+      objectReference: {fileID: 394906854}
+    - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
+      propertyPath: transitionSpawnLocations.Array.data[7]
+      value: 
+      objectReference: {fileID: 1359302598}
+    - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
       propertyPath: PhaseThreePropsFinalPositions.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
+      propertyPath: phaseThreePropsFinalPositions.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
       propertyPath: PhaseThreePropsFinalPositions.Array.data[0]
+      value: 
+      objectReference: {fileID: 4665333690759383953}
+    - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
+      propertyPath: phaseThreePropsFinalPositions.Array.data[0]
       value: 
       objectReference: {fileID: 4665333690759383953}
     - target: {fileID: 860515691522087886, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
