@@ -39,6 +39,7 @@ public class Collectables : MonoBehaviour
                     break;
                 case PickupType.Mimic:
                     Instantiate(mimic, transform.position, mimic.transform.rotation);
+                    LevelManager.instance.enemiesRemaining += 1;
                     Destroy(gameObject);
                     break;
             }

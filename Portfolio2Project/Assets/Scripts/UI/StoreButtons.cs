@@ -16,4 +16,10 @@ public class StoreButtons : MonoBehaviour
     {
         gameManager.instance.playerStats.SpeedUp(amount);
     }
+
+    public void Exit()
+    {
+        gameManager.instance.UnpauseState();
+        UIManager.instance.HideActiveMenu();
+    }
 }
