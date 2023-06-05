@@ -15,7 +15,6 @@ public class EnemySpawner : MonoBehaviour
     [Header("----- Set By Collider -----")]
     public bool playerDetected;
     bool isSpawning;
-    bool addedToRemaining;
 
     LevelManager levelManager;
 
@@ -29,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
-        if ((playerDetected || spawnsOnLevelLoad) && isSpawning == false && levelManager.totalEnemiesToSpawn > levelManager.currentEnemiesSpawned && levelManager.currentEnemiesAlive < levelManager.maxEnemiesAtOneTime)
+        if ((playerDetected || spawnsOnLevelLoad) && !isSpawning && levelManager.totalEnemiesToSpawn > levelManager.currentEnemiesSpawned && levelManager.currentEnemiesAlive < levelManager.maxEnemiesAtOneTime)
         {
             StartCoroutine(SpawnEnemies());
             //Debug.Log("Spawning Enemies");

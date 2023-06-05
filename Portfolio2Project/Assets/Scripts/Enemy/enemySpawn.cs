@@ -45,24 +45,22 @@ public class enemySpawn : MonoBehaviour
     // update is called once per frame
     void Update()
     {
-        StartCoroutine(attemptspawn());
+        if(!isSpawning && levelManager.totalEnemiesToSpawn > levelManager.currentEnemiesSpawned && levelManager.currentEnemiesAlive < levelManager.maxEnemiesAtOneTime)
+        {
+            StartCoroutine(attemptspawn());
+        }
     }
 
     IEnumerator attemptspawn()
     {
-        yield return new WaitForSeconds(spawnDelay);
-        if (levelManager.totalEnemiesToSpawn > levelManager.currentEnemiesSpawned && levelManager.currentEnemiesAlive < levelManager.maxEnemiesAtOneTime)
-        {
-            spawn();
-        }
-    }
-
-    void spawn()
-    {
+        isSpawning = true;
         GameObject tospawn = weightedenemyselection();
         GameObject spawned = Instantiate(tospawn, transform.position + spawncoords(), spawnRotation.transform.rotation);
         spawned.GetComponent<EnemyAI>().spawnedBySpawner = true;
         ++LevelManager.instance.currentEnemiesSpawned;
+
+        yield return new WaitForSeconds(spawnDelay);
+        isSpawning = false;
     }
 
     Vector3 spawncoords()
