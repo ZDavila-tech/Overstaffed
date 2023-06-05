@@ -52,8 +52,7 @@ public class buttonFunctions : MonoBehaviour
     public void Quit()
     {
         buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
-
-        Application.Quit();
+        uiManager.quitCheckMenu.SetActive(true);
     }
 
     public void GoBackMenu()
@@ -235,5 +234,18 @@ public class buttonFunctions : MonoBehaviour
         uiManager.HideActiveMenu();
         uiManager.activeMenu = uiManager.winMenu;
         uiManager.ShowActiveMenu();
+    }
+
+    public void YesQuit()
+    {
+        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
+
+        Application.Quit();
+    }
+
+    public void NoQuit()
+    {
+        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
+        uiManager.quitCheckMenu.SetActive(false);
     }
 }
