@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IDamage, IPhysics
@@ -392,7 +393,17 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     IEnumerator Freezing(float duration)
     {
+        bool freezing = true;
+        if (playerElement == NewStaff.Element.Water)
+        {
+            while (freezing)
+            {
+                yield return new WaitForSeconds(1);
+                TakeDamage(-1);
+            }
+        }
         yield return new WaitForSeconds(duration);
+        freezing= false;
     }
 
     public void Freeze(float duration)
@@ -403,12 +414,22 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     IEnumerator Burning(float duration, float timeBetween, int damage)
     {
         bool burning = true;
+        float oldSpeed = 0;
+        if (playerElement == NewStaff.Element.Fire)
+        {
+            oldSpeed = playerSpeed;
+            playerSpeed *= 1.5f;
+        }
         while (burning)
         {
             yield return new WaitForSeconds(timeBetween);
             TakeDamage(damage);
         }
         yield return new WaitForSeconds(duration);
+        if (playerElement == NewStaff.Element.Fire)
+        {
+            playerSpeed = oldSpeed;
+        }
         burning = false;
     }
 
