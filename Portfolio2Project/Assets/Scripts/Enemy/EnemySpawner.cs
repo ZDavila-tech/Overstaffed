@@ -14,27 +14,22 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("----- Set By Collider -----")]
     public bool playerDetected;
-
-    int currentNumberSpawned;
-    int totalToSpawn;
     bool isSpawning;
     bool addedToRemaining;
+
     LevelManager levelManager;
 
     private void Start()
     {
-        levelManager = LevelManager.instance;
-        totalToSpawn = levelManager.currentLevel + baseNumberToSpawn - 1;
-        if (spawnsOnLevelLoad == true && addedToRemaining == false)
-        {
-            levelManager.enemiesRemaining += totalToSpawn;
-            addedToRemaining = true;
+        if(LevelManager.instance != null)
+        {   
+            levelManager = LevelManager.instance;
         }
-        currentNumberSpawned = 0;
     }
+
     void Update()
     {
-        if ((playerDetected || spawnsOnLevelLoad) && isSpawning == false && currentNumberSpawned < totalToSpawn)
+        if ((playerDetected || spawnsOnLevelLoad) && isSpawning == false && levelManager.totalEnemiesToSpawn > levelManager.currentEnemiesSpawned && levelManager.currentEnemiesAlive < levelManager.maxEnemiesAtOneTime)
         {
             StartCoroutine(SpawnEnemies());
             //Debug.Log("Spawning Enemies");
@@ -45,24 +40,24 @@ public class EnemySpawner : MonoBehaviour
     {
         isSpawning = true;
 
-        if(spawnPositions.Length > 0)
-        {
-            if (spawnPositions.Length > 1)
+            if (spawnPositions.Length > 0)
             {
-                SpawnEnemy(spawnPositions[Random.Range(0, spawnPositions.Length)]);
-                //Debug.Log("Enemy Spawned at Spawn random");
+                if (spawnPositions.Length > 1)
+                {
+                    SpawnEnemy(spawnPositions[Random.Range(0, spawnPositions.Length)]);
+                    //Debug.Log("Enemy Spawned at Spawn random");
+                }
+                else
+                {
+                    SpawnEnemy(spawnPositions[0]);
+                    //Debug.Log("Enemy Spawned at Spawn 0");
+                }
             }
             else
             {
-                SpawnEnemy(spawnPositions[0]);
-                //Debug.Log("Enemy Spawned at Spawn 0");
+                SpawnEnemy(this.gameObject.transform);
+                //Debug.Log("Enemy Spawned Locally");
             }
-        }
-        else
-        {
-            SpawnEnemy(this.gameObject.transform);
-            //Debug.Log("Enemy Spawned Locally");
-        }
 
         yield return new WaitForSeconds(timeBetweenSpawns);
 
@@ -74,7 +69,7 @@ public class EnemySpawner : MonoBehaviour
         Vector3 randomPosition = new Vector3(locationToSpawn.position.x + Random.Range(0, 2.5f), locationToSpawn.position.y, locationToSpawn.position.z + Random.Range(0, 2.5f));
         GameObject spawned = Instantiate(enemyToSpawn, randomPosition, locationToSpawn.rotation);
         spawned.GetComponent<EnemyAI>().spawnedBySpawner = true;
-        ++currentNumberSpawned;
+        ++levelManager.currentEnemiesSpawned;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -82,7 +77,6 @@ public class EnemySpawner : MonoBehaviour
         if (other.CompareTag("Player") && spawnsOnLevelLoad == false && addedToRemaining == false)
         {
             playerDetected = true;
-            levelManager.enemiesRemaining += totalToSpawn;
             addedToRemaining = true;
             //Debug.Log("Player Detected");
         }
