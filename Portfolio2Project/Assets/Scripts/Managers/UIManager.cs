@@ -78,7 +78,7 @@ public class UIManager : MonoBehaviour
         activeMenu = mainMenu;
         //playerElement = gameManager.playerElement;
         levelManager = LevelManager.instance;
-        //skillScript = gameManager.playerSkills;
+        playerSkills = gameManager.playerSkills;
         fileManager.save();
         fileManager.load();
     }
@@ -108,6 +108,7 @@ public class UIManager : MonoBehaviour
             fading = false;
 
             StartCoroutine(FadeIn());
+            //ShowBegLetter();
         }
     }
     public void YouLose()

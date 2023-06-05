@@ -102,7 +102,9 @@ MonoBehaviour:
   headPosition: {fileID: 4764777375536020008}
   drop:
   - {fileID: 4658357512159410959, guid: 59364d3133cbbe541bde47c1ee4298d3, type: 3}
+  - {fileID: 4658357512159410959, guid: 8fedafaf90ee2184699ab7dfcb80f033, type: 3}
   anim: {fileID: -2653307999361650468}
+  freezeEffect: {fileID: 0}
   iHP: 3
   hpBar: {fileID: 7051353985056933245}
   hpDisplay: {fileID: 4964723009901755965}
@@ -110,7 +112,7 @@ MonoBehaviour:
   fFieldOfView: 90
   fChaseTime: 3
   DropRate: 5
-  itemRates: 32000000
+  itemRates: 3200000014000000
   chargeValue: 5
   ExperienceYield: 1
   interuptionCoolDown: 0
@@ -134,9 +136,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8a5dd0ac9b52344a8a469bfafd39f6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  freezeEffect: {fileID: 5570634227737077620}
-  enemy: {fileID: 1570852443671573163}
-  skinnedModels: []
 --- !u!23 &1570852443671573165
 MeshRenderer:
   m_ObjectHideFlags: 0

@@ -85,22 +85,21 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         UpdatePlayerStats();
         standingHeight = height;
         origGrav = gravityValue;
-        origSpeed = playerStats.Speed;
         gameManager.instance.SetPlayerVariables(this.gameObject);
-        UpdateSpeed();
         uiManager = UIManager.instance;
         audioManager = AudioManager.instance;
     }
 
     public void UpdatePlayerStats()
     {
-        playerSpeed = playerStats.Speed + baseSpeed;
+        UpdateSpeed();
         playerDamage = playerStats.Attack + baseAttack;
         iHP = playerStats.GetHealth() + baseHealth;
     }
 
     void Update()
     {
+        //UpdateSpeed();
         if (UIManager.instance != null && uiManager == null)
         {
             uiManager = UIManager.instance;
@@ -388,7 +387,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     public void UpdateSpeed()
     {
-        playerSpeed = 5 + (playerStats.GetSpeed()/10);
+        origSpeed =  playerSpeed = baseSpeed + (playerStats.Speed / 10);
+        Debug.Log("Speed Calculated");
     }
 
     IEnumerator Freezing(float duration)

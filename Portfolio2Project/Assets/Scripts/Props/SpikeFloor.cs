@@ -19,7 +19,7 @@ public class SpikeFloor : MonoBehaviour
     [SerializeField] float spikeSpeed;
     [SerializeField] float spikeRetractionDelay;
     [SerializeField] spikeModes mode;
-    [SerializeField] bool gizmoWireframe;
+    [SerializeField] bool Wireframe;
 
     bool isActive;
     List<List<Transform>> spikes = new List<List<Transform>>();
@@ -131,7 +131,7 @@ public class SpikeFloor : MonoBehaviour
             for (float j = spikeEdgeSpacing; j < transform.localScale.z - spikeEdgeSpacing; j += spikeSpacing)
             {
                 Vector3 spikePos = new Vector3((transform.position.x - transform.localScale.x / 2) + i, transform.position.y + (transform.localScale.y / 2), (transform.position.z - transform.localScale.z / 2) + j);
-                if (gizmoWireframe)
+                if (Wireframe)
                 {
                     Gizmos.DrawWireMesh(spikePrefab.GetComponent<MeshFilter>().sharedMesh,spikePos);
                 }
