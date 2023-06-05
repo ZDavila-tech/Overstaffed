@@ -39,9 +39,16 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] float shootAngle;
 
     [Header("----- Specific Enemy Stuff -----")]
-    /*[SerializeField] GameObject shield;
-    [SerializeField] MeshRenderer shieldModel;
-    [SerializeField] int shieldHP;*/
+    [SerializeField] Category category;
+    enum Category
+    {
+        Shooting,
+        Exploding
+    }
+    //for the exploding enemy
+    [SerializeField] float pointOfNoReturn;
+    [SerializeField] float explodeTime;
+    [SerializeField] GameObject explosion;
 
     bool bIsShooting;
     bool bPlayerInRange;
@@ -179,7 +186,15 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
         if (!bIsShooting && fAngleToPlayer <= shootAngle)
         {
-            StartCoroutine(Shoot());
+            switch (category)
+            {
+                case Category.Shooting:
+                    StartCoroutine(Shoot());
+                    break;
+                case Category.Exploding:
+                    StartCoroutine(Explode());
+                    break;
+            }
         }
     }
 
@@ -198,6 +213,20 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
             yield return new WaitForSeconds(shootRate);
         }
         bIsShooting = false;//tell update that we're ready to shoot again
+    }
+
+    IEnumerator Explode()
+    {
+        bIsShooting = true;
+        if(fAngleToPlayer > shootAngle)
+        {
+            bIsShooting = false;
+            StopCoroutine(Explode());
+        }
+        yield return new WaitForSeconds(pointOfNoReturn);
+        yield return new WaitForSeconds(explodeTime);
+        Instantiate(explosion, transform.position, explosion.transform.rotation);
+        Destroy(gameObject);
     }
 
     public void CreateBullet()

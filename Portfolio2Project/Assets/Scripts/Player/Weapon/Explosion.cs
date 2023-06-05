@@ -6,6 +6,7 @@ public class Explosion : MonoBehaviour
 {
     [SerializeField] int damage;
     [SerializeField] int pushAmount;
+    [SerializeField] bool doesBurn;
 
 
     // Start is called before the first frame update
@@ -27,8 +28,12 @@ public class Explosion : MonoBehaviour
             if (other.GetComponent<IDamage>() != null)
             {
                 IDamage damageable = other.GetComponent<IDamage>();
-                damageable.TakeDamage(damage + gameManager.instance.playerStats.Attack);
+            damageable.TakeDamage(damage + gameManager.instance.playerStats.Attack);
+            if(doesBurn)
+            {
+                damageable.Burn(10, 1);
             }
+        }
     }
 
     // Update is called once per frame
