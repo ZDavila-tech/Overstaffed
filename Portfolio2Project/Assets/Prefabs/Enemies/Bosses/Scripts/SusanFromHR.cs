@@ -57,7 +57,7 @@ public class SusanFromHR : MonoBehaviour
     public bool transitionCubeThreeBroken;
     public bool transitionCubeFourBroken;
 
-    private bool doPhaseOneSetUp = true;
+    private bool doPhaseOneSetUp;
     private bool doPhaseOne;
     private bool doTransitionOneSetup;
     private bool doTransitionOne;
@@ -72,8 +72,10 @@ public class SusanFromHR : MonoBehaviour
     private void Awake()
     {
         originalColor = model.material.color;
-        phaseOneCurrentSpawner = 0;
-        phaseTwoCurrentSpawner = 0;
+        ResetPhaseOneStuff();
+        ResetPhaseTwoStuff();
+        SetCubeBoolsToFalse();
+        SetPhaseBoolsToFalse();
     }
 
     private void Start()
@@ -90,18 +92,15 @@ public class SusanFromHR : MonoBehaviour
     {
         if (doPhaseOneSetUp)
         {
-            bossIsInvulnerable = false;
-            PhaseOneSetup();
-            doPhaseOneSetUp = false;
-            doPhaseOne = true;
+            PhaseOneSetup();            
         }
 
         if (doPhaseOne)
         {
             if (healthBarOne <= 0)
             {
-                healthBarOne = 0;
                 doPhaseOne = false;
+                healthBarOne = 0;
                 doTransitionOneSetup = true;
             }
             else
@@ -112,10 +111,7 @@ public class SusanFromHR : MonoBehaviour
 
         if(doTransitionOneSetup)
         {
-            bossIsInvulnerable = true;
-            TransitionOneSetup();
-            doTransitionOneSetup = false;
-            doTransitionOne = true;
+            TransitionOneSetup();            
         }
 
         if (doTransitionOne)
@@ -123,8 +119,8 @@ public class SusanFromHR : MonoBehaviour
             if (transitionCubeOneBroken && transitionCubeTwoBroken && transitionCubeThreeBroken && transitionCubeFourBroken)
             {
                 doTransitionOne = false;
-                doPhaseTwoSetUp = true;
                 SetCubeBoolsToFalse();
+                doPhaseTwoSetUp = true;
             }
             else
             {
@@ -134,18 +130,15 @@ public class SusanFromHR : MonoBehaviour
 
         if (doPhaseTwoSetUp)
         {
-            bossIsInvulnerable = false;
             PhaseTwoSetup();
-            doPhaseTwoSetUp = false;
-            doPhaseTwo = true;
         }
 
         if (doPhaseTwo)
         {
             if (healthBarTwo <= 0)
             {
-                healthBarTwo = 0;
                 doPhaseTwo = false;
+                healthBarTwo = 0;
                 doTransitionTwoSetup = true;
             }
             else
@@ -156,11 +149,7 @@ public class SusanFromHR : MonoBehaviour
 
         if(doTransitionTwoSetup)
         {
-            bossIsInvulnerable = true;
             TransitionTwoSetup();
-
-            doTransitionTwoSetup = false;
-            doTransitionTwo = true;
         }
 
         if (doTransitionTwo)
@@ -168,8 +157,8 @@ public class SusanFromHR : MonoBehaviour
             if (transitionCubeOneBroken && transitionCubeTwoBroken && transitionCubeThreeBroken && transitionCubeFourBroken)
             {
                 doTransitionTwo = false;
-                doPhaseThreeSetUp = true;
                 SetCubeBoolsToFalse();
+                doPhaseThreeSetUp = true;
             }
             else
             {
@@ -179,19 +168,16 @@ public class SusanFromHR : MonoBehaviour
 
         if (doPhaseThreeSetUp)
         {
-            bossIsInvulnerable = false;
             PhaseThreeSetup();
-            doPhaseThreeSetUp = false;
-            doPhaseThree = true;
         }
 
         if (doPhaseThree)
         {
             if (healthBarThree <= 0)
             {
+                doPhaseThree = false;
                 healthBarThree = 0;
                 doBossDeadStuff = true;
-                doPhaseThree = false;
             }
             else
             {
@@ -201,15 +187,17 @@ public class SusanFromHR : MonoBehaviour
 
         if (doBossDeadStuff)
         {
-            bossIsInvulnerable = true;
             BossIsDeadStuff();
-            doBossDeadStuff = false;
         }
     }
 
     private void PhaseOneSetup()
     {
+        doPhaseOneSetUp = false;
 
+        bossIsInvulnerable = false;
+
+        doPhaseOne = true;
     }
 
     private void PhaseOneStuff()
@@ -219,7 +207,11 @@ public class SusanFromHR : MonoBehaviour
 
     private void TransitionOneSetup()
     {
+        doTransitionOneSetup = false;
 
+        bossIsInvulnerable = true;
+
+        doTransitionOne = true;
     }
 
     private void TransitionOneStuff()
@@ -229,7 +221,11 @@ public class SusanFromHR : MonoBehaviour
 
     private void PhaseTwoSetup()
     {
+        doPhaseTwoSetUp = false;
 
+        bossIsInvulnerable = false;
+
+        doPhaseTwo = true;
     }
 
     private void PhaseTwoStuff()
@@ -239,7 +235,11 @@ public class SusanFromHR : MonoBehaviour
 
     private void TransitionTwoSetup()
     {
+        doTransitionTwoSetup = false;
 
+        bossIsInvulnerable = true;
+
+        doTransitionTwo = true;
     }
 
     private void TransitionTwoStuff() 
@@ -249,7 +249,13 @@ public class SusanFromHR : MonoBehaviour
 
     private void PhaseThreeSetup()
     {
+        doPhaseThreeSetUp = false;
 
+        bossIsInvulnerable = false;
+        ResetPhaseOneStuff();
+        ResetPhaseTwoStuff();
+
+        doPhaseThree = true;
     }
 
     private void PhaseThreeStuff()
@@ -259,7 +265,11 @@ public class SusanFromHR : MonoBehaviour
 
     private void BossIsDeadStuff()
     {
+        doBossDeadStuff = false;
 
+
+
+        bossIsInvulnerable = true;
     }
 
     private void SetCubeBoolsToFalse()
@@ -268,6 +278,21 @@ public class SusanFromHR : MonoBehaviour
         transitionCubeTwoBroken = false;
         transitionCubeThreeBroken = false;
         transitionCubeFourBroken = false;
+    }
+
+    private void SetPhaseBoolsToFalse()
+    {
+        doPhaseOneSetUp = false;
+        doPhaseOne = false;
+        doTransitionOneSetup = false;
+        doTransitionOne = false;
+        doPhaseTwoSetUp = false;
+        doPhaseThreeSetUp = false;
+        doPhaseTwo = false;
+        doTransitionTwoSetup = false;
+        doTransitionTwo = false;
+        doPhaseThree = false;
+        doBossDeadStuff = false;
     }
 
     public int GetBossPhase()
@@ -302,5 +327,15 @@ public class SusanFromHR : MonoBehaviour
         model.material.color = Color.blue;
         yield return new WaitForSeconds(0.1f);
         model.material.color = originalColor;
+    }
+
+    private void ResetPhaseOneStuff()
+    {
+        phaseOneCurrentSpawner = 0;
+    }
+
+    private void ResetPhaseTwoStuff()
+    {
+        phaseTwoCurrentSpawner = 0;
     }
 }
