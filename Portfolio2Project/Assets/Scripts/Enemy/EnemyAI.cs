@@ -41,6 +41,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     public bool isSlowed;
     public bool spawnedBySpawner;
     bool interrupted;
+    bool isStopped;
 
     Vector3 playerDir;
     float fAngleToPlayer;
@@ -107,6 +108,23 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     //        navAgent.speed *= wspec.slowRate;
     //    }
     //}
+    public void toggleMovement(bool toggle) //enables/disables movement, shooting and animation
+    {
+        if (toggle)
+        {
+            navAgent.isStopped = false;
+            bIsShooting = false;
+            anim.speed = 1;
+            isStopped = false;
+        }
+        else
+        {
+            navAgent.isStopped = true;
+            bIsShooting = true;
+            anim.speed = 0;
+            isStopped = true;
+        }
+    }
 
     bool CanSeePlayer()
     {
@@ -129,11 +147,14 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
     void FacePlayer()
     {
-        Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * fTurnRate);
-    }
+        if (!isStopped)
+        {
+            Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
+            transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * fTurnRate);
+        }
+        }
 
-    void AttackPlayer()
+        void AttackPlayer()
     {
         if (navAgent.isActiveAndEnabled)
         {

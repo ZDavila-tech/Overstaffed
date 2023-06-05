@@ -44,8 +44,8 @@ public class TransitionCube : MonoBehaviour, IDamage
                             break;
                         }
                 }
-                this.gameObject.SetActive(false);
                 ResetHealth();
+                this.gameObject.SetActive(false);
             }
         }       
     }

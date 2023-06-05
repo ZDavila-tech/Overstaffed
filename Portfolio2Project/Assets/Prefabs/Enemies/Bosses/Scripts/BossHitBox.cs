@@ -13,6 +13,13 @@ public class BossHitBox : MonoBehaviour, IDamage
         {
             this.gameObject.transform.position = objectToFollow.transform.position;
         }
+        else
+        {
+            if(susan.hitBoxCenter != null)
+            {
+                objectToFollow = susan.hitBoxCenter;
+            }
+        }
     }
 
     public void TakeDamage(int damage)

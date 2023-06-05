@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2167663528300403218
 Transform:
   m_ObjectHideFlags: 0
@@ -48,7 +48,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 423264449040011290}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 4728235726989330132}
   - component: {fileID: 4728235726989330133}
   - component: {fileID: 4728235726989330128}
+  - component: {fileID: 6147478265550020467}
   - component: {fileID: 4728235726989330134}
   - component: {fileID: 4728235726989330135}
   - component: {fileID: 4728235726989330129}
@@ -170,6 +171,22 @@ MonoBehaviour:
   shootAngle: 15
   isSlowed: 0
   spawnedBySpawner: 0
+--- !u!114 &6147478265550020467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4728235726989330130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8a5dd0ac9b52344a8a469bfafd39f6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  freezeEffect: {fileID: 8616015979035415240}
+  enemy: {fileID: 4728235726989330128}
+  skinnedModels: []
 --- !u!23 &4728235726989330134
 MeshRenderer:
   m_ObjectHideFlags: 0
