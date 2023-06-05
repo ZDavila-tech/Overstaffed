@@ -178,6 +178,27 @@ public class NewStaff : MonoBehaviour
         }
     }
 
+    IEnumerator MeleeCameraShake()
+    {
+        switch (playerElement)
+        {
+            case Element.Fire:
+                camShake.Shake(1f, .1f);
+                yield return new WaitForSeconds(0.4f);
+                camShake.Shake(1f, .1f);
+                break;
+            case Element.Water:
+                yield return new WaitForSeconds(0.2f);
+                camShake.Shake(1f, .1f);
+                break;
+            case Element.Earth:
+                yield return new WaitForSeconds(0.6f);
+                camShake.Shake(1f, .1f);
+                break;
+
+        }
+    }
+
     public void Melee()
     {
         if (canMelee && Input.GetMouseButtonDown(1))
@@ -197,6 +218,7 @@ public class NewStaff : MonoBehaviour
                     weaponParticles[0].SetActive(true);
                     gameManager.instance.playerController.PlayExternalAudio(audios[3]);
                     anim.SetTrigger("SwordMelee");
+                    StartCoroutine(MeleeCameraShake());
                     break;
                 case Element.Water:
                     weaponModels[2].SetActive(true);
@@ -204,6 +226,7 @@ public class NewStaff : MonoBehaviour
                     spearHitbox.enabled = true;
                     gameManager.instance.playerController.PlayExternalAudio(audios[4]);
                     anim.SetTrigger("SpearMelee");
+                    StartCoroutine(MeleeCameraShake());
                     break;
                 case Element.Earth:
                     weaponModels[3].SetActive(true);
@@ -211,6 +234,7 @@ public class NewStaff : MonoBehaviour
                     hammerHitbox.enabled = true;
                     gameManager.instance.playerController.PlayExternalAudio(audios[5]);
                     anim.SetTrigger("HammerMelee");
+                    StartCoroutine(MeleeCameraShake());
                     break;
             }
 
