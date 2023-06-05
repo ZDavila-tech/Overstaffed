@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class SusanFromHR : MonoBehaviour
@@ -20,6 +21,7 @@ public class SusanFromHR : MonoBehaviour
     [SerializeField] GameObject[] phaseOneCatchers;
     [SerializeField] GameObject[] phaseOneThingToSpawn;
     [SerializeField] GameObject phaseOneBigThingToSpawn;
+    [SerializeField] float phaseOneTimeBetweenFirings;
     private int phaseOneCurrentSpawner;
     private bool phaseOneIsFiring;
 
@@ -27,12 +29,13 @@ public class SusanFromHR : MonoBehaviour
     [SerializeField] GameObject[] phaseTwoSpawners;
     [SerializeField] GameObject[] phaseTwoCatchers;
     [SerializeField] GameObject[] phaseTwoThingToSpawn;
+    [SerializeField] float phaseTwoTimeBetweenFirings;
     private int phaseTwoCurrentSpawner;
     private bool phaseTwoIsFiring;
 
     [Header("----- Phase Three Stuff -----")]
-    [SerializeField] GameObject[] PhaseThreeProps;
-    [SerializeField] GameObject[] PhaseThreePropsFinalPositions;
+    [SerializeField] GameObject[] phaseThreeProps;
+    [SerializeField] GameObject[] phaseThreePropsFinalPositions;
 
     [Header("----- Transition Stuff -----")]
     [SerializeField] GameObject transitionCubeOne;
@@ -76,6 +79,21 @@ public class SusanFromHR : MonoBehaviour
         ResetPhaseTwoStuff();
         SetCubeBoolsToFalse();
         SetPhaseBoolsToFalse();
+    }
+
+    private void SetPhaseBoolsToFalse()
+    {
+        doPhaseOneSetUp = false;
+        doPhaseOne = false;
+        doTransitionOneSetup = false;
+        doTransitionOne = false;
+        doPhaseTwoSetUp = false;
+        doPhaseThreeSetUp = false;
+        doPhaseTwo = false;
+        doTransitionTwoSetup = false;
+        doTransitionTwo = false;
+        doPhaseThree = false;
+        doBossDeadStuff = false;
     }
 
     private void Start()
@@ -200,21 +218,168 @@ public class SusanFromHR : MonoBehaviour
         doPhaseOne = true;
     }
 
+    private void PhaseTwoSetup()
+    {
+        doPhaseTwoSetUp = false;
+
+        bossIsInvulnerable = false;
+
+        doPhaseTwo = true;
+    }
+
+    private void PhaseThreeSetup()
+    {
+        doPhaseThreeSetUp = false;
+
+        bossIsInvulnerable = false;
+        ResetPhaseOneStuff();
+        ResetPhaseTwoStuff();
+        int maxIndexProps = phaseThreeProps.Length;
+        int maxIndexTargets = phaseThreePropsFinalPositions.Length;
+        for(int i = 0; i < maxIndexProps; ++i)
+        {
+            int targetIndex = Random.Range(0, maxIndexTargets);
+            GameObject launchableProp = phaseThreeProps[i];
+            LaunchableProp launchablePropScript = launchableProp.GetComponent<LaunchableProp>();
+            launchablePropScript.targetToMoveTo = phaseThreePropsFinalPositions[targetIndex].transform;
+            launchablePropScript.LaunchYourself();
+            phaseThreePropsFinalPositions[targetIndex].GetComponent<PropCatcher>().expectedProjectile = launchableProp;
+        }
+
+        doPhaseThree = true;
+    }
+
+    private void ResetPhaseOneStuff()
+    {
+        phaseOneCurrentSpawner = 0;
+    }
+
+    private void ResetPhaseTwoStuff()
+    {
+        phaseTwoCurrentSpawner = 0;
+    }
+
     private void PhaseOneStuff()
     {
+        if(!phaseOneIsFiring)
+        {
+            StartCoroutine(PhaseOneFire());
+        }
+    }
 
+    IEnumerator PhaseOneFire()
+    {
+        phaseOneIsFiring = true;
+
+        int maxIndex = phaseOneThingToSpawn.Length;
+        if (phaseOneCurrentSpawner > maxIndex)
+        {
+            phaseOneCurrentSpawner = 0;
+        }
+        int randomThingIndex = Random.Range(0, maxIndex);
+        GameObject bossProjectile = Instantiate(phaseOneThingToSpawn[randomThingIndex], phaseOneSpawners[phaseOneCurrentSpawner].transform);
+        BossProjectile bossProjectileScript = bossProjectile.GetComponent<BossProjectile>();
+        bossProjectileScript.spawnPosition = phaseOneSpawners[phaseOneCurrentSpawner].transform;
+        bossProjectileScript.targetToMoveTo = phaseOneCatchers[phaseOneCurrentSpawner].transform;
+        phaseOneCatchers[phaseOneCurrentSpawner].GetComponent<BossProjectileCatcher>().expectedProjectile = bossProjectile;
+        ++phaseOneCurrentSpawner;
+
+        yield return new WaitForSeconds(phaseOneTimeBetweenFirings);
+
+        phaseOneIsFiring = false;
+    }
+
+    private void PhaseTwoStuff()
+    {
+        if (!phaseTwoIsFiring)
+        {
+            StartCoroutine(PhaseTwoFire());
+        }
+    }
+
+    IEnumerator PhaseTwoFire()
+    {
+        phaseTwoIsFiring = true;
+
+        int maxIndex = phaseTwoThingToSpawn.Length;
+        if (phaseTwoCurrentSpawner > maxIndex)
+        {
+            phaseTwoCurrentSpawner = 0;
+        }
+        int randomThingIndex = Random.Range(0, maxIndex);
+        GameObject bossProjectile = Instantiate(phaseTwoThingToSpawn[randomThingIndex], phaseTwoSpawners[phaseTwoCurrentSpawner].transform);
+        BossProjectile bossProjectileScript = bossProjectile.GetComponent<BossProjectile>();
+        bossProjectileScript.spawnPosition = phaseTwoSpawners[phaseTwoCurrentSpawner].transform;
+        bossProjectileScript.targetToMoveTo = phaseTwoCatchers[phaseTwoCurrentSpawner].transform;
+        phaseTwoCatchers[phaseTwoCurrentSpawner].GetComponent<BossProjectileCatcher>().expectedProjectile = bossProjectile;
+        ++phaseTwoCurrentSpawner;
+
+        yield return new WaitForSeconds(phaseTwoTimeBetweenFirings);
+
+        phaseTwoIsFiring = false;
+    }
+
+    private void PhaseThreeStuff()
+    {
+        PhaseOneStuff();
+        PhaseTwoStuff();
     }
 
     private void TransitionOneSetup()
     {
         doTransitionOneSetup = false;
 
-        bossIsInvulnerable = true;
-        SetCubeBoolsToFalse();
-        MakeTransitionCubesActive();
-        MakeShieldActive();
+        GenericTransitionSetup();
 
         doTransitionOne = true;
+    }
+
+    private void TransitionTwoSetup()
+    {
+        doTransitionTwoSetup = false;
+
+        GenericTransitionSetup();
+
+        doTransitionTwo = true;
+    }
+
+    public void GenericTransitionSetup()
+    {
+        bossIsInvulnerable = true;
+        MakeShieldActive();
+        SetCubeBoolsToFalse();
+        MakeTransitionCubesActive();
+    }
+
+    public void MakeShieldActive()
+    {
+        transitionShieldOne.SetActive(true);
+        transitionShieldTwo.SetActive(true);
+        transitionShieldThree.SetActive(true);
+    }
+
+    private void SetCubeBoolsToFalse()
+    {
+        transitionCubeOneBroken = false;
+        transitionCubeTwoBroken = false;
+        transitionCubeThreeBroken = false;
+        transitionCubeFourBroken = false;
+    }
+
+    public void MakeTransitionCubesActive()
+    {
+        transitionCubeOne.transform.position = new Vector3(transitionCubeOne.transform.position.x, Random.Range(3.0f, 7.0f), transitionCubeOne.transform.position.z);
+        transitionCubeOne.transform.rotation = Random.rotation;
+        transitionCubeTwo.transform.position = new Vector3(transitionCubeTwo.transform.position.x, Random.Range(3.0f, 7.0f), transitionCubeTwo.transform.position.z);
+        transitionCubeTwo.transform.rotation = Random.rotation;
+        transitionCubeThree.transform.position = new Vector3(transitionCubeThree.transform.position.x, Random.Range(3.0f, 7.0f), transitionCubeThree.transform.position.z);
+        transitionCubeThree.transform.rotation = Random.rotation;
+        transitionCubeFour.transform.position = new Vector3(transitionCubeFour.transform.position.x, Random.Range(3.0f, 7.0f), transitionCubeFour.transform.position.z);
+        transitionCubeFour.transform.rotation = Random.rotation;
+        transitionCubeOne.SetActive(true);
+        transitionCubeTwo.SetActive(true);
+        transitionCubeThree.SetActive(true);
+        transitionCubeFour.SetActive(true);
     }
 
     private void TransitionOneStuff()
@@ -239,84 +404,71 @@ public class SusanFromHR : MonoBehaviour
 
         if(!transitionIsSpawning)
         {
-            StartCoroutine(TransitionSpawnEnemies());
+            StartCoroutine(TransitionOneSpawnEnemies());
         }
     }
 
-    private void PhaseTwoSetup()
+    private void TransitionTwoStuff()
     {
-        doPhaseTwoSetUp = false;
+        if (transitionCubeOneBroken)
+        {
+            //play sound
+            transitionShieldOne.SetActive(false);
+        }
 
-        bossIsInvulnerable = false;
+        if (transitionCubeTwoBroken && transitionCubeThreeBroken)
+        {
+            //play sound
+            transitionShieldTwo.SetActive(false);
+        }
 
-        doPhaseTwo = true;
+        if (transitionCubeFourBroken)
+        {
+            //play sound
+            transitionShieldThree.SetActive(false);
+        }
+
+        if (!transitionIsSpawning)
+        {
+            StartCoroutine(TransitionTwoSpawnEnemies());
+        }
     }
 
-    private void PhaseTwoStuff()
+    IEnumerator TransitionOneSpawnEnemies()
     {
+        transitionIsSpawning = true;
 
+        for (int i = 0; i < 2; ++i)
+        {
+            Instantiate(transitionEnemy, transitionSpawnLocations[i]);
+        }
+
+        yield return new WaitForSeconds(timeBetweenTransitionSpawns);
+
+        transitionIsSpawning = false;
     }
 
-    private void TransitionTwoSetup()
+    IEnumerator TransitionTwoSpawnEnemies()
     {
-        doTransitionTwoSetup = false;
+        transitionIsSpawning = true;
 
-        bossIsInvulnerable = true;
+        for (int i = 0; i < 4; ++i)
+        {
+            Instantiate(transitionEnemy, transitionSpawnLocations[i]);
+        }
 
-        doTransitionTwo = true;
-    }
+        yield return new WaitForSeconds(timeBetweenTransitionSpawns);
 
-    private void TransitionTwoStuff() 
-    {
-    
-    }
-
-    private void PhaseThreeSetup()
-    {
-        doPhaseThreeSetUp = false;
-
-        bossIsInvulnerable = false;
-        ResetPhaseOneStuff();
-        ResetPhaseTwoStuff();
-
-        doPhaseThree = true;
-    }
-
-    private void PhaseThreeStuff()
-    {
-
+        transitionIsSpawning = false;
     }
 
     private void BossIsDeadStuff()
     {
         doBossDeadStuff = false;
 
-
+        GameObject.Destroy(this.gameObject);
 
         bossIsInvulnerable = true;
-    }
-
-    private void SetCubeBoolsToFalse()
-    {
-        transitionCubeOneBroken = false;
-        transitionCubeTwoBroken = false;
-        transitionCubeThreeBroken = false;
-        transitionCubeFourBroken = false;
-    }
-
-    private void SetPhaseBoolsToFalse()
-    {
-        doPhaseOneSetUp = false;
-        doPhaseOne = false;
-        doTransitionOneSetup = false;
-        doTransitionOne = false;
-        doPhaseTwoSetUp = false;
-        doPhaseThreeSetUp = false;
-        doPhaseTwo = false;
-        doTransitionTwoSetup = false;
-        doTransitionTwo = false;
-        doPhaseThree = false;
-        doBossDeadStuff = false;
     }
 
     public int GetBossPhase()
@@ -351,49 +503,5 @@ public class SusanFromHR : MonoBehaviour
         model.material.color = Color.blue;
         yield return new WaitForSeconds(0.1f);
         model.material.color = originalColor;
-    }
-
-    private void ResetPhaseOneStuff()
-    {
-        phaseOneCurrentSpawner = 0;
-    }
-
-    private void ResetPhaseTwoStuff()
-    {
-        phaseTwoCurrentSpawner = 0;
-    }
-
-    public void MakeTransitionCubesActive()
-    {
-        transitionCubeOne.transform.position = new Vector3(transitionCubeOne.transform.position.x, Random.Range(3.0f, 7.0f), transitionCubeOne.transform.position.z);
-        transitionCubeOne.transform.rotation = Random.rotation;
-        transitionCubeTwo.transform.position = new Vector3(transitionCubeTwo.transform.position.x, Random.Range(3.0f, 7.0f), transitionCubeTwo.transform.position.z);
-        transitionCubeTwo.transform.rotation = Random.rotation;
-        transitionCubeThree.transform.position = new Vector3(transitionCubeThree.transform.position.x, Random.Range(3.0f, 7.0f), transitionCubeThree.transform.position.z);
-        transitionCubeThree.transform.rotation = Random.rotation;
-        transitionCubeFour.transform.position = new Vector3(transitionCubeFour.transform.position.x, Random.Range(3.0f, 7.0f), transitionCubeFour.transform.position.z);
-        transitionCubeFour.transform.rotation = Random.rotation;
-        transitionCubeOne.SetActive(true);
-        transitionCubeTwo.SetActive(true);
-        transitionCubeThree.SetActive(true);
-        transitionCubeFour.SetActive(true);
-    }
-
-    public void MakeShieldActive()
-    {
-        transitionShieldOne.SetActive(true);
-        transitionShieldTwo.SetActive(true);
-        transitionShieldThree.SetActive(true);
-    }
-
-    IEnumerator TransitionSpawnEnemies()
-    {
-        transitionIsSpawning = true;
-
-
-
-        yield return new WaitForSeconds(timeBetweenTransitionSpawns);
-
-        transitionIsSpawning = false;
     }
 }

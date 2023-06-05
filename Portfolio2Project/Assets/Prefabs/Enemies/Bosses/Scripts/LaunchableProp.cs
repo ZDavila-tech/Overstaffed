@@ -10,7 +10,7 @@ public class LaunchableProp : MonoBehaviour
     [Header("----- Set By Boss (Ignore) -----")]
     public Transform targetToMoveTo;
 
-    private void Start()
+    public void LaunchYourself()
     {
         rigidBody.velocity = (targetToMoveTo.position - this.gameObject.transform.position).normalized * projectileSpeed;
     }
