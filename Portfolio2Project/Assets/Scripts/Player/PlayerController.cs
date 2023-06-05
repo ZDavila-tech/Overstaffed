@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     [SerializeField] Skills skills;
     [SerializeField] public GameObject screenShake;
     [SerializeField] public ProceduralRecoil proceduralRecoil;
+    [SerializeField] public WeaponSway weaponSway;
     UIManager uiManager;
     AudioManager audioManager;
 
@@ -57,6 +58,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     private bool isSprinting;
     private bool damagedRecently;
     public bool isCrouching;
+    
 
     [Header("----- Audio -----")]
     [SerializeField] AudioSource aud;
@@ -77,6 +79,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     void Start()
     {
         playerSpeed = playerStats.Speed;
+        playerDamage = playerStats.Attack;
         standingHeight = height;
         origGrav = gravityValue;
         origSpeed = playerStats.Speed;
@@ -161,6 +164,18 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         controller.Move((playerVelocity + pushBack) * Time.deltaTime);
 
         pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushBackResolve);
+
+        weaponSway.currentSpeed = AllowWeaponSway() ? playerSpeed : 0f;
+    }
+
+    private bool AllowWeaponSway()
+    {
+        if(Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     void OnControllerColliderHit(ControllerColliderHit hit)
@@ -282,7 +297,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
                 if (hit.collider.GetComponent<IDamage>() != null)
                 {
                     IDamage damageable = hit.collider.GetComponent<IDamage>();
-                    damageable.TakeDamage(1);
+                    damageable.TakeDamage(playerDamage);
                 }
             }
         }
