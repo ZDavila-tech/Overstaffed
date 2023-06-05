@@ -58,7 +58,9 @@ MonoBehaviour:
   navAgent: {fileID: 1441211781995531611}
   shootPosition: {fileID: 7665947879905113872}
   headPosition: {fileID: 7665947879905113872}
-  drop: {fileID: 4658357512159410959, guid: 33712d3f3be7ef04a9b6e60bae891a41, type: 3}
+  drop:
+  - {fileID: 4658357512159410959, guid: 33712d3f3be7ef04a9b6e60bae891a41, type: 3}
+  - {fileID: 4658357512159410959, guid: 8fedafaf90ee2184699ab7dfcb80f033, type: 3}
   anim: {fileID: 5117142777217126044}
   iHP: 3
   hpBar: {fileID: 3612964864989212762}
@@ -67,6 +69,7 @@ MonoBehaviour:
   fFieldOfView: 175
   fChaseTime: 3
   DropRate: 50
+  itemRates: 4b0000000f000000
   chargeValue: 12
   interuptionCoolDown: 2
   moveSpeed: 0
