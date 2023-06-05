@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class BossProjectileCatcher : MonoBehaviour
 {
-    public List<GameObject> expectedProjectile;
-
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.layer == 14)

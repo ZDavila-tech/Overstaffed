@@ -33,6 +33,8 @@ public class UIManager : MonoBehaviour
 
     public Image playerHealthBar;
     public TextMeshProUGUI levelText;
+    public TextMeshProUGUI enemiesRemainText;
+    public TextMeshProUGUI expText;
     [SerializeField] Image UtCharge;
 
     [Header("-----Fade Stuff-----")]
@@ -193,6 +195,18 @@ public class UIManager : MonoBehaviour
     {
         int level = levelManager.currentLevel;
         levelText.text = level.ToString("F0");
+    }
+
+    public void UpdateEnemiesRemaining()
+    {
+        int enemies = levelManager.enemiesRemaining;
+        enemiesRemainText.text = enemies.ToString("F0");
+    }
+
+    public void UpdateExp()
+    {
+        int exp = gameManager.instance.playerStats.Exp;
+        expText.text = exp.ToString("F0"); 
     }
 
     public void AbilityCoolDown()
