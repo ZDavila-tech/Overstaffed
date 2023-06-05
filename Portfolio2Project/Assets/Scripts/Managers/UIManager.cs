@@ -108,6 +108,7 @@ public class UIManager : MonoBehaviour
             fading = false;
 
             StartCoroutine(FadeIn());
+            //ShowBegLetter();
         }
     }
     public void YouLose()

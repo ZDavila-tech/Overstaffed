@@ -58,8 +58,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     public Vector3 move;
     private Vector3 playerVelocity;
     public Vector3 pushBack;
-    private bool groundedPlayer;
-    private bool isSprinting;
+    public bool groundedPlayer;
+    public bool isSprinting;
     private bool damagedRecently;
     public bool isCrouching;
     
