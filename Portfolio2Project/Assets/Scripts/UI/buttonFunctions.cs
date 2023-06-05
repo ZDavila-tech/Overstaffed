@@ -174,15 +174,10 @@ public class buttonFunctions : MonoBehaviour
         if(uiManager.beginLetter.activeSelf)
         {
             buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
-
+            uiManager.HideActiveMenu();
             gameManager.instance.UnpauseState();
         }
-        else if(uiManager.endLetter.activeSelf)
-        {
-            buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
-
-            gameManager.instance.UnpauseState();
-        }
+       
     }
 
     public void SelectedFire()

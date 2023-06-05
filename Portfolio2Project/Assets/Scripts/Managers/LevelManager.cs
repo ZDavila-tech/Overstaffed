@@ -18,6 +18,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] int baseNumberOfEnemiesToSpawn;
     [SerializeField, Range(0f, 1f)] float numberOfEnemiesScaling;
     public int maxEnemiesAtOneTime;
+  
 
     [Header("----- For Spawners To Know (Ignore)-----")]
     public int currentLevel;
@@ -219,6 +220,7 @@ public class LevelManager : MonoBehaviour
                             case 5:
                                 {
                                     SceneManager.LoadScene("Reception");
+                                    
                                     break;
                                 }
                         }
