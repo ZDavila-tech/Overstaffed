@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     int playerDamage;
     [Range(0, 100)][SerializeField] float utCharge;
     [Range(1, 20)][SerializeField] float jumpHeight;
+    [Range(0, 3)][SerializeField] float shootScreenshakeIntensity;
     
     [Range(10, 50)][SerializeField] float gravityValue;
     [Range(1, 50)][SerializeField] float wallrunGravity;
@@ -65,6 +66,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     float origGrav;
     float origSpeed;
 
+    [SerializeField] CinemachineCamshake camShake;
     private void Awake()
     {
         playerWeapon = GetComponentInChildren<NewStaff>();
@@ -77,6 +79,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         origGrav = gravityValue;
         origSpeed = playerStats.Speed;
         gameManager.instance.SetPlayerVariables(this.gameObject);
+        //camShake = gameManager.instance.GetComponent<CinemachineCamshake>();
         UpdateSpeed();
         iHP = playerStats.GetHealth();
         uiManager = UIManager.instance;
@@ -264,6 +267,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             {
                 playerWeapon.Shoot();
                 StartCoroutine(PlayShootSound());
+                //CinemachineCamshake.Instance.Shake(5f, 1f);
+                camShake.Shake(shootScreenshakeIntensity, 0.1f);
                 //StartCoroutine(TriggerScreenShake(0.1f));
             }
 
