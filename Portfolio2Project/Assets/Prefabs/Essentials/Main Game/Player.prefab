@@ -5390,6 +5390,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 1
+  camShake: {fileID: 8548034150311879936}
   meleeCooldown: 0.1
   swordHitbox: {fileID: 3773167801377614847}
   spearHitbox: {fileID: 4531740379933452979}
@@ -10376,9 +10377,9 @@ MonoBehaviour:
   weapon: {fileID: 9108246863387236065}
   bobOverrides:
   - minSpeed: 6
-    maxSpeed: 8
-    speedX: 2
-    intensityX: 0.5
+    maxSpeed: 10
+    speedX: 6
+    intensityX: 5
     bobX:
       serializedVersion: 2
       m_Curve:
@@ -10412,8 +10413,8 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 1
       m_RotationOrder: 0
-    speedY: 4
-    intensityY: 1
+    speedY: 6
+    intensityY: 5
     bobY:
       serializedVersion: 2
       m_Curve:
@@ -10448,9 +10449,9 @@ MonoBehaviour:
       m_PostInfinity: 1
       m_RotationOrder: 0
   - minSpeed: 6
-    maxSpeed: 8
-    speedX: 2
-    intensityX: 0.5
+    maxSpeed: 10
+    speedX: 6
+    intensityX: 5
     bobX:
       serializedVersion: 2
       m_Curve:
@@ -10484,8 +10485,8 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 1
       m_RotationOrder: 0
-    speedY: 4
-    intensityY: 1
+    speedY: 6
+    intensityY: 5
     bobY:
       serializedVersion: 2
       m_Curve:
@@ -10557,7 +10558,7 @@ MonoBehaviour:
       m_PostInfinity: 1
       m_RotationOrder: 0
     speedY: 1
-    intensityY: 0.5
+    intensityY: 5
     bobY:
       serializedVersion: 2
       m_Curve:

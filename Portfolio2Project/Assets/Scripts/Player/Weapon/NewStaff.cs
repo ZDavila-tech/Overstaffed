@@ -19,6 +19,7 @@ public class NewStaff : MonoBehaviour
     [SerializeField] private List<TrailRenderer> trailRenderer;
     [SerializeField] private float delay;
     [SerializeField] private LayerMask mask;
+    [SerializeField] CinemachineCamshake camShake;
 
     [Header("----- Melee Stuff -----")]
     [SerializeField] private float meleeCooldown;
@@ -295,6 +296,7 @@ public class NewStaff : MonoBehaviour
 
             Instantiate(explosionEffect, hit.point, Quaternion.LookRotation(hit.normal));
             Instantiate(explosion, hit.point, Quaternion.LookRotation(hit.normal));
+            camShake.Shake(5f, 1f);
         }
     }
 
@@ -337,6 +339,7 @@ public class NewStaff : MonoBehaviour
         if (Physics.Raycast(shootPos.position, direction, out hit, float.MaxValue, mask))
         {
             Instantiate(earthEffect, hit.point, earthEffect.transform.rotation);
+            camShake.Shake(5f, 1f);
         }
         foreach (GameObject enemy in enemies)
         {
