@@ -9,6 +9,8 @@ public class LevelSelectButtons : MonoBehaviour
     private AudioManager audioManager;
     private gameManager gameManager;
 
+    public AudioSource butAud;
+
     [Header("----- Deactivated Buttons -----")]
     [SerializeField] GameObject levelSixButtonOff;
     [SerializeField] GameObject levelElevenButtonOff;
@@ -78,36 +80,43 @@ public class LevelSelectButtons : MonoBehaviour
 
     public void TutorialButtonPressed()
     {
+        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
         levelManager.SetCurrentLevel(1);
     }
 
     public void SixButtonPressed()
     {
+        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
         levelManager.SetCurrentLevel(6);
     }
 
     public void ElevenButtonPressed()
     {
+        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
         levelManager.SetCurrentLevel(11);
     }
 
     public void SixteenButtonPressed()
     {
+        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
         levelManager.SetCurrentLevel(16);
     }
 
     public void TwentyOneButtonPressed()
     {
+        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
         levelManager.SetCurrentLevel(21);
     }
 
     public void InfinityButtonPressed()
     {
+        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
         levelManager.SetCurrentLevel(22);
     }
 
     public void CloseLevelSelect()
     {
+        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
         gameManager.UnpauseState();
         uiManager.HideActiveMenu();
     }

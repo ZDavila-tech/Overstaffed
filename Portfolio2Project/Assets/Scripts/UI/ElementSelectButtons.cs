@@ -7,7 +7,7 @@ public class ElementSelectButtons : MonoBehaviour
     gameManager gameManager;
     PlayerController playerController;
     UIManager uiManager;
-
+    public AudioSource butAud;
     void Start()
     {
         gameManager = gameManager.instance;
@@ -16,7 +16,8 @@ public class ElementSelectButtons : MonoBehaviour
 
     public void ClickedFire()
     {
-        if(gameManager.playerController != null)
+        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
+        if (gameManager.playerController != null)
         {
             playerController = gameManager.playerController;
             playerController.playerElement = NewStaff.Element.Fire;
@@ -25,6 +26,7 @@ public class ElementSelectButtons : MonoBehaviour
 
     public void ClickedWater()
     {
+        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
         if (gameManager.playerController != null)
         {
             playerController = gameManager.playerController;
@@ -34,6 +36,7 @@ public class ElementSelectButtons : MonoBehaviour
 
     public void ClickedEarth()
     {
+        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
         if (gameManager.playerController != null)
         {
             playerController = gameManager.playerController;
@@ -43,6 +46,7 @@ public class ElementSelectButtons : MonoBehaviour
 
     public void CloseElementSelect()
     {
+        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
         gameManager.UnpauseState();
         uiManager.HideActiveMenu();
     }

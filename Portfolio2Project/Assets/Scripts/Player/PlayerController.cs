@@ -266,9 +266,9 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             }
             else
             {
-                if (iHP > playerStats.GetHealth())
+                if (iHP > (baseHealth + playerStats.GetHealth()))
                 {
-                    iHP = playerStats.GetHealth();
+                    iHP = (baseHealth + playerStats.GetHealth());
                 }
             }
             UpdateHealthBar();
@@ -317,7 +317,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     public void UpdateHealthBar()
     {
-        uiManager.playerHealthBar.fillAmount = (float)iHP / playerStats.GetHealth();
+        uiManager.playerHealthBar.fillAmount = (float)iHP / (baseHealth + playerStats.GetHealth());
     }
 
 
