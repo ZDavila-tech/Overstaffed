@@ -15,6 +15,8 @@ public class enemySpawn : MonoBehaviour
     [Range(0, 100)][SerializeField] int[] enemyTypeSpawnWeighting;
     int totalWeight;
 
+    bool isSpawning;
+
     LevelManager levelManager;
 
     int arraylen;
@@ -60,7 +62,7 @@ public class enemySpawn : MonoBehaviour
         GameObject tospawn = weightedenemyselection();
         GameObject spawned = Instantiate(tospawn, transform.position + spawncoords(), spawnRotation.transform.rotation);
         spawned.GetComponent<EnemyAI>().spawnedBySpawner = true;
-        LevelManager.instance.currentEnemiesSpawned++;
+        ++LevelManager.instance.currentEnemiesSpawned;
     }
 
     Vector3 spawncoords()
