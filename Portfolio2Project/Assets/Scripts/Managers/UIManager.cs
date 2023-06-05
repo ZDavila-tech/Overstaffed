@@ -114,6 +114,19 @@ public class UIManager : MonoBehaviour
         ShowActiveMenu();
     }
 
+    public void ShowBegLetter()
+    {
+        gameManager.PauseState();
+        activeMenu = beginLetter;
+        ShowActiveMenu();
+    }
+
+    public void ShowEndLetter()
+    {
+        gameManager.PauseState();
+        activeMenu = endLetter;
+        ShowActiveMenu();
+    }
 
     public void ShowActiveMenu() //shows active menu if there is one.
     {
