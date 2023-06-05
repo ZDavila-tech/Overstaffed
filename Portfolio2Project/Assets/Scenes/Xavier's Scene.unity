@@ -439,6 +439,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6983980052673348956, guid: 3aaf7647d5fa8b84297699c4b258282b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8177094150598617813, guid: 3aaf7647d5fa8b84297699c4b258282b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -29426,6 +29430,30 @@ PrefabInstance:
     - target: {fileID: 6256373690464243930, guid: 45de30749b3650d43830070e711739ef, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8551598651028384659, guid: 45de30749b3650d43830070e711739ef, type: 3}
+      propertyPath: bobOverrides.Array.data[0].speedX
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8551598651028384659, guid: 45de30749b3650d43830070e711739ef, type: 3}
+      propertyPath: bobOverrides.Array.data[0].speedY
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8551598651028384659, guid: 45de30749b3650d43830070e711739ef, type: 3}
+      propertyPath: bobOverrides.Array.data[1].speedX
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8551598651028384659, guid: 45de30749b3650d43830070e711739ef, type: 3}
+      propertyPath: bobOverrides.Array.data[1].speedY
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8551598651028384659, guid: 45de30749b3650d43830070e711739ef, type: 3}
+      propertyPath: bobOverrides.Array.data[0].maxSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8551598651028384659, guid: 45de30749b3650d43830070e711739ef, type: 3}
+      propertyPath: bobOverrides.Array.data[1].maxSpeed
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45de30749b3650d43830070e711739ef, type: 3}
