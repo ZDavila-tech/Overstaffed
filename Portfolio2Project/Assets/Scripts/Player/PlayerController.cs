@@ -19,7 +19,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     [Range(0, 100)][SerializeField] float utCharge;
     [Range(1, 20)][SerializeField] float jumpHeight;
     [Range(0, 3)][SerializeField] float shootScreenshakeIntensity;
-    
+    [Range(0, 3)][SerializeField] float damagedScreenshakeIntensity;
+
     [Range(10, 50)][SerializeField] float gravityValue;
     [Range(1, 50)][SerializeField] float wallrunGravity;
     [Range(1, 3)][SerializeField] int maxJumps;
@@ -79,7 +80,6 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         origGrav = gravityValue;
         origSpeed = playerStats.Speed;
         gameManager.instance.SetPlayerVariables(this.gameObject);
-        //camShake = gameManager.instance.GetComponent<CinemachineCamshake>();
         UpdateSpeed();
         iHP = playerStats.GetHealth();
         uiManager = UIManager.instance;
@@ -230,6 +230,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
             //Debug.Log("my damage" + amount);        
             iHP -= amount; //-= used, negative amounts heal. 
+            camShake.Shake(damagedScreenshakeIntensity, .1f);
             if (amount > 0)
             {
                 uiManager.ShowDamage();
@@ -364,11 +365,5 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         playerSpeed = 5 + (playerStats.GetSpeed()/10);
     }
 
-    public IEnumerator TriggerScreenShake(float duration)
-    {
-        screenShake.GetComponent<ScreenShake>().duration = duration;
-
-        screenShake.GetComponent<ScreenShake>().start = true;
-        yield return new WaitForSeconds(0.5f);
-    }
+    
 }
