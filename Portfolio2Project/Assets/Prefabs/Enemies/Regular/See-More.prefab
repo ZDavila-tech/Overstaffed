@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1441211781995531614}
   - component: {fileID: 1441211781995531610}
+  - component: {fileID: 7853080555106826373}
   - component: {fileID: 1441211781995531611}
   - component: {fileID: 1709654445}
   - component: {fileID: -1177048385087740270}
@@ -76,6 +77,21 @@ MonoBehaviour:
   shootAngle: 10
   isSlowed: 0
   spawnedBySpawner: 0
+--- !u!114 &7853080555106826373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441211781995531608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8a5dd0ac9b52344a8a469bfafd39f6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freezeEffect: {fileID: 4800161667936608901}
+  enemy: {fileID: 1441211781995531610}
+  skinnedModels: []
 --- !u!195 &1441211781995531611
 NavMeshAgent:
   m_ObjectHideFlags: 0
