@@ -229,4 +229,11 @@ public class buttonFunctions : MonoBehaviour
         AudioManager.instance.ChangeSong();
         SceneManager.LoadScene("Home");
     }
+
+    public void EndLetterOKButton()
+    {
+        uiManager.HideActiveMenu();
+        uiManager.activeMenu = uiManager.winMenu;
+        uiManager.ShowActiveMenu();
+    }
 }
