@@ -28,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
 
     void Update()
     {
-        if ((playerDetected || spawnsOnLevelLoad) && !isSpawning && levelManager.totalEnemiesToSpawn > levelManager.currentEnemiesSpawned && levelManager.currentEnemiesAlive < levelManager.maxEnemiesAtOneTime && !levelManager.levelCompleted)
+        if (!isSpawning && (playerDetected || spawnsOnLevelLoad) && levelManager.spawnEnemies)
         {
             StartCoroutine(SpawnEnemies());
             //Debug.Log("Spawning Enemies");

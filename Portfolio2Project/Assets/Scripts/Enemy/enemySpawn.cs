@@ -45,13 +45,13 @@ public class enemySpawn : MonoBehaviour
     // update is called once per frame
     void Update()
     {
-        if(!isSpawning && levelManager.totalEnemiesToSpawn > levelManager.currentEnemiesSpawned && levelManager.currentEnemiesAlive < levelManager.maxEnemiesAtOneTime && !levelManager.levelCompleted)
+        if(!isSpawning && levelManager.spawnEnemies)
         {
-            StartCoroutine(attemptspawn());
+            StartCoroutine(Spawn());
         }
     }
 
-    IEnumerator attemptspawn()
+    IEnumerator Spawn()
     {
         isSpawning = true;
         GameObject tospawn = weightedenemyselection();

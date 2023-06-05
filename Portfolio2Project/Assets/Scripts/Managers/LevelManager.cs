@@ -26,6 +26,7 @@ public class LevelManager : MonoBehaviour
     public int enemiesRemaining; //goes up when an enemyAI Start()'s and goes down on enemy death
     public int currentEnemiesSpawned;
     public int currentEnemiesAlive;
+    public bool spawnEnemies;
 
     [Header("----- Level Transition Stuff (Ignore)-----")]
     public bool inElevator; //player is in elevator
@@ -79,6 +80,15 @@ public class LevelManager : MonoBehaviour
         if (UIManager.instance != null && uiManager == null)
         {
             uiManager = UIManager.instance;
+        }
+
+        if (totalEnemiesToSpawn > currentEnemiesSpawned && currentEnemiesAlive < maxEnemiesAtOneTime && !levelCompleted)
+        {
+            spawnEnemies = true;
+        }
+        else
+        {
+            spawnEnemies = false;
         }
 
         currentEnemiesAlive = GameObject.FindGameObjectsWithTag("Enemy").Length;
