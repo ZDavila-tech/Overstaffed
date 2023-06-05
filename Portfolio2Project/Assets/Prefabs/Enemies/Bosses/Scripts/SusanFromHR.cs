@@ -210,6 +210,9 @@ public class SusanFromHR : MonoBehaviour
         doTransitionOneSetup = false;
 
         bossIsInvulnerable = true;
+        SetCubeBoolsToFalse();
+        MakeTransitionCubesActive();
+        MakeShieldActive();
 
         doTransitionOne = true;
     }
@@ -337,5 +340,28 @@ public class SusanFromHR : MonoBehaviour
     private void ResetPhaseTwoStuff()
     {
         phaseTwoCurrentSpawner = 0;
+    }
+
+    public void MakeTransitionCubesActive()
+    {
+        transitionCubeOne.transform.position = new Vector3(transitionCubeOne.transform.position.x, Random.Range(3.0f, 7.0f), transitionCubeOne.transform.position.z);
+        transitionCubeOne.transform.rotation = Random.rotation;
+        transitionCubeTwo.transform.position = new Vector3(transitionCubeTwo.transform.position.x, Random.Range(3.0f, 7.0f), transitionCubeTwo.transform.position.z);
+        transitionCubeTwo.transform.rotation = Random.rotation;
+        transitionCubeThree.transform.position = new Vector3(transitionCubeThree.transform.position.x, Random.Range(3.0f, 7.0f), transitionCubeThree.transform.position.z);
+        transitionCubeThree.transform.rotation = Random.rotation;
+        transitionCubeFour.transform.position = new Vector3(transitionCubeFour.transform.position.x, Random.Range(3.0f, 7.0f), transitionCubeFour.transform.position.z);
+        transitionCubeFour.transform.rotation = Random.rotation;
+        transitionCubeOne.SetActive(true);
+        transitionCubeTwo.SetActive(true);
+        transitionCubeThree.SetActive(true);
+        transitionCubeFour.SetActive(true);
+    }
+
+    public void MakeShieldActive()
+    {
+        transitionShieldOne.SetActive(true);
+        transitionShieldTwo.SetActive(true);
+        transitionShieldThree.SetActive(true);
     }
 }
