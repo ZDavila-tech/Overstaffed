@@ -74,10 +74,9 @@ public class EnemySpawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && spawnsOnLevelLoad == false && addedToRemaining == false)
+        if (other.CompareTag("Player") && spawnsOnLevelLoad == false)
         {
             playerDetected = true;
-            addedToRemaining = true;
             //Debug.Log("Player Detected");
         }
     }
