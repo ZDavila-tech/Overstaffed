@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 1570852443671573167}
   - component: {fileID: 1570852443671573166}
   - component: {fileID: 1570852443671573163}
+  - component: {fileID: 8971753605827630776}
   - component: {fileID: 1570852443671573165}
   - component: {fileID: 1570852443671573164}
   - component: {fileID: 1570852443671573162}
@@ -118,6 +119,21 @@ MonoBehaviour:
   shootAngle: 20
   isSlowed: 0
   spawnedBySpawner: 0
+--- !u!114 &8971753605827630776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570852443671573161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8a5dd0ac9b52344a8a469bfafd39f6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  freezeEffect: {fileID: 6138967807688556159}
+  enemy: {fileID: 1570852443671573163}
+  skinnedModels: []
 --- !u!23 &1570852443671573165
 MeshRenderer:
   m_ObjectHideFlags: 0
