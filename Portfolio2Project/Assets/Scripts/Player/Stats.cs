@@ -5,10 +5,10 @@ using UnityEngine;
 public class Stats : MonoBehaviour
 {
     [Header("----- Stats -----")]
-    [Range(10, 250)][SerializeField] int Health;
-    [Range(1, 100)][SerializeField] public float Speed;
-    [Range(1, 100)][SerializeField] public int Attack;
-    [Range(1, 100)][SerializeField] public float wallrunSpeed;
+    [Range(0, 100)][SerializeField] int Health;
+    [Range(0, 100)][SerializeField] public float Speed;
+    [Range(0, 100)][SerializeField] public int Attack;
+    [Range(0, 100)][SerializeField] public float wallrunSpeed;
 
     [Header("----- Experience -----")]
     [SerializeField] public int Exp;
