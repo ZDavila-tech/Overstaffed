@@ -10272,6 +10272,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5206612201000735796}
   - component: {fileID: 8551598651028384659}
+  - component: {fileID: 571146971917196406}
   m_Layer: 0
   m_Name: WeaponHolder
   m_TagString: Untagged
@@ -10309,6 +10310,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   swayMultiplier: 5
   smooth: 8
+--- !u!114 &571146971917196406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4900145151083291675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55bc5092f273dd74284e20d96bd476c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 32255118}
+  recoilX: -2
+  recoilY: 2
+  recoilZ: 7
+  kickbackZ: 0.2
+  snappiness: 5
+  returnAmount: 8
 --- !u!1 &4907289682166412524
 GameObject:
   m_ObjectHideFlags: 0
@@ -10863,11 +10883,13 @@ MonoBehaviour:
   controller: {fileID: 6256373690464243920}
   skills: {fileID: 1055786313974128500}
   screenShake: {fileID: 0}
+  proceduralRecoil: {fileID: 571146971917196406}
   playerStats: {fileID: 5227066611642462926}
   playerSpeed: 0
   utCharge: 0
   jumpHeight: 8
   shootScreenshakeIntensity: 1
+  damagedScreenshakeIntensity: 1
   gravityValue: 15
   wallrunGravity: 8
   maxJumps: 1

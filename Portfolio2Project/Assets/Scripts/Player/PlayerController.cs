@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     [SerializeField] CharacterController controller;
     [SerializeField] Skills skills;
     [SerializeField] public GameObject screenShake;
+    [SerializeField] public ProceduralRecoil proceduralRecoil;
     UIManager uiManager;
     AudioManager audioManager;
 
@@ -270,6 +271,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
                 StartCoroutine(PlayShootSound());
                 //CinemachineCamshake.Instance.Shake(5f, 1f);
                 camShake.Shake(shootScreenshakeIntensity, 0.1f);
+                proceduralRecoil.Recoil();
                 //StartCoroutine(TriggerScreenShake(0.1f));
             }
 
