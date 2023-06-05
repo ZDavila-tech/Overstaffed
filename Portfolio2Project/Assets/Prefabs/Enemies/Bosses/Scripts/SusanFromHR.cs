@@ -23,6 +23,7 @@ public class SusanFromHR : MonoBehaviour
     [SerializeField] GameObject[] phaseOneThingToSpawn;
     [SerializeField] GameObject phaseOneBigThingToSpawn;
     [SerializeField] float phaseOneTimeBetweenFirings;
+    private int phaseOneCountToFour;
     private int phaseOneCurrentSpawner;
     private bool phaseOneIsFiring;
 
@@ -214,7 +215,7 @@ public class SusanFromHR : MonoBehaviour
     {
         doPhaseOneSetUp = false;
 
-        bossIsInvulnerable = false;
+        GenericPhaseSetup();
 
         doPhaseOne = true;
     }
@@ -223,7 +224,7 @@ public class SusanFromHR : MonoBehaviour
     {
         doPhaseTwoSetUp = false;
 
-        bossIsInvulnerable = false;
+        GenericPhaseSetup();
 
         doPhaseTwo = true;
     }
@@ -232,7 +233,7 @@ public class SusanFromHR : MonoBehaviour
     {
         doPhaseThreeSetUp = false;
 
-        bossIsInvulnerable = false;
+        GenericPhaseSetup();
         ResetPhaseOneStuff();
         ResetPhaseTwoStuff();
         int maxIndexProps = phaseThreeProps.Length;
@@ -248,6 +249,29 @@ public class SusanFromHR : MonoBehaviour
         }
 
         doPhaseThree = true;
+    }
+
+    public void GenericPhaseSetup()
+    {
+        bossIsInvulnerable = false;
+        DeactivateCubes();
+        DeactivateShields();
+    }
+
+    public void DeactivateCubes()
+    {
+        transitionCubeOne.SetActive(false);
+        transitionCubeTwo.SetActive(false);
+        transitionCubeThree.SetActive(false);
+        transitionCubeFour.SetActive(false);
+
+    }
+
+    public void DeactivateShields()
+    {
+        transitionShieldOne.SetActive(false);
+        transitionShieldTwo.SetActive(false);
+        transitionShieldThree.SetActive(false);
     }
 
     private void ResetPhaseOneStuff()
@@ -277,13 +301,25 @@ public class SusanFromHR : MonoBehaviour
         {
             phaseOneCurrentSpawner = 0;
         }
-        int maxIndexThings = phaseOneThingToSpawn.Length;
-        int randomThingIndex = Random.Range(0, maxIndexThings);
-        GameObject bossProjectile = Instantiate(phaseOneThingToSpawn[randomThingIndex], phaseOneSpawners[phaseOneCurrentSpawner].transform);
+
+        GameObject bossProjectile;
+        if(phaseOneCountToFour == 4)
+        {
+            bossProjectile = Instantiate(phaseOneBigThingToSpawn, phaseOneSpawners[phaseOneCurrentSpawner].transform);
+            phaseOneCountToFour = 0;
+        }
+        else
+        {
+            int maxIndexThings = phaseOneThingToSpawn.Length;
+            int randomThingIndex = Random.Range(0, maxIndexThings);
+            bossProjectile = Instantiate(phaseOneThingToSpawn[randomThingIndex], phaseOneSpawners[phaseOneCurrentSpawner].transform);
+        }
+
         BossProjectile bossProjectileScript = bossProjectile.GetComponent<BossProjectile>();
         bossProjectileScript.spawnPosition = phaseOneSpawners[phaseOneCurrentSpawner].transform;
         bossProjectileScript.targetToMoveTo = phaseOneCatchers[phaseOneCurrentSpawner].transform;
         phaseOneCatchers[phaseOneCurrentSpawner].GetComponent<BossProjectileCatcher>().expectedProjectile = bossProjectile;
+        ++phaseOneCountToFour;
         ++phaseOneCurrentSpawner;
 
         yield return new WaitForSeconds(phaseOneTimeBetweenFirings);
