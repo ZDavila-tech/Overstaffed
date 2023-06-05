@@ -20,7 +20,17 @@ public class HeadBobbing : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Mathf.Abs(controller.move.x) > 0.1f || Mathf.Abs(controller.move.z) > 0.1f /*&& controller.groundedPlayer*/)
+        if (controller.isSprinting)
+        {
+            walkingBobbingSpeed = 16f;
+            bobbingAmount = 0.1f;
+        }
+        else
+        {
+            walkingBobbingSpeed = 14f;
+            bobbingAmount = 0.07f;
+        }
+        if (Mathf.Abs(controller.move.x) > 0.1f || Mathf.Abs(controller.move.z) > 0.1f && controller.groundedPlayer)
         {
             //Player is moving
             timer += Time.deltaTime * walkingBobbingSpeed;
