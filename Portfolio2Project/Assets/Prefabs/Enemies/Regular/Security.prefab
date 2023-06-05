@@ -252,6 +252,7 @@ MonoBehaviour:
   - {fileID: 4658357512159410959, guid: 59364d3133cbbe541bde47c1ee4298d3, type: 3}
   - {fileID: 4658357512159410959, guid: 33712d3f3be7ef04a9b6e60bae891a41, type: 3}
   anim: {fileID: 7782623570078333734}
+  freezeEffect: {fileID: 0}
   iHP: 15
   hpBar: {fileID: 4156578680236791644}
   hpDisplay: {fileID: 2058829039921376284}
@@ -283,9 +284,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8a5dd0ac9b52344a8a469bfafd39f6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  freezeEffect: {fileID: 4820733174572227146}
-  enemy: {fileID: 2856267348468154941}
-  skinnedModels: []
 --- !u!195 &2856267348468154940
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -296,7 +294,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -618,6 +616,8 @@ GameObject:
   m_Component:
   - component: {fileID: 184860726609069237}
   - component: {fileID: 2936986392968285212}
+  - component: {fileID: 7956379254917891484}
+  - component: {fileID: 3772978749131151851}
   m_Layer: 12
   m_Name: Shield
   m_TagString: Untagged
@@ -652,6 +652,33 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.5, y: 2, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7956379254917891484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3791449065982874374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02043a7ed6de8cc41a3ae9f72eaa329e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Durability: 5
+  shieldModel: {fileID: 5929088233039680347}
+--- !u!65 &3772978749131151851
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3791449065982874374}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 2, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4749923999324947298
 GameObject:
@@ -896,6 +923,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 9569962, guid: fe2a5bf9b4c2d4a4b9853a8506f18c40, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: fe2a5bf9b4c2d4a4b9853a8506f18c40, type: 3}
+--- !u!23 &5929088233039680347 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2337602, guid: fe2a5bf9b4c2d4a4b9853a8506f18c40, type: 3}
+  m_PrefabInstance: {fileID: 5929088233041623065}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5929088233041461749 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 424428, guid: fe2a5bf9b4c2d4a4b9853a8506f18c40, type: 3}
