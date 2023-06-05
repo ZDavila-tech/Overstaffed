@@ -322,7 +322,6 @@ public class SusanFromHR : MonoBehaviour
         BossProjectile bossProjectileScript = bossProjectile.GetComponent<BossProjectile>();
         bossProjectileScript.spawnPosition = phaseOneSpawners[phaseOneCurrentSpawner].transform;
         bossProjectileScript.targetToMoveTo = phaseOneCatchers[phaseOneCurrentSpawner].transform;
-        phaseOneCatchers[phaseOneCurrentSpawner].GetComponent<BossProjectileCatcher>().expectedProjectile = bossProjectile;
         ++phaseOneCountToFour;
         ++phaseOneCurrentSpawner;
 
@@ -354,7 +353,6 @@ public class SusanFromHR : MonoBehaviour
         BossProjectile bossProjectileScript = bossProjectile.GetComponent<BossProjectile>();
         bossProjectileScript.spawnPosition = phaseTwoSpawners[phaseTwoCurrentSpawner].transform;
         bossProjectileScript.targetToMoveTo = phaseTwoCatchers[phaseTwoCurrentSpawner].transform;
-        phaseTwoCatchers[phaseTwoCurrentSpawner].GetComponent<BossProjectileCatcher>().expectedProjectile = bossProjectile;
         ++phaseTwoCurrentSpawner;
 
         yield return new WaitForSeconds(phaseTwoTimeBetweenFirings);
