@@ -11,7 +11,7 @@ public class Stats : MonoBehaviour
     [Range(1, 100)][SerializeField] public float wallrunSpeed;
 
     [Header("----- Experience -----")]
-    [SerializeField] int Exp;
+    [SerializeField] public int Exp;
 
     // Start is called before the first frame update
     void Start()

@@ -13,7 +13,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] NavMeshAgent navAgent;
     [SerializeField] Transform shootPosition;
     [SerializeField] Transform headPosition;
-    [SerializeField] GameObject drop;
+    [SerializeField] List<GameObject> drop;
     [SerializeField] Animator anim;    
 
     [Header("----- Enemy Stats -----")]
@@ -24,7 +24,9 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] float fFieldOfView;
     [SerializeField] float fChaseTime;
     [Range(0, 100)][SerializeField] int DropRate;
+    [Range(0, 100)][SerializeField] List<int> itemRates;
     [SerializeField] int chargeValue;
+    [SerializeField] int ExperienceYield;
     [SerializeField] float interuptionCoolDown;
     [SerializeField] float moveSpeed;
     [SerializeField] bool brokenAnimations;
@@ -208,22 +210,43 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         }
         StartCoroutine(BeenShot());
 
-        if(iHP <= 0) //if it dies, get rid of it
+        if (iHP <= 0) //if it dies, get rid of it
         {
             anim.SetTrigger("Died");//play the death animation
-            if (Random.Range(0, 100) <= DropRate && drop != null)
+            if (Random.Range(0, 100) <= DropRate && drop.Count > 0)
             {
-                Instantiate(drop, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
+                //Instantiate(drop, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
+                Drop();
             }
+            gameManager.instance.playerStats.GainExp(ExperienceYield);
             gameManager.instance.playerController.ChargeUt(chargeValue);
             --levelManager.enemiesRemaining;
             Destroy(gameObject);
         }
-        else 
+        else
         {
-            if(interrupted == false)
+            if (interrupted == false)
             {
                 StartCoroutine(GetInterrupted());
+            }
+        }
+    }
+
+    void Drop()
+    {
+        int total = 0;
+        foreach (int itemRate in itemRates)
+        {
+            total += itemRate;
+        }
+        int currentRate = 0;
+        for (int i = 0; i < itemRates.Count; i++)
+        {
+            currentRate += itemRates[i];
+            if (currentRate >= Random.Range(0, total))
+            {
+                Instantiate(drop[i], new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
+                return;
             }
         }
     }

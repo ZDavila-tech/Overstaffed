@@ -8,13 +8,9 @@ public class PropCatcher : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (expectedProjectile != null)
+        if (other.gameObject == expectedProjectile)
         {
-            if (other.gameObject == expectedProjectile)
-            {
-                //make a crashing sound
-                expectedProjectile.GetComponent<Rigidbody>().velocity = Vector3.zero;
-            }
+            other.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
         }
     }
 }

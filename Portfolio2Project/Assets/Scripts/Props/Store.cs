@@ -41,6 +41,7 @@ public class Store : MonoBehaviour, IInteract
         if (isMimic) //if the store is a mimic, it instantiates the mimic enemy and destroys itself
         {
             Instantiate(mimic);
+            LevelManager.instance.enemiesRemaining += 1;
             Destroy(gameObject);
         }
         else //if it's not, normal store behaviour applies and the store menu is opened

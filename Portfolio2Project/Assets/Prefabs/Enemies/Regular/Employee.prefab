@@ -152,7 +152,8 @@ MonoBehaviour:
   navAgent: {fileID: 4728235726989330129}
   shootPosition: {fileID: 6169411614852804308}
   headPosition: {fileID: 6365879257754246016}
-  drop: {fileID: 4658357512159410959, guid: 59364d3133cbbe541bde47c1ee4298d3, type: 3}
+  drop:
+  - {fileID: 4658357512159410959, guid: 59364d3133cbbe541bde47c1ee4298d3, type: 3}
   anim: {fileID: 2331917227492202658}
   iHP: 8
   hpBar: {fileID: 4517169128264336482}
@@ -161,7 +162,9 @@ MonoBehaviour:
   fFieldOfView: 165
   fChaseTime: 3
   DropRate: 15
+  itemRates: 32000000
   chargeValue: 10
+  ExperienceYield: 2
   interuptionCoolDown: 2
   moveSpeed: 0
   brokenAnimations: 0
@@ -183,7 +186,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8a5dd0ac9b52344a8a469bfafd39f6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 0
   freezeEffect: {fileID: 8616015979035415240}
   enemy: {fileID: 4728235726989330128}
   skinnedModels: []

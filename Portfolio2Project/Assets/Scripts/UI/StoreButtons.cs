@@ -6,16 +6,29 @@ public class StoreButtons : MonoBehaviour
 {
    public void BuyAttack(int amount)
     {
-        gameManager.instance.playerStats.AttackUp(amount);
+        if (gameManager.instance.playerStats.Exp >= (gameManager.instance.playerStats.GetAttack() * 10 * amount))
+        {
+            gameManager.instance.playerStats.AttackUp(amount);
+            gameManager.instance.playerStats.GainExp(-(gameManager.instance.playerStats.GetAttack() * 10 * amount));
+        }
     }
-    public void BuyHealth(int amount)
+        public void BuyHealth(int amount)
     {
-        gameManager.instance.playerStats.HealthUp(amount);
+        if (gameManager.instance.playerStats.Exp >= ((gameManager.instance.playerStats.GetHealth() - 9) * 10 * amount))
+        {
+            gameManager.instance.playerStats.HealthUp(amount);
+            gameManager.instance.playerStats.GainExp(-((gameManager.instance.playerStats.GetHealth() - 9) * 10 * amount));
+        }
     }
     public void BuySpeed(int amount)
     {
-        gameManager.instance.playerStats.SpeedUp(amount);
+        if (gameManager.instance.playerStats.Exp >= (gameManager.instance.playerStats.GetSpeed() * 10 * amount))
+        {
+            gameManager.instance.playerStats.SpeedUp(amount);
+            gameManager.instance.playerStats.GainExp((int)-(gameManager.instance.playerStats.GetSpeed() * 10 * amount));
+        }
     }
+
 
     public void Exit()
     {
