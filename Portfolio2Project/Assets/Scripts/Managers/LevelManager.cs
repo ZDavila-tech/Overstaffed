@@ -101,26 +101,23 @@ public class LevelManager : MonoBehaviour
 
     public void LevelCompletionTracker()
     {
-        if (loadingLevel == false)
+        if (levelStarted == true && enemiesRemaining <= 0) //if level is started and all enemies are dead level is considered completed
         {
-            if (levelStarted == true && enemiesRemaining <= 0) //if level is started and all enemies are dead level is considered completed
+            if (levelCompleted == false)
             {
-                if (levelCompleted == false)
-                {
-                    //Debug.Log("levelStarted True + enemies < 0, level is completed");
-                    levelCompleted = true;
-                }
+                //Debug.Log("levelStarted True + enemies < 0, level is completed");
+                levelCompleted = true;
+            }
 
-                if (inElevator == true)
-                {
-                    inElevator = false; //FOR THE LOVE OF GOD HAVE THIS BEFORE GO TO NEXT LEVEL OR EVERYTHING BREAKS
-                    LevelTransitionSequence();
-                }
-            }
-            else
+            if (inElevator == true)
             {
-                levelCompleted = false;
+                inElevator = false; //FOR THE LOVE OF GOD HAVE THIS BEFORE GO TO NEXT LEVEL OR EVERYTHING BREAKS
+                LevelTransitionSequence();
             }
+        }
+        else
+        {
+            levelCompleted = false;
         }
     }
     public void LevelTransitionSequence() //if levelStarted, no enemies, and player in elevator -> load new level
@@ -165,6 +162,8 @@ public class LevelManager : MonoBehaviour
             }
             else
             {
+                enemiesRemaining = totalEnemiesToSpawn;
+                //update enemies remaining here
                 SceneManager.LoadScene(GetRandomLevelIndex());
             }
         }
@@ -218,6 +217,7 @@ public class LevelManager : MonoBehaviour
                                 }
                             case 5:
                                 {
+                                    enemiesRemaining = totalEnemiesToSpawn;
                                     SceneManager.LoadScene("Reception");
                                     break;
                                 }
@@ -225,6 +225,7 @@ public class LevelManager : MonoBehaviour
                     }
                     else
                     {
+                        enemiesRemaining = totalEnemiesToSpawn;
                         SceneManager.LoadScene(GetRandomLevelIndex());
                     }
                 }

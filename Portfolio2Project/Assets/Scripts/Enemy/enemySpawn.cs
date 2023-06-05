@@ -27,8 +27,6 @@ public class enemySpawn : MonoBehaviour
         if(LevelManager.instance != null)
         {
             levelManager = LevelManager.instance;
-            int numberOfMultiSpawners = GameObject.FindGameObjectsWithTag("MultiSpawner").Length;
-            levelManager.enemiesRemaining += (levelManager.totalEnemiesToSpawn / numberOfMultiSpawners);
         }
     }
 
