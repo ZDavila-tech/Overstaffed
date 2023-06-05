@@ -20,7 +20,7 @@ public class buttonFunctions : MonoBehaviour
     }
     private void Update()
     {
-        buttonAudio.volume = AudioManager.instance.soundEffectsVolume.value;
+       // buttonAudio.volume = AudioManager.instance.soundEffectsVolume.value;
     }
     //Resume the game
     public void Resume()
@@ -49,7 +49,7 @@ public class buttonFunctions : MonoBehaviour
     }
 
     //Quits the game; doesn't work unless built
-    public void Quit()
+    public void QuitCheck()
     {
         buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
         uiManager.quitCheckMenu.SetActive(true);
