@@ -14,7 +14,8 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] Transform shootPosition;
     [SerializeField] Transform headPosition;
     [SerializeField] List<GameObject> drop;
-    [SerializeField] Animator anim;    
+    [SerializeField] Animator anim;
+    [SerializeField] MeshRenderer freezeEffect;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int iHP;
@@ -50,20 +51,20 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
     //IDamage damageInterface;
     private Color cOrigColor;
-    
+
     void Start()
     {
         isSlowed = false;
-        if(LevelManager.instance != null)
+        if (LevelManager.instance != null)
         {
             levelManager = LevelManager.instance;
         }
 
         cOrigColor = rModel.material.color;
-        
+
         hpBar.maxValue = iHP;
         hpBar.value = hpBar.maxValue;
-        if(anim !=  null)
+        if (anim != null)
         {
             anim.SetFloat("Shoot Rate", 1 / shootRate);
         }
@@ -91,7 +92,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         {
             hpDisplay.transform.LookAt(gameManager.instance.playerCharacter.transform.position);
         }
-        if((bPlayerInRange || bBeenShot) && CanSeePlayer())
+        if ((bPlayerInRange || bBeenShot) && CanSeePlayer())
         {
             AttackPlayer();
         }
@@ -136,7 +137,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         Debug.DrawRay(headPosition.position, playerDir);
         //Debug.Log(fAngleToPlayer);
 
-        if(Physics.Raycast(headPosition.position, playerDir, out RaycastHit hit))
+        if (Physics.Raycast(headPosition.position, playerDir, out RaycastHit hit))
         {
             if (hit.collider.CompareTag("Player") && fAngleToPlayer <= fFieldOfView)
             {
@@ -154,21 +155,21 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
             Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
             transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * fTurnRate);
         }
-        }
+    }
 
-        void AttackPlayer()
+    void AttackPlayer()
     {
         if (navAgent.isActiveAndEnabled)
         {
             navAgent.SetDestination(gameManager.instance.playerCharacter.transform.position);
         }
 
-            if (navAgent.remainingDistance < navAgent.stoppingDistance)
-            {
-                //Debug.Log("YARGH");
-                FacePlayer();
+        if (navAgent.remainingDistance < navAgent.stoppingDistance)
+        {
+            //Debug.Log("YARGH");
+            FacePlayer();
 
-            }
+        }
 
 
         if (!bIsShooting && fAngleToPlayer <= shootAngle)
@@ -176,10 +177,11 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
             StartCoroutine(Shoot());
         }
     }
-    
-    IEnumerator Shoot(){
+
+    IEnumerator Shoot()
+    {
         bIsShooting = true;//tell update that this is running
-        if(brokenAnimations == true)
+        if (brokenAnimations == true)
         {
             yield return new WaitForSeconds(shootRate * 0.5f);
             CreateBullet();
@@ -187,8 +189,8 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         }
         else
         {
-        anim.SetTrigger("Attack");//play the shooting animation
-        yield return new WaitForSeconds(shootRate);
+            anim.SetTrigger("Attack");//play the shooting animation
+            yield return new WaitForSeconds(shootRate);
         }
         bIsShooting = false;//tell update that we're ready to shoot again
     }
@@ -277,7 +279,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
     void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             bPlayerInRange = true;
         }
@@ -304,5 +306,37 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         yield return new WaitForSeconds(interuptionCoolDown);
 
         interrupted = false;
+    }
+
+
+    IEnumerator Freezing(float duration)
+    {
+        toggleMovement(false);
+        freezeEffect.enabled = true;
+        yield return new WaitForSeconds(duration);
+        toggleMovement(true);
+        freezeEffect.enabled = false;
+    }
+
+    public void Freeze(float duration)
+    {
+        StartCoroutine(Freezing(duration));
+    }
+
+    IEnumerator Burning(float duration, float timeBetween, int damage)
+    {
+        bool burning = true;
+        while (burning)
+        {
+            yield return new WaitForSeconds(timeBetween);
+            TakeDamage(damage);
+        }
+        yield return new WaitForSeconds(duration);
+        burning = false;
+    }
+
+    public void Burn (float duration, float timeBetween)
+    {
+
     }
 }

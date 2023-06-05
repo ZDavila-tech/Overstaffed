@@ -314,7 +314,7 @@ public class NewStaff : MonoBehaviour
                     {
                         //waterEffect.enableEmission = false;
                         //enemy.GetComponent<EnemyAI>().TakeDamage(1);
-                        enemy.GetComponent<StatusEffect>().Freeze(slowDuration);
+                        enemy.GetComponent<EnemyAI>().Freeze(slowDuration);
                         timesDamaged++;
                         yield return new WaitForSeconds(1);
                         if (timesDamaged == slowDuration)

@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     AudioManager audioManager;
 
     [Header("----- Player Stats -----")]
+    [SerializeField] int baseAttack;
+    [SerializeField] int baseHealth;
+    [SerializeField] int baseSpeed;
     [SerializeField] Stats playerStats;
     int iHP;
     public float playerSpeed;
@@ -78,16 +81,21 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     void Start()
     {
-        playerSpeed = playerStats.Speed;
-        playerDamage = playerStats.Attack;
+        UpdatePlayerStats();
         standingHeight = height;
         origGrav = gravityValue;
         origSpeed = playerStats.Speed;
         gameManager.instance.SetPlayerVariables(this.gameObject);
         UpdateSpeed();
-        iHP = playerStats.GetHealth();
         uiManager = UIManager.instance;
         audioManager = AudioManager.instance;
+    }
+
+    public void UpdatePlayerStats()
+    {
+        playerSpeed = playerStats.Speed + baseSpeed;
+        playerDamage = playerStats.Attack + baseAttack;
+        iHP = playerStats.GetHealth() + baseHealth;
     }
 
     void Update()
@@ -382,5 +390,30 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         playerSpeed = 5 + (playerStats.GetSpeed()/10);
     }
 
-    
+    IEnumerator Freezing(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+    }
+
+    public void Freeze(float duration)
+    {
+        StartCoroutine(Freezing(duration));
+    }
+
+    IEnumerator Burning(float duration, float timeBetween, int damage)
+    {
+        bool burning = true;
+        while (burning)
+        {
+            yield return new WaitForSeconds(timeBetween);
+            TakeDamage(damage);
+        }
+        yield return new WaitForSeconds(duration);
+        burning = false;
+    }
+
+    public void Burn(float duration, float timeBetween)
+    {
+        StartCoroutine(Burning(duration, timeBetween, playerStats.GetHealth() *  (100/10)));
+    }
 }

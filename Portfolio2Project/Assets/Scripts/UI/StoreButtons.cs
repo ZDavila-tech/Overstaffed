@@ -10,6 +10,7 @@ public class StoreButtons : MonoBehaviour
         {
             gameManager.instance.playerStats.AttackUp(amount);
             gameManager.instance.playerStats.GainExp(-(gameManager.instance.playerStats.GetAttack() * 10 * amount));
+            gameManager.instance.playerController.UpdatePlayerStats();
         }
     }
         public void BuyHealth(int amount)
@@ -18,6 +19,7 @@ public class StoreButtons : MonoBehaviour
         {
             gameManager.instance.playerStats.HealthUp(amount);
             gameManager.instance.playerStats.GainExp(-((gameManager.instance.playerStats.GetHealth() - 9) * 10 * amount));
+            gameManager.instance.playerController.UpdatePlayerStats();
         }
     }
     public void BuySpeed(int amount)
@@ -26,6 +28,7 @@ public class StoreButtons : MonoBehaviour
         {
             gameManager.instance.playerStats.SpeedUp(amount);
             gameManager.instance.playerStats.GainExp((int)-(gameManager.instance.playerStats.GetSpeed() * 10 * amount));
+            gameManager.instance.playerController.UpdatePlayerStats();
         }
     }
 

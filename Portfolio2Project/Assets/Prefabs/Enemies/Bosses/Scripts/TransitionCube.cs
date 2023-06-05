@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TransitionCube : MonoBehaviour, IDamage
@@ -12,6 +13,16 @@ public class TransitionCube : MonoBehaviour, IDamage
     private void Start()
     {
         originalHealth = healthPoints;
+    }
+
+    public void Freeze(float duration)
+    {
+
+    }
+
+    public void Burn(float duration, float timeBetween)
+    {
+
     }
 
     public void TakeDamage(int damage)
@@ -47,7 +58,7 @@ public class TransitionCube : MonoBehaviour, IDamage
                 ResetHealth();
                 this.gameObject.SetActive(false);
             }
-        }       
+        }
     }
 
     public void ResetHealth()
