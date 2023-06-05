@@ -38,6 +38,11 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [Range(0, 2.5f)][SerializeField] float shootRate;
     [SerializeField] float shootAngle;
 
+    [Header("----- Specific Enemy Stuff -----")]
+    /*[SerializeField] GameObject shield;
+    [SerializeField] MeshRenderer shieldModel;
+    [SerializeField] int shieldHP;*/
+
     bool bIsShooting;
     bool bPlayerInRange;
     bool bBeenShot;
