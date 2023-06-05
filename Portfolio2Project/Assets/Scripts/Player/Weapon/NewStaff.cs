@@ -95,11 +95,6 @@ public class NewStaff : MonoBehaviour
         }
         Melee();
         SpecialAttack();
-        //if(waterEffect != null)
-        //{
-        //    waterEffect.transform.position = player.transform.position;
-        //}
-        
     }
 
     public void Shoot()
