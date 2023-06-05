@@ -6,6 +6,8 @@ using UnityEngine;
 public class SusanFromHR : MonoBehaviour
 {
     private UIManager uiManager;
+    private LevelManager levelManager;
+
     [Header("----- Art -----")]
     [SerializeField] Renderer model;
     private Color originalColor;
@@ -101,6 +103,8 @@ public class SusanFromHR : MonoBehaviour
     private void Start()
     {
         uiManager = UIManager.instance;
+        levelManager = LevelManager.instance;
+        ++levelManager.enemiesRemaining;
     }
 
     private void Update()
@@ -505,7 +509,11 @@ public class SusanFromHR : MonoBehaviour
     {
         doBossDeadStuff = false;
 
-        GameObject.Destroy(this.gameObject);
+        StopAllCoroutines();
+        //death animation? death animation!
+        this.gameObject.transform.rotation = new Quaternion(90, 45, 45, this.gameObject.transform.rotation.w);
+        this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 3.5f, this.gameObject.transform.position.z);
+        GameObject.Destroy(this.gameObject, 7);
 
         bossIsInvulnerable = true;
     }
@@ -537,15 +545,29 @@ public class SusanFromHR : MonoBehaviour
 
     public IEnumerator TakeDamageColorFlash()
     {
-        model.material.color = Color.red;
-        yield return new WaitForSeconds(0.1f);
-        model.material.color = originalColor;
+        if(model != null)
+        {
+            model.material.color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            model.material.color = originalColor;
+        }
+        else
+        {
+            yield return null;
+        }
     }
 
     public IEnumerator InvulnerableColorFlash()
     {
-        model.material.color = Color.blue;
-        yield return new WaitForSeconds(0.1f);
-        model.material.color = originalColor;
+        if (model != null)
+        {
+            model.material.color = Color.blue;
+            yield return new WaitForSeconds(0.1f);
+            model.material.color = originalColor;
+        }
+        else
+        {
+            yield return null;
+        }
     }
 }
