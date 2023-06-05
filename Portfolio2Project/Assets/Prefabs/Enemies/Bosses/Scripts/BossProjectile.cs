@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class BossProjectile : MonoBehaviour
 {
+    [SerializeField] Rigidbody rigidBody;
     [SerializeField] float projectileSpeed;
-    public GameObject targetToMoveTo;
+
+    [Header("----- Set By Boss (Ignore) -----")]
+    public Transform spawnPosition;
+    public Transform targetToMoveTo;
+
+    private void Start()
+    {
+        rigidBody.velocity = (targetToMoveTo.position - spawnPosition.position).normalized * projectileSpeed;
+    }
 }
