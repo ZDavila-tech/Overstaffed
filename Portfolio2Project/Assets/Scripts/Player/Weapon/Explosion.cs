@@ -27,7 +27,7 @@ public class Explosion : MonoBehaviour
             if (other.GetComponent<IDamage>() != null)
             {
                 IDamage damageable = other.GetComponent<IDamage>();
-                damageable.TakeDamage(damage);
+                damageable.TakeDamage(damage + gameManager.instance.playerStats.Attack);
             }
     }
 

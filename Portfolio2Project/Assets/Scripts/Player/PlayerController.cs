@@ -9,10 +9,14 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     [SerializeField] Skills skills;
     [SerializeField] public GameObject screenShake;
     [SerializeField] public ProceduralRecoil proceduralRecoil;
+    [SerializeField] public WeaponSway weaponSway;
     UIManager uiManager;
     AudioManager audioManager;
 
     [Header("----- Player Stats -----")]
+    [SerializeField] int baseAttack;
+    [SerializeField] int baseHealth;
+    [SerializeField] int baseSpeed;
     [SerializeField] Stats playerStats;
     int iHP;
     public float playerSpeed;
@@ -57,6 +61,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     private bool isSprinting;
     private bool damagedRecently;
     public bool isCrouching;
+    
 
     [Header("----- Audio -----")]
     [SerializeField] AudioSource aud;
@@ -76,15 +81,21 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     void Start()
     {
-        playerSpeed = playerStats.Speed;
+        UpdatePlayerStats();
         standingHeight = height;
         origGrav = gravityValue;
         origSpeed = playerStats.Speed;
         gameManager.instance.SetPlayerVariables(this.gameObject);
         UpdateSpeed();
-        iHP = playerStats.GetHealth();
         uiManager = UIManager.instance;
         audioManager = AudioManager.instance;
+    }
+
+    public void UpdatePlayerStats()
+    {
+        playerSpeed = playerStats.Speed + baseSpeed;
+        playerDamage = playerStats.Attack + baseAttack;
+        iHP = playerStats.GetHealth() + baseHealth;
     }
 
     void Update()
@@ -161,6 +172,18 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         controller.Move((playerVelocity + pushBack) * Time.deltaTime);
 
         pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushBackResolve);
+
+        weaponSway.currentSpeed = AllowWeaponSway() ? playerSpeed : 0f;
+    }
+
+    private bool AllowWeaponSway()
+    {
+        if(Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     void OnControllerColliderHit(ControllerColliderHit hit)
@@ -282,7 +305,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
                 if (hit.collider.GetComponent<IDamage>() != null)
                 {
                     IDamage damageable = hit.collider.GetComponent<IDamage>();
-                    damageable.TakeDamage(1);
+                    damageable.TakeDamage(playerDamage);
                 }
             }
         }
@@ -367,5 +390,30 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         playerSpeed = 5 + (playerStats.GetSpeed()/10);
     }
 
-    
+    IEnumerator Freezing(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+    }
+
+    public void Freeze(float duration)
+    {
+        StartCoroutine(Freezing(duration));
+    }
+
+    IEnumerator Burning(float duration, float timeBetween, int damage)
+    {
+        bool burning = true;
+        while (burning)
+        {
+            yield return new WaitForSeconds(timeBetween);
+            TakeDamage(damage);
+        }
+        yield return new WaitForSeconds(duration);
+        burning = false;
+    }
+
+    public void Burn(float duration, float timeBetween)
+    {
+        StartCoroutine(Burning(duration, timeBetween, playerStats.GetHealth() *  (100/10)));
+    }
 }

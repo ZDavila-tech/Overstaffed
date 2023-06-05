@@ -67,6 +67,7 @@ public class LevelManager : MonoBehaviour
         if(uiManager != null)
         {
             uiManager.UpdateLevelCount();
+            uiManager.UpdateEnemiesRemaining();
         }
 
         if (loadingLevel == false)
