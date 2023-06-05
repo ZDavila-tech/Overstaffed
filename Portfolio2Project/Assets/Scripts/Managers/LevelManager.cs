@@ -24,7 +24,7 @@ public class LevelManager : MonoBehaviour
     public int currentLevel;
     public int totalEnemiesToSpawn; //total enemies to spawn
     public int enemiesRemaining; //goes up when an enemyAI Start()'s and goes down on enemy death
-    public int currentEnemiesSpawned; //
+    public int currentEnemiesSpawned;
     public int currentEnemiesAlive;
 
     [Header("----- Level Transition Stuff (Ignore)-----")]
@@ -93,7 +93,6 @@ public class LevelManager : MonoBehaviour
 
     public void NewLevelVariableResets()
     {
-        levelCompleted = false;
         levelStarted = false;
         enemiesRemaining = 0;
         currentEnemiesSpawned = 0;
@@ -150,7 +149,7 @@ public class LevelManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        if(currentLevel > highestLevelCompleted)
+        if (currentLevel > highestLevelCompleted)
         {
             highestLevelCompleted = currentLevel;
         }

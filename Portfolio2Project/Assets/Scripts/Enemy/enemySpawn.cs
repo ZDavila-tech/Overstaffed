@@ -45,7 +45,7 @@ public class enemySpawn : MonoBehaviour
     // update is called once per frame
     void Update()
     {
-        if(!isSpawning && levelManager.totalEnemiesToSpawn > levelManager.currentEnemiesSpawned && levelManager.currentEnemiesAlive < levelManager.maxEnemiesAtOneTime)
+        if(!isSpawning && levelManager.totalEnemiesToSpawn > levelManager.currentEnemiesSpawned && levelManager.currentEnemiesAlive < levelManager.maxEnemiesAtOneTime && !levelManager.levelCompleted)
         {
             StartCoroutine(attemptspawn());
         }
