@@ -272,12 +272,13 @@ public class SusanFromHR : MonoBehaviour
     {
         phaseOneIsFiring = true;
 
-        int maxIndex = phaseOneThingToSpawn.Length;
-        if (phaseOneCurrentSpawner > maxIndex)
+        int maxIndexSpawners = phaseOneSpawners.Length;
+        if (phaseOneCurrentSpawner == maxIndexSpawners)
         {
             phaseOneCurrentSpawner = 0;
         }
-        int randomThingIndex = Random.Range(0, maxIndex);
+        int maxIndexThings = phaseOneThingToSpawn.Length;
+        int randomThingIndex = Random.Range(0, maxIndexThings);
         GameObject bossProjectile = Instantiate(phaseOneThingToSpawn[randomThingIndex], phaseOneSpawners[phaseOneCurrentSpawner].transform);
         BossProjectile bossProjectileScript = bossProjectile.GetComponent<BossProjectile>();
         bossProjectileScript.spawnPosition = phaseOneSpawners[phaseOneCurrentSpawner].transform;
@@ -302,12 +303,13 @@ public class SusanFromHR : MonoBehaviour
     {
         phaseTwoIsFiring = true;
 
-        int maxIndex = phaseTwoThingToSpawn.Length;
-        if (phaseTwoCurrentSpawner > maxIndex)
+        int maxIndexSpawners = phaseTwoSpawners.Length;
+        if (phaseTwoCurrentSpawner == maxIndexSpawners)
         {
             phaseTwoCurrentSpawner = 0;
         }
-        int randomThingIndex = Random.Range(0, maxIndex);
+        int maxIndexThings = phaseTwoThingToSpawn.Length;
+        int randomThingIndex = Random.Range(0, maxIndexThings);
         GameObject bossProjectile = Instantiate(phaseTwoThingToSpawn[randomThingIndex], phaseTwoSpawners[phaseTwoCurrentSpawner].transform);
         BossProjectile bossProjectileScript = bossProjectile.GetComponent<BossProjectile>();
         bossProjectileScript.spawnPosition = phaseTwoSpawners[phaseTwoCurrentSpawner].transform;

@@ -22,5 +22,6 @@ public class BossFightStarter : MonoBehaviour
         //uiManager.ShowActiveMenu();
 
         susan.StartFight();
+        Destroy(this.gameObject);
     }
 }
