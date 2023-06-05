@@ -26,6 +26,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [Range(0, 100)][SerializeField] int DropRate;
     [Range(0, 100)][SerializeField] List<int> itemRates;
     [SerializeField] int chargeValue;
+    [SerializeField] int ExperienceYield;
     [SerializeField] float interuptionCoolDown;
     [SerializeField] float moveSpeed;
     [SerializeField] bool brokenAnimations;
@@ -217,6 +218,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
                 //Instantiate(drop, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
                 Drop();
             }
+            gameManager.instance.playerStats.GainExp(ExperienceYield);
             gameManager.instance.playerController.ChargeUt(chargeValue);
             --levelManager.enemiesRemaining;
             Destroy(gameObject);
