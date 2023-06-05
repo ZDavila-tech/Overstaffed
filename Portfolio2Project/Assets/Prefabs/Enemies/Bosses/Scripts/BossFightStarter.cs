@@ -21,7 +21,10 @@ public class BossFightStarter : MonoBehaviour
         //uiManager.activeMenu = uiManager.bossPromptPreFight;
         //uiManager.ShowActiveMenu();
 
-        susan.StartFight();
-        Destroy(this.gameObject);
+        if (other.CompareTag("Player") == true)
+        {
+            susan.StartFight();
+            Destroy(this.gameObject);
+        }
     }
 }

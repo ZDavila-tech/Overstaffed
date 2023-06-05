@@ -513,6 +513,7 @@ public class SusanFromHR : MonoBehaviour
         //death animation? death animation!
         this.gameObject.transform.rotation = new Quaternion(90, 45, 45, this.gameObject.transform.rotation.w);
         this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 3.5f, this.gameObject.transform.position.z);
+        --levelManager.enemiesRemaining;
         GameObject.Destroy(this.gameObject, 7);
 
         bossIsInvulnerable = true;
