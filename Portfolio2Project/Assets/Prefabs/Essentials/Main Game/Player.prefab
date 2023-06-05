@@ -5390,7 +5390,6 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 1
-  camShake: {fileID: 8548034150311879936}
   meleeCooldown: 0.1
   swordHitbox: {fileID: 3773167801377614847}
   spearHitbox: {fileID: 4531740379933452979}
@@ -11105,8 +11104,8 @@ GameObject:
   - component: {fileID: 6256373690464243926}
   - component: {fileID: 8132328926872428045}
   - component: {fileID: 6256373690464243921}
-  - component: {fileID: 1055786313974128500}
   - component: {fileID: 5227066611642462926}
+  - component: {fileID: 1055786313974128500}
   - component: {fileID: 5409566226741756279}
   - component: {fileID: 6256373690464243927}
   - component: {fileID: 6256373690464243924}
@@ -11169,7 +11168,7 @@ MonoBehaviour:
   proceduralRecoil: {fileID: 571146971917196406}
   weaponSway: {fileID: 8551598651028384659}
   playerStats: {fileID: 5227066611642462926}
-  playerSpeed: 0
+  playerSpeed: 8
   utCharge: 0
   jumpHeight: 8
   shootScreenshakeIntensity: 1
@@ -11196,6 +11195,23 @@ MonoBehaviour:
   JumpVolume: 0.5
   jumpAudio: {fileID: 8300000, guid: bd109bbf0935edd40bd80dbc4f55c07f, type: 3}
   camShake: {fileID: 8548034150311879936}
+--- !u!114 &5227066611642462926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6256373690464243930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cf04abe5ec0432429fd173c729a8e77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 10
+  Speed: 8
+  Attack: 3
+  wallrunSpeed: 15
+  Exp: 0
 --- !u!114 &1055786313974128500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11228,23 +11244,6 @@ MonoBehaviour:
   SlowFallCooldown: 1
   BlinkDistance: 50
   BlinkCooldown: 10
---- !u!114 &5227066611642462926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6256373690464243930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cf04abe5ec0432429fd173c729a8e77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: 10
-  Speed: 8
-  Attack: 3
-  wallrunSpeed: 15
-  Exp: 0
 --- !u!114 &5409566226741756279
 MonoBehaviour:
   m_ObjectHideFlags: 0

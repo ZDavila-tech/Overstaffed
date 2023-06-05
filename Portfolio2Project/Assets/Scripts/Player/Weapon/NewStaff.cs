@@ -19,7 +19,6 @@ public class NewStaff : MonoBehaviour
     [SerializeField] private List<TrailRenderer> trailRenderer;
     [SerializeField] private float delay;
     [SerializeField] private LayerMask mask;
-    [SerializeField] CinemachineCamshake camShake;
 
     [Header("----- Melee Stuff -----")]
     [SerializeField] private float meleeCooldown;
@@ -178,27 +177,6 @@ public class NewStaff : MonoBehaviour
         }
     }
 
-    IEnumerator MeleeCameraShake()
-    {
-        switch (playerElement)
-        {
-            case Element.Fire:
-                camShake.Shake(1f, .1f);
-                yield return new WaitForSeconds(0.4f);
-                camShake.Shake(1f, .1f);
-                break;
-            case Element.Water:
-                yield return new WaitForSeconds(0.2f);
-                camShake.Shake(1f, .1f);
-                break;
-            case Element.Earth:
-                yield return new WaitForSeconds(0.6f);
-                camShake.Shake(1f, .1f);
-                break;
-
-        }
-    }
-
     public void Melee()
     {
         if (canMelee && Input.GetMouseButtonDown(1))
@@ -218,7 +196,6 @@ public class NewStaff : MonoBehaviour
                     weaponParticles[0].SetActive(true);
                     gameManager.instance.playerController.PlayExternalAudio(audios[3]);
                     anim.SetTrigger("SwordMelee");
-                    StartCoroutine(MeleeCameraShake());
                     break;
                 case Element.Water:
                     weaponModels[2].SetActive(true);
@@ -226,7 +203,6 @@ public class NewStaff : MonoBehaviour
                     spearHitbox.enabled = true;
                     gameManager.instance.playerController.PlayExternalAudio(audios[4]);
                     anim.SetTrigger("SpearMelee");
-                    StartCoroutine(MeleeCameraShake());
                     break;
                 case Element.Earth:
                     weaponModels[3].SetActive(true);
@@ -234,7 +210,6 @@ public class NewStaff : MonoBehaviour
                     hammerHitbox.enabled = true;
                     gameManager.instance.playerController.PlayExternalAudio(audios[5]);
                     anim.SetTrigger("HammerMelee");
-                    StartCoroutine(MeleeCameraShake());
                     break;
             }
 
@@ -320,7 +295,6 @@ public class NewStaff : MonoBehaviour
 
             Instantiate(explosionEffect, hit.point, Quaternion.LookRotation(hit.normal));
             Instantiate(explosion, hit.point, Quaternion.LookRotation(hit.normal));
-            camShake.Shake(5f, 1f);
         }
     }
 
@@ -340,7 +314,7 @@ public class NewStaff : MonoBehaviour
                     {
                         //waterEffect.enableEmission = false;
                         //enemy.GetComponent<EnemyAI>().TakeDamage(1);
-                        enemy.GetComponent<StatusEffect>().Freeze(slowDuration);
+                        enemy.GetComponent<EnemyAI>().Freeze(slowDuration);
                         timesDamaged++;
                         yield return new WaitForSeconds(1);
                         if (timesDamaged == slowDuration)
@@ -363,7 +337,6 @@ public class NewStaff : MonoBehaviour
         if (Physics.Raycast(shootPos.position, direction, out hit, float.MaxValue, mask))
         {
             Instantiate(earthEffect, hit.point, earthEffect.transform.rotation);
-            camShake.Shake(5f, 1f);
         }
         foreach (GameObject enemy in enemies)
         {

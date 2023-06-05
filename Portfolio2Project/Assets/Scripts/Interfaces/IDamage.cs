@@ -5,4 +5,6 @@ using UnityEngine;
 public interface IDamage
 {
     void TakeDamage(int dmg);
+    void Freeze(float duration);
+    void Burn(float duration, float timeBetween);
 }

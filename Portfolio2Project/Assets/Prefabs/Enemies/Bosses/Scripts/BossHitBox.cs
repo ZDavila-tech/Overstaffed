@@ -22,6 +22,16 @@ public class BossHitBox : MonoBehaviour, IDamage
         }
     }
 
+    public void Freeze(float duration)
+    {
+
+    }
+
+    public void Burn(float duration, float timeBetween)
+    {
+
+    }
+
     public void TakeDamage(int damage)
     {
         if(susan != null)
