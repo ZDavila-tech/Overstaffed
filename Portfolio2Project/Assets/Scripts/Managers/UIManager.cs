@@ -297,9 +297,9 @@ public class UIManager : MonoBehaviour
 
     public void SetPlayerVariables()
     {
-        Debug.Log(gameManager.playerSkills);
-        playerSkills = gameManager.playerSkills;
-        playerElement = gameManager.playerElement;
+        Debug.Log(gameManager.instance.playerSkills);
+        playerSkills = gameManager.instance.playerSkills;
+        playerElement = gameManager.instance.playerElement;
     }
 
     public void UpdateInteractText(int interactionScenario, string textToShow = "")
