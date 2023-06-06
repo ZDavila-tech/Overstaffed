@@ -9,16 +9,16 @@ public class ElementSelectButtons : MonoBehaviour
     UIManager uiManager;
     public AudioSource butAud;
 
-    private float volumeScale = AudioManager.instance.soundEffectsVolume.value * 0.10f;
     void Start()
     {
         gameManager = gameManager.instance;
         uiManager = UIManager.instance;
     }
 
+
     public void ClickedFire()
     {
-        butAud.PlayOneShot(AudioManager.instance.buttonClick, volumeScale);
+        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
         if (gameManager.playerController != null)
         {
             playerController = gameManager.playerController;
@@ -28,7 +28,7 @@ public class ElementSelectButtons : MonoBehaviour
 
     public void ClickedWater()
     {
-        butAud.PlayOneShot(AudioManager.instance.buttonClick, volumeScale);
+        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
         if (gameManager.playerController != null)
         {
             playerController = gameManager.playerController;
@@ -38,7 +38,7 @@ public class ElementSelectButtons : MonoBehaviour
 
     public void ClickedEarth()
     {
-        butAud.PlayOneShot(AudioManager.instance.buttonClick, volumeScale);
+        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
         if (gameManager.playerController != null)
         {
             playerController = gameManager.playerController;
@@ -48,7 +48,7 @@ public class ElementSelectButtons : MonoBehaviour
 
     public void CloseElementSelect()
     {
-        butAud.PlayOneShot(AudioManager.instance.buttonClick, volumeScale);
+        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
         gameManager.UnpauseState();
         uiManager.HideActiveMenu();
     }

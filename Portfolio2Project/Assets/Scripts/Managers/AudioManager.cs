@@ -21,6 +21,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip buttonClick;
     public AudioClip transactionClick;
 
+    public float volumeScale;
     // Start is called before the first frame update
     void Awake()
     {
@@ -43,6 +44,7 @@ public class AudioManager : MonoBehaviour
     {
         UpdateBGVolume();
         UpdateToggles();
+        volumeScale = soundEffectsVolume.value * 0.10f;
     }
     public void UpdateToggles()
     {
