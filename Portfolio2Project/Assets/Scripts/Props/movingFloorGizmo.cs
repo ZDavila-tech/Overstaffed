@@ -11,18 +11,17 @@ public class movingFloorGizmo : MonoBehaviour
     {
 
         sibling = this.transform.parent.transform.GetChild(0);
-        siblingmesh = sibling.GetComponent<MeshFilter>().sharedMesh;
 
 
         //Debug.Log(siblingmesh);
 
         if (Wireframe)
         {
-            Gizmos.DrawWireMesh(siblingmesh, this.transform.position, sibling.transform.rotation, sibling.transform.localScale);
+            Gizmos.DrawWireSphere(transform.position, 1);
         }
         else
         {
-            Gizmos.DrawMesh(siblingmesh,this.transform.position,sibling.transform.rotation, sibling.transform.localScale);
+            Gizmos.DrawSphere(transform.position, 1);
         }
 
         Gizmos.DrawLine(this.transform.position, sibling.transform.position);
