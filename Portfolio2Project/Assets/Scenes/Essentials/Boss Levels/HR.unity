@@ -836,7 +836,7 @@ PrefabInstance:
     - target: {fileID: 8432452533688018320, guid: c7fbd1cd78c82d74e9f22212ad88689c, type: 3}
       propertyPath: objectToFollow
       value: 
-      objectReference: {fileID: 1645824376063377794}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7fbd1cd78c82d74e9f22212ad88689c, type: 3}
 --- !u!1001 &394906853
@@ -4771,7 +4771,7 @@ PrefabInstance:
     - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
       propertyPath: transitionEnemy
       value: 
-      objectReference: {fileID: 4728235726989330130, guid: 8410533c5719b054980dc8019928826d, type: 3}
+      objectReference: {fileID: 4728235726989330130, guid: 0d9ab2b933ed87648a14f00b7e59dbc8, type: 3}
     - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
       propertyPath: transitionCubeOne
       value: 
@@ -4826,7 +4826,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
       propertyPath: phaseOneTimeBetweenFirings
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
       propertyPath: phaseThreeProps.Array.size
@@ -4834,7 +4834,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
       propertyPath: phaseTwoTimeBetweenFirings
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
       propertyPath: phaseOneCatchers.Array.size
@@ -4854,7 +4854,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
       propertyPath: timeBetweenTransitionSpawns
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -2476902282636150745, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
       propertyPath: PhaseThreeProps.Array.data[0]
@@ -5363,7 +5363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!1 &1645824376063377794 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 5782411285032361032, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
+  m_CorrespondingSourceObject: {fileID: 65522479184906421, guid: 1a2531331857c0a41b54ef5333cf7b5e, type: 3}
   m_PrefabInstance: {fileID: 1645824376063377792}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1857650792976144365

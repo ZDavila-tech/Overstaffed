@@ -97,37 +97,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &5782411285032361032
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1156407239154350548}
-  m_Layer: 6
-  m_Name: Shoot Me Capsule Center
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1156407239154350548
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5782411285032361032}
-  m_LocalRotation: {x: 0.7070855, y: -0.005558531, z: -0.70708436, w: -0.0055614365}
-  m_LocalPosition: {x: -0.37230173, y: 0.26804307, z: 0}
-  m_LocalScale: {x: 0.1666667, y: 0.1666666, z: 0.16666663}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6662729689219698099}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8339039089149912607
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,18 +147,18 @@ MonoBehaviour:
   healthBarTwo: 50
   healthBarThree: 50
   bossIsInvulnerable: 0
-  hitBoxCenter: {fileID: 0}
+  hitBoxCenter: {fileID: 65522479184906421}
   phaseOneSpawners: []
   phaseOneCatchers: []
   phaseOneThingToSpawn:
   - {fileID: 7955525370091394292, guid: 7d1e1f9e7bf426c4886a9231409e8f7c, type: 3}
-  phaseOneBigThingToSpawn: {fileID: 0}
-  phaseOneTimeBetweenFirings: 0
+  phaseOneBigThingToSpawn: {fileID: 7955525370091394292, guid: f9e6450c44b506b41bf71b0c44730132, type: 3}
+  phaseOneTimeBetweenFirings: 2
   phaseTwoSpawners: []
   phaseTwoCatchers: []
   phaseTwoThingToSpawn:
   - {fileID: 8290994099767708215, guid: 5f7cd305773382a489dd6f14775e597f, type: 3}
-  phaseTwoTimeBetweenFirings: 0
+  phaseTwoTimeBetweenFirings: 2
   phaseThreeProps: []
   phaseThreePropsFinalPositions: []
   transitionCubeOne: {fileID: 0}
@@ -199,8 +168,8 @@ MonoBehaviour:
   transitionShieldOne: {fileID: 0}
   transitionShieldTwo: {fileID: 0}
   transitionShieldThree: {fileID: 0}
-  timeBetweenTransitionSpawns: 0
-  transitionEnemy: {fileID: 0}
+  timeBetweenTransitionSpawns: 2
+  transitionEnemy: {fileID: 4728235726989330130, guid: 0d9ab2b933ed87648a14f00b7e59dbc8, type: 3}
   transitionSpawnLocations: []
   transitionCubeOneBroken: 0
   transitionCubeTwoBroken: 0
@@ -531,6 +500,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 415c1049b61b2a5479b871c6ddd4b2fd, type: 3}
+--- !u!1 &65522479184906421 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6673786004496357428, guid: 415c1049b61b2a5479b871c6ddd4b2fd, type: 3}
+  m_PrefabInstance: {fileID: 6662729689219731585}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6662729689219611821 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 404524, guid: 415c1049b61b2a5479b871c6ddd4b2fd, type: 3}
@@ -539,11 +513,6 @@ Transform:
 --- !u!4 &6662729689219678769 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 479920, guid: 415c1049b61b2a5479b871c6ddd4b2fd, type: 3}
-  m_PrefabInstance: {fileID: 6662729689219731585}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &6662729689219698099 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 498994, guid: 415c1049b61b2a5479b871c6ddd4b2fd, type: 3}
   m_PrefabInstance: {fileID: 6662729689219731585}
   m_PrefabAsset: {fileID: 0}
 --- !u!137 &6662729689225054369 stripped
