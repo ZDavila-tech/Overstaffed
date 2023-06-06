@@ -240,6 +240,11 @@ public class Skills : MonoBehaviour
             {
                 blinkFire();
                 StartCoroutine(blinkCooldownCoroutine());
+                GameObject playerSpawn = GameObject.FindGameObjectWithTag("PlayerSpawn");
+                if (playerSpawn != null)
+                {
+                    playerSpawn.GetComponent<PlayerSpawn>().PlayerLeftSpawn();
+                }                
             }
 
             yield return null;
