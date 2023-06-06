@@ -41,6 +41,7 @@ public class buttonFunctions : MonoBehaviour
         uiManager.HideActiveMenu();
         uiManager.HUD.SetActive(false);
         uiManager.activeMenu = uiManager.playerSelect;
+        
         AudioManager.instance.currSong = 1;
         AudioManager.instance.PlaySong();
         uiManager.ShowActiveMenu();
