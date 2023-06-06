@@ -104,6 +104,16 @@ public class buttonFunctions : MonoBehaviour
         //SceneManager.LoadScene("Main Menu");
     }
 
+    public void MainFromChar()
+    {
+        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        uiManager.HideActiveMenu();
+        uiManager.playerSelect.SetActive(false);
+        uiManager.activeMenu = uiManager.mainMenu;
+        uiManager.ShowActiveMenu();
+        SceneManager.LoadScene("Main Menu");
+    }
+
     //If they want to save their game
     public void YesSave()
     {
