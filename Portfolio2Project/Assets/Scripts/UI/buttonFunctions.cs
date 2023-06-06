@@ -189,17 +189,6 @@ public class buttonFunctions : MonoBehaviour
         SceneManager.LoadScene("Character Select");
     }
 
-    public void Continue()
-    {
-        if(uiManager.beginLetter.activeSelf)
-        {
-            buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
-            uiManager.HideActiveMenu();
-            gameManager.instance.UnpauseState();
-        }
-       
-    }
-
     public void SelectedFire()
     {
         buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
@@ -275,5 +264,11 @@ public class buttonFunctions : MonoBehaviour
     {
         buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
         uiManager.quitCheckMenu.SetActive(false);
+    }
+
+    public void Continue()
+    {
+        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
+        gameManager.instance.UnpauseState();
     }
 }
