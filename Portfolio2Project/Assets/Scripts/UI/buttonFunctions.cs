@@ -270,5 +270,6 @@ public class buttonFunctions : MonoBehaviour
     {
         buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
         gameManager.instance.UnpauseState();
+        
     }
 }
