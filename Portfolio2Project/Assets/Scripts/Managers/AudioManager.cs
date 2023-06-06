@@ -91,7 +91,7 @@ public class AudioManager : MonoBehaviour
     public void UpdateBGVolume()
     {
         volume = volumeValue.value;
-        aud.volume = volume;
+        aud.volume = (float)(volume * 0.10);
         if (volumeValue.value == 0)
         {
             bgToggle.isOn = true;

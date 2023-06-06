@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LevelSelectButtons : MonoBehaviour
@@ -28,6 +29,8 @@ public class LevelSelectButtons : MonoBehaviour
 
     [Header("----- Close Me Button -----")]
     [SerializeField] GameObject closeLevelSelectButton;
+
+    private float volumeScale = AudioManager.instance.soundEffectsVolume.value * 0.10f;
 
     // Start is called before the first frame update
     void Start()
@@ -80,43 +83,43 @@ public class LevelSelectButtons : MonoBehaviour
 
     public void TutorialButtonPressed()
     {
-        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
+        butAud.PlayOneShot(AudioManager.instance.buttonClick, volumeScale);
         levelManager.SetCurrentLevel(1);
     }
 
     public void SixButtonPressed()
     {
-        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
+        butAud.PlayOneShot(AudioManager.instance.buttonClick, volumeScale);
         levelManager.SetCurrentLevel(6);
     }
 
     public void ElevenButtonPressed()
     {
-        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
+        butAud.PlayOneShot(AudioManager.instance.buttonClick, volumeScale);
         levelManager.SetCurrentLevel(11);
     }
 
     public void SixteenButtonPressed()
     {
-        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
+        butAud.PlayOneShot(AudioManager.instance.buttonClick, volumeScale);
         levelManager.SetCurrentLevel(16);
     }
 
     public void TwentyOneButtonPressed()
     {
-        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
+        butAud.PlayOneShot(AudioManager.instance.buttonClick, volumeScale);
         levelManager.SetCurrentLevel(21);
     }
 
     public void InfinityButtonPressed()
     {
-        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
+        butAud.PlayOneShot(AudioManager.instance.buttonClick, volumeScale);
         levelManager.SetCurrentLevel(22);
     }
 
     public void CloseLevelSelect()
     {
-        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
+        butAud.PlayOneShot(AudioManager.instance.buttonClick, volumeScale);
         gameManager.UnpauseState();
         uiManager.HideActiveMenu();
     }
