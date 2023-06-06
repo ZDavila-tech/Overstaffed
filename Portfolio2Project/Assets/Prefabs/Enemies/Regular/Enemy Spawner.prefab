@@ -131,13 +131,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnsOnLevelLoad: 1
   isAreaSpawner: 0
-  baseNumberOfEnemiesToSpawn: 0
-  timeBetweenSpawns: 0
+  enemyTypesToSpawn: []
+  enemyTypeSpawnWeighting: 64000000
+  baseNumberEnemiesToSpawn: 0
+  timeBetweenSpawns: 0.1
   spawnPositions: []
   spawnAreaX: 0
   spawnAreaZ: 0
-  enemyTypesToSpawn: []
-  enemyTypeSpawnWeighting: 64000000
 --- !u!1 &5559330150674625058
 GameObject:
   m_ObjectHideFlags: 0
