@@ -5,7 +5,7 @@ using UnityEngine;
 public class Stats : MonoBehaviour
 {
     [Header("----- Stats -----")]
-    [Range(0, 100)][SerializeField] int Health;
+    [Range(0, 100)][SerializeField] public int Health;
     [Range(0, 100)][SerializeField] public float Speed;
     [Range(0, 100)][SerializeField] public int Attack;
     [Range(0, 100)][SerializeField] public float wallrunSpeed;
@@ -28,7 +28,7 @@ public class Stats : MonoBehaviour
     //Getters
     public int GetHealth()
     {
-        return Health;
+        return Health * 10;
     }
     public float GetSpeed()
     {
