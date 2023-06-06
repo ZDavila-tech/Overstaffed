@@ -508,12 +508,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 1277672405}
     m_Modifications:
     - target: {fileID: -5835830235728421990, guid: db27cd9cf83227146947fced1f6f6a9b, type: 3}
+      propertyPath: isAreaSpawner
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5835830235728421990, guid: db27cd9cf83227146947fced1f6f6a9b, type: 3}
+      propertyPath: spawnsOnLevelLoad
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5835830235728421990, guid: db27cd9cf83227146947fced1f6f6a9b, type: 3}
       propertyPath: timeBetweenSpawns
-      value: 0.2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: -5835830235728421990, guid: db27cd9cf83227146947fced1f6f6a9b, type: 3}
       propertyPath: baseNumberEnemiesToSpawn
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -5835830235728421990, guid: db27cd9cf83227146947fced1f6f6a9b, type: 3}
       propertyPath: spawnPositions.Array.size
