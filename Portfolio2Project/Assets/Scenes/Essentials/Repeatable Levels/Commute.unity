@@ -1833,12 +1833,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5835830235728421990, guid: db27cd9cf83227146947fced1f6f6a9b, type: 3}
       propertyPath: enemyTypesToSpawn.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -5835830235728421990, guid: db27cd9cf83227146947fced1f6f6a9b, type: 3}
       propertyPath: enemyTypesToSpawn.Array.data[0]
       value: 
       objectReference: {fileID: 1441211781995531608, guid: 19e255f39adb2e7409b0d7d1b9d67412, type: 3}
+    - target: {fileID: -5835830235728421990, guid: db27cd9cf83227146947fced1f6f6a9b, type: 3}
+      propertyPath: enemyTypesToSpawn.Array.data[1]
+      value: 
+      objectReference: {fileID: 1441211781995531608, guid: 5afaadb3c277fcd4cbe7fb5006b19d9e, type: 3}
+    - target: {fileID: -5835830235728421990, guid: db27cd9cf83227146947fced1f6f6a9b, type: 3}
+      propertyPath: enemyTypeSpawnWeighting.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -5835830235728421990, guid: db27cd9cf83227146947fced1f6f6a9b, type: 3}
+      propertyPath: enemyTypeSpawnWeighting.Array.data[0]
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: -5835830235728421990, guid: db27cd9cf83227146947fced1f6f6a9b, type: 3}
+      propertyPath: enemyTypeSpawnWeighting.Array.data[1]
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 4418690602924973518, guid: db27cd9cf83227146947fced1f6f6a9b, type: 3}
       propertyPath: m_Name
       value: Enemy Spawner
