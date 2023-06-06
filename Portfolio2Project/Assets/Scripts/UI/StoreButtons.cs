@@ -5,10 +5,10 @@ using UnityEngine;
 public class StoreButtons : MonoBehaviour
 {
     public AudioSource buttonAudio;
-    private float volumeScale = AudioManager.instance.soundEffectsVolume.value * 0.10f;
-   public void BuyAttack(int amount)
+
+    public void BuyAttack(int amount)
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, volumeScale);
+        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
 
         if (gameManager.instance.playerStats.Exp - (gameManager.instance.playerStats.GetAttack() * 10 * amount) >= 0)
         {
@@ -19,7 +19,7 @@ public class StoreButtons : MonoBehaviour
     }
         public void BuyHealth(int amount)
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, volumeScale);
+        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
 
         if (gameManager.instance.playerStats.Exp - ((gameManager.instance.playerStats.GetHealth() - 9) * 10 * amount) >= 0)
         {
@@ -30,7 +30,7 @@ public class StoreButtons : MonoBehaviour
     }
     public void BuySpeed(int amount)
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, volumeScale);
+        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
 
         if (gameManager.instance.playerStats.Exp - (gameManager.instance.playerStats.GetSpeed() * 10 * amount) >= 0)
         {
@@ -43,7 +43,7 @@ public class StoreButtons : MonoBehaviour
 
     public void Exit()
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, volumeScale);
+        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
 
         gameManager.instance.UnpauseState();
         UIManager.instance.HideActiveMenu();
@@ -51,7 +51,7 @@ public class StoreButtons : MonoBehaviour
 
     public void BuyScreen()
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, volumeScale);
+        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
 
         UIManager.instance.buyScreen.SetActive(true);
         UIManager.instance.sellScreen.SetActive(false);
@@ -60,7 +60,7 @@ public class StoreButtons : MonoBehaviour
 
     public void SellScreen()
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, volumeScale);
+        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
 
         UIManager.instance.buyScreen.SetActive(false);
         UIManager.instance.sellScreen.SetActive(true);
@@ -69,7 +69,7 @@ public class StoreButtons : MonoBehaviour
 
     public void InventoryScreen()
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, volumeScale);
+        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
 
         UIManager.instance.buyScreen.SetActive(false);
         UIManager.instance.sellScreen.SetActive(false);
