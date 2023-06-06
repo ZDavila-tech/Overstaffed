@@ -8,7 +8,7 @@ public static class fileManager// : MonoBehaviour
     public static float masterVolume;
     public static float effectVolume;
     public static float musicVolume;
-    //public static int level;
+    public static int level;
 
     public static bool invertY;
 
@@ -19,7 +19,7 @@ public static class fileManager// : MonoBehaviour
         PlayerPrefs.SetFloat("MV", masterVolume);
         PlayerPrefs.SetFloat("EV", effectVolume);
         PlayerPrefs.SetFloat("MuV", musicVolume);
-        //PlayerPrefs.SetInt("LvL", level);
+        PlayerPrefs.SetInt("LvL", level);
         PlayerPrefs.SetString("inv", invertY.ToString());
     }
 
@@ -28,7 +28,7 @@ public static class fileManager// : MonoBehaviour
         masterVolume = PlayerPrefs.GetFloat("MV");
         effectVolume = PlayerPrefs.GetFloat("EV");
         musicVolume = PlayerPrefs.GetFloat("MuV");
-        //level = PlayerPrefs.GetInt("LvL");
+        level = PlayerPrefs.GetInt("LvL");
         invertY = bool.Parse( PlayerPrefs.GetString("inv"));
 
     }
@@ -41,7 +41,7 @@ public static class fileManager// : MonoBehaviour
         AudioManager.instance.soundEffectsVolume.value = effectVolume;
         musicVolume = 0.5f;
         AudioManager.instance.volumeValue.value = musicVolume;
-        //level = 1;
+        level = 1;
         invertY = false;
         UIManager.instance.invert.isOn = invertY;
 

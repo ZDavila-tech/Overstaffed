@@ -170,6 +170,15 @@ public class buttonFunctions : MonoBehaviour
         uiManager.activeMenu = uiManager.playerSelect;
         AudioManager.instance.ChangeSong();
         uiManager.ShowActiveMenu();
+        LevelManager.instance.currentLevel = fileManager.level;
+        if(LevelManager.instance.currentLevel > 5)
+        {
+            LevelManager.instance.hasBeatenTutorial = true;
+        }
+        else
+        {
+            LevelManager.instance.hasBeatenTutorial = false;
+        }
         SceneManager.LoadScene("Character Select");
     }
 
@@ -183,7 +192,6 @@ public class buttonFunctions : MonoBehaviour
         uiManager.activeMenu = uiManager.playerSelect;
         AudioManager.instance.ChangeSong();
         uiManager.ShowActiveMenu();
-
         LevelManager.instance.hasBeatenTutorial = false;
         LevelManager.instance.highestLevelCompleted = 0;
 

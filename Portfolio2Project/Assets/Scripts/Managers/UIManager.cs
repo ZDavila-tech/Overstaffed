@@ -90,7 +90,7 @@ public class UIManager : MonoBehaviour
         //playerElement = gameManager.playerElement;
         levelManager = LevelManager.instance;
         playerSkills = gameManager.playerSkills;
-        fileManager.save();
+        //fileManager.save();
         fileManager.load();
     }
 
@@ -267,6 +267,7 @@ public class UIManager : MonoBehaviour
         for (float i = 0; i <= fadeSpeed; i += Time.deltaTime)
         {
             fadeOutImage.color = new Color(0, 0, 0, i);
+            fadeOutText.color = new Color(1, 1, 1, i);
             yield return null;
         }
         fading = true;
@@ -283,6 +284,7 @@ public class UIManager : MonoBehaviour
         for (float i = fadeSpeed; i >= 0; i -= Time.deltaTime)
         {
             fadeOutImage.color = new Color(0, 0, 0, i);
+            fadeOutText.color = new Color(1, 1, 1, i);
             yield return null;
         }
         yield return new WaitForSeconds(1.0f);

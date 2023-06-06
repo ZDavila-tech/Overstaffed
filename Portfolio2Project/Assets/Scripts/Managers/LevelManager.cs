@@ -68,6 +68,7 @@ public class LevelManager : MonoBehaviour
             audioManager = AudioManager.instance;
         }
         NewGame();
+      
     }
 
     private void Update()
@@ -95,6 +96,7 @@ public class LevelManager : MonoBehaviour
         loadingLevel = false;
         NewLevelVariableResets();
     }
+
 
     public void NewLevelVariableResets()
     {
