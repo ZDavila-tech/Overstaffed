@@ -161,7 +161,7 @@ public class EnemySpawner : MonoBehaviour
     public void LocationSpawnEnemy(Transform locationToSpawn)
     {
         GameObject enemyToSpawn = WeightedEnemySelect();
-        Vector3 randomPosition = new Vector3(locationToSpawn.position.x + Random.Range(-1.0f, 1.0f), locationToSpawn.position.y + 1, locationToSpawn.position.z + Random.Range(-1.0f, 1.0f));
+        Vector3 randomPosition = new Vector3(locationToSpawn.position.x + Random.Range(-1.0f, 1.0f), locationToSpawn.position.y, locationToSpawn.position.z + Random.Range(-1.0f, 1.0f));
         GameObject spawned = Instantiate(enemyToSpawn, randomPosition, locationToSpawn.rotation);
         spawned.GetComponent<EnemyAI>().spawnedBySpawner = true;
         ++levelManager.currentEnemiesSpawned;
@@ -184,7 +184,7 @@ public class EnemySpawner : MonoBehaviour
 
     Vector3 GetSpawnCoordinates()
     {
-        return new Vector3(Random.Range(this.gameObject.transform.position.x - (spawnAreaX / 2), transform.position.x + (spawnAreaX / 2)), this.gameObject.transform.position.y + 1, Random.Range(transform.position.z - (spawnAreaZ / 2), transform.position.z + (spawnAreaZ / 2)));
+        return new Vector3(Random.Range(gameObject.transform.position.x - (spawnAreaX / 2), transform.position.x + (spawnAreaX / 2)), gameObject.transform.position.y, Random.Range(transform.position.z - (spawnAreaZ / 2), transform.position.z + (spawnAreaZ / 2)));
     }
 
     private void OnDrawGizmos()
