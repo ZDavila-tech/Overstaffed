@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -131,7 +132,7 @@ public class EnemySpawner : MonoBehaviour
                 }
                 else
                 {
-                    LocationSpawnEnemy(this.gameObject.transform);
+                    LocationSpawnEnemy(gameObject.transform);
                     //Debug.Log("Enemy Spawned Locally");
                 }
             }
@@ -150,7 +151,7 @@ public class EnemySpawner : MonoBehaviour
     public void AreaSpawnEnemy()
     {
         GameObject tospawn = WeightedEnemySelect();
-        GameObject spawned = Instantiate(tospawn, GetSpawnCoordinates(), this.gameObject.transform.rotation);
+        GameObject spawned = Instantiate(tospawn, GetSpawnCoordinates(), gameObject.transform.rotation);
         spawned.GetComponent<EnemyAI>().spawnedBySpawner = true;
         ++levelManager.currentEnemiesSpawned;
     }
