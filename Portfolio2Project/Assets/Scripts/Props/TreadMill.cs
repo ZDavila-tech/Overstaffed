@@ -17,6 +17,11 @@ public class TreadMill : MonoBehaviour
             Debug.Log("EnemyMoving");
             other.transform.parent.transform.Translate(transform.forward * speed * Time.deltaTime);
         }
+        if (other.CompareTag("Pickup"))
+        {
+            Debug.Log("EnemyMoving");
+            other.transform.Translate(transform.forward * speed * Time.deltaTime);
+        }
     }
 
 }
