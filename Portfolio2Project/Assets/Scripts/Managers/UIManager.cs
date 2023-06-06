@@ -44,6 +44,12 @@ public class UIManager : MonoBehaviour
     public int fadeSpeed;
     public bool fading;
 
+    [Header("-----Tutorial Stuff-----")]
+    public GameObject tut1;
+    public GameObject tut2;
+    public GameObject tut3;
+    public GameObject tut4;
+
     [Header("-----Misc Stuff-----")]
     public Toggle invert;
 
@@ -109,20 +115,12 @@ public class UIManager : MonoBehaviour
             fading = false;
 
             StartCoroutine(FadeIn());
-            //ShowBegLetter();
         }
     }
     public void YouLose()
     {
         gameManager.PauseState();
         activeMenu = loseMenu;
-        ShowActiveMenu();
-    }
-
-    public void ShowBegLetter()
-    {
-        gameManager.PauseState();
-        activeMenu = beginLetter;
         ShowActiveMenu();
     }
 
