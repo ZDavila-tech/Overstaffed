@@ -179,6 +179,7 @@ public class UIManager : MonoBehaviour
     //displays the correct element based on character type
     public void SetElementIcon()
     {
+        Debug.Log("Set ELement");
         //Debug.Log(playerScript.GetWeapon());
         element.sprite = spriteArray[(int) playerElement];
         switch (playerElement)
