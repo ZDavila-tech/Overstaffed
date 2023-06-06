@@ -49,6 +49,7 @@ public static class fileManager// : MonoBehaviour
         level = 1;
         invertY = false;
         UIManager.instance.invert.isOn = invertY;
+        infinite = false;
 
     }
 
