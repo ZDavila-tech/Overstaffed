@@ -152,12 +152,12 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void ShowDamage()
+    public void ShowDamage(float angle)
     {
-        StartCoroutine(FlashRed());
+        StartCoroutine(FlashRed(angle));
     }
 
-    IEnumerator FlashRed()
+    IEnumerator FlashRed(float angle)
     {
         flashDamage.SetActive(true);
         yield return new WaitForSeconds(0.3f);
