@@ -25,8 +25,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float spawnAreaX;
     [SerializeField] float spawnAreaZ;
     
-    private int totalWeight;
-    private int arrayLength;
+    private List<GameObject> totalList = new List<GameObject>();
         
     private bool playerDetected;
     private bool isAmbushSpawning;
@@ -47,10 +46,8 @@ public class EnemySpawner : MonoBehaviour
             {
                 levelManager = LevelManager.instance;
             }
-            InitializeArrayLength();
-            SortArrays();
-            totalWeight = CalculateTotalSpawnWeight();
             SetAmbushVariables();
+            InitializeTotalSpawnList();
         }
     }
 
@@ -64,11 +61,33 @@ public class EnemySpawner : MonoBehaviour
         numberOfEnemiesToSpawn = (int)(baseNumberEnemiesToSpawn * ((level * levelManager.numberOfEnemiesScaling) + 1));
     }
 
+    private void InitializeTotalSpawnList()
+    {
+        if (enemyTypesToSpawn.Length <= enemyTypeSpawnWeighting.Length)
+        {
+            for (int i = 0; i < enemyTypesToSpawn.Length; ++i)
+            {
+                for (int j = 0; j < enemyTypeSpawnWeighting[i]; ++j)
+                {
+                    totalList.Add(enemyTypesToSpawn[i]);
+                }
+            }
+        }
+    }
+
     private void Update()
     {
         if(!spawnsOnLevelLoad && playerDetected && !isAmbushSpawning && currentAmbushEnemiesSpawned < numberOfEnemiesToSpawn)
         {
             StartCoroutine(AmbushSpawning());
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            playerDetected = true;
         }
     }
 
@@ -142,10 +161,17 @@ public class EnemySpawner : MonoBehaviour
     public void LocationSpawnEnemy(Transform locationToSpawn)
     {
         GameObject enemyToSpawn = WeightedEnemySelect();
-        Vector3 randomPosition = new Vector3(locationToSpawn.position.x + Random.Range(-1.0f, 1.0f), locationToSpawn.position.y + 1, locationToSpawn.position.z + Random.Range(-1.0f, 1.0f));
+        Vector3 randomPosition = new Vector3(locationToSpawn.position.x + Random.Range(-1.0f, 1.0f), locationToSpawn.position.y, locationToSpawn.position.z + Random.Range(-1.0f, 1.0f));
         GameObject spawned = Instantiate(enemyToSpawn, randomPosition, locationToSpawn.rotation);
         spawned.GetComponent<EnemyAI>().spawnedBySpawner = true;
         ++levelManager.currentEnemiesSpawned;
+    }
+
+    GameObject WeightedEnemySelect()
+    {
+        int randomIndex = Random.Range(0, totalList.Count);
+
+        return totalList[randomIndex];
     }
 
     public void AreaSpawnEnemy()
@@ -156,45 +182,9 @@ public class EnemySpawner : MonoBehaviour
         ++levelManager.currentEnemiesSpawned;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            playerDetected = true;
-        }
-    }
-
-    public void SetPlayerDetected()
-    {
-        playerDetected = true;
-    }
-
-    int CalculateTotalSpawnWeight()
-    {
-        int totalSpawnWeight = 0;
-        foreach (int spawnWeight in enemyTypeSpawnWeighting)
-        {
-            totalSpawnWeight += spawnWeight;
-        }
-        return totalSpawnWeight;
-    }
-
     Vector3 GetSpawnCoordinates()
     {
-        return new Vector3(Random.Range(this.gameObject.transform.position.x - (spawnAreaX / 2), transform.position.x + (spawnAreaX / 2)), this.gameObject.transform.position.y + 1, Random.Range(transform.position.z - (spawnAreaZ / 2), transform.position.z + (spawnAreaZ / 2)));
-    }
-
-    GameObject WeightedEnemySelect()
-    {
-        int randomIndex = Random.Range(0, totalWeight - 1);
-        for (int i = 0; i < arrayLength; i++)
-        {
-            if (randomIndex <= totalWeight * (enemyTypeSpawnWeighting[i] / 100))
-            {
-                return enemyTypesToSpawn[i];
-            }
-        }
-        return enemyTypesToSpawn[arrayLength - 1];
+        return new Vector3(Random.Range(gameObject.transform.position.x - (spawnAreaX / 2), transform.position.x + (spawnAreaX / 2)), gameObject.transform.position.y, Random.Range(transform.position.z - (spawnAreaZ / 2), transform.position.z + (spawnAreaZ / 2)));
     }
 
     private void OnDrawGizmos()
@@ -202,33 +192,6 @@ public class EnemySpawner : MonoBehaviour
         if(isAreaSpawner)
         {
             Gizmos.DrawWireCube(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), new Vector3(spawnAreaX, 2, spawnAreaZ));
-        }
-    }
-
-    void SortArrays()
-    {
-        for (int i = 0; i < arrayLength - 1; i++)
-        {
-            for (int j = 0; j < arrayLength - i - 1; j++)
-            {
-                if (enemyTypeSpawnWeighting[j] > enemyTypeSpawnWeighting[j + 1])
-                {
-                    var temp = enemyTypeSpawnWeighting[j];
-                    var temp2 = enemyTypesToSpawn[j];
-                    enemyTypeSpawnWeighting[j] = enemyTypeSpawnWeighting[j + 1];
-                    enemyTypesToSpawn[j] = enemyTypesToSpawn[j + 1];
-                    enemyTypeSpawnWeighting[j + 1] = temp;
-                    enemyTypesToSpawn[j + 1] = temp2;
-                }
-            }
-        }
-    }
-    void InitializeArrayLength()
-    {
-        arrayLength = 0;
-        foreach (int i in enemyTypeSpawnWeighting)
-        {
-            arrayLength++;
         }
     }
 }
