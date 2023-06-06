@@ -45,6 +45,11 @@ public class buttonFunctions : MonoBehaviour
         uiManager.ShowActiveMenu();
         Time.timeScale = gameManager.instance.timeScaleOriginal;
 
+        if (LevelManager.instance != null)
+        {
+            LevelManager.instance.TutorialBeatenGoToLevelSix();
+        }
+
         SceneManager.LoadScene("Character Select");
     }
 
@@ -118,6 +123,11 @@ public class buttonFunctions : MonoBehaviour
         Debug.Log("Player Character destroyed");
         Time.timeScale = gameManager.instance.timeScaleOriginal;
 
+        if(LevelManager.instance != null)
+        {
+            LevelManager.instance.TutorialBeatenGoToLevelSix();
+        }
+
         SceneManager.LoadScene("Main Menu");
     }
 
@@ -137,6 +147,11 @@ public class buttonFunctions : MonoBehaviour
 
         Debug.Log("Player Character destroyed");
         Time.timeScale = gameManager.instance.timeScaleOriginal;
+
+        if (LevelManager.instance != null)
+        {
+            LevelManager.instance.TutorialBeatenGoToLevelSix();
+        }
 
         SceneManager.LoadScene("Main Menu");
     }
@@ -159,6 +174,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void PlayNewGame() //Takes player to character select scene
     {
+        
         buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.soundEffectsVolume.value);
         fileManager.resetData();
         //Debug.Log("Play Button Pressed");
@@ -166,6 +182,10 @@ public class buttonFunctions : MonoBehaviour
         uiManager.activeMenu = uiManager.playerSelect;
         AudioManager.instance.ChangeSong();
         uiManager.ShowActiveMenu();
+
+        LevelManager.instance.hasBeatenTutorial = false;
+        LevelManager.instance.highestLevelCompleted = 0;
+
         SceneManager.LoadScene("Character Select");
     }
 
@@ -221,7 +241,20 @@ public class buttonFunctions : MonoBehaviour
     {
         //Debug.Log("Player Element Set");
         AudioManager.instance.ChangeSong();
-        SceneManager.LoadScene("Home");
+        if(LevelManager.instance != null)
+        {
+            LevelManager.instance.TutorialBeatenGoToLevelSix();
+            if(LevelManager.instance.hasBeatenTutorial)
+            {
+
+                SceneManager.LoadScene("HUB");
+            }
+            else
+            {
+                SceneManager.LoadScene("Home");
+            }
+        }
+        
     }
 
     public void EndLetterOKButton()

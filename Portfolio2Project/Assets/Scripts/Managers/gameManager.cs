@@ -6,7 +6,7 @@ public class gameManager : MonoBehaviour
 {
     public static gameManager instance;
 
-    [Header("------ Managers -----")]
+    [Header("------ Managers (Set by Code - Ignore) -----")]
     public LevelManager levelManager;
     public UIManager uiManager;
     public AudioManager audioManager;
@@ -34,6 +34,24 @@ public class gameManager : MonoBehaviour
             instance = this;
         }
         timeScaleOriginal = Time.timeScale;
+    }
+
+    private void Start()
+    {
+        if (LevelManager.instance != null)
+        {
+            levelManager = LevelManager.instance;
+        }
+
+        if(UIManager.instance != null)
+        {
+            uiManager = UIManager.instance;
+        }
+
+        if (AudioManager.instance != null)
+        {
+            audioManager = AudioManager.instance;
+        }
     }
 
     // Update is called once per frame

@@ -55,6 +55,7 @@ public class LevelManager : MonoBehaviour
             instance = this;
         }
         currentSpawner = 0;
+        currentLevel = 1;
     }
     void Start()
     {
@@ -181,6 +182,10 @@ public class LevelManager : MonoBehaviour
 
             if (currentLevel % 5 == 0)
             {
+                if (!hasBeatenTutorial)
+                {
+                    hasBeatenTutorial = true;
+                }
                 ++currentLevel; //ups difficulty
                 ScaleSpawners();
                 LoadLevelVariableReset();
@@ -196,8 +201,7 @@ public class LevelManager : MonoBehaviour
                 else
                 {
                     ScaleSpawners();
-                    if (currentLevel < 6)
-                    //if (SceneManager.GetActiveScene().buildIndex < repeatableLevelsMinIndex)
+                    if (currentLevel < 6) //if (SceneManager.GetActiveScene().buildIndex < repeatableLevelsMinIndex)
                     {
                         LoadLevelVariableReset();
                         switch (currentLevel)
@@ -225,14 +229,17 @@ public class LevelManager : MonoBehaviour
                             case 5:
                                 {
                                     enemiesRemaining = totalEnemiesToSpawn;
-                                    SceneManager.LoadScene("Reception");
-                                    
+                                    SceneManager.LoadScene("Reception");                                    
                                     break;
                                 }
                         }
                     }
                     else
                     {
+                        if(!hasBeatenTutorial)
+                        {
+                            hasBeatenTutorial = true;
+                        }
                         LoadLevelVariableReset();
                         enemiesRemaining = totalEnemiesToSpawn;
                         SceneManager.LoadScene(GetRandomLevelIndex());
@@ -275,7 +282,18 @@ public class LevelManager : MonoBehaviour
         inElevator = false;
         loadingLevel = false;
         levelStarted = false;
-        levelCompleted = false;
-        
+        levelCompleted = false;        
+    }
+
+    public void TutorialBeatenGoToLevelSix()
+    {
+        if (hasBeatenTutorial)
+        {
+            currentLevel = 6;
+        }
+        else
+        {
+            currentLevel = 1;
+        }
     }
 }
