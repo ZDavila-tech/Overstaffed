@@ -196,7 +196,7 @@ public class LevelManager : MonoBehaviour
                 ++currentLevel; //ups difficulty
                 if (currentLevel > maxPlayableLevel)
                 {
-                    uiManager.YouWin();
+                    uiManager.ShowEndLetter();
                 }
                 else
                 {
