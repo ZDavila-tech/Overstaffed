@@ -11,7 +11,7 @@ public static class fileManager// : MonoBehaviour
     public static int level;
     public static int maxLevel;
     public static bool invertY;
-    public static bool infinite;
+    public static bool infinite = true;
 
 
 
@@ -33,8 +33,9 @@ public static class fileManager// : MonoBehaviour
         musicVolume = PlayerPrefs.GetFloat("MuV");
         level = PlayerPrefs.GetInt("LvL");
         maxLevel = PlayerPrefs.GetInt("MaxLvL");
-        invertY = bool.Parse( PlayerPrefs.GetString("inv"));
         infinite = bool.Parse(PlayerPrefs.GetString("inf"));
+        invertY = bool.Parse( PlayerPrefs.GetString("inv"));
+
 
     }
 
