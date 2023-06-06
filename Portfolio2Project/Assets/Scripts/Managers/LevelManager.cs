@@ -68,6 +68,7 @@ public class LevelManager : MonoBehaviour
             audioManager = AudioManager.instance;
         }
         NewGame();
+      
     }
 
     private void Update()
@@ -95,6 +96,7 @@ public class LevelManager : MonoBehaviour
         loadingLevel = false;
         NewLevelVariableResets();
     }
+
 
     public void NewLevelVariableResets()
     {
@@ -170,7 +172,15 @@ public class LevelManager : MonoBehaviour
             {
                 LoadLevelVariableReset();
                 enemiesRemaining = totalEnemiesToSpawn;
-                SceneManager.LoadScene(GetRandomLevelIndex());
+                if (currentLevel == 1)
+                {
+                    SceneManager.LoadScene("Home");
+                }
+                else
+                {
+                    SceneManager.LoadScene(GetRandomLevelIndex());
+                }
+
             }
         }
         else
@@ -196,7 +206,7 @@ public class LevelManager : MonoBehaviour
                 ++currentLevel; //ups difficulty
                 if (currentLevel > maxPlayableLevel)
                 {
-                    uiManager.YouWin();
+                    uiManager.ShowEndLetter();
                 }
                 else
                 {

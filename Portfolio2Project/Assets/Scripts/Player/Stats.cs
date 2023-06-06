@@ -55,5 +55,6 @@ public class Stats : MonoBehaviour
     public void GainExp(int amount)
     {
         Exp += amount;
+        UIManager.instance.UpdateExp();
     }
 }

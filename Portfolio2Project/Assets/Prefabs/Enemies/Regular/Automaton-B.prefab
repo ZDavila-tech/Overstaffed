@@ -75,7 +75,7 @@ MonoBehaviour:
   iHP: 12
   hpBar: {fileID: 7051353985056933245}
   hpDisplay: {fileID: 4964723009901755965}
-  fTurnRate: 8
+  turnRate: 0
   fFieldOfView: 165
   fChaseTime: 5
   DropRate: 100
@@ -85,6 +85,7 @@ MonoBehaviour:
   interuptionCoolDown: 5
   moveSpeed: 0
   brokenAnimations: 0
+  deathParticle: {fileID: 9153340017092349274, guid: 92498d71eb9cb514b80fb7c60ac3cfd5, type: 3}
   bullet: {fileID: 8060328068600632496, guid: 21d34616d4bd55d46ad893c2322ce70a, type: 3}
   shootDistance: 20
   shootRate: 1
@@ -260,7 +261,7 @@ GameObject:
   - component: {fileID: 7945911725383154855}
   m_Layer: 12
   m_Name: MeleeHitbox
-  m_TagString: Untagged
+  m_TagString: EnemyCollision
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

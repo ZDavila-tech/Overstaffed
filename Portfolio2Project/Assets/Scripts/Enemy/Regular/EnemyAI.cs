@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 {
     LevelManager levelManager;
+    GameObject player;
 
     [Header("----- Components -----")]
     [SerializeField] Renderer rModel;
@@ -21,7 +22,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] int iHP;
     [SerializeField] Slider hpBar;
     [SerializeField] GameObject hpDisplay;
-    [SerializeField] float fTurnRate;
+    [SerializeField] float turnRate;
     [SerializeField] float fFieldOfView;
     [SerializeField] float fChaseTime;
     [Range(0, 100)][SerializeField] int DropRate;
@@ -31,6 +32,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] float interuptionCoolDown;
     [SerializeField] float moveSpeed;
     [SerializeField] bool brokenAnimations;
+    [SerializeField] Transform deathParticle;
 
     [Header("----- Weapon Stats -----")]
     [SerializeField] GameObject bullet;
@@ -50,16 +52,15 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] float explodeTime;
     [SerializeField] GameObject explosion;
 
-    bool bIsShooting;
-    bool bPlayerInRange;
-    bool bBeenShot;
+    bool isShooting;
+    bool playerInRange;
     public bool isSlowed;
     public bool spawnedBySpawner;
     bool interrupted;
     bool isStopped;
 
-    Vector3 playerDir;
-    float fAngleToPlayer;
+    Vector3 playerDirection;
+    float angleToPlayer;
 
     //IDamage damageInterface;
     private Color cOrigColor;
@@ -87,6 +88,11 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         }
 
         interrupted = false;
+
+        if(gameManager.instance != null)
+        {
+            player = gameManager.instance.playerCharacter;
+        }
     }
 
 
@@ -99,14 +105,22 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         //    speed = Mathf.Lerp(speed, navAgent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
         //    anim.SetFloat("Speed", speed);
         //}
+        if(player != null)
+        {
+            if (hpDisplay.activeSelf)
+            {
+                hpDisplay.transform.LookAt(player.transform.position);
+            }
 
-        if (hpDisplay.activeSelf)
-        {
-            hpDisplay.transform.LookAt(gameManager.instance.playerCharacter.transform.position);
-        }
-        if ((bPlayerInRange || bBeenShot) && CanSeePlayer())
-        {
-            AttackPlayer();
+            if (navAgent.isActiveAndEnabled)
+            {
+                navAgent.SetDestination(gameManager.instance.playerCharacter.transform.position);
+
+                if (CanSeePlayer() && playerInRange)
+                {
+                    AttackPlayer();
+                }
+            }
         }
     }
     //IEnumerator SlowEnemy()
@@ -128,14 +142,14 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         if (toggle)
         {
             navAgent.isStopped = false;
-            bIsShooting = false;
+            isShooting = false;
             anim.speed = 1;
             isStopped = false;
         }
         else
         {
             navAgent.isStopped = true;
-            bIsShooting = true;
+            isShooting = true;
             anim.speed = 0;
             isStopped = true;
         }
@@ -143,15 +157,15 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
     bool CanSeePlayer()
     {
-        playerDir = gameManager.instance.playerCharacter.transform.position - headPosition.position;
-        fAngleToPlayer = Vector3.Angle(new Vector3(playerDir.x, 0, playerDir.z), transform.forward);
+        playerDirection = player.transform.position - headPosition.position;
+        angleToPlayer = Vector3.Angle(new Vector3(playerDirection.x, 0, playerDirection.z), transform.forward);
 
-        Debug.DrawRay(headPosition.position, playerDir);
+        Debug.DrawRay(headPosition.position, playerDirection);
         //Debug.Log(fAngleToPlayer);
 
-        if (Physics.Raycast(headPosition.position, playerDir, out RaycastHit hit))
+        if (Physics.Raycast(headPosition.position, playerDirection, out RaycastHit hit))
         {
-            if (hit.collider.CompareTag("Player") && fAngleToPlayer <= fFieldOfView)
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= fFieldOfView)
             {
                 return true;
             }
@@ -164,27 +178,20 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     {
         if (!isStopped)
         {
-            Quaternion rot = Quaternion.LookRotation(new Vector3(playerDir.x, 0, playerDir.z));
-            transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * fTurnRate);
+            playerDirection = player.transform.position - headPosition.position;
+            Quaternion desiredRotation = Quaternion.LookRotation(new Vector3(playerDirection.x, 0, playerDirection.z));
+            transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, Time.deltaTime * turnRate);
         }
     }
 
     void AttackPlayer()
     {
-        if (navAgent.isActiveAndEnabled)
-        {
-            navAgent.SetDestination(gameManager.instance.playerCharacter.transform.position);
-        }
-
         if (navAgent.remainingDistance < navAgent.stoppingDistance)
         {
-            //Debug.Log("YARGH");
             FacePlayer();
-
         }
 
-
-        if (!bIsShooting && fAngleToPlayer <= shootAngle)
+        if (!isShooting && angleToPlayer <= shootAngle)
         {
             switch (category)
             {
@@ -200,7 +207,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
     IEnumerator Shoot()
     {
-        bIsShooting = true;//tell update that this is running
+        isShooting = true;//tell update that this is running
         if (brokenAnimations == true)
         {
             yield return new WaitForSeconds(shootRate * 0.5f);
@@ -212,15 +219,15 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
             anim.SetTrigger("Attack");//play the shooting animation
             yield return new WaitForSeconds(shootRate);
         }
-        bIsShooting = false;//tell update that we're ready to shoot again
+        isShooting = false;//tell update that we're ready to shoot again
     }
 
     IEnumerator Explode()
     {
-        bIsShooting = true;
-        if(fAngleToPlayer > shootAngle)
+        isShooting = true;
+        if(angleToPlayer > shootAngle)
         {
-            bIsShooting = false;
+            isShooting = false;
             StopCoroutine(Explode());
         }
         yield return new WaitForSeconds(pointOfNoReturn);
@@ -244,7 +251,6 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         {
             navAgent.SetDestination(gameManager.instance.playerCharacter.transform.position);
         }
-        StartCoroutine(BeenShot());
 
         if (iHP <= 0) //if it dies, get rid of it
         {
@@ -257,7 +263,9 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
             gameManager.instance.playerStats.GainExp(ExperienceYield);
             gameManager.instance.playerController.ChargeUt(chargeValue);
             --levelManager.enemiesRemaining;
+            var par = Instantiate(deathParticle, transform.position, transform.rotation);
             Destroy(gameObject);
+            Destroy(par.gameObject, 1);
         }
         else
         {
@@ -287,13 +295,6 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         }
     }
 
-    IEnumerator BeenShot()
-    {
-        bBeenShot = true;
-        yield return new WaitForSeconds(fChaseTime);
-        bBeenShot = false;
-    }
-
     IEnumerator FlashColor()
     {//when it, change the color of the enemy from whatever it was to red, and back again
         rModel.material.color = Color.red;
@@ -315,7 +316,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     {
         if (other.CompareTag("Player"))
         {
-            bPlayerInRange = true;
+            playerInRange = true;
         }
     }
 
@@ -323,7 +324,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     {
         if (other.CompareTag("Player"))
         {
-            bPlayerInRange = false;
+            playerInRange = false;
         }
     }
 
