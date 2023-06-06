@@ -40,6 +40,7 @@ public class UIManager : MonoBehaviour
 
     [Header("-----Fade Stuff-----")]
     public Image fadeOutImage;
+    public TextMeshProUGUI fadeOutText;
     public int fadeSpeed;
     public bool fading;
 
