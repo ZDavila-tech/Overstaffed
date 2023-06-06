@@ -108,7 +108,7 @@ MonoBehaviour:
   iHP: 12
   hpBar: {fileID: 7051353985056933245}
   hpDisplay: {fileID: 4964723009901755965}
-  fTurnRate: 8
+  turnRate: 0
   fFieldOfView: 165
   fChaseTime: 5
   DropRate: 100
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 7945911725383154855}
   m_Layer: 12
   m_Name: MeleeHitbox
-  m_TagString: Untagged
+  m_TagString: EnemyCollision
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
