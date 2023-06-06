@@ -39,6 +39,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI enemiesRemainText;
     public TextMeshProUGUI expText;
+    public TextMeshProUGUI storeCurrency;
     [SerializeField] Image UtCharge;
 
     [Header("-----Fade Stuff-----")]
@@ -210,7 +211,8 @@ public class UIManager : MonoBehaviour
     public void UpdateExp()
     {
         int exp = gameManager.instance.playerStats.Exp;
-        expText.text = exp.ToString("F0"); 
+        expText.text = exp.ToString("F0");
+        storeCurrency.text = exp.ToString("F0");
     }
 
     public void AbilityCoolDown()

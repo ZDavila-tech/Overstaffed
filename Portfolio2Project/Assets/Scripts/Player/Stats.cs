@@ -16,7 +16,8 @@ public class Stats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Exp = 0;
+        UIManager.instance.UpdateExp();
     }
 
     // Update is called once per frame
@@ -55,5 +56,6 @@ public class Stats : MonoBehaviour
     public void GainExp(int amount)
     {
         Exp += amount;
+        UIManager.instance.UpdateExp();
     }
 }
