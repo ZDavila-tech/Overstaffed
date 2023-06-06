@@ -1097,7 +1097,7 @@ MonoBehaviour:
   iHP: 12
   hpBar: {fileID: 7051353985056933245}
   hpDisplay: {fileID: 4964723009901755965}
-  fTurnRate: 8
+  turnRate: 0
   fFieldOfView: 165
   fChaseTime: 5
   DropRate: 100
@@ -1107,6 +1107,7 @@ MonoBehaviour:
   interuptionCoolDown: 5
   moveSpeed: 0
   brokenAnimations: 0
+  deathParticle: {fileID: 9153340017092349274, guid: 92498d71eb9cb514b80fb7c60ac3cfd5, type: 3}
   bullet: {fileID: 8060328068600632496, guid: 21d34616d4bd55d46ad893c2322ce70a, type: 3}
   shootDistance: 20
   shootRate: 1
@@ -1218,7 +1219,7 @@ MonoBehaviour:
   iHP: 2
   hpBar: {fileID: 8883267535683534846}
   hpDisplay: {fileID: 4717209512966480328}
-  fTurnRate: 1
+  turnRate: 0
   fFieldOfView: 100
   fChaseTime: 20
   DropRate: 0
@@ -1228,6 +1229,7 @@ MonoBehaviour:
   interuptionCoolDown: 1
   moveSpeed: 10
   brokenAnimations: 0
+  deathParticle: {fileID: 0}
   bullet: {fileID: 8060328068600632496, guid: 21d34616d4bd55d46ad893c2322ce70a, type: 3}
   shootDistance: 50
   shootRate: 0.3
