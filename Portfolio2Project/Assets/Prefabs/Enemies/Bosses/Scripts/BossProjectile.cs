@@ -18,4 +18,12 @@ public class BossProjectile : MonoBehaviour
             rigidBody.velocity = (targetToMoveTo.position - spawnPosition.position).normalized * projectileSpeed;
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            gameManager.instance.playerController.TakeDamage(3);
+        }
+    }
 }
