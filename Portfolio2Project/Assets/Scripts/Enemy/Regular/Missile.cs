@@ -10,6 +10,8 @@ public class Missile : MonoBehaviour
     [SerializeField] float missileLife; //the amount of time this projectile takes to disappear (in seconds)
     [SerializeField] int missileSpeed; //the speed that the projectile travels at
     [SerializeField] float cooldownBetweenTracks;
+    [SerializeField] bool doesFreeze;
+    [SerializeField] float freezeDuration;
 
     [Header("----- Components -----")]
     [SerializeField] Rigidbody rigidBody; //this object's Rigidbody
@@ -55,6 +57,10 @@ public class Missile : MonoBehaviour
         if (other.GetComponent<IDamage>() != null)
         {
             IDamage damageable = other.GetComponent<IDamage>();
+            if (doesFreeze)
+            {
+                damageable.Freeze(freezeDuration);
+            }
             damageable.TakeDamage(damage);
         }
         Destroy(gameObject);
