@@ -172,7 +172,7 @@ MonoBehaviour:
   iHP: 30
   hpBar: {fileID: 7051353985056933245}
   hpDisplay: {fileID: 4964723009901755965}
-  fTurnRate: 8
+  turnRate: 0
   fFieldOfView: 165
   fChaseTime: 20
   DropRate: 100
@@ -182,6 +182,8 @@ MonoBehaviour:
   interuptionCoolDown: 5
   moveSpeed: 5
   brokenAnimations: 1
+  deathParticle: {fileID: 0}
+  knockbackResistance: {x: 0, y: 0, z: 0}
   bullet: {fileID: 8060328068600632496, guid: 21d34616d4bd55d46ad893c2322ce70a, type: 3}
   shootDistance: 20
   shootRate: 1
@@ -258,7 +260,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -282,18 +284,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3578921f273289e4d83e6cabbda1655b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rModel: {fileID: 0}
+  rModel: {fileID: 5857434142062462808}
   navAgent: {fileID: 1011368657515646225}
-  shootPosition: {fileID: 0}
-  headPosition: {fileID: 0}
+  shootPosition: {fileID: 3956159677724112353}
+  headPosition: {fileID: 5839729985834940702}
   drop:
   - {fileID: 0}
   anim: {fileID: 0}
   freezeEffect: {fileID: 0}
-  iHP: 2
-  hpBar: {fileID: 0}
-  hpDisplay: {fileID: 0}
-  fTurnRate: 1
+  iHP: 30
+  hpBar: {fileID: 7051353985056933245}
+  hpDisplay: {fileID: 6623142330369203019}
+  turnRate: 0
   fFieldOfView: 100
   fChaseTime: 20
   DropRate: 0
@@ -302,7 +304,9 @@ MonoBehaviour:
   ExperienceYield: 0
   interuptionCoolDown: 1
   moveSpeed: 10
-  brokenAnimations: 0
+  brokenAnimations: 1
+  deathParticle: {fileID: 0}
+  knockbackResistance: {x: 5, y: 5, z: 5}
   bullet: {fileID: 8060328068600632496, guid: 21d34616d4bd55d46ad893c2322ce70a, type: 3}
   shootDistance: 50
   shootRate: 0.3

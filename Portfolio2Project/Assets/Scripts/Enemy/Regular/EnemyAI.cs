@@ -33,6 +33,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] float moveSpeed;
     [SerializeField] bool brokenAnimations;
     [SerializeField] Transform deathParticle;
+    [SerializeField] Vector3 knockbackResistance;
 
     [Header("----- Weapon Stats -----")]
     [SerializeField] GameObject bullet;
@@ -330,7 +331,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
     public void Knockback(Vector3 dir)
     {
-        navAgent.velocity += dir;
+        navAgent.velocity += (dir - knockbackResistance);
     }
 
     IEnumerator GetInterrupted()
@@ -372,6 +373,6 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
     public void Burn (float duration, float timeBetween)
     {
-
+        StartCoroutine(Burning(duration, timeBetween, 1));
     }
 }
