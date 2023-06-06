@@ -19,7 +19,7 @@ public class enemySpawn : MonoBehaviour
 
     LevelManager levelManager;
 
-    int arraylen;
+    int arrayLength;
     // start is called before the first frame update
     void Start()
     {
@@ -45,7 +45,7 @@ public class enemySpawn : MonoBehaviour
     // update is called once per frame
     void Update()
     {
-        if(!isSpawning && levelManager.spawnEnemies)
+        if(!isSpawning && levelManager.isSpawning)
         {
             StartCoroutine(Spawn());
         }
@@ -71,7 +71,7 @@ public class enemySpawn : MonoBehaviour
     GameObject weightedenemyselection()
     {
         int rand = Random.Range(0, totalWeight - 1);
-        for (int i = 0; i < arraylen; i++)
+        for (int i = 0; i < arrayLength; i++)
         {
 
             if (rand <= totalWeight * (enemyTypeSpawnWeighting[i] / 100))
@@ -80,9 +80,7 @@ public class enemySpawn : MonoBehaviour
             }
 
         }
-        return enemyTypesToSpawn[arraylen - 1];
-
-
+        return enemyTypesToSpawn[arrayLength - 1];
     }
 
     private void OnDrawGizmos()
@@ -92,9 +90,9 @@ public class enemySpawn : MonoBehaviour
 
     void sortarrays()
     {
-        for (int i = 0; i < arraylen - 1; i++)
+        for (int i = 0; i < arrayLength - 1; i++)
         {
-            for (int j = 0; j < arraylen - i - 1; j++)
+            for (int j = 0; j < arrayLength - i - 1; j++)
                 if (enemyTypeSpawnWeighting[j] > enemyTypeSpawnWeighting[j + 1])
                 {
                     var temp = enemyTypeSpawnWeighting[j];
@@ -105,16 +103,14 @@ public class enemySpawn : MonoBehaviour
                     enemyTypesToSpawn[j + 1] = temp2;
                 }
         }
-
-
     }
     void initializelength()
     {
-        arraylen = 0;
+        arrayLength = 0;
         foreach (int i in enemyTypeSpawnWeighting)
         {
 
-            arraylen++;
+            arrayLength++;
 
         }
     }

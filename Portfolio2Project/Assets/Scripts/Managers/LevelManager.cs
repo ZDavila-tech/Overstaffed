@@ -16,7 +16,8 @@ public class LevelManager : MonoBehaviour
 
     [Header("----- Spawner Settings -----")]
     [SerializeField] int baseNumberOfEnemiesToSpawn;
-    [SerializeField, Range(0f, 1f)] float numberOfEnemiesScaling;
+    [Range(0f, 1f)] public float numberOfEnemiesScaling;
+    [SerializeField] float timeBetweenSpawns;
     public int maxEnemiesAtOneTime;
   
 
@@ -26,7 +27,9 @@ public class LevelManager : MonoBehaviour
     public int enemiesRemaining; //goes up when an enemyAI Start()'s and goes down on enemy death
     public int currentEnemiesSpawned;
     public int currentEnemiesAlive;
-    public bool spawnEnemies;
+    public bool isSpawning;
+    private int currentSpawner;
+    GameObject[] spawners;
 
     [Header("----- Level Transition Stuff (Ignore)-----")]
     public bool inElevator; //player is in elevator
@@ -51,47 +54,44 @@ public class LevelManager : MonoBehaviour
         {
             instance = this;
         }
+        currentSpawner = 0;
     }
     void Start()
     {
-        uiManager = UIManager.instance;
-        audioManager = AudioManager.instance;
+        if(UIManager.instance != null) 
+        {
+            uiManager = UIManager.instance;        
+        }
+        if(AudioManager.instance != null)
+        {
+            audioManager = AudioManager.instance;
+        }
         NewGame();
 
-        if (inElevator == true)
-        {
-            inElevator = false; //FOR THE LOVE OF GOD HAVE THIS BEFORE GO TO NEXT LEVEL OR EVERYTHING BREAKS #2
-        }
+        //if (inElevator == true)
+        //{
+        //    inElevator = false; //FOR THE LOVE OF GOD HAVE THIS BEFORE GO TO NEXT LEVEL OR EVERYTHING BREAKS #2
+        //}
     }
 
     private void Update()
     {
-        if(uiManager != null)
+        if (uiManager != null)
         {
             uiManager.UpdateLevelCount();
             uiManager.UpdateEnemiesRemaining();
-        }
+        }        
 
         if (loadingLevel == false)
         {
+            currentEnemiesAlive = GameObject.FindGameObjectsWithTag("Enemy").Length;
+            if (!isSpawning && !levelCompleted && totalEnemiesToSpawn > currentEnemiesSpawned && currentEnemiesAlive < maxEnemiesAtOneTime)
+            {
+                ++currentEnemiesSpawned;
+                StartCoroutine(SpawnersSpawn());
+            }
             LevelCompletionTracker();
         }
-
-        if (UIManager.instance != null && uiManager == null)
-        {
-            uiManager = UIManager.instance;
-        }
-
-        if (totalEnemiesToSpawn > currentEnemiesSpawned && currentEnemiesAlive < maxEnemiesAtOneTime && !levelCompleted)
-        {
-            spawnEnemies = true;
-        }
-        else
-        {
-            spawnEnemies = false;
-        }
-
-        currentEnemiesAlive = GameObject.FindGameObjectsWithTag("Enemy").Length;
     }
 
     public void NewGame()
@@ -113,11 +113,7 @@ public class LevelManager : MonoBehaviour
     {
         if (levelStarted == true && enemiesRemaining <= 0) //if level is started and all enemies are dead level is considered completed
         {
-            if (levelCompleted == false)
-            {
-                //Debug.Log("levelStarted True + enemies < 0, level is completed");
-                levelCompleted = true;
-            }
+            levelCompleted = true;
 
             if (inElevator == true)
             {
@@ -154,7 +150,12 @@ public class LevelManager : MonoBehaviour
 
     void ScaleSpawners() //Scales Number of enemies per level
     {
-        totalEnemiesToSpawn = (int)(baseNumberOfEnemiesToSpawn * ((currentLevel * numberOfEnemiesScaling) + 1));
+        int level = currentLevel - 5;
+        if (level < 0)
+        {
+            level = 0;
+        }
+        totalEnemiesToSpawn = (int)(baseNumberOfEnemiesToSpawn * ((level * numberOfEnemiesScaling) + 1));
     }
 
     public void LoadNextLevel()
@@ -168,12 +169,13 @@ public class LevelManager : MonoBehaviour
         {
             if (currentLevel == bossLevelOne)
             {
+                LoadLevelVariableReset();
                 SceneManager.LoadScene("HR");
             }
             else
             {
+                LoadLevelVariableReset();
                 enemiesRemaining = totalEnemiesToSpawn;
-                //update enemies remaining here
                 SceneManager.LoadScene(GetRandomLevelIndex());
             }
         }
@@ -188,6 +190,7 @@ public class LevelManager : MonoBehaviour
             {
                 ++currentLevel; //ups difficulty
                 ScaleSpawners();
+                LoadLevelVariableReset();
                 SceneManager.LoadScene(hubSceneIndex);
             }
             else
@@ -203,6 +206,7 @@ public class LevelManager : MonoBehaviour
                     if (currentLevel < 6)
                     //if (SceneManager.GetActiveScene().buildIndex < repeatableLevelsMinIndex)
                     {
+                        LoadLevelVariableReset();
                         switch (currentLevel)
                         {
                             case 1:
@@ -236,6 +240,7 @@ public class LevelManager : MonoBehaviour
                     }
                     else
                     {
+                        LoadLevelVariableReset();
                         enemiesRemaining = totalEnemiesToSpawn;
                         SceneManager.LoadScene(GetRandomLevelIndex());
                     }
@@ -245,9 +250,34 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    IEnumerator SpawnersSpawn()
+    {
+        isSpawning = true;
+
+        spawners = GameObject.FindGameObjectsWithTag("Spawner");
+        if(spawners != null && spawners.Length > 0)
+        {
+            if(currentSpawner >= spawners.Length)
+            {
+                currentSpawner = 0;
+            }
+            spawners[currentSpawner].GetComponent<EnemySpawner>().SpawnEnemies();
+        }
+
+        yield return new WaitForSeconds(timeBetweenSpawns);
+        ++currentSpawner;
+        isSpawning = false;
+    }
+
     public void SetCurrentLevel(int levelToSetTo)
     {
         currentLevel = levelToSetTo;
         ScaleSpawners();
+    }
+
+    private void LoadLevelVariableReset()
+    {
+        enemiesRemaining = 0;
+        currentEnemiesSpawned = 0;
     }
 }

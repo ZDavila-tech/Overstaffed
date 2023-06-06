@@ -16,7 +16,6 @@ public class PlayerSpawn : MonoBehaviour
     {
         levelManager = LevelManager.instance;
         gameManager = gameManager.instance;
-        levelManager.currentEnemiesSpawned = 0;
         player = GameObject.FindGameObjectWithTag("Player");
         playerSpawn = this.gameObject;
         PullPlayer();
@@ -45,7 +44,6 @@ public class PlayerSpawn : MonoBehaviour
         playerInSpawn = false;
         levelManager.levelStarted = true;
         levelManager.levelCompleted = false;
-
         Destroy(this.gameObject);
     }
 

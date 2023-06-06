@@ -4,17 +4,13 @@ using UnityEngine;
 
 public class PlayerDetector : MonoBehaviour
 {
-    EnemySpawner associatedSpawner;
+    [SerializeField] EnemySpawner associatedSpawner;
 
-    private void Start()
-    {
-        associatedSpawner = this.gameObject.GetComponentInParent<EnemySpawner>();
-    }
     private void OnTriggerEnter(Collider other)
     {
-        if (other == CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player"))
         {
-            associatedSpawner.playerDetected = true;
+            associatedSpawner.SetPlayerDetected();
         }
     }
 }
