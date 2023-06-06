@@ -14,6 +14,7 @@ public class buttonFunctions : MonoBehaviour
 
     PlayerController playerController;
 
+
     private void Start()
     {
         uiManager = UIManager.instance;

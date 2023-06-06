@@ -12852,7 +12852,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3292343639818338528}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7563184126098233734}
+        m_TargetAssemblyTypeName: StoreButtons, Assembly-CSharp
+        m_MethodName: BuyScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &870642534228248605
 GameObject:
   m_ObjectHideFlags: 0
@@ -28462,7 +28474,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7216191907659881899}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7563184126098233734}
+        m_TargetAssemblyTypeName: StoreButtons, Assembly-CSharp
+        m_MethodName: InventoryScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7678021975353952873
 GameObject:
   m_ObjectHideFlags: 0
@@ -30775,6 +30799,9 @@ MonoBehaviour:
   flashDamage: {fileID: 5922270969672879181}
   levelSelectMenu: {fileID: 5741585333802560412}
   storeMenu: {fileID: 6983980052673348956}
+  buyScreen: {fileID: 7608235514625080573}
+  sellScreen: {fileID: 2035171226336501840}
+  inventoryScreen: {fileID: 3079809241224498737}
   elementSelectMenu: {fileID: 4651665054188061651}
   saveMenu: {fileID: 8376903872863355961}
   creditsMenu: {fileID: 416272080}
@@ -32753,7 +32780,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3102285927030615117}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7563184126098233734}
+        m_TargetAssemblyTypeName: StoreButtons, Assembly-CSharp
+        m_MethodName: SellScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9016457657994784844
 GameObject:
   m_ObjectHideFlags: 0

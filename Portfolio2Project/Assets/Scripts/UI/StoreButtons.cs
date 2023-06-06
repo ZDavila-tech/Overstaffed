@@ -38,4 +38,25 @@ public class StoreButtons : MonoBehaviour
         gameManager.instance.UnpauseState();
         UIManager.instance.HideActiveMenu();
     }
+
+    public void BuyScreen()
+    {
+        UIManager.instance.buyScreen.SetActive(true);
+        UIManager.instance.sellScreen.SetActive(false);
+        UIManager.instance.inventoryScreen.SetActive(false);
+    }
+
+    public void SellScreen()
+    {
+        UIManager.instance.buyScreen.SetActive(false);
+        UIManager.instance.sellScreen.SetActive(true);
+        UIManager.instance.inventoryScreen.SetActive(false);
+    }
+
+    public void InventoryScreen()
+    {
+        UIManager.instance.buyScreen.SetActive(false);
+        UIManager.instance.sellScreen.SetActive(false);
+        UIManager.instance.inventoryScreen.SetActive(true);
+    }
 }
