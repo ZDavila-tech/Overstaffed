@@ -172,7 +172,15 @@ public class LevelManager : MonoBehaviour
             {
                 LoadLevelVariableReset();
                 enemiesRemaining = totalEnemiesToSpawn;
-                SceneManager.LoadScene(GetRandomLevelIndex());
+                if (currentLevel == 1)
+                {
+                    SceneManager.LoadScene("Home");
+                }
+                else
+                {
+                    SceneManager.LoadScene(GetRandomLevelIndex());
+                }
+
             }
         }
         else
