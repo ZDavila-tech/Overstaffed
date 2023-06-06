@@ -15,26 +15,31 @@ public class TutorialTrigger : MonoBehaviour
                     UIManager.instance.activeMenu = UIManager.instance.tut1;
                     UIManager.instance.ShowActiveMenu();
                     gameManager.instance.PauseState();
+                    col.enabled = false;
                     break;
                 case 2:
                     UIManager.instance.activeMenu = UIManager.instance.tut2;
                     UIManager.instance.ShowActiveMenu();
                     gameManager.instance.PauseState();
+                    col.enabled = false;
                     break;
                 case 3:
                     UIManager.instance.activeMenu = UIManager.instance.tut3;
                     UIManager.instance.ShowActiveMenu();
                     gameManager.instance.PauseState();
+                    col.enabled=false;
                     break;
                 case 4:
                     UIManager.instance.activeMenu = UIManager.instance.tut4;
                     UIManager.instance.ShowActiveMenu();
                     gameManager.instance.PauseState();
+                    col.enabled = false;
                     break;
                 case 5:
                     UIManager.instance.activeMenu = UIManager.instance.beginLetter;
                     UIManager.instance.ShowActiveMenu();
                     gameManager.instance.PauseState();
+                    col.enabled = false;
                     break;
 
             }
