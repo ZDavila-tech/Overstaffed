@@ -87,7 +87,6 @@ public class LevelManager : MonoBehaviour
             currentEnemiesAlive = GameObject.FindGameObjectsWithTag("Enemy").Length;
             if (!isSpawning && !levelCompleted && totalEnemiesToSpawn > currentEnemiesSpawned && currentEnemiesAlive < maxEnemiesAtOneTime)
             {
-                ++currentEnemiesSpawned;
                 StartCoroutine(SpawnersSpawn());
             }
             LevelCompletionTracker();

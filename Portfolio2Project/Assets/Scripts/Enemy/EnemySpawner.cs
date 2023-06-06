@@ -9,20 +9,20 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] bool spawnsOnLevelLoad; //if it does not spawn on level load it is an area spawner
     [SerializeField] bool isAreaSpawner;
 
+    [Header("----- Enemies To Spawn (Must Have One Enemy Type) -----")]
+    [SerializeField] GameObject[] enemyTypesToSpawn;
+    [Range(0, 100)][SerializeField] int[] enemyTypeSpawnWeighting;
+
     [Header("----- Ambush Spawner Settings (Does Not Spawn On Load) -----")]
-    [SerializeField] int baseNumberOfEnemiesToSpawn;
+    [SerializeField] int baseNumberEnemiesToSpawn;
     [SerializeField] float timeBetweenSpawns;
 
-    [Header("----- Postion Spawner Settings -----")]
+    [Header("----- Postion Spawner Settings (Is not an Area Spawner) -----")]
     [SerializeField] Transform[] spawnPositions;
 
     [Header("----- Area Spawner Settings -----")]
     [SerializeField] float spawnAreaX;
     [SerializeField] float spawnAreaZ;
-
-    [Header("----- Enemies To Spawn -----")]
-    [SerializeField] GameObject[] enemyTypesToSpawn;
-    [Range(0, 100)][SerializeField] int[] enemyTypeSpawnWeighting;
     
     private int totalWeight;
     private int arrayLength;
@@ -60,7 +60,7 @@ public class EnemySpawner : MonoBehaviour
         {
             level = 0;
         }
-        numberOfEnemiesToSpawn = (int)(baseNumberOfEnemiesToSpawn * ((level * levelManager.numberOfEnemiesScaling) + 1));
+        numberOfEnemiesToSpawn = (int)(baseNumberEnemiesToSpawn * ((level * levelManager.numberOfEnemiesScaling) + 1));
     }
 
     private void Update()
@@ -144,6 +144,7 @@ public class EnemySpawner : MonoBehaviour
         Vector3 randomPosition = new Vector3(locationToSpawn.position.x + Random.Range(-1.0f, 1.0f), locationToSpawn.position.y + 1, locationToSpawn.position.z + Random.Range(-1.0f, 1.0f));
         GameObject spawned = Instantiate(enemyToSpawn, randomPosition, locationToSpawn.rotation);
         spawned.GetComponent<EnemyAI>().spawnedBySpawner = true;
+        ++levelManager.currentEnemiesSpawned;
     }
 
     public void AreaSpawnEnemy()
@@ -151,6 +152,7 @@ public class EnemySpawner : MonoBehaviour
         GameObject tospawn = WeightedEnemySelect();
         GameObject spawned = Instantiate(tospawn, GetSpawnCoordinates(), this.gameObject.transform.rotation);
         spawned.GetComponent<EnemyAI>().spawnedBySpawner = true;
+        ++levelManager.currentEnemiesSpawned;
     }
 
     private void OnTriggerEnter(Collider other)
