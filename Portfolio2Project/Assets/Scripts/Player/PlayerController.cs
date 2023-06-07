@@ -437,9 +437,36 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         burning = false;
     }
 
+    IEnumerator Venom(float duration, float timeBetween, int damage)
+    {
+        bool poisoned = true;
+        int oldAttack = 0;
+        if (playerElement == NewStaff.Element.Earth)
+        {
+            oldAttack = playerDamage;
+            playerDamage = (int)(playerDamage * 1.5f);
+        }
+        while (poisoned)
+        {
+            yield return new WaitForSeconds(timeBetween);
+            TakeDamage(damage);
+        }
+        yield return new WaitForSeconds(duration);
+        if (playerElement == NewStaff.Element.Earth)
+        {
+            playerDamage = oldAttack;
+        }
+        poisoned = false;
+    }
+
     public void Burn(float duration, float timeBetween)
     {
-        StartCoroutine(Burning(duration, timeBetween, playerStats.GetHealth() *  (100/10)));
+        StartCoroutine(Burning(duration, timeBetween, playerStats.GetHealth() * (100 / 10)));
+    }
+
+    public void Poison(float duration, float timeBetweeen)
+    {
+        StartCoroutine(Venom(duration, timeBetweeen, 1));
     }
 
     public void ChangeBaseStats(NewStaff.Element element)
