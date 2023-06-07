@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] int repeatableLevelsMinIndex; //list repeatable levels contiguously in Build Settings
     [SerializeField] int repeatableLevelsMaxIndex;
     [SerializeField] int hubSceneIndex;
+    [SerializeField] int characterSelectIndex;
     [SerializeField] int bossLevelOne;
     [SerializeField] int maxPlayableLevel;
 
@@ -164,7 +165,7 @@ public class LevelManager : MonoBehaviour
             highestLevelCompleted = currentLevel;
         }
 
-        if (SceneManager.GetActiveScene().buildIndex == hubSceneIndex)
+        if (SceneManager.GetActiveScene().buildIndex == hubSceneIndex || SceneManager.GetActiveScene().buildIndex == characterSelectIndex)
         {
             if (currentLevel == bossLevelOne)
             {
