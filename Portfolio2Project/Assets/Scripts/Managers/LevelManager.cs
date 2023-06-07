@@ -174,7 +174,7 @@ public class LevelManager : MonoBehaviour
             else
             {
                 LoadLevelVariableReset();
-                enemiesRemaining = totalEnemiesToSpawn;
+                //enemiesRemaining = totalEnemiesToSpawn;
                 if (currentLevel == 1)
                 {
                     SceneManager.LoadScene("Home");
