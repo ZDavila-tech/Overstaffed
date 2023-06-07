@@ -50,7 +50,15 @@ public class PlayerSpawn : MonoBehaviour
         }
         else
         {
-            player.transform.SetPositionAndRotation(this.gameObject.transform.position, this.gameObject.transform.rotation);
+            if(player != null)
+            {
+                player.transform.SetPositionAndRotation(this.gameObject.transform.position, this.gameObject.transform.rotation);
+            }
+            else
+            {
+                player = GameObject.FindGameObjectWithTag("Player");
+            }
+
             keepPullingPlayer = true;
             //Debug.Log("Player spawn tried to pull player player");
         }

@@ -295,7 +295,8 @@ public class LevelManager : MonoBehaviour
         inElevator = false;
         loadingLevel = false;
         levelStarted = false;
-        levelCompleted = false;        
+        levelCompleted = false;     
+        StopAllCoroutines();
     }
 
     public void TutorialBeatenGoToLevelSix()
