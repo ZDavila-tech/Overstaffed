@@ -36,7 +36,9 @@ public class buttonFunctions : MonoBehaviour
         uiManager.HideActiveMenu();
         uiManager.HUD.SetActive(false);
         uiManager.activeMenu = uiManager.playerSelect;
-        
+
+        LevelManager.instance.totalEnemiesDefeated = 0;
+
         AudioManager.instance.currSong = 1;
         AudioManager.instance.PlaySong();
         uiManager.ShowActiveMenu();
@@ -128,6 +130,8 @@ public class buttonFunctions : MonoBehaviour
         AudioManager.instance.PlaySong();
         uiManager.ShowActiveMenu();
 
+        LevelManager.instance.totalEnemiesDefeated = 0;
+
         Debug.Log("Player Character destroyed");
         Time.timeScale = gameManager.instance.timeScaleOriginal;
 
@@ -152,6 +156,8 @@ public class buttonFunctions : MonoBehaviour
         AudioManager.instance.currSong = 0;
         AudioManager.instance.PlaySong();
         uiManager.ShowActiveMenu();
+
+        LevelManager.instance.totalEnemiesDefeated = 0;
 
         Debug.Log("Player Character destroyed");
         Time.timeScale = gameManager.instance.timeScaleOriginal;
@@ -201,6 +207,7 @@ public class buttonFunctions : MonoBehaviour
         uiManager.ShowActiveMenu();
         LevelManager.instance.hasBeatenTutorial = false;
         LevelManager.instance.highestLevelCompleted = 0;
+        LevelManager.instance.totalEnemiesDefeated = 0;
 
         SceneManager.LoadScene("Character Select");
     }
