@@ -19,8 +19,8 @@ public class VanishingFloor : MonoBehaviour
         ParticleSystem particleComp = Instantiate(particle,transform.position,transform.rotation).GetComponent<ParticleSystem>();
         var shape = particleComp.shape;
         shape.scale = transform.localScale;
-        this.gameObject.SetActive(false);
         StartCoroutine(appear());
+        this.gameObject.SetActive(false);
     }
 
     IEnumerator appear()
