@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -22,6 +23,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] int iHP;
     [SerializeField] Slider hpBar;
     [SerializeField] GameObject hpDisplay;
+    [SerializeField] TextMeshPro damageNumbers;
     [SerializeField] float turnRate;
     [SerializeField] float fFieldOfView;
     [SerializeField] float fChaseTime;
@@ -246,6 +248,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     {
         iHP -= dmg;//health goes down
         StartCoroutine(ShowHealth());
+        StartCoroutine(ShowDamage(dmg));
         hpBar.value = iHP;
         StartCoroutine(FlashColor());//indicate damage taken
         if (navAgent.isActiveAndEnabled)
@@ -312,6 +315,14 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
         yield return new WaitForSeconds(2f);
         hpDisplay.SetActive(false);
+    }
+    IEnumerator ShowDamage(int dmg)
+    {
+        damageNumbers.enabled = true;
+        damageNumbers.text = dmg.ToString();
+
+        yield return new WaitForSeconds(0.5f);
+        damageNumbers.enabled = false;
     }
 
     void OnTriggerEnter(Collider other)
