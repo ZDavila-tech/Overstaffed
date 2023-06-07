@@ -40,6 +40,7 @@ public class LevelManager : MonoBehaviour
 
     [Header("----- High Score Stuff (Ignore)-----")]
     public int highestLevelCompleted;
+    public int totalEnemiesDefeated;
 
     private UIManager uiManager;
     private AudioManager audioManager;
@@ -56,6 +57,7 @@ public class LevelManager : MonoBehaviour
         }
         currentSpawner = 0;
         currentLevel = 1;
+        totalEnemiesDefeated = 0;
     }
     void Start()
     {
@@ -68,6 +70,7 @@ public class LevelManager : MonoBehaviour
             audioManager = AudioManager.instance;
         }
         NewGame();
+      
     }
 
     private void Update()
@@ -93,8 +96,10 @@ public class LevelManager : MonoBehaviour
     {
         currentLevel = 1;
         loadingLevel = false;
+        totalEnemiesDefeated = 0;
         NewLevelVariableResets();
     }
+
 
     public void NewLevelVariableResets()
     {
@@ -170,7 +175,15 @@ public class LevelManager : MonoBehaviour
             {
                 LoadLevelVariableReset();
                 enemiesRemaining = totalEnemiesToSpawn;
-                SceneManager.LoadScene(GetRandomLevelIndex());
+                if (currentLevel == 1)
+                {
+                    SceneManager.LoadScene("Home");
+                }
+                else
+                {
+                    SceneManager.LoadScene(GetRandomLevelIndex());
+                }
+
             }
         }
         else

@@ -23,6 +23,9 @@ public class UIManager : MonoBehaviour
     public GameObject flashDamage;
     public GameObject levelSelectMenu;
     public GameObject storeMenu;
+    public GameObject buyScreen;
+    public GameObject sellScreen;
+    public GameObject inventoryScreen;
     public GameObject elementSelectMenu;
     public GameObject saveMenu;
     public GameObject creditsMenu;
@@ -30,12 +33,16 @@ public class UIManager : MonoBehaviour
     public GameObject beginLetter;
     public GameObject endLetter;
     public GameObject interactTextGameObject;
+    public GameObject gamePlayRecap;
     public TextMeshProUGUI interactText;
+    public TextMeshProUGUI totalLevelsCompleted;
+    public TextMeshProUGUI totalenemiesDefeated;
 
     public Image playerHealthBar;
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI enemiesRemainText;
     public TextMeshProUGUI expText;
+    public TextMeshProUGUI storeCurrency;
     [SerializeField] Image UtCharge;
 
     [Header("-----Fade Stuff-----")]
@@ -86,7 +93,7 @@ public class UIManager : MonoBehaviour
         //playerElement = gameManager.playerElement;
         levelManager = LevelManager.instance;
         playerSkills = gameManager.playerSkills;
-        fileManager.save();
+        //fileManager.save();
         fileManager.load();
     }
 
@@ -122,6 +129,20 @@ public class UIManager : MonoBehaviour
         gameManager.PauseState();
         activeMenu = loseMenu;
         ShowActiveMenu();
+        totalLevelsCompleted.text = ($"{levelManager.currentLevel - 1}");
+        totalenemiesDefeated.text = ($"{levelManager.totalEnemiesDefeated}");
+        gamePlayRecap.SetActive(true);
+    }
+
+    public void YouWin()
+    {
+        gameManager.PauseState();
+        activeMenu = winMenu;
+        ShowActiveMenu();
+
+        totalLevelsCompleted.text = ($"{levelManager.currentLevel}");
+        totalenemiesDefeated.text = ($"{levelManager.totalEnemiesDefeated}");
+        gamePlayRecap.SetActive(true);
     }
 
     public void ShowEndLetter()
@@ -160,13 +181,6 @@ public class UIManager : MonoBehaviour
         flashDamage.SetActive(false);
     }
 
-    public void YouWin()
-    {
-        activeMenu = winMenu;
-        ShowActiveMenu();
-        gameManager.PauseState();
-    }
-
     public void SetElement()
     {
         playerElement = gameManager.playerElement;
@@ -175,6 +189,7 @@ public class UIManager : MonoBehaviour
     //displays the correct element based on character type
     public void SetElementIcon()
     {
+        Debug.Log("Set ELement");
         //Debug.Log(playerScript.GetWeapon());
         element.sprite = spriteArray[(int) playerElement];
         switch (playerElement)
@@ -207,7 +222,8 @@ public class UIManager : MonoBehaviour
     public void UpdateExp()
     {
         int exp = gameManager.instance.playerStats.Exp;
-        expText.text = exp.ToString("F0"); 
+        expText.text = exp.ToString("F0");
+        storeCurrency.text = exp.ToString("F0");
     }
 
     public void AbilityCoolDown()
@@ -261,6 +277,7 @@ public class UIManager : MonoBehaviour
         for (float i = 0; i <= fadeSpeed; i += Time.deltaTime)
         {
             fadeOutImage.color = new Color(0, 0, 0, i);
+            fadeOutText.color = new Color(1, 1, 1, i);
             yield return null;
         }
         fading = true;
@@ -277,6 +294,7 @@ public class UIManager : MonoBehaviour
         for (float i = fadeSpeed; i >= 0; i -= Time.deltaTime)
         {
             fadeOutImage.color = new Color(0, 0, 0, i);
+            fadeOutText.color = new Color(1, 1, 1, i);
             yield return null;
         }
         yield return new WaitForSeconds(1.0f);
@@ -289,9 +307,9 @@ public class UIManager : MonoBehaviour
 
     public void SetPlayerVariables()
     {
-        Debug.Log(gameManager.playerSkills);
-        playerSkills = gameManager.playerSkills;
-        playerElement = gameManager.playerElement;
+        Debug.Log(gameManager.instance.playerSkills);
+        playerSkills = gameManager.instance.playerSkills;
+        playerElement = gameManager.instance.playerElement;
     }
 
     public void UpdateInteractText(int interactionScenario, string textToShow = "")

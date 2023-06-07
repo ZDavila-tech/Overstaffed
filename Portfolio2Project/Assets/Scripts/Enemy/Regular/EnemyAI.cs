@@ -32,6 +32,8 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] float interuptionCoolDown;
     [SerializeField] float moveSpeed;
     [SerializeField] bool brokenAnimations;
+    [SerializeField] Transform deathParticle;
+    [SerializeField] Vector3 knockbackResistance;
 
     [Header("----- Weapon Stats -----")]
     [SerializeField] GameObject bullet;
@@ -262,7 +264,10 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
             gameManager.instance.playerStats.GainExp(ExperienceYield);
             gameManager.instance.playerController.ChargeUt(chargeValue);
             --levelManager.enemiesRemaining;
+            ++levelManager.totalEnemiesDefeated;
+            var par = Instantiate(deathParticle, transform.position, transform.rotation);
             Destroy(gameObject);
+            Destroy(par.gameObject, 1);
         }
         else
         {
@@ -327,7 +332,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
     public void Knockback(Vector3 dir)
     {
-        navAgent.velocity += dir;
+        navAgent.velocity += (dir - knockbackResistance);
     }
 
     IEnumerator GetInterrupted()
@@ -369,6 +374,6 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
     public void Burn (float duration, float timeBetween)
     {
-
+        StartCoroutine(Burning(duration, timeBetween, 1));
     }
 }

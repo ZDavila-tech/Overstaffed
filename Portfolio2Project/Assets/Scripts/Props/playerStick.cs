@@ -13,7 +13,6 @@ public class playerStick : MonoBehaviour
     // Start is called before the first frame update
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("TOUCHING");
         if (other.CompareTag("Player"))
         {
             originalScale = gameManager.instance.playerCharacter.transform.localScale;
