@@ -9745,7 +9745,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.010000001
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -9861,7 +9861,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 25
+      scalar: 2.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -14375,6 +14375,7 @@ GameObject:
   - component: {fileID: 400006}
   - component: {fileID: 114000011465945996}
   - component: {fileID: 114000010586641710}
+  - component: {fileID: 8826083977359979705}
   m_Layer: 0
   m_Name: Kunai
   m_TagString: Untagged
@@ -14391,7 +14392,7 @@ Transform:
   m_GameObject: {fileID: 100006}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.000000053214308, z: 0.44639403}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 400004}
@@ -14412,6 +14413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7794c33cb087bc44947938f6f33fe47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delay: 0
 --- !u!114 &114000010586641710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14425,3 +14427,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.5
+--- !u!114 &8826083977359979705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67091aca147965949a80dd0216c147c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

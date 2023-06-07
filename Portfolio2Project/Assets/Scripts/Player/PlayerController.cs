@@ -444,6 +444,10 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     void ChangeItem()
     {
+        if(itemSelected > items.Count - 1 || itemSelected < 0)
+        {
+            itemSelected = 0;
+        }
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && itemSelected < items.Count - 1)
         {
             itemSelected++;
