@@ -36,6 +36,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] bool brokenAnimations;
     [SerializeField] Transform deathParticle;
     [SerializeField] Vector3 knockbackResistance;
+    [SerializeField] int damageDealt;
 
     [Header("----- Weapon Stats -----")]
     [SerializeField] GameObject bullet;
@@ -241,7 +242,8 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
     public void CreateBullet()
     {
-        Instantiate(bullet, shootPosition.position, transform.rotation);//create bullet
+        GameObject proj = Instantiate(bullet, shootPosition.position, transform.rotation);//create bullet
+        proj.GetComponent<Projectile>().SetDamage(damageDealt);
     }
 
     public void TakeDamage(int dmg)
@@ -379,8 +381,10 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
             yield return new WaitForSeconds(timeBetween);
             TakeDamage(damage);
         }
+        damageDealt = (int)(damageDealt*0.5);
         yield return new WaitForSeconds(duration);
         burning = false;
+        damageDealt *= 2;
     }
 
     public void Burn (float duration, float timeBetween)
