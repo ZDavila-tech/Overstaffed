@@ -243,7 +243,11 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     public void CreateBullet()
     {
         GameObject proj = Instantiate(bullet, shootPosition.position, transform.rotation);//create bullet
-        proj.GetComponent<Projectile>().SetDamage(damageDealt);
+        Projectile projSet;
+        if(proj.TryGetComponent<Projectile>(out projSet))
+        {
+            projSet.SetDamage(damageDealt);
+        }
     }
 
     public void TakeDamage(int dmg)
