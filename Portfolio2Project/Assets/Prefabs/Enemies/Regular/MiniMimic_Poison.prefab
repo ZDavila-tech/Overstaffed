@@ -1090,10 +1090,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   anim: {fileID: 1080602852015138143}
-  freezeEffect: {fileID: 0}
+  freezeEffect: {fileID: 6138967807688556159}
   iHP: 12
   hpBar: {fileID: 7051353985056933245}
   hpDisplay: {fileID: 4964723009901755965}
+  damageNumbers: {fileID: 4133499154793139273}
   turnRate: 0
   fFieldOfView: 165
   fChaseTime: 5
@@ -2253,6 +2254,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d6cfe7ffe2cd2a4eb47e9cc1be04c5e, type: 3}
+--- !u!114 &4133499154793139273 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1364393770687861048, guid: 2d6cfe7ffe2cd2a4eb47e9cc1be04c5e, type: 3}
+  m_PrefabInstance: {fileID: 3148701629520911729}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &6147934885568694951 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9143350987719989206, guid: 2d6cfe7ffe2cd2a4eb47e9cc1be04c5e, type: 3}
