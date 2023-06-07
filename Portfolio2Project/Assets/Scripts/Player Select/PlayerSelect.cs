@@ -27,6 +27,7 @@ public class PlayerSelect : MonoBehaviour
     {
         PrePlayerElementSetup();
         playerController.playerElement = NewStaff.Element.Fire;
+        playerController.ChangeBaseStats(NewStaff.Element.Fire);
         PostPlayerElementSetup();
     }
 
@@ -34,6 +35,7 @@ public class PlayerSelect : MonoBehaviour
     {
         PrePlayerElementSetup();
         playerController.playerElement = NewStaff.Element.Water;
+        playerController.ChangeBaseStats(NewStaff.Element.Water);
         PostPlayerElementSetup();
     }
 
@@ -41,6 +43,7 @@ public class PlayerSelect : MonoBehaviour
     {
         PrePlayerElementSetup();
         playerController.playerElement = NewStaff.Element.Earth;
+        playerController.ChangeBaseStats(NewStaff.Element.Earth);
         PostPlayerElementSetup();
     }
 

@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     [Header("----- Player Stats -----")]
     [SerializeField] int baseAttack;
     [SerializeField] int baseHealth;
-    [SerializeField] int baseSpeed;
+    [SerializeField] float baseSpeed;
     [SerializeField] Stats playerStats;
     int iHP;
     public float playerSpeed;
@@ -440,6 +440,28 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     public void Burn(float duration, float timeBetween)
     {
         StartCoroutine(Burning(duration, timeBetween, playerStats.GetHealth() *  (100/10)));
+    }
+
+    public void ChangeBaseStats(NewStaff.Element element)
+    {
+        switch (element)
+        {
+            case NewStaff.Element.Fire:
+                baseHealth = 10;
+                baseSpeed = 8.5f;
+                baseAttack = 1;
+                break;
+            case NewStaff.Element.Water:
+                baseHealth = 15;
+                baseSpeed = 8;
+                baseAttack = 1;
+                break;
+            case NewStaff.Element.Earth:
+                baseHealth = 10;
+                baseSpeed = 8;
+                baseAttack = 2;
+                break;
+        }
     }
 
     void ChangeItem()
