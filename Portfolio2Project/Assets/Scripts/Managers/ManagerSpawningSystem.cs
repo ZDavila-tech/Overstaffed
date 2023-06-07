@@ -4,31 +4,14 @@ using UnityEngine;
 
 public class ManagerSpawningSystem : MonoBehaviour
 {
-    [SerializeField] gameManager gameManager;
-    [SerializeField] LevelManager levelManager;
-    [SerializeField] UIManager uiManager;
-    [SerializeField] AudioManager audioManager;
+    [SerializeField] GameObject managers;
+
 
     void Start()
     {
-        if (gameManager.instance == null)
+        if(gameManager.instance == null)
         {
-            Instantiate(gameManager);
-        }
-
-        if (LevelManager.instance == null)
-        {
-            Instantiate(levelManager);
-        }
-
-        if (UIManager.instance == null)
-        {
-            Instantiate(uiManager);
-        }
-
-        if (AudioManager.instance == null)
-        {
-            Instantiate(audioManager);
+            Instantiate(managers);
         }
 
         Destroy(this.gameObject);
