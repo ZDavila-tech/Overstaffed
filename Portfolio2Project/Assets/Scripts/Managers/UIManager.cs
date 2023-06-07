@@ -39,6 +39,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI interactText;
     public TextMeshProUGUI totalLevelsCompleted;
     public TextMeshProUGUI totalenemiesDefeated;
+    public TextMeshProUGUI expGained;
 
     public Image playerHealthBar;
     public TextMeshProUGUI levelText;
@@ -226,6 +227,7 @@ public class UIManager : MonoBehaviour
         int exp = gameManager.instance.playerStats.Exp;
         expText.text = exp.ToString("F0");
         storeCurrency.text = exp.ToString("F0");
+        expGained.text = exp.ToString("F0");
     }
 
     public void AbilityCoolDown()
