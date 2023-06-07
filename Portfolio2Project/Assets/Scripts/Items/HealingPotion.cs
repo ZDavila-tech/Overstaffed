@@ -25,6 +25,7 @@ public class HealingPotion : MonoBehaviour
             controller.TakeDamage(healAmount * -1);
             controller.items.Remove(controller.items[controller.itemSelected]);
             itemUsed = true;
+            Destroy(gameObject);
         }
         
     }

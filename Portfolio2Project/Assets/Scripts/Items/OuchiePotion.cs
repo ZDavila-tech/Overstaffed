@@ -5,7 +5,7 @@ using UnityEngine;
 public class OuchiePotion : MonoBehaviour
 {
     [SerializeField] PlayerController controller;
-    [SerializeField] public int healAmount;
+    [SerializeField] public int hurtAmount;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +21,8 @@ public class OuchiePotion : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            controller.TakeDamage(healAmount);
+            controller.TakeDamage(hurtAmount);
+            Destroy(gameObject);
         }
 
     }
