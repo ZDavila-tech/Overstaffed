@@ -102,7 +102,6 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     void Update()
     {
-        //UpdateSpeed();
         if (UIManager.instance != null && uiManager == null)
         {
             uiManager = UIManager.instance;
@@ -233,7 +232,6 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     {
         yield return new WaitForSeconds(slideLimit);
         isCrouching = false;
-        //controller.height = standingHeight;
         playerSpeed = origSpeed;
     }
 
@@ -255,9 +253,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         if (damagedRecently == false)
         {
             StartCoroutine(ResetDamagedRecently());
-
-            //Debug.Log("my damage" + amount);        
-            iHP -= amount; //-= used, negative amounts heal. 
+            iHP -= amount;
             camShake.Shake(damagedScreenshakeIntensity, .1f);
             if (amount > 0)
             {
@@ -296,10 +292,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             {
                 playerWeapon.Shoot();
                 StartCoroutine(PlayShootSound());
-                //CinemachineCamshake.Instance.Shake(5f, 1f);
                 camShake.Shake(shootScreenshakeIntensity, 0.1f);
                 proceduralRecoil.Recoil();
-                //StartCoroutine(TriggerScreenShake(0.1f));
             }
 
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out RaycastHit hit, ShootRange))
@@ -386,7 +380,6 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     public void Knockback(Vector3 dir)
     {
         pushBack += dir;
-        //Debug.Log("Knocked Back");
     }
 
     public void UpdateSpeed()
