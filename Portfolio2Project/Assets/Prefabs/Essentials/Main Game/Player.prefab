@@ -155,6 +155,7 @@ GameObject:
   - component: {fileID: 242991423}
   - component: {fileID: 242991422}
   - component: {fileID: 242991426}
+  - component: {fileID: 2017806458}
   m_Layer: 0
   m_Name: HPotion
   m_TagString: HealingPotion
@@ -254,6 +255,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 6256373690464243921}
   healAmount: 5
+--- !u!114 &2017806458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242991421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bea7d7ecf2eb1741bddcb4660d92624, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSelected: 0
 --- !u!1 &318928269
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,6 +343,7 @@ GameObject:
   - component: {fileID: 727314799}
   - component: {fileID: 727314798}
   - component: {fileID: 475215231}
+  - component: {fileID: 1879878902}
   m_Layer: 0
   m_Name: Item (2)
   m_TagString: Untagged
@@ -428,6 +443,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 6256373690464243921}
   healAmount: 5
+--- !u!114 &1879878902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727314797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bea7d7ecf2eb1741bddcb4660d92624, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSelected: 0
 --- !u!1 &879365999
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,6 +468,7 @@ GameObject:
   - component: {fileID: 879366002}
   - component: {fileID: 879366001}
   - component: {fileID: 879366000}
+  - component: {fileID: 179603849}
   m_Layer: 0
   m_Name: Item (1)
   m_TagString: Untagged
@@ -525,6 +554,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &179603849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 879365999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bea7d7ecf2eb1741bddcb4660d92624, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSelected: 0
 --- !u!1 &1820550046
 GameObject:
   m_ObjectHideFlags: 0

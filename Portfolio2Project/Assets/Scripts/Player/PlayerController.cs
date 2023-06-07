@@ -447,14 +447,22 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && itemSelected < items.Count - 1)
         {
             itemSelected++;
-            items[itemSelected].GetComponent<MeshRenderer>().enabled = true;
-            items[itemSelected-1].GetComponent<MeshRenderer>().enabled = false;
+            items[itemSelected].GetComponent<Item>().isSelected = true;
+            //items[itemSelected-1].GetComponent<MeshRenderer>().enabled = false;
         }
-        else if(Input.GetAxis("Mouse ScrollWheel") < 0 && itemSelected >= 0)
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && itemSelected > 0)
         {
             itemSelected--;
-            items[itemSelected].GetComponent<MeshRenderer>().enabled = true;
-            items[itemSelected+1].GetComponent<MeshRenderer>().enabled = false;
+            items[itemSelected].GetComponent<Item>().isSelected = true;
+            //items[itemSelected+1].GetComponent<MeshRenderer>().enabled = false;
+        }
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (items[i] != items[itemSelected])
+            {
+                items[i].GetComponent<Item>().isSelected = false;
+            }
+
         }
     }
 }
