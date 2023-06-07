@@ -33,7 +33,10 @@ public class UIManager : MonoBehaviour
     public GameObject beginLetter;
     public GameObject endLetter;
     public GameObject interactTextGameObject;
+    public GameObject gamePlayRecap;
     public TextMeshProUGUI interactText;
+    public TextMeshProUGUI totalLevelsCompleted;
+    public TextMeshProUGUI totalenemiesDefeated;
 
     public Image playerHealthBar;
     public TextMeshProUGUI levelText;
@@ -126,6 +129,20 @@ public class UIManager : MonoBehaviour
         gameManager.PauseState();
         activeMenu = loseMenu;
         ShowActiveMenu();
+        totalLevelsCompleted.text = ($"{levelManager.currentLevel - 1}");
+        totalenemiesDefeated.text = ($"{levelManager.totalEnemiesDefeated}");
+        gamePlayRecap.SetActive(true);
+    }
+
+    public void YouWin()
+    {
+        gameManager.PauseState();
+        activeMenu = winMenu;
+        ShowActiveMenu();
+
+        totalLevelsCompleted.text = ($"{levelManager.currentLevel}");
+        totalenemiesDefeated.text = ($"{levelManager.totalEnemiesDefeated}");
+        gamePlayRecap.SetActive(true);
     }
 
     public void ShowEndLetter()
@@ -162,13 +179,6 @@ public class UIManager : MonoBehaviour
         flashDamage.SetActive(true);
         yield return new WaitForSeconds(0.3f);
         flashDamage.SetActive(false);
-    }
-
-    public void YouWin()
-    {
-        activeMenu = winMenu;
-        ShowActiveMenu();
-        gameManager.PauseState();
     }
 
     public void SetElement()

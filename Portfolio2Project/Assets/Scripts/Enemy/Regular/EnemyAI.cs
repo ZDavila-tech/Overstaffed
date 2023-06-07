@@ -264,6 +264,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
             gameManager.instance.playerStats.GainExp(ExperienceYield);
             gameManager.instance.playerController.ChargeUt(chargeValue);
             --levelManager.enemiesRemaining;
+            ++levelManager.totalEnemiesDefeated;
             var par = Instantiate(deathParticle, transform.position, transform.rotation);
             Destroy(gameObject);
             Destroy(par.gameObject, 1);

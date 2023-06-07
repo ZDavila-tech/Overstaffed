@@ -288,4 +288,9 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.UnpauseState();
         
     }
+
+    public void GamePlayRecapOKButton()
+    {
+        uiManager.gamePlayRecap.SetActive(false);
+    }
 }
