@@ -7,6 +7,7 @@ public class VanishingFloor : MonoBehaviour
     [SerializeField] float vanishDelay;
     [SerializeField] float appearDelay;
     [SerializeField] Transform particle;
+    [SerializeField] GameObject platform;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -20,12 +21,14 @@ public class VanishingFloor : MonoBehaviour
         var shape = particleComp.shape;
         shape.scale = transform.localScale;
         StartCoroutine(appear());
-        this.gameObject.SetActive(false);
+        platform.gameObject.SetActive(false);
     }
 
     IEnumerator appear()
     {
+
         yield return new WaitForSeconds(appearDelay);
-        this.gameObject.SetActive(true);
+        Debug.Log("Appearing");
+        platform.gameObject.SetActive(true);
     }
 }
