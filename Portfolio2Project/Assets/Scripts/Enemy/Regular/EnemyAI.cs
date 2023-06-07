@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
@@ -22,6 +23,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] int iHP;
     [SerializeField] Slider hpBar;
     [SerializeField] GameObject hpDisplay;
+    [SerializeField] TextMeshPro damageNumbers;
     [SerializeField] float turnRate;
     [SerializeField] float fFieldOfView;
     [SerializeField] float fChaseTime;
@@ -34,6 +36,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] bool brokenAnimations;
     [SerializeField] Transform deathParticle;
     [SerializeField] Vector3 knockbackResistance;
+    [SerializeField] int damageDealt;
 
     [Header("----- Weapon Stats -----")]
     [SerializeField] GameObject bullet;
@@ -90,7 +93,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
         interrupted = false;
 
-        if(gameManager.instance != null)
+        if (gameManager.instance != null)
         {
             player = gameManager.instance.playerCharacter;
         }
@@ -106,7 +109,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         //    speed = Mathf.Lerp(speed, navAgent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed);
         //    anim.SetFloat("Speed", speed);
         //}
-        if(player != null)
+        if (player != null)
         {
             if (hpDisplay.activeSelf)
             {
@@ -226,7 +229,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     IEnumerator Explode()
     {
         isShooting = true;
-        if(angleToPlayer > shootAngle)
+        if (angleToPlayer > shootAngle)
         {
             isShooting = false;
             StopCoroutine(Explode());
@@ -239,13 +242,19 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
     public void CreateBullet()
     {
-        Instantiate(bullet, shootPosition.position, transform.rotation);//create bullet
+        GameObject proj = Instantiate(bullet, shootPosition.position, transform.rotation);//create bullet
+        Projectile projSet;
+        if (proj.TryGetComponent<Projectile>(out projSet))
+        {
+            projSet.SetDamage(damageDealt);
+        }
     }
 
     public void TakeDamage(int dmg)
     {
         iHP -= dmg;//health goes down
         StartCoroutine(ShowHealth());
+        StartCoroutine(ShowDamage(dmg));
         hpBar.value = iHP;
         StartCoroutine(FlashColor());//indicate damage taken
         if (navAgent.isActiveAndEnabled)
@@ -313,6 +322,14 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         yield return new WaitForSeconds(2f);
         hpDisplay.SetActive(false);
     }
+    IEnumerator ShowDamage(int dmg)
+    {
+        damageNumbers.enabled = true;
+        damageNumbers.text = dmg.ToString();
+
+        yield return new WaitForSeconds(0.5f);
+        damageNumbers.enabled = false;
+    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -368,12 +385,31 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
             yield return new WaitForSeconds(timeBetween);
             TakeDamage(damage);
         }
+        damageDealt = (int)(damageDealt * 0.5);
         yield return new WaitForSeconds(duration);
         burning = false;
+        damageDealt *= 2;
     }
 
-    public void Burn (float duration, float timeBetween)
+    IEnumerator Venom(float duration, float timeBetween, int damage)
+    {
+        bool poisoned = true;
+        while (poisoned)
+        {
+            yield return new WaitForSeconds(timeBetween);
+            TakeDamage(damage);
+        }
+        yield return new WaitForSeconds(duration);
+        poisoned = false;
+    }
+
+    public void Burn(float duration, float timeBetween)
     {
         StartCoroutine(Burning(duration, timeBetween, 1));
+    }
+
+    public void Poison(float duration, float timeBetweeen)
+    {
+        StartCoroutine(Venom(duration, timeBetweeen, 1));
     }
 }
