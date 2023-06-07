@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7991985557486829471}
-  - component: {fileID: 7047133151981182265}
   - component: {fileID: 2697338202709217617}
+  - component: {fileID: 7047133151981182265}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: GameManager
@@ -33,6 +33,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2697338202709217617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637310294035931536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5dbee6896575f6479267b98a8df930d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7047133151981182265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52,18 +64,7 @@ MonoBehaviour:
   playerController: {fileID: 0}
   playerSpawn: {fileID: 0}
   playerSkills: {fileID: 0}
+  playerStats: {fileID: 0}
   playerElement: 0
   isPaused: 0
   timeScaleOriginal: 0
---- !u!114 &2697338202709217617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 637310294035931536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5dbee6896575f6479267b98a8df930d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
