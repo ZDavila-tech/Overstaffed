@@ -31,7 +31,6 @@ public class buttonFunctions : MonoBehaviour
     public void Restart()
     {
         buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
-        Destroy(GameObject.FindGameObjectWithTag("Player"));
         Debug.Log("Player Character destroyed");
 
         uiManager.HideActiveMenu();
@@ -48,6 +47,7 @@ public class buttonFunctions : MonoBehaviour
             LevelManager.instance.TutorialBeatenGoToLevelSix();
         }
 
+        Destroy(GameObject.FindGameObjectWithTag("Player"));
         SceneManager.LoadScene("Character Select");
     }
 

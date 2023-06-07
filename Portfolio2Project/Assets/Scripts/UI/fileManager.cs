@@ -34,7 +34,7 @@ public static class fileManager// : MonoBehaviour
         level = PlayerPrefs.GetInt("LvL");
         maxLevel = PlayerPrefs.GetInt("MaxLvL");
         //infinite = bool.Parse(PlayerPrefs.GetString("inf"));
-        invertY = bool.Parse( PlayerPrefs.GetString("inv"));
+        //invertY = bool.Parse( PlayerPrefs.GetString("inv"));
 
 
     }
