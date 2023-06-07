@@ -34,6 +34,8 @@ public class UIManager : MonoBehaviour
     public GameObject endLetter;
     public GameObject interactTextGameObject;
     public GameObject gamePlayRecap;
+    public GameObject teamMenu;
+    public GameObject resMenu;
     public TextMeshProUGUI interactText;
     public TextMeshProUGUI totalLevelsCompleted;
     public TextMeshProUGUI totalenemiesDefeated;

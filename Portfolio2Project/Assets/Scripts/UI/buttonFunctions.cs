@@ -106,6 +106,16 @@ public class buttonFunctions : MonoBehaviour
         //SceneManager.LoadScene("Main Menu");
     }
 
+    public void Team()
+    {
+        uiManager.teamMenu.SetActive(true);
+        uiManager.resMenu.SetActive(false);
+    }
+    public void Resources()
+    {
+        uiManager.teamMenu.SetActive(false);
+        uiManager.resMenu.SetActive(true);
+    }
     public void MainFromChar()
     {
         buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);

@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigidBody: {fileID: 9037104793967493614}
-  projectileSpeed: 5
+  projectileSpeed: 7
   spawnPosition: {fileID: 0}
   targetToMoveTo: {fileID: 0}
 --- !u!54 &9037104793967493614
@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 1539091519931869293}
   - component: {fileID: 765055693315418518}
   - component: {fileID: 5474448011420345828}
-  - component: {fileID: 6690591968588065766}
+  - component: {fileID: 248849375209259055}
   m_Layer: 14
   m_Name: Cylinder
   m_TagString: Untagged
@@ -94,7 +94,7 @@ Transform:
   m_GameObject: {fileID: 8942334265834424195}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 2.5, z: 0}
-  m_LocalScale: {x: 5, y: 2, z: 5}
+  m_LocalScale: {x: 4.5, y: 1.5, z: 4.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5153979414896970463}
@@ -150,8 +150,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &6690591968588065766
-CapsuleCollider:
+--- !u!64 &248849375209259055
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -160,7 +160,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5000001
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
