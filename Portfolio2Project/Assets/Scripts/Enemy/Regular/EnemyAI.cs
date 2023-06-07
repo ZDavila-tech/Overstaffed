@@ -247,7 +247,8 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     public void TakeDamage(int dmg)
     {
         iHP -= dmg;//health goes down
-        StartCoroutine(ShowHealth(dmg));
+        StartCoroutine(ShowHealth());
+        StartCoroutine(ShowDamage(dmg));
         hpBar.value = iHP;
         StartCoroutine(FlashColor());//indicate damage taken
         if (navAgent.isActiveAndEnabled)
@@ -308,14 +309,19 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         rModel.material.color = cOrigColor;
     }
 
-    IEnumerator ShowHealth(int dmg)
+    IEnumerator ShowHealth()
     {
         hpDisplay.SetActive(true);
-        damageNumbers.enabled = true;
-        damageNumbers.text = dmg.ToString();
 
         yield return new WaitForSeconds(2f);
         hpDisplay.SetActive(false);
+    }
+    IEnumerator ShowDamage(int dmg)
+    {
+        damageNumbers.enabled = true;
+        damageNumbers.text = dmg.ToString();
+
+        yield return new WaitForSeconds(0.5f);
         damageNumbers.enabled = false;
     }
 
