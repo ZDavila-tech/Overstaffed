@@ -13,6 +13,10 @@ public class Shield : MonoBehaviour, IDamage
     {
     }
 
+    public void Poison(float duration, float timeBetween)
+    {
+    }
+
     public void TakeDamage(int damage)
     {
         Durability -= damage;

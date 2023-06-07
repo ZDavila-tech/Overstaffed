@@ -32,6 +32,11 @@ public class BossHitBox : MonoBehaviour, IDamage
 
     }
 
+    public void Poison(float duration, float timeBetween)
+    {
+
+    }
+
     public void TakeDamage(int damage)
     {
         if(susan != null)
