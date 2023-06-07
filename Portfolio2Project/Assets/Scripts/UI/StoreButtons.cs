@@ -8,7 +8,7 @@ public class StoreButtons : MonoBehaviour
 
     public void BuyAttack(int amount)
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        buttonAudio.PlayOneShot(AudioManager.instance.transactionClick, AudioManager.instance.volumeScale);
 
         if (gameManager.instance.playerStats.Exp >= ((gameManager.instance.playerStats.GetAttack() + 1) * 10 * amount) && gameManager.instance.playerStats.GetAttack() < 100)
         {
@@ -19,7 +19,7 @@ public class StoreButtons : MonoBehaviour
     }
         public void BuyHealth(int amount)
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        buttonAudio.PlayOneShot(AudioManager.instance.transactionClick, AudioManager.instance.volumeScale);
 
         if (gameManager.instance.playerStats.Exp >= ((gameManager.instance.playerStats.Health + 1) * 10 * amount) && gameManager.instance.playerStats.Health < 100)
         {
@@ -30,7 +30,7 @@ public class StoreButtons : MonoBehaviour
     }
     public void BuySpeed(int amount)
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        buttonAudio.PlayOneShot(AudioManager.instance.transactionClick, AudioManager.instance.volumeScale);
 
         if (gameManager.instance.playerStats.Exp >= ((gameManager.instance.playerStats.GetSpeed() + 1) * 10 * amount) && gameManager.instance.playerStats.GetSpeed() < 100)
         {
