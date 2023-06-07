@@ -108,11 +108,13 @@ public class buttonFunctions : MonoBehaviour
 
     public void Team()
     {
+        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
         uiManager.teamMenu.SetActive(true);
         uiManager.resMenu.SetActive(false);
     }
     public void Resources()
     {
+        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
         uiManager.teamMenu.SetActive(false);
         uiManager.resMenu.SetActive(true);
     }
@@ -281,9 +283,9 @@ public class buttonFunctions : MonoBehaviour
 
     public void EndLetterOKButton()
     {
+        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
         uiManager.HideActiveMenu();
-        uiManager.activeMenu = uiManager.winMenu;
-        uiManager.ShowActiveMenu();
+        uiManager.YouWin();
     }
 
     public void YesQuit()
@@ -308,6 +310,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void GamePlayRecapOKButton()
     {
+        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
         uiManager.gamePlayRecap.SetActive(false);
     }
 }

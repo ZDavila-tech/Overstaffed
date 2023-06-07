@@ -143,7 +143,7 @@ public class UIManager : MonoBehaviour
         activeMenu = winMenu;
         ShowActiveMenu();
 
-        totalLevelsCompleted.text = ($"{levelManager.currentLevel}");
+        totalLevelsCompleted.text = ($"{levelManager.currentLevel-1}");
         totalenemiesDefeated.text = ($"{levelManager.totalEnemiesDefeated}");
         gamePlayRecap.SetActive(true);
     }
