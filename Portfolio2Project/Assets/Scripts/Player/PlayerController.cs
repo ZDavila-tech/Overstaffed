@@ -62,7 +62,10 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     public bool isSprinting;
     private bool damagedRecently;
     public bool isCrouching;
-    
+
+    [Header("----- Items -----")]
+    public List<GameObject> items = new List<GameObject>();
+    public int itemSelected;
 
     [Header("----- Audio -----")]
     [SerializeField] AudioSource aud;
@@ -133,6 +136,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         {
             skills.useSkill(3);
         }
+        ChangeItem();
     }
 
     void Movement()
@@ -436,5 +440,29 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     public void Burn(float duration, float timeBetween)
     {
         StartCoroutine(Burning(duration, timeBetween, playerStats.GetHealth() *  (100/10)));
+    }
+
+    void ChangeItem()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && itemSelected < items.Count - 1)
+        {
+            itemSelected++;
+            items[itemSelected].GetComponent<Item>().isSelected = true;
+            //items[itemSelected-1].GetComponent<MeshRenderer>().enabled = false;
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && itemSelected > 0)
+        {
+            itemSelected--;
+            items[itemSelected].GetComponent<Item>().isSelected = true;
+            //items[itemSelected+1].GetComponent<MeshRenderer>().enabled = false;
+        }
+        for (int i = 0; i < items.Count; i++)
+        {
+            if (items[i] != items[itemSelected])
+            {
+                items[i].GetComponent<Item>().isSelected = false;
+            }
+
+        }
     }
 }
