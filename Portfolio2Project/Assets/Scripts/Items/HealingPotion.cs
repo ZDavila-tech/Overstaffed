@@ -6,7 +6,7 @@ public class HealingPotion : MonoBehaviour
 {
     [SerializeField] PlayerController controller;
     [SerializeField] public int healAmount;
-    bool itemUsed;
+    //bool itemUsed;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +24,7 @@ public class HealingPotion : MonoBehaviour
         {
             controller.TakeDamage(healAmount * -1);
             controller.items.Remove(controller.items[controller.itemSelected]);
-            itemUsed = true;
+            //itemUsed = true;
             Destroy(gameObject);
         }
         
