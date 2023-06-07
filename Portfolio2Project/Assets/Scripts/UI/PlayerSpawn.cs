@@ -4,20 +4,17 @@ using UnityEngine;
 
 public class PlayerSpawn : MonoBehaviour
 {
-    GameObject playerSpawn;
     GameObject player;
 
     LevelManager levelManager;
-    gameManager gameManager;
+
     bool playerInSpawn;
     bool keepPullingPlayer;
 
     private void Start()
     {
         levelManager = LevelManager.instance;
-        gameManager = gameManager.instance;
         player = GameObject.FindGameObjectWithTag("Player");
-        playerSpawn = this.gameObject;
         PullPlayer();
     }
 
@@ -41,9 +38,7 @@ public class PlayerSpawn : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        playerInSpawn = false;
-        levelManager.levelStarted = true;
-        Destroy(this.gameObject);
+        PlayerLeftSpawn();
     }
 
     public void PullPlayer() //Player is in spawn or close enough -> Start Game
@@ -55,9 +50,17 @@ public class PlayerSpawn : MonoBehaviour
         }
         else
         {
-            player.transform.SetPositionAndRotation(playerSpawn.transform.position, playerSpawn.transform.rotation);
+            player.transform.SetPositionAndRotation(this.gameObject.transform.position, this.gameObject.transform.rotation);
             keepPullingPlayer = true;
             //Debug.Log("Player spawn tried to pull player player");
         }
+    }
+
+    public void PlayerLeftSpawn()
+    {
+        playerInSpawn = false;
+        levelManager.levelStarted = true;
+        levelManager.levelCompleted = false;
+        Destroy(this.gameObject);
     }
 }

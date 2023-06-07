@@ -8,9 +8,10 @@ public static class fileManager// : MonoBehaviour
     public static float masterVolume;
     public static float effectVolume;
     public static float musicVolume;
-    //public static int level;
-
+    public static int level;
+    public static int maxLevel;
     public static bool invertY;
+    public static bool infinite = true;
 
 
 
@@ -19,8 +20,10 @@ public static class fileManager// : MonoBehaviour
         PlayerPrefs.SetFloat("MV", masterVolume);
         PlayerPrefs.SetFloat("EV", effectVolume);
         PlayerPrefs.SetFloat("MuV", musicVolume);
-        //PlayerPrefs.SetInt("LvL", level);
+        PlayerPrefs.SetInt("LvL", level);
+        PlayerPrefs.SetInt("MaxLvL", maxLevel);
         PlayerPrefs.SetString("inv", invertY.ToString());
+        PlayerPrefs.SetString("inf", infinite.ToString());
     }
 
     public static void load()
@@ -28,8 +31,11 @@ public static class fileManager// : MonoBehaviour
         masterVolume = PlayerPrefs.GetFloat("MV");
         effectVolume = PlayerPrefs.GetFloat("EV");
         musicVolume = PlayerPrefs.GetFloat("MuV");
-        //level = PlayerPrefs.GetInt("LvL");
-        invertY = bool.Parse( PlayerPrefs.GetString("inv"));
+        level = PlayerPrefs.GetInt("LvL");
+        maxLevel = PlayerPrefs.GetInt("MaxLvL");
+        //infinite = bool.Parse(PlayerPrefs.GetString("inf"));
+        //invertY = bool.Parse( PlayerPrefs.GetString("inv"));
+
 
     }
 
@@ -41,9 +47,10 @@ public static class fileManager// : MonoBehaviour
         AudioManager.instance.soundEffectsVolume.value = effectVolume;
         musicVolume = 0.5f;
         AudioManager.instance.volumeValue.value = musicVolume;
-        //level = 1;
+        level = 1;
         invertY = false;
         UIManager.instance.invert.isOn = invertY;
+        infinite = false;
 
     }
 
