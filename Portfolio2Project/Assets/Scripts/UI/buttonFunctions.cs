@@ -268,15 +268,7 @@ public class buttonFunctions : MonoBehaviour
         if(LevelManager.instance != null)
         {
             LevelManager.instance.TutorialBeatenGoToLevelSix();
-            if(LevelManager.instance.hasBeatenTutorial)
-            {
-
-                SceneManager.LoadScene("HUB");
-            }
-            else
-            {
-                SceneManager.LoadScene("Home");
-            }
+            LevelManager.instance.LoadNextLevel();
         }
         
     }
