@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 {
-    LevelManager levelManager;
+    public LevelManager levelManager;
     public GameObject player;
 
     [Header("----- Components -----")]
@@ -127,6 +127,9 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
                     AttackPlayer();
                 }
             }
+        }
+        else{
+            player = gameManager.instance.playerCharacter;
         }
     }
     //IEnumerator SlowEnemy()
