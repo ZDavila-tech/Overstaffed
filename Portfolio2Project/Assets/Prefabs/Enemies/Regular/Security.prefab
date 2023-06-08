@@ -193,7 +193,6 @@ GameObject:
   - component: {fileID: 2856267348468154940}
   - component: {fileID: 2856267348468154939}
   - component: {fileID: 2856267348468154938}
-  - component: {fileID: 3721018375911575242}
   - component: {fileID: -6874611277532527384}
   - component: {fileID: 802692393371389125}
   - component: {fileID: 7782623570078333734}
@@ -271,6 +270,7 @@ MonoBehaviour:
   deathParticle: {fileID: 9153340017092349274, guid: 92498d71eb9cb514b80fb7c60ac3cfd5, type: 3}
   knockbackResistance: {x: 1, y: 1, z: 1}
   damageDealt: 3
+  maxRange: 0
   bullet: {fileID: 8060328068600632496, guid: 21d34616d4bd55d46ad893c2322ce70a, type: 3}
   shootDistance: 10
   shootRate: 2
@@ -370,19 +370,6 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &3721018375911575242
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2856267348468154943}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 25
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &-6874611277532527384
 Rigidbody:
