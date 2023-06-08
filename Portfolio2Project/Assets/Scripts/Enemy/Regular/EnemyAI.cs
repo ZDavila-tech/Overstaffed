@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 {
     LevelManager levelManager;
-    GameObject player;
+    public GameObject player;
 
     [Header("----- Components -----")]
     [SerializeField] Renderer rModel;
@@ -37,6 +37,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] Transform deathParticle;
     [SerializeField] Vector3 knockbackResistance;
     [SerializeField] int damageDealt;
+    [SerializeField][Range(10, 100)] int maxRange;
 
     [Header("----- Weapon Stats -----")]
     [SerializeField] GameObject bullet;
@@ -57,7 +58,6 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] GameObject explosion;
 
     bool isShooting;
-    bool playerInRange;
     public bool isSlowed;
     public bool spawnedBySpawner;
     bool interrupted;
@@ -65,6 +65,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
     Vector3 playerDirection;
     float angleToPlayer;
+    float playerDistance;
 
     //IDamage damageInterface;
     private Color cOrigColor;
@@ -102,6 +103,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
     void Update()
     {
+        
         //StartCoroutine(SlowEnemy());
         //if (anim != null)
         //{
@@ -111,16 +113,16 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         //}
         if (player != null)
         {
+            Debug.Log("Update");
             if (hpDisplay.activeSelf)
             {
                 hpDisplay.transform.LookAt(player.transform.position);
             }
-
             if (navAgent.isActiveAndEnabled)
             {
                 navAgent.SetDestination(gameManager.instance.playerCharacter.transform.position);
 
-                if (CanSeePlayer() && playerInRange)
+                if (CanSeePlayer() && playerDistance <= maxRange)
                 {
                     AttackPlayer();
                 }
@@ -171,6 +173,8 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= fFieldOfView)
             {
+                Debug.Log(hit.distance);
+                playerDistance = hit.distance;
                 return true;
             }
         }
@@ -329,22 +333,6 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
         yield return new WaitForSeconds(0.5f);
         damageNumbers.enabled = false;
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = true;
-        }
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInRange = false;
-        }
     }
 
     public void Knockback(Vector3 dir)
