@@ -209,11 +209,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4728235726989330128, guid: 8410533c5719b054980dc8019928826d, type: 3}
       propertyPath: maxRange
-      value: 100
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4728235726989330129, guid: 8410533c5719b054980dc8019928826d, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4728235726989330129, guid: 8410533c5719b054980dc8019928826d, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4728235726989330130, guid: 8410533c5719b054980dc8019928826d, type: 3}
       propertyPath: m_Name
@@ -267,7 +271,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6169411614234004007, guid: 8410533c5719b054980dc8019928826d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8410533c5719b054980dc8019928826d, type: 3}
 --- !u!1 &1032151304
 GameObject:
