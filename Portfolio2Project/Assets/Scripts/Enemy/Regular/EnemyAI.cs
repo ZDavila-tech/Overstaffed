@@ -26,7 +26,6 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] TextMeshPro damageNumbers;
     [SerializeField] float turnRate;
     [SerializeField] float fFieldOfView;
-    [SerializeField] float fChaseTime;
     [Range(0, 100)][SerializeField] int DropRate;
     [Range(0, 100)][SerializeField] List<int> itemRates;
     [SerializeField] int chargeValue;
@@ -37,7 +36,6 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] Transform deathParticle;
     [SerializeField] Vector3 knockbackResistance;
     [SerializeField] int damageDealt;
-    [SerializeField][Range(10, 100)] int maxRange;
 
     [Header("----- Weapon Stats -----")]
     [SerializeField] GameObject bullet;
@@ -61,7 +59,6 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     public bool isSlowed;
     public bool spawnedBySpawner;
     bool interrupted;
-    bool isStopped;
 
     Vector3 playerDirection;
     float angleToPlayer;
@@ -108,6 +105,8 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         //}
         if (player != null)
         {
+            FacePlayer();
+            
             if (hpDisplay.activeSelf)
             {
                 hpDisplay.transform.LookAt(player.transform.position);
@@ -116,13 +115,14 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
             {
                 navAgent.SetDestination(gameManager.instance.playerCharacter.transform.position);
 
-                if (CanSeePlayer() && playerDistance <= maxRange)
+                if (CanSeePlayer() && playerDistance <= shootDistance)
                 {
                     AttackPlayer();
                 }
             }
         }
-        else{
+        else
+        {
             player = gameManager.instance.playerCharacter;
         }
     }
@@ -144,18 +144,14 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     {
         if (toggle)
         {
-            navAgent.isStopped = false;
-            isShooting = false;
             anim.speed = 1;
-            isStopped = false;
         }
         else
         {
-            navAgent.isStopped = true;
-            isShooting = true;
             anim.speed = 0;
-            isStopped = true;
         }
+        navAgent.isStopped = toggle;
+        isShooting = toggle;
     }
 
     bool CanSeePlayer()
@@ -173,6 +169,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
                 playerDistance = hit.distance;
                 return true;
             }
+            
         }
 
         return false;
@@ -180,20 +177,17 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
     void FacePlayer()
     {
-        if (!isStopped)
+        if (!navAgent.isStopped)
         {
             playerDirection = player.transform.position - headPosition.position;
             Quaternion desiredRotation = Quaternion.LookRotation(new Vector3(playerDirection.x, 0, playerDirection.z));
             transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, Time.deltaTime * turnRate);
+
         }
     }
 
     void AttackPlayer()
     {
-        if (navAgent.remainingDistance < navAgent.stoppingDistance)
-        {
-            FacePlayer();
-        }
 
         if (!isShooting && angleToPlayer <= shootAngle)
         {
