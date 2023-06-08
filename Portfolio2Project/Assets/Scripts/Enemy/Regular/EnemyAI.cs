@@ -7,8 +7,8 @@ using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 {
-    public LevelManager levelManager;
-    public GameObject player;
+    LevelManager levelManager;
+    GameObject player;
 
     [Header("----- Components -----")]
     [SerializeField] Renderer rModel;
@@ -93,11 +93,6 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         }
 
         interrupted = false;
-
-        if (gameManager.instance != null)
-        {
-            player = gameManager.instance.playerCharacter;
-        }
     }
 
 
@@ -113,7 +108,6 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         //}
         if (player != null)
         {
-            Debug.Log("Update");
             if (hpDisplay.activeSelf)
             {
                 hpDisplay.transform.LookAt(player.transform.position);
