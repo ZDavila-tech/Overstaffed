@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 1570852443671573165}
   - component: {fileID: 1570852443671573164}
   - component: {fileID: 1570852443671573162}
-  - component: {fileID: 129759428358307420}
   - component: {fileID: 1679513090977880366}
   - component: {fileID: 104614007396169845}
   - component: {fileID: -2653307999361650468}
@@ -88,6 +87,8 @@ MonoBehaviour:
   brokenAnimations: 0
   deathParticle: {fileID: 9153340017092349274, guid: 92498d71eb9cb514b80fb7c60ac3cfd5, type: 3}
   knockbackResistance: {x: 0, y: 0, z: 0}
+  damageDealt: 0
+  maxRange: 10
   bullet: {fileID: 8060328068600632496, guid: 21d34616d4bd55d46ad893c2322ce70a, type: 3}
   shootDistance: 20
   shootRate: 1
@@ -188,19 +189,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!135 &129759428358307420
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1570852443671573161}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1679513090977880366
 Rigidbody:
   m_ObjectHideFlags: 0
