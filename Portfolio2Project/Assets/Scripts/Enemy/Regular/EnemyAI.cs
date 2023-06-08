@@ -170,7 +170,6 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= fFieldOfView)
             {
-                Debug.Log(hit.distance);
                 playerDistance = hit.distance;
                 return true;
             }
