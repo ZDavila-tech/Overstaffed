@@ -113,6 +113,7 @@ public class LevelSelectButtons : MonoBehaviour
     public void InfinityButtonPressed()
     {
         butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        levelManager.endlessMode = true;
         levelManager.SetCurrentLevel(22);
     }
 
