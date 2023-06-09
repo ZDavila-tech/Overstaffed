@@ -127,6 +127,7 @@ public class UIManager : MonoBehaviour
         ShowActiveMenu();
         totalLevelsCompleted.text = ($"{levelManager.currentLevel - 1}");
         totalenemiesDefeated.text = ($"{levelManager.totalEnemiesDefeated}");
+        levelManager.endlessMode = false;
         gamePlayRecap.SetActive(true);
     }
 

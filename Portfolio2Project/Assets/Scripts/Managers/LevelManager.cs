@@ -99,6 +99,7 @@ public class LevelManager : MonoBehaviour
         currentLevel = 1;
         loadingLevel = false;
         totalEnemiesDefeated = 0;
+        endlessMode = false;
         NewLevelVariableResets();
     }
 
@@ -305,7 +306,7 @@ public class LevelManager : MonoBehaviour
         inElevator = false;
         loadingLevel = false;
         levelStarted = false;
-        levelCompleted = false;     
+        levelCompleted = false;   
         StopAllCoroutines();
     }
 

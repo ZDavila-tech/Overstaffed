@@ -51,6 +51,7 @@ public class buttonFunctions : MonoBehaviour
 
         Destroy(GameObject.FindGameObjectWithTag("Player"));
         SceneManager.LoadScene("Character Select");
+        LevelManager.instance.endlessMode = false;
     }
 
     //Quits the game; doesn't work unless built
@@ -104,6 +105,8 @@ public class buttonFunctions : MonoBehaviour
         //Time.timeScale = gameManager.instance.timeScaleOriginal;
 
         //SceneManager.LoadScene("Main Menu");
+        
+        LevelManager.instance.endlessMode = false;
     }
 
     public void Team()
