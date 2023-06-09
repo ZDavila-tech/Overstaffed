@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1441211781995531610}
   - component: {fileID: 7853080555106826373}
   - component: {fileID: 1441211781995531611}
-  - component: {fileID: 1709654445}
   - component: {fileID: -1177048385087740270}
   - component: {fileID: 9222069149675123250}
   m_Layer: 6
@@ -67,9 +66,8 @@ MonoBehaviour:
   hpBar: {fileID: 3612964864989212762}
   hpDisplay: {fileID: 1665936261515987738}
   damageNumbers: {fileID: 8086568487249085421}
-  turnRate: 0
+  turnRate: 1
   fFieldOfView: 175
-  fChaseTime: 3
   DropRate: 50
   itemRates: 4b0000000f000000
   chargeValue: 12
@@ -79,6 +77,7 @@ MonoBehaviour:
   brokenAnimations: 1
   deathParticle: {fileID: 9153340017092349274, guid: 92498d71eb9cb514b80fb7c60ac3cfd5, type: 3}
   knockbackResistance: {x: 0, y: 0, z: 0}
+  damageDealt: 0
   bullet: {fileID: 8060328068600632496, guid: 264f20e78e8eeb64387a49ba0e3debb9, type: 3}
   shootDistance: 100
   shootRate: 1.5
@@ -123,19 +122,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!135 &1709654445
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1441211781995531608}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 100
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &-1177048385087740270
 Rigidbody:
   m_ObjectHideFlags: 0
