@@ -29,7 +29,9 @@ public class Skills : MonoBehaviour
     [Header("~Dash~")]
     [Range(1, 50)][SerializeField] float DashSpeed;
     [Range(0, 1)][SerializeField] float DashTime;
+    [SerializeField] Transform DashParticle;
     [Range(1, 20)][SerializeField] float DashCooldown;
+    Transform dashParticleInstance;
     public bool directionalDash;
     bool canDash = true;
 
@@ -37,6 +39,8 @@ public class Skills : MonoBehaviour
     [Range(1, 50)][SerializeField] float JumpForce;
     [Range(0, 1)][SerializeField] float JumpTime;
     [Range(1, 20)][SerializeField] float HiJumpCooldown;
+    [SerializeField] Transform HiJumpParticle;
+    Transform hiJumpParticleInstance;
     bool canHiJump = true;
 
     [Header("~Slow Fall~")]
@@ -81,6 +85,7 @@ public class Skills : MonoBehaviour
             playerController.ChangeJumpsUsed(1);
             StartCoroutine(dashCoroutine());
             StartCoroutine(dashCooldownCoroutine());
+            dashParticleInstance = Instantiate(DashParticle, transform);
         }
     }
 
@@ -103,6 +108,7 @@ public class Skills : MonoBehaviour
             yield return null;
         }
         CanMove = true;
+        Destroy(dashParticleInstance.gameObject);
         StopCoroutine(dashCoroutine());
 
     }
@@ -133,6 +139,7 @@ public class Skills : MonoBehaviour
             playerController.ChangeJumpsUsed(1);
             StartCoroutine(hiJumpCoroutine());
             StartCoroutine(hiJumpCooldownCoroutine());
+            hiJumpParticleInstance = Instantiate(HiJumpParticle, transform);
         }
     }
 
@@ -147,6 +154,7 @@ public class Skills : MonoBehaviour
             yield return null;
         }
         CanMove = true;
+        Destroy(hiJumpParticleInstance.gameObject);
         StopCoroutine(hiJumpCoroutine());
     }
 
