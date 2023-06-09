@@ -23,17 +23,19 @@ public class Explosion : MonoBehaviour
             if (!other.CompareTag("Player"))
                 return;
         }
+        
+        if (other.GetComponent<IPhysics>() != null)
+        {
             IPhysics physicsable = other.GetComponent<IPhysics>();
 
-            if (physicsable != null)
-            {
-                Vector3 dir = other.transform.position - transform.position;
-                physicsable.Knockback(dir * pushAmount);
-            }
+            Vector3 dir = other.transform.position - transform.position;
+            physicsable.Knockback(dir * pushAmount);
+        }
 
-            if (other.GetComponent<IDamage>() != null)
-            {
-                IDamage damageable = other.GetComponent<IDamage>();
+        if (other.GetComponent<IDamage>() != null)
+        {
+            IDamage damageable = other.GetComponent<IDamage>();
+
             damageable.TakeDamage(damage + gameManager.instance.playerStats.Attack);
             if(doesBurn)
             {
