@@ -36,17 +36,11 @@ public class Explosion : MonoBehaviour
         {
             IDamage damageable = other.GetComponent<IDamage>();
 
-            damageable.TakeDamage(damage + gameManager.instance.playerStats.Attack);
+            damageable.TakeDamage(damage);
             if(doesBurn)
             {
                 damageable.Burn(10, 1);
             }
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
