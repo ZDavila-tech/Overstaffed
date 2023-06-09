@@ -49,10 +49,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image UtCharge;
 
     [Header("-----Fade Stuff-----")]
-    public Image fadeOutImage;
-    public TextMeshProUGUI fadeOutText;
     public int fadeSpeed;
-    public bool fading;
+    public Animator fadeScreen;
 
     [Header("-----Tutorial Stuff-----")]
     public GameObject tut1;
@@ -121,13 +119,6 @@ public class UIManager : MonoBehaviour
                 SetElementIcon();
             }
         }
-
-        if (fading == true)
-        {
-            fading = false;
-
-            StartCoroutine(FadeIn());
-        }
     }
     public void YouLose()
     {
@@ -157,6 +148,14 @@ public class UIManager : MonoBehaviour
         ShowActiveMenu();
     }
 
+    public void ShowPostRunStats()
+    {
+        gameManager.PauseState();
+        gamePlayRecap.SetActive(true);
+        totalLevelsCompleted.text = ($"{levelManager.currentLevel - 1}");
+        totalenemiesDefeated.text = ($"{levelManager.totalEnemiesDefeated}");
+
+    }
     public void ShowActiveMenu() //shows active menu if there is one.
     {
         if (activeMenu != null)
@@ -276,34 +275,13 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public IEnumerator FadeOut() //Goes to black
+    //Animation for fade screen
+    public IEnumerator FadeScreen()
     {
-        yield return new WaitForSeconds(1.0f);
-        //.Log("Fade out screen ");
-        for (float i = 0; i <= fadeSpeed; i += Time.deltaTime)
-        {
-            fadeOutImage.color = new Color(0, 0, 0, i);
-            fadeOutText.color = new Color(1, 1, 1, i);
-            yield return null;
-        }
-        fading = true;
-        fadeOutImage.color = new Color(0, 0, 0, fadeSpeed);
-        yield return new WaitForSeconds(1.0f);
-        levelManager.LoadNextLevel();
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+        fadeScreen.SetTrigger("StartFade");
 
-    public IEnumerator FadeIn() //Goes out of black
-    {
-        fadeOutImage.color = new Color(0, 0, 0, fadeSpeed);
-        //Debug.Log("Fade into screen ");
-        for (float i = fadeSpeed; i >= 0; i -= Time.deltaTime)
-        {
-            fadeOutImage.color = new Color(0, 0, 0, i);
-            fadeOutText.color = new Color(1, 1, 1, i);
-            yield return null;
-        }
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(fadeSpeed);
+        LevelManager.instance.LoadNextLevel();
     }
 
     public void UpdateUtCharge(float amount)

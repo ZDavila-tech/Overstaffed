@@ -119,7 +119,14 @@ public class LevelManager : MonoBehaviour
             if (inElevator && !loadingLevel)
             {
                 loadingLevel = true;
-                LevelTransitionSequence();
+                if(currentLevel >= 5)
+                {
+                    uiManager.ShowPostRunStats();
+                }
+                else
+                {
+                    LevelTransitionSequence();
+                }
             }
         }
         else
@@ -129,7 +136,7 @@ public class LevelManager : MonoBehaviour
     }
     public void LevelTransitionSequence() //if levelStarted, no enemies, and player in elevator -> load new level
     {
-        StartCoroutine(uiManager.FadeOut());
+        StartCoroutine(uiManager.FadeScreen());
         //loads a new level != the current level index
     }
 

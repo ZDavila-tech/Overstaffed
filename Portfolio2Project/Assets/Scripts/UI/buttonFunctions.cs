@@ -303,6 +303,17 @@ public class buttonFunctions : MonoBehaviour
     public void GamePlayRecapOKButton()
     {
         buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
-        uiManager.gamePlayRecap.SetActive(false);
+       
+        if(uiManager.loseMenu.activeSelf || uiManager.winMenu.activeSelf)
+        {
+            uiManager.gamePlayRecap.SetActive(false);
+        }
+        else
+        {
+            uiManager.gamePlayRecap.SetActive(false);
+            gameManager.instance.UnpauseState();
+            LevelManager.instance.LevelTransitionSequence();
+        }
+        
     }
 }
