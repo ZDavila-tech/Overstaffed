@@ -105,19 +105,22 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         //}
         if (player != null)
         {
-            FacePlayer();
-            
+
             if (hpDisplay.activeSelf)
             {
                 hpDisplay.transform.LookAt(player.transform.position);
             }
-            if (navAgent.isActiveAndEnabled)
+            if (navAgent.enabled)
             {
-                navAgent.SetDestination(gameManager.instance.playerCharacter.transform.position);
+                navAgent.SetDestination(player.transform.position);
 
                 if (CanSeePlayer() && playerDistance <= shootDistance)
                 {
                     AttackPlayer();
+                }
+                
+                if(navAgent.remainingDistance < navAgent.stoppingDistance){
+                    FacePlayer();
                 }
             }
         }
@@ -156,16 +159,17 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
     bool CanSeePlayer()
     {
-        playerDirection = player.transform.position - headPosition.position;
+        playerDirection = (player.transform.position - headPosition.position);
         angleToPlayer = Vector3.Angle(new Vector3(playerDirection.x, 0, playerDirection.z), transform.forward);
+        Debug.Log(angleToPlayer);
 
         Debug.DrawRay(headPosition.position, playerDirection);
-        //Debug.Log(fAngleToPlayer);
 
         if (Physics.Raycast(headPosition.position, playerDirection, out RaycastHit hit))
         {
-            if (hit.collider.CompareTag("Player") && angleToPlayer <= fFieldOfView)
+            if (hit.collider.CompareTag("Player") && angleToPlayer < fFieldOfView / 2)
             {
+                Debug.Log("Player Seen");
                 playerDistance = hit.distance;
                 return true;
             }
@@ -179,17 +183,16 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     {
         if (!navAgent.isStopped)
         {
-            playerDirection = player.transform.position - headPosition.position;
-            Quaternion desiredRotation = Quaternion.LookRotation(new Vector3(playerDirection.x, 0, playerDirection.z));
-            transform.rotation = Quaternion.Lerp(transform.rotation, desiredRotation, Time.deltaTime * turnRate);
-
+            Vector3 direction = (player.transform.position - gameObject.transform.position).normalized;
+            Quaternion lookRotation = Quaternion.LookRotation(direction);
+            gameObject.transform.rotation = Quaternion.Slerp(gameObject.transform.rotation, lookRotation, Time.deltaTime * turnRate);
         }
     }
 
     void AttackPlayer()
     {
 
-        if (!isShooting && angleToPlayer <= shootAngle)
+        if (!isShooting)
         {
             switch (category)
             {

@@ -631,9 +631,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4728235726989330128, guid: 8410533c5719b054980dc8019928826d, type: 3}
+      propertyPath: turnRate
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4728235726989330128, guid: 8410533c5719b054980dc8019928826d, type: 3}
+      propertyPath: fFieldOfView
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4728235726989330129, guid: 8410533c5719b054980dc8019928826d, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4728235726989330130, guid: 8410533c5719b054980dc8019928826d, type: 3}
       propertyPath: m_Name
       value: Employee
+      objectReference: {fileID: 0}
+    - target: {fileID: 4728235726989330130, guid: 8410533c5719b054980dc8019928826d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4728235726989330132, guid: 8410533c5719b054980dc8019928826d, type: 3}
       propertyPath: m_RootOrder
@@ -789,13 +805,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: See-More
       objectReference: {fileID: 0}
+    - target: {fileID: 1441211781995531608, guid: 19e255f39adb2e7409b0d7d1b9d67412, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1441211781995531610, guid: 19e255f39adb2e7409b0d7d1b9d67412, type: 3}
       propertyPath: maxRange
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1441211781995531610, guid: 19e255f39adb2e7409b0d7d1b9d67412, type: 3}
+      propertyPath: turnRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441211781995531610, guid: 19e255f39adb2e7409b0d7d1b9d67412, type: 3}
       propertyPath: shootDistance
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1441211781995531611, guid: 19e255f39adb2e7409b0d7d1b9d67412, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1441211781995531614, guid: 19e255f39adb2e7409b0d7d1b9d67412, type: 3}
       propertyPath: m_RootOrder
@@ -840,6 +868,10 @@ PrefabInstance:
     - target: {fileID: 1441211781995531614, guid: 19e255f39adb2e7409b0d7d1b9d67412, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4065154440200194397, guid: 19e255f39adb2e7409b0d7d1b9d67412, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1709654445, guid: 19e255f39adb2e7409b0d7d1b9d67412, type: 3}
