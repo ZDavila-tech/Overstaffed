@@ -36,6 +36,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] Transform deathParticle;
     [SerializeField] Vector3 knockbackResistance;
     [SerializeField] int damageDealt;
+    [SerializeField, Range(0, 1)] float bulletSprayVar;
 
     [Header("----- Weapon Stats -----")]
     [SerializeField] GameObject bullet;
@@ -239,7 +240,8 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
     public void CreateBullet()
     {
-        GameObject proj = Instantiate(bullet, shootPosition.position, transform.rotation);//create bullet
+        Vector3 variance = new Vector3(transform.rotation.x + Random.Range(-bulletSprayVar, bulletSprayVar), transform.rotation.y + Random.Range(-bulletSprayVar, bulletSprayVar), transform.rotation.z);
+        GameObject proj = Instantiate(bullet, shootPosition.position, Quaternion.Euler(variance)) ;//create bullet
         Projectile projSet;
         if (proj.TryGetComponent<Projectile>(out projSet))
         {
