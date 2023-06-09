@@ -1071,8 +1071,48 @@ PrefabInstance:
       propertyPath: m_Name
       value: Widening Annex
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1831465650, guid: aff159c11d5ebb6449bfc2466e01fe21, type: 3}
+    - {fileID: 1465414362, guid: aff159c11d5ebb6449bfc2466e01fe21, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: aff159c11d5ebb6449bfc2466e01fe21, type: 3}
+--- !u!1 &1859835085 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1465414360, guid: aff159c11d5ebb6449bfc2466e01fe21, type: 3}
+  m_PrefabInstance: {fileID: 1859835084}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1859835086 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1831465648, guid: aff159c11d5ebb6449bfc2466e01fe21, type: 3}
+  m_PrefabInstance: {fileID: 1859835084}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1859835087
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859835085}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!64 &1859835088
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859835086}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1908109025
 GameObject:
   m_ObjectHideFlags: 0
