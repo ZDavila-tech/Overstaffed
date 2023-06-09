@@ -38,6 +38,7 @@ public class LevelManager : MonoBehaviour
     public bool levelCompleted; //for use by other scripts, makes life easier -> if levelStarted, no enemies, and player in elevator -> load new level
     public bool hasBeatenTutorial;
     public bool loadingLevel;
+    public bool endlessMode;//to determine if the player is currently playing Endless Mode
 
     [Header("----- High Score Stuff (Ignore)-----")]
     public int highestLevelCompleted;
@@ -201,6 +202,7 @@ public class LevelManager : MonoBehaviour
                 audioManager.ChangeSong();
             }
 
+            
             if (currentLevel % 5 == 0)
             {
                 if (!hasBeatenTutorial)
@@ -215,7 +217,7 @@ public class LevelManager : MonoBehaviour
             else
             {
                 ++currentLevel; //ups difficulty
-                if (currentLevel > maxPlayableLevel)
+                if (currentLevel > maxPlayableLevel && !endlessMode)
                 {
                     uiManager.ShowEndLetter();
                 }
@@ -266,7 +268,7 @@ public class LevelManager : MonoBehaviour
                         SceneManager.LoadScene(GetRandomLevelIndex());
                     }
                 }
-
+                
             }
         }
     }
