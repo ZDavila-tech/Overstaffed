@@ -119,7 +119,14 @@ public class LevelManager : MonoBehaviour
             if (inElevator && !loadingLevel)
             {
                 loadingLevel = true;
-                LevelTransitionSequence();
+                if(currentLevel >= 5)
+                {
+                    uiManager.ShowPostRunStats();
+                }
+                else
+                {
+                    LevelTransitionSequence();
+                }
             }
         }
         else

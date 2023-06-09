@@ -148,6 +148,14 @@ public class UIManager : MonoBehaviour
         ShowActiveMenu();
     }
 
+    public void ShowPostRunStats()
+    {
+        gameManager.PauseState();
+        gamePlayRecap.SetActive(true);
+        totalLevelsCompleted.text = ($"{levelManager.currentLevel - 1}");
+        totalenemiesDefeated.text = ($"{levelManager.totalEnemiesDefeated}");
+
+    }
     public void ShowActiveMenu() //shows active menu if there is one.
     {
         if (activeMenu != null)
