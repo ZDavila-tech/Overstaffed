@@ -109,13 +109,12 @@ GameObject:
   - component: {fileID: 1570852443671573166}
   - component: {fileID: 1570852443671573163}
   - component: {fileID: 1570852443671573164}
-  - component: {fileID: 129759428358307420}
   - component: {fileID: 1679513090977880366}
   - component: {fileID: 104614007396169845}
   - component: {fileID: 1011368657515646225}
   - component: {fileID: 7037184874063263595}
   m_Layer: 6
-  m_Name: MImic
+  m_Name: Mimic
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -172,9 +171,9 @@ MonoBehaviour:
   iHP: 30
   hpBar: {fileID: 7051353985056933245}
   hpDisplay: {fileID: 4964723009901755965}
+  damageNumbers: {fileID: 0}
   turnRate: 0
   fFieldOfView: 165
-  fChaseTime: 20
   DropRate: 100
   itemRates: 
   chargeValue: 50
@@ -184,6 +183,7 @@ MonoBehaviour:
   brokenAnimations: 1
   deathParticle: {fileID: 0}
   knockbackResistance: {x: 0, y: 0, z: 0}
+  damageDealt: 0
   bullet: {fileID: 8060328068600632496, guid: 21d34616d4bd55d46ad893c2322ce70a, type: 3}
   shootDistance: 20
   shootRate: 1
@@ -208,19 +208,6 @@ CapsuleCollider:
   m_Height: 1.4992517
   m_Direction: 1
   m_Center: {x: 0, y: -0.57565576, z: 0}
---- !u!135 &129759428358307420
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1570852443671573161}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1679513090977880366
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -295,9 +282,9 @@ MonoBehaviour:
   iHP: 30
   hpBar: {fileID: 7051353985056933245}
   hpDisplay: {fileID: 6623142330369203019}
+  damageNumbers: {fileID: 0}
   turnRate: 0
   fFieldOfView: 100
-  fChaseTime: 20
   DropRate: 0
   itemRates: 
   chargeValue: 100
@@ -307,6 +294,7 @@ MonoBehaviour:
   brokenAnimations: 1
   deathParticle: {fileID: 0}
   knockbackResistance: {x: 5, y: 5, z: 5}
+  damageDealt: 0
   bullet: {fileID: 8060328068600632496, guid: 21d34616d4bd55d46ad893c2322ce70a, type: 3}
   shootDistance: 50
   shootRate: 0.3
