@@ -87,10 +87,12 @@ public class UIManager : MonoBehaviour
         {
             instance = this;
         }
+
     }
 
     private void Start()
     {
+        fileManager.firstLoad();
         gameManager = gameManager.instance;
         activeMenu = mainMenu;
         //playerElement = gameManager.playerElement;

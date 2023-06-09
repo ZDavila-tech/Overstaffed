@@ -13,8 +13,21 @@ public static class fileManager// : MonoBehaviour
     public static bool invertY;
     public static bool infinite = true;
 
+    private static bool hasloaded;
 
-
+    public static void firstLoad()
+    {
+        if (!PlayerPrefs.HasKey("1stLoad")){
+            PlayerPrefs.SetString("1stLoad", hasloaded.ToString());
+        }
+        hasloaded = bool.Parse(PlayerPrefs.GetString("1stLoad"));
+        if (!hasloaded)
+        {
+            hasloaded = true;
+            resetData();
+        }
+    }
+    
     public static void save()
     {
         PlayerPrefs.SetFloat("MV", masterVolume);
@@ -33,8 +46,8 @@ public static class fileManager// : MonoBehaviour
         musicVolume = PlayerPrefs.GetFloat("MuV");
         level = PlayerPrefs.GetInt("LvL");
         maxLevel = PlayerPrefs.GetInt("MaxLvL");
-        //infinite = bool.Parse(PlayerPrefs.GetString("inf"));
-        //invertY = bool.Parse( PlayerPrefs.GetString("inv"));
+        infinite = bool.Parse(PlayerPrefs.GetString("inf"));
+        invertY = bool.Parse( PlayerPrefs.GetString("inv"));
 
 
     }
@@ -51,6 +64,7 @@ public static class fileManager// : MonoBehaviour
         invertY = false;
         UIManager.instance.invert.isOn = invertY;
         infinite = false;
+        save();
 
     }
 
