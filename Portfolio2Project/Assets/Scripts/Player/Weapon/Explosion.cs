@@ -7,7 +7,6 @@ public class Explosion : MonoBehaviour
     [SerializeField] int damage;
     [SerializeField] int pushAmount;
     [SerializeField] bool doesBurn;
-    [SerializeField] bool onlyPlayer;
 
 
     // Start is called before the first frame update
@@ -18,7 +17,7 @@ public class Explosion : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger");
+        Debug.Log("Trigger Activated");
         if (other.GetComponent<IPhysics>() != null)
         {
             IPhysics physicsable = other.GetComponent<IPhysics>();
