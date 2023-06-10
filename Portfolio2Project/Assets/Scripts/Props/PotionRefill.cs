@@ -19,17 +19,12 @@ public class PotionRefill : MonoBehaviour, IInteract
         gameManager = gameManager.instance;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public bool Interact(PlayerInteractionSystem player)
     {
         for(int i = 0; i < playerController.items.Count; i++)
         {
-            playerController.items[i].GetComponent<Item>().useable = true;
+            playerController.items[i].GetComponent<Item>().used = false;
+            Debug.Log("Refilled");
         }
 
         return true;
