@@ -23,6 +23,7 @@ public class ElementSelectButtons : MonoBehaviour
         {
             playerController = gameManager.playerController;
             playerController.playerElement = NewStaff.Element.Fire;
+            playerController.ChangeBaseStats(NewStaff.Element.Fire);
         }
     }
 
@@ -33,6 +34,7 @@ public class ElementSelectButtons : MonoBehaviour
         {
             playerController = gameManager.playerController;
             playerController.playerElement = NewStaff.Element.Water;
+            playerController.ChangeBaseStats(NewStaff.Element.Water);
         }
     }
 
@@ -43,6 +45,7 @@ public class ElementSelectButtons : MonoBehaviour
         {
             playerController = gameManager.playerController;
             playerController.playerElement = NewStaff.Element.Earth;
+            playerController.ChangeBaseStats(NewStaff.Element.Earth);
         }
     }
 

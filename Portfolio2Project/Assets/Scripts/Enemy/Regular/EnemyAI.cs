@@ -162,7 +162,6 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     {
         playerDirection = (player.transform.position - headPosition.position);
         angleToPlayer = Vector3.Angle(new Vector3(playerDirection.x, 0, playerDirection.z), transform.forward);
-        Debug.Log(angleToPlayer);
 
         Debug.DrawRay(headPosition.position, playerDirection);
 
@@ -170,7 +169,6 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer < fFieldOfView / 2)
             {
-                Debug.Log("Player Seen");
                 playerDistance = hit.distance;
                 return true;
             }

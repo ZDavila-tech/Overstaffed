@@ -27,24 +27,24 @@ public class PlayerSelect : MonoBehaviour
     {
         PrePlayerElementSetup();
         playerController.playerElement = NewStaff.Element.Fire;
-        playerController.ChangeBaseStats(NewStaff.Element.Fire);
         PostPlayerElementSetup();
+        playerController.ChangeBaseStats(NewStaff.Element.Fire);
     }
 
     public void SelectedWater()
     {
         PrePlayerElementSetup();
         playerController.playerElement = NewStaff.Element.Water;
-        playerController.ChangeBaseStats(NewStaff.Element.Water);
         PostPlayerElementSetup();
+        playerController.ChangeBaseStats(NewStaff.Element.Water);
     }
 
     public void SelectedEarth()
     {
         PrePlayerElementSetup();
         playerController.playerElement = NewStaff.Element.Earth;
-        playerController.ChangeBaseStats(NewStaff.Element.Earth);
         PostPlayerElementSetup();
+        playerController.ChangeBaseStats(NewStaff.Element.Earth);
     }
 
     public void PrePlayerElementSetup() //must happen before player element setup occurs

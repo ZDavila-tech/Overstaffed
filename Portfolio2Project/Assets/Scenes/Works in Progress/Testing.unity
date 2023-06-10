@@ -324,6 +324,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3822484855094745187, guid: 8410533c5719b054980dc8019928826d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4728235726989330130, guid: 8410533c5719b054980dc8019928826d, type: 3}
       propertyPath: m_Name
       value: Employee
@@ -371,6 +375,14 @@ PrefabInstance:
     - target: {fileID: 4728235726989330132, guid: 8410533c5719b054980dc8019928826d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4728235726989330135, guid: 8410533c5719b054980dc8019928826d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8987806709014719895, guid: 8410533c5719b054980dc8019928826d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8410533c5719b054980dc8019928826d, type: 3}
@@ -527,6 +539,10 @@ PrefabInstance:
       value: SpikeFloor
       objectReference: {fileID: 0}
     - target: {fileID: 3660270640228827261, guid: fb0bf47d641de7a40bb40b6cb293e726, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3660270640228827261, guid: fb0bf47d641de7a40bb40b6cb293e726, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
       objectReference: {fileID: 0}
@@ -576,7 +592,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 307965680461218121, guid: 8b0bad0144ff2e24381bbae3c260c9bc, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2589526151495448347, guid: 8b0bad0144ff2e24381bbae3c260c9bc, type: 3}
       propertyPath: utCharge
