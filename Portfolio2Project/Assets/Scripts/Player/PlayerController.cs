@@ -74,6 +74,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     [SerializeField] float JumpVolume;
     [SerializeField] AudioClip jumpAudio;
     public List<AudioClip> walking;
+    public List<AudioClip> audDamage;
     bool ShootSoundInPlay; //checks for the audio cooldown between shots
 
     float origGrav;
@@ -259,6 +260,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         if (damagedRecently == false)
         {
             StartCoroutine(ResetDamagedRecently());
+            aud.PlayOneShot(audDamage[Random.Range(0, audDamage.Count)], audioManager.volumeScale * 1.2f);
             iHP -= amount;
             camShake.Shake(damagedScreenshakeIntensity, .1f);
             if (amount > 0)
