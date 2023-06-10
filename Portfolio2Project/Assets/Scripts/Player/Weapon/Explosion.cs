@@ -17,14 +17,12 @@ public class Explosion : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger Activated");
         if (other.GetComponent<IPhysics>() != null)
         {
             IPhysics physicsable = other.GetComponent<IPhysics>();
 
             Vector3 dir = other.transform.position - transform.position;
             physicsable.Knockback(dir * pushAmount);
-            Debug.Log("Physics");
         }
 
         if (other.GetComponent<IDamage>() != null)
@@ -36,7 +34,6 @@ public class Explosion : MonoBehaviour
             {
                 damageable.Burn(10, 1);
             }
-            Debug.Log("Damage");
         }
     }
 }
