@@ -16,12 +16,13 @@ public class AudioManager : MonoBehaviour
     [Header("----- Audio Stuff -----")]
     public AudioSource aud;
     public List<AudioClip> bgms;
+    
     [SerializeField] float volume;
     public int currSong;
     public AudioClip buttonClick;
     public AudioClip transactionClick;
-
     public float volumeScale;
+
     // Start is called before the first frame update
     void Awake()
     {

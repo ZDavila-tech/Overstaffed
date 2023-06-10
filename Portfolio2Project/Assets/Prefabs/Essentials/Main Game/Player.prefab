@@ -11745,6 +11745,7 @@ MonoBehaviour:
   groundedPlayer: 0
   isSprinting: 0
   isCrouching: 0
+  isStepping: 0
   items:
   - {fileID: 879365999}
   - {fileID: 727314797}
@@ -11754,6 +11755,16 @@ MonoBehaviour:
   AttackVolume: 0.3
   JumpVolume: 0.5
   jumpAudio: {fileID: 8300000, guid: bd109bbf0935edd40bd80dbc4f55c07f, type: 3}
+  walking:
+  - {fileID: 8300000, guid: 4185b9faa20b30c49b6d651541370792, type: 3}
+  - {fileID: 8300000, guid: d7cebb78fd324cc468b65dc50bd21f6a, type: 3}
+  - {fileID: 8300000, guid: 1f0b18b1f3cdf1a4bb6c07607ee49642, type: 3}
+  - {fileID: 8300000, guid: 6b0737cacc3a5564ca1d7133f61c913c, type: 3}
+  - {fileID: 8300000, guid: 2e91425b9a76b5141ade443a62a7c252, type: 3}
+  - {fileID: 8300000, guid: bceebd101b44ffd40a0d88221629c908, type: 3}
+  - {fileID: 8300000, guid: 1089a292958e2e649941efe945ec7f55, type: 3}
+  - {fileID: 8300000, guid: b6d3c4a234d3c3646b164c9f3865e716, type: 3}
+  - {fileID: 8300000, guid: ea2d359d96e4add4881b68e6ab22af78, type: 3}
   camShake: {fileID: 8548034150311879936}
 --- !u!114 &5227066611642462926
 MonoBehaviour:

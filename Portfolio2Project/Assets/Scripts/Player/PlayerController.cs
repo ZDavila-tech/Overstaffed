@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     public bool isSprinting;
     private bool damagedRecently;
     public bool isCrouching;
+    public bool isStepping;
 
     [Header("----- Items -----")]
     public List<GameObject> items = new List<GameObject>();
@@ -72,6 +73,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     [SerializeField] float AttackVolume;
     [SerializeField] float JumpVolume;
     [SerializeField] AudioClip jumpAudio;
+    public List<AudioClip> walking;
     bool ShootSoundInPlay; //checks for the audio cooldown between shots
 
     float origGrav;
@@ -143,6 +145,10 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         groundedPlayer = controller.isGrounded;
         if (groundedPlayer)
         {
+            if(!isStepping && move.normalized.magnitude > 0.5f)
+            {
+                StartCoroutine(playSteps());
+            }
             timeSinceLastGroundTouch = 0;
             playerVelocity.y = 0f;
             jumpsUsed = 0;
@@ -282,6 +288,20 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         damagedRecently = false;
     }
 
+    public IEnumerator playSteps()
+    {
+        isStepping = true;
+        aud.PlayOneShot(walking[Random.Range(0, walking.Count)], audioManager.volumeScale * 0.30f);
+        if (!isSprinting)
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.3f);
+        }
+        isStepping = false;
+    }
     IEnumerator Shoot()
     {
         if (!isShooting)
