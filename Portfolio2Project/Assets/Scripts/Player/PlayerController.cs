@@ -123,15 +123,15 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             StartCoroutine(Shoot());
         }
 
-        if (Input.GetAxis("Movement1") != 0)
+        if (Input.GetAxis("Movement1") != 0 && LevelManager.instance.currentLevel >= 2)
         {
             skills.useSkill(1);
         }
-        if (Input.GetAxis("Movement2") != 0)
+        if (Input.GetAxis("Movement2") != 0 && LevelManager.instance.currentLevel >= 3)
         {
             skills.useSkill(2);
         }
-        if (Input.GetAxis("Movement3") != 0)
+        if (Input.GetAxis("Movement3") != 0 && LevelManager.instance.currentLevel >= 4)
         {
             skills.useSkill(3);
         }
