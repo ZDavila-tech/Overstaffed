@@ -18,12 +18,6 @@ public class Explosion : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (onlyPlayer)
-        {
-            if (!other.CompareTag("Player"))
-                return;
-        }
-        
         if (other.GetComponent<IPhysics>() != null)
         {
             IPhysics physicsable = other.GetComponent<IPhysics>();
