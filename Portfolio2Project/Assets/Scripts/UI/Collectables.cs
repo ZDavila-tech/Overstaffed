@@ -9,7 +9,9 @@ public class Collectables : MonoBehaviour
     {
         Health,
         UltimateCharge,
-        Mimic
+        Mimic,
+        Exp,
+        Poison
     }
 
     [SerializeField] PickupType Pickup;
@@ -40,6 +42,14 @@ public class Collectables : MonoBehaviour
                 case PickupType.Mimic:
                     Instantiate(mimic, transform.position, mimic.transform.rotation);
                     LevelManager.instance.enemiesRemaining += 1;
+                    Destroy(gameObject);
+                    break;
+                case PickupType.Exp:
+                    gameManager.instance.playerStats.GainExp(value);
+                    Destroy(gameObject);
+                    break;
+                case PickupType.Poison:
+                    gameManager.instance.playerController.Poison(value, 1);
                     Destroy(gameObject);
                     break;
             }

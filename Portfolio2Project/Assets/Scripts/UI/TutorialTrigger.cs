@@ -43,7 +43,6 @@ public class TutorialTrigger : MonoBehaviour
                     break;
 
             }
-
         }
     }
 }

@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f0ab82507be71fe49a7aba872af50258, type: 2}
+  - {fileID: 2100000, guid: 0379f26a47d2dc44bbfb0a9d7200efd4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -160,7 +160,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4f89f76424cf4b742a47152b5aec29a1, type: 2}
+  - {fileID: 2100000, guid: 247dff853da69f7458f7997bc6be8dd4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -210,7 +210,7 @@ GameObject:
   - component: {fileID: 4658357512159410958}
   - component: {fileID: 4658357512159410954}
   m_Layer: 0
-  m_Name: PoisonFlask
+  m_Name: HurtOrb
   m_TagString: Pickup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -261,7 +261,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31132b2ff57c56b4780033cbace140dd, type: 2}
+  - {fileID: 2100000, guid: d5fcee3325971a547add153e08718b0d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -308,6 +308,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc4550b157042d347aeae49a7f20ebdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value: -2
-  Pickup: 4
+  value: -5
+  Pickup: 0
   mimic: {fileID: 0}

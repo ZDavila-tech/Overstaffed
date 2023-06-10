@@ -41,6 +41,15 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI totalenemiesDefeated;
     public TextMeshProUGUI expGained;
 
+    [Header("----- HUD Pieces -----")]
+    public GameObject highJumpIndicator;
+    public GameObject dashIndicator;
+    public GameObject blinkIndicator;
+    public GameObject specialIndicator;
+    public GameObject expIndicator;
+    public GameObject healthIndicator;
+    public GameObject enemiesRemainingIndicator;
+
     public Image playerHealthBar;
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI enemiesRemainText;
@@ -119,6 +128,8 @@ public class UIManager : MonoBehaviour
                 SetElementIcon();
             }
         }
+
+        PlayerProgression();
     }
     public void YouLose()
     {
@@ -313,6 +324,59 @@ public class UIManager : MonoBehaviour
                     interactTextGameObject.SetActive(true);
                     break;
                 }
+        }
+    }
+
+    //highJumpIndicator;
+    //dashIndicator;
+    //blinkIndicator;
+    //specialIndicator;
+    //expIndicator;
+    //healthIndicator;
+    //enemiesRemainingIndicator;
+
+    public void PlayerProgression()
+    {
+        if (levelManager.currentLevel >= 2) //high jump
+        {
+            highJumpIndicator.SetActive(true);
+        }
+        else
+        {
+            highJumpIndicator.SetActive(false);
+        }
+
+        if (levelManager.currentLevel >= 3) //dash
+        {
+            dashIndicator.SetActive(true);
+        }
+        else
+        {
+            dashIndicator.SetActive(false);
+        }
+
+        if (levelManager.currentLevel >= 4) //blink
+        {
+            blinkIndicator.SetActive(true);
+        }
+        else
+        {
+            blinkIndicator.SetActive(false);
+        }
+
+        if (levelManager.currentLevel >= 5) //special, exp, enemies
+        {
+            specialIndicator.SetActive(true);
+            expIndicator.SetActive(true);
+            healthIndicator.SetActive(true);
+            enemiesRemainingIndicator.SetActive(true);
+        }
+        else
+        {
+            specialIndicator.SetActive(false);
+            expIndicator.SetActive(false);
+            healthIndicator.SetActive(false);
+            enemiesRemainingIndicator.SetActive(false);
         }
     }
 }
