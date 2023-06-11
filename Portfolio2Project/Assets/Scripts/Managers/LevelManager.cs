@@ -169,11 +169,6 @@ public class LevelManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        if (currentLevel > highestLevelCompleted)
-        {
-            highestLevelCompleted = currentLevel;
-        }
-
         if (SceneManager.GetActiveScene().buildIndex == hubSceneIndex || SceneManager.GetActiveScene().buildIndex == characterSelectIndex)
         {
             if (currentLevel == bossLevelOne)
@@ -220,6 +215,7 @@ public class LevelManager : MonoBehaviour
                 ++currentLevel; //ups difficulty
                 if (currentLevel > maxPlayableLevel && !endlessMode)
                 {
+                    ++highestLevelCompleted;
                     uiManager.ShowEndLetter();
                 }
                 else
@@ -232,26 +228,46 @@ public class LevelManager : MonoBehaviour
                         {
                             case 1:
                                 {
+                                    if (currentLevel > highestLevelCompleted)
+                                    {
+                                        highestLevelCompleted = currentLevel;
+                                    }
                                     SceneManager.LoadScene("Home");
                                     break;
                                 }
                             case 2:
                                 {
+                                    if (currentLevel > highestLevelCompleted)
+                                    {
+                                        highestLevelCompleted = currentLevel;
+                                    }
                                     SceneManager.LoadScene("UpTheCliffs");
                                     break;
                                 }
                             case 3:
                                 {
+                                    if (currentLevel > highestLevelCompleted)
+                                    {
+                                        highestLevelCompleted = currentLevel;
+                                    }
                                     SceneManager.LoadScene("AcrossTheGap");
                                     break;
                                 }
                             case 4:
                                 {
+                                    if (currentLevel > highestLevelCompleted)
+                                    {
+                                        highestLevelCompleted = currentLevel;
+                                    }
                                     SceneManager.LoadScene("RoadBlock");
                                     break;
                                 }
                             case 5:
                                 {
+                                    if (currentLevel > highestLevelCompleted)
+                                    {
+                                        highestLevelCompleted = currentLevel;
+                                    }
                                     enemiesRemaining = totalEnemiesToSpawn;
                                     SceneManager.LoadScene("Reception");                                    
                                     break;
@@ -266,6 +282,10 @@ public class LevelManager : MonoBehaviour
                         }
                         LoadLevelVariableReset();
                         enemiesRemaining = totalEnemiesToSpawn;
+                        if (currentLevel > highestLevelCompleted)
+                        {
+                            highestLevelCompleted = currentLevel;
+                        }
                         SceneManager.LoadScene(GetRandomLevelIndex());
                     }
                 }
@@ -314,7 +334,7 @@ public class LevelManager : MonoBehaviour
     {
         if (hasBeatenTutorial)
         {
-            currentLevel = 6;
+            currentLevel = 5;
         }
         else
         {

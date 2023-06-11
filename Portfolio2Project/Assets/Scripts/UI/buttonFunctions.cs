@@ -44,11 +44,6 @@ public class buttonFunctions : MonoBehaviour
         uiManager.ShowActiveMenu();
         Time.timeScale = gameManager.instance.timeScaleOriginal;
 
-        if (LevelManager.instance != null)
-        {
-            LevelManager.instance.TutorialBeatenGoToLevelSix();
-        }
-
         Destroy(GameObject.FindGameObjectWithTag("Player"));
         SceneManager.LoadScene("Character Select");
         LevelManager.instance.endlessMode = false;
@@ -150,11 +145,6 @@ public class buttonFunctions : MonoBehaviour
         Debug.Log("Player Character destroyed");
         Time.timeScale = gameManager.instance.timeScaleOriginal;
 
-        if(LevelManager.instance != null)
-        {
-            LevelManager.instance.TutorialBeatenGoToLevelSix();
-        }
-
         SceneManager.LoadScene("Main Menu");
     }
 
@@ -199,14 +189,6 @@ public class buttonFunctions : MonoBehaviour
         AudioManager.instance.ChangeSong();
         uiManager.ShowActiveMenu();
         LevelManager.instance.currentLevel = fileManager.level;
-        if(LevelManager.instance.currentLevel > 5)
-        {
-            LevelManager.instance.hasBeatenTutorial = true;
-        }
-        else
-        {
-            LevelManager.instance.hasBeatenTutorial = false;
-        }
         SceneManager.LoadScene("Character Select");
     }
 
