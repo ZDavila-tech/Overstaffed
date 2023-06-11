@@ -38,9 +38,10 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     private float timeSinceLastGroundTouch = Mathf.Infinity;
     [Header("----- Sliding Stats -----")]
     [SerializeField] float crouchHeight;
-    float standingHeight;
+    public float standingHeight;
     [SerializeField] float slideMultiplier; // How much speed is increased while sliding
     [SerializeField] float slideLimit; //How long you can slide
+    public float currHeight;
 
     public float height
     {
@@ -80,6 +81,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     float origGrav;
     float origSpeed;
 
+
     [SerializeField] CinemachineCamshake camShake;
     private void Awake()
     {
@@ -105,6 +107,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     void Update()
     {
+        currHeight = height;
         if (UIManager.instance != null && uiManager == null)
         {
             uiManager = UIManager.instance;
@@ -140,10 +143,15 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         }
         ChangeItem();
     }
+    public bool CheckGround()
+    {
+        float _distanceToTheGround = GetComponent<Collider>().bounds.extents.y;
+        return Physics.Raycast(transform.position, Vector3.down, _distanceToTheGround + 0.1f);
+    }
 
     void Movement()
     {
-        groundedPlayer = controller.isGrounded;
+        groundedPlayer = CheckGround();//controller.isGrounded;
         if (groundedPlayer)
         {
             if(!isStepping && move.normalized.magnitude > 0.5f)
@@ -219,7 +227,6 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         {
             isCrouching = true;
             controller.height = crouchHeight;
-            playerSpeed *= slideMultiplier;
             StartCoroutine(Slide());
         }
         else if (Input.GetButtonDown("Crouch") && groundedPlayer)
@@ -237,8 +244,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     }
     IEnumerator Slide()
     {
+        controller.Move(move.normalized * playerSpeed * 1.3f * Time.deltaTime);
         yield return new WaitForSeconds(slideLimit);
-        isCrouching = false;
         playerSpeed = origSpeed;
     }
 
