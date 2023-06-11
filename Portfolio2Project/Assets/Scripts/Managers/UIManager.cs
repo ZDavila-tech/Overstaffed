@@ -73,8 +73,8 @@ public class UIManager : MonoBehaviour
     public Image ability1; //Hi-Jump
     public Image ability2; //Dash
     public Image ability3; //Blink
-    public List<Sprite> spriteArray;
-    public Image element;
+    public Sprite[] spriteArray;
+    public Image elementSprite;
 
     private gameManager gameManager;
     private NewStaff.Element playerElement;
@@ -95,6 +95,7 @@ public class UIManager : MonoBehaviour
             instance = this;
         }
 
+        
     }
 
     private void Start()
@@ -122,11 +123,13 @@ public class UIManager : MonoBehaviour
         {
             AbilityCoolDown();
 
-            if (playerElement != gameManager.playerElement)
+            if (playerElement != gameManager.playerController.playerElement)
             {
-                SetElement();
-                SetElementIcon();
+
             }
+
+            SetElement();
+            SetElementIcon();
         }
 
         PlayerProgression();
@@ -199,7 +202,7 @@ public class UIManager : MonoBehaviour
 
     public void SetElement()
     {
-        playerElement = gameManager.playerElement;
+        playerElement = gameManager.playerController.playerElement;
     }
 
     //displays the correct element based on character type
@@ -207,7 +210,7 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("Set ELement");
         //Debug.Log(playerScript.GetWeapon());
-        element.sprite = spriteArray[(int) playerElement];
+        elementSprite.sprite = spriteArray[(int) playerElement];
         switch (playerElement)
         {
             case NewStaff.Element.Fire:

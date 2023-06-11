@@ -55,8 +55,7 @@ public class NewStaff : MonoBehaviour
     {
         Fire,
         Water,
-        Earth,
-        None
+        Earth
     }
     public Element playerElement;
 
