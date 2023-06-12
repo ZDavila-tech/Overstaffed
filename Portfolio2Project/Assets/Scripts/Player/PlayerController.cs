@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     [SerializeField] float baseSpeed;
     [SerializeField] public Stats playerStats;
     int iHP;
+    int totalHP;
     public float playerSpeed;
     int playerDamage;
     [Range(0, 100)][SerializeField] float utCharge;
@@ -100,13 +101,14 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         gameManager.instance.SetPlayerVariables(this.gameObject);
         uiManager = UIManager.instance;
         audioManager = AudioManager.instance;
+        UpdateHealthBar();
     }
 
     public void UpdatePlayerStats()
     {
         UpdateSpeed();
         playerDamage = playerStats.Attack + baseAttack;
-        iHP = playerStats.GetHealth() + baseHealth;
+        UpdateHP(true);
     }
 
     void Update()
@@ -158,7 +160,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         groundedPlayer = CheckGround();//controller.isGrounded;
         if (groundedPlayer)
         {
-            if(!isStepping && move.normalized.magnitude > 0.5f)
+            if (!isStepping && move.normalized.magnitude > 0.5f)
             {
                 StartCoroutine(playSteps());
             }
@@ -166,7 +168,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             playerVelocity.y = 0f;
             jumpsUsed = 0;
         }
-        else if(timeSinceLastGroundTouch < coyoteTime)
+        else if (timeSinceLastGroundTouch < coyoteTime)
         {
             //Starting the timer
             timeSinceLastGroundTouch += Time.deltaTime;
@@ -182,7 +184,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             canJump = true;
         }
 
-            // Changes the height position of the player..
+        // Changes the height position of the player..
         if (Input.GetButtonDown("Jump") && jumpsUsed < maxJumps && canJump)
         {
             jumpsUsed++;
@@ -200,7 +202,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     private bool AllowWeaponSway()
     {
-        if(Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+        if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
         {
             return true;
         }
@@ -214,7 +216,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         if (hit.gameObject.tag == "Wall" && !groundedPlayer)
         {
             gravityValue = wallrunGravity;
-            playerSpeed =  playerStats.wallrunSpeed;
+            playerSpeed = playerStats.wallrunSpeed;
         }
         else if (hit.gameObject.tag != "Wall")
         {
@@ -282,7 +284,6 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             camShake.Shake(damagedScreenshakeIntensity, .1f);
             if (amount > 0)
             {
-                uiManager.ShowDamage();
                 if (iHP <= 0)
                 {
                     iHP = 0;
@@ -354,7 +355,9 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     public void UpdateHealthBar()
     {
-        uiManager.playerHealthBar.fillAmount = (float)iHP / (baseHealth + playerStats.GetHealth());
+        uiManager.playerHealthBar.fillAmount = (float)iHP / totalHP;
+        uiManager.ShowDamage();
+        uiManager.hpText.text = iHP.ToString() + "/" + totalHP.ToString();
     }
 
 
@@ -423,13 +426,16 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     public void UpdateSpeed()
     {
-        origSpeed =  playerSpeed = baseSpeed + (playerStats.Speed / 10);
+        origSpeed = playerSpeed = baseSpeed + (playerStats.Speed / 10);
         Debug.Log("Speed Calculated");
     }
 
     IEnumerator Freezing(float duration)
     {
         bool freezing = true;
+        uiManager.freezeIndicator.SetActive(true);
+        Color orig = uiManager.playerHealthBar.color;
+        uiManager.playerHealthBar.color = Color.cyan;
         if (playerElement == NewStaff.Element.Water)
         {
             while (freezing)
@@ -439,7 +445,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             }
         }
         yield return new WaitForSeconds(duration);
-        freezing= false;
+        uiManager.freezeIndicator.SetActive(false);
+        uiManager.playerHealthBar.color = orig;
     }
 
     public void Freeze(float duration)
@@ -450,6 +457,9 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     IEnumerator Burning(float duration, float timeBetween, int damage)
     {
         bool burning = true;
+        Color orig = uiManager.playerHealthBar.color;
+        uiManager.playerHealthBar.color = Color.yellow;
+        uiManager.burnIndicator.SetActive(true);
         float oldSpeed = 0;
         if (playerElement == NewStaff.Element.Fire)
         {
@@ -466,12 +476,17 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         {
             playerSpeed = oldSpeed;
         }
+        uiManager.burnIndicator.SetActive(false);
+        uiManager.playerHealthBar.color = orig;
         burning = false;
     }
 
     IEnumerator Venom(float duration, float timeBetween, int damage)
     {
         bool poisoned = true;
+        Color orig = uiManager.playerHealthBar.color;
+        uiManager.playerHealthBar.color = Color.magenta;
+        uiManager.poisonIndicator.SetActive(true);
         int oldAttack = 0;
         if (playerElement == NewStaff.Element.Earth)
         {
@@ -488,6 +503,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         {
             playerDamage = oldAttack;
         }
+        uiManager.poisonIndicator.SetActive(false);
+        uiManager.playerHealthBar.color = orig;
         poisoned = false;
     }
 
@@ -512,6 +529,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
                 break;
             case NewStaff.Element.Water:
                 baseHealth = 15;
+                UpdateHealthBar();
                 baseSpeed = 8;
                 baseAttack = 1;
                 break;
@@ -521,11 +539,13 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
                 baseAttack = 2;
                 break;
         }
+        UpdateHP(true);
+        UpdateHealthBar();
     }
 
     void ChangeItem()
     {
-        if(itemSelected > items.Count - 1 || itemSelected < 0)
+        if (itemSelected > items.Count - 1 || itemSelected < 0)
         {
             itemSelected = 0;
         }
@@ -549,5 +569,12 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             }
 
         }
+    }
+
+    public void UpdateHP(bool DoesHeal)
+    {
+        totalHP = baseHealth + (playerStats.GetHealth() * 5);
+        if (DoesHeal)
+            iHP = totalHP;
     }
 }
