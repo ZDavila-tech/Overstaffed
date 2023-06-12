@@ -21,6 +21,9 @@ public class AudioManager : MonoBehaviour
     public int currSong;
     public AudioClip buttonClick;
     public AudioClip transactionClick;
+    public AudioClip pickUpAud;
+    public AudioClip hubInteractAud;
+    public AudioClip switchStaffAud;
     public float volumeScale;
 
     // Start is called before the first frame update
@@ -94,7 +97,7 @@ public class AudioManager : MonoBehaviour
     public void UpdateBGVolume()
     {
         volume = volumeValue.value;
-        aud.volume = (float)(volume * 0.10);
+        aud.volume = (float)(volume * 0.05f);
         if (volumeValue.value == 0)
         {
             bgToggle.isOn = true;
