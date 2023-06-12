@@ -148,4 +148,11 @@ public class StoreButtons : MonoBehaviour
             cost += 10 * (1 + i);
         }
     }
+
+    public void SetAllToZero()
+    {
+        SellAttack(gameManager.instance.playerStats.GetAttack());
+        SellHealth(gameManager.instance.playerStats.GetHealth());
+        SellSpeed(gameManager.instance.playerStats.GetSpeed());
+    }
 }
