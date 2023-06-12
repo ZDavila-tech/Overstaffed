@@ -6,7 +6,7 @@ public class Stats : MonoBehaviour
 {
     [Header("----- Stats -----")]
     [Range(0, 100)][SerializeField] public int Health;
-    [Range(0, 100)][SerializeField] public float Speed;
+    [Range(0, 100)][SerializeField] public int Speed;
     [Range(0, 100)][SerializeField] public int Attack;
     [Range(0, 100)][SerializeField] public float wallrunSpeed;
 
@@ -30,7 +30,7 @@ public class Stats : MonoBehaviour
     {
         return Health * 10;
     }
-    public float GetSpeed()
+    public int GetSpeed()
     {
         return Speed;
     }
