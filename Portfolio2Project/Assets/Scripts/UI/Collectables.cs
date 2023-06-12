@@ -15,6 +15,7 @@ public class Collectables : MonoBehaviour
     }
 
     [SerializeField] PickupType Pickup;
+    [SerializeField] AudioSource collectSound;
 
     [SerializeField] GameObject mimic;
     /*enum CollectType 
@@ -33,26 +34,26 @@ public class Collectables : MonoBehaviour
             {
                 case PickupType.Health:
                     gameManager.instance.playerController.TakeDamage(-value);
-                    Destroy(gameObject);
+                    if(value >= 0)
+                     collectSound.PlayOneShot(AudioManager.instance.healthPickupAudio, AudioManager.instance.volumeScale);
+                    else
+                        collectSound.PlayOneShot(AudioManager.instance.hurtPickupAudio, AudioManager.instance.volumeScale);
                     break;
                 case PickupType.UltimateCharge:
                     gameManager.instance.playerController.ChargeUt(value);
-                    Destroy(gameObject);
                     break;
                 case PickupType.Mimic:
                     Instantiate(mimic, transform.position, mimic.transform.rotation);
                     LevelManager.instance.enemiesRemaining += 1;
-                    Destroy(gameObject);
                     break;
                 case PickupType.Exp:
                     gameManager.instance.playerStats.GainExp(value);
-                    Destroy(gameObject);
                     break;
                 case PickupType.Poison:
                     gameManager.instance.playerController.Poison(value, 1);
-                    Destroy(gameObject);
                     break;
             }
+            Destroy(gameObject);
         }
     }
 }

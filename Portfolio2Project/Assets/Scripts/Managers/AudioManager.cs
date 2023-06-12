@@ -22,6 +22,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip buttonClick;
     public AudioClip transactionClick;
     public AudioClip pickUpAud;
+    public AudioClip healthPickupAudio;
+    public AudioClip hurtPickupAudio;
     public AudioClip hubInteractAud;
     public AudioClip switchStaffAud;
     public float volumeScale;
