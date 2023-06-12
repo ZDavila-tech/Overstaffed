@@ -143,6 +143,8 @@ public class UIManager : MonoBehaviour
            
         }
 
+
+
         PlayerProgression();
     }
     public void YouLose()
