@@ -18,7 +18,7 @@ public class ElementSelectButtons : MonoBehaviour
 
     public void ClickedFire()
     {
-        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        butAud.PlayOneShot(AudioManager.instance.switchStaffAud, AudioManager.instance.volumeScale);
         if (gameManager.playerController != null)
         {
             playerController = gameManager.playerController;
@@ -29,7 +29,7 @@ public class ElementSelectButtons : MonoBehaviour
 
     public void ClickedWater()
     {
-        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        butAud.PlayOneShot(AudioManager.instance.switchStaffAud, AudioManager.instance.volumeScale);
         if (gameManager.playerController != null)
         {
             playerController = gameManager.playerController;
@@ -40,7 +40,7 @@ public class ElementSelectButtons : MonoBehaviour
 
     public void ClickedEarth()
     {
-        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        butAud.PlayOneShot(AudioManager.instance.switchStaffAud, AudioManager.instance.volumeScale);
         if (gameManager.playerController != null)
         {
             playerController = gameManager.playerController;

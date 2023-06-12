@@ -12,7 +12,6 @@ public class PlayerInteractionSystem : MonoBehaviour
     [SerializeField] private int numberOfInteractablesFound;
 
     UIManager uiManager;
-
     private IInteract interactable;
 
     private void Start()
