@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6979552653048248221}
-  - component: {fileID: 3070007370155966373}
   - component: {fileID: 7662511765174309655}
   - component: {fileID: 828630253}
   m_Layer: 0
@@ -34,18 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3070007370155966373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8595041946791215725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5dbee6896575f6479267b98a8df930d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7662511765174309655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,11 +51,19 @@ MonoBehaviour:
   seToggle: {fileID: 0}
   aud: {fileID: 828630253}
   bgms:
+  - {fileID: 8300000, guid: 348bb039a9d913745a732ba631b5ad43, type: 3}
+  - {fileID: 8300000, guid: ce8830c84760ccb4fa2ea03a64519dc5, type: 3}
   - {fileID: 8300000, guid: da1940567c2845848b9d669e518c68d2, type: 3}
   - {fileID: 8300000, guid: 9eb6fa3d81544e446969098701c979dd, type: 3}
   - {fileID: 8300000, guid: 0dd82b1e61051ee4eac4d3e8fe50d7df, type: 3}
   volume: 0
   currSong: 0
+  buttonClick: {fileID: 8300000, guid: 8f4e7c87dd15df14283a8e858905b5ef, type: 3}
+  transactionClick: {fileID: 8300000, guid: 9e567086b71a0b94281dbed5be1c1f3a, type: 3}
+  pickUpAud: {fileID: 8300000, guid: f1af16d2acaf8ca4e848a6cafc5923c7, type: 3}
+  hubInteractAud: {fileID: 8300000, guid: 47b82b9d221d2fa4586d6467631bbbcd, type: 3}
+  switchStaffAud: {fileID: 8300000, guid: 650a5994541f45f479a89d8e0dbb843e, type: 3}
+  volumeScale: 0
 --- !u!82 &828630253
 AudioSource:
   m_ObjectHideFlags: 0

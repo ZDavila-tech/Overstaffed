@@ -80,20 +80,6 @@ public class buttonFunctions : MonoBehaviour
     {
         buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
         uiManager.saveMenu.SetActive(true);
-      
-        //Destroy(GameObject.FindGameObjectWithTag("Player"));
-
-        //uiManager.HideActiveMenu();
-        //uiManager.HUD.SetActive(false);
-        //uiManager.activeMenu = uiManager.mainMenu;
-        //AudioManager.instance.currSong = 0;
-        //AudioManager.instance.PlaySong();
-        //uiManager.ShowActiveMenu();
-
-        //Debug.Log("Player Character destroyed");
-        //Time.timeScale = gameManager.instance.timeScaleOriginal;
-
-        //SceneManager.LoadScene("Main Menu");
         
         LevelManager.instance.endlessMode = false;
     }
@@ -193,7 +179,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void SelectedFire()
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        buttonAudio.PlayOneShot(AudioManager.instance.switchStaffAud, AudioManager.instance.volumeScale);
 
         PrePlayerElementSetup();
         playerController.playerElement = NewStaff.Element.Fire;
@@ -202,7 +188,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void SelectedWater()
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        buttonAudio.PlayOneShot(AudioManager.instance.switchStaffAud, AudioManager.instance.volumeScale);
         PrePlayerElementSetup();
         playerController.playerElement = NewStaff.Element.Water;
         PostPlayerElementSetup();
@@ -210,7 +196,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void SelectedEarth()
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        buttonAudio.PlayOneShot(AudioManager.instance.switchStaffAud, AudioManager.instance.volumeScale);
 
         PrePlayerElementSetup();
         playerController.playerElement = NewStaff.Element.Earth;
