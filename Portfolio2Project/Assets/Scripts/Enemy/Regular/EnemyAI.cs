@@ -341,7 +341,8 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
             damageNumbers.transform.position += Vector3.right;
         }
         yield return new WaitForSeconds(0.5f);
-        damageNumbers.transform.position= originalpos;
+        damageNumbers.transform.position = originalpos;
+        moving= false;
     }
 
 
