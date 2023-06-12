@@ -1,30 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class StoreButtons : MonoBehaviour
 {
     public AudioSource buttonAudio;
+    int cost = 0;
 
     public void BuyAttack(int amount)
     {
         buttonAudio.PlayOneShot(AudioManager.instance.transactionClick, AudioManager.instance.volumeScale);
 
-        if (gameManager.instance.playerStats.Exp >= ((gameManager.instance.playerStats.GetAttack() + 1) * 10 * amount) && gameManager.instance.playerStats.GetAttack() < 100)
+        CalculateCost(amount);
+        cost += gameManager.instance.playerStats.GetAttack() * 10;
+
+        if (gameManager.instance.playerStats.Exp >= cost && gameManager.instance.playerStats.GetAttack() < 100)
         {
             for (int i = 0; i < amount; ++i)
             {
                 gameManager.instance.playerStats.GainExp(-((gameManager.instance.playerStats.GetAttack() + 1) * 10));
                 gameManager.instance.playerStats.AttackUp(1);
             }
-                gameManager.instance.playerController.UpdatePlayerStats();
+            gameManager.instance.playerController.UpdatePlayerStats();
         }
     }
-        public void BuyHealth(int amount)
+    public void BuyHealth(int amount)
     {
         buttonAudio.PlayOneShot(AudioManager.instance.transactionClick, AudioManager.instance.volumeScale);
 
-        if (gameManager.instance.playerStats.Exp >= ((gameManager.instance.playerStats.Health + 1) * 10 * amount) && gameManager.instance.playerStats.Health < 100)
+        CalculateCost(amount);
+        cost += gameManager.instance.playerStats.GetHealth() * 10;
+
+        if (gameManager.instance.playerStats.Exp >= cost && gameManager.instance.playerStats.Health < 100)
         {
             for (int i = 0; i < amount; ++i)
             {
@@ -38,11 +46,14 @@ public class StoreButtons : MonoBehaviour
     {
         buttonAudio.PlayOneShot(AudioManager.instance.transactionClick, AudioManager.instance.volumeScale);
 
-        if (gameManager.instance.playerStats.Exp >= ((gameManager.instance.playerStats.GetSpeed() + 1) * 10 * amount) && gameManager.instance.playerStats.GetSpeed() < 100)
+        CalculateCost(amount);
+        cost += gameManager.instance.playerStats.GetSpeed() * 10;
+
+        if (gameManager.instance.playerStats.Exp >= cost && gameManager.instance.playerStats.GetSpeed() < 100)
         {
             for (int i = 0; i < amount; ++i)
             {
-                gameManager.instance.playerStats.GainExp(-((int)(gameManager.instance.playerStats.GetSpeed() + 1) * 10));
+                gameManager.instance.playerStats.GainExp(-((gameManager.instance.playerStats.GetSpeed() + 1) * 10));
                 gameManager.instance.playerStats.SpeedUp(1);
             }
             gameManager.instance.playerController.UpdatePlayerStats();
@@ -127,5 +138,14 @@ public class StoreButtons : MonoBehaviour
         UIManager.instance.buyScreen.SetActive(false);
         UIManager.instance.sellScreen.SetActive(false);
         UIManager.instance.inventoryScreen.SetActive(true);
+    }
+
+    void CalculateCost(int amount)
+    {
+        buttonAudio.PlayOneShot(AudioManager.instance.transactionClick, AudioManager.instance.volumeScale);
+        for (int i = 0; i < amount; i++)
+        {
+            cost += 10 * (1 + i);
+        }
     }
 }
