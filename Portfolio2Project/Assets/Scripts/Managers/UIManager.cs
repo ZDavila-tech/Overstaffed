@@ -40,6 +40,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI totalLevelsCompleted;
     public TextMeshProUGUI totalenemiesDefeated;
     public TextMeshProUGUI expGained;
+    public Animator creditSlide;
 
     [Header("----- HUD Pieces -----")]
     public GameObject highJumpIndicator;
@@ -136,6 +137,10 @@ public class UIManager : MonoBehaviour
             SetElement();
             SetElementIcon();
         }
+        if (creditsMenu.activeSelf)
+        {
+            ExitCreditScreen();
+        }
 
         PlayerProgression();
     }
@@ -190,6 +195,14 @@ public class UIManager : MonoBehaviour
         {
             activeMenu.SetActive(false);
             activeMenu = null;
+        }
+    }
+
+    public void ExitCreditScreen()
+    {
+        if (creditSlide.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        {
+            creditsMenu.SetActive(false);
         }
     }
 
