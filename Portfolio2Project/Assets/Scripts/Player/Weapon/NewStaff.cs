@@ -188,21 +188,21 @@ public class NewStaff : MonoBehaviour
                     swordHitbox.enabled = true;
                     weaponModels[1].SetActive(true);
                     weaponParticles[0].SetActive(true);
-                    gameManager.instance.playerController.PlayExternalAudio(audios[3]);
+                    gameManager.instance.playerController.PlayExternalAudio(audios[3], AudioManager.instance.volumeScale);
                     anim.SetTrigger("SwordMelee");
                     break;
                 case Element.Water:
                     weaponModels[2].SetActive(true);
                     weaponParticles[1].SetActive(true);
                     spearHitbox.enabled = true;
-                    gameManager.instance.playerController.PlayExternalAudio(audios[4]);
+                    gameManager.instance.playerController.PlayExternalAudio(audios[4], AudioManager.instance.volumeScale);
                     anim.SetTrigger("SpearMelee");
                     break;
                 case Element.Earth:
                     weaponModels[3].SetActive(true);
                     weaponParticles[2].SetActive(true);
                     hammerHitbox.enabled = true;
-                    gameManager.instance.playerController.PlayExternalAudio(audios[5]);
+                    gameManager.instance.playerController.PlayExternalAudio(audios[5], AudioManager.instance.volumeScale);
                     anim.SetTrigger("HammerMelee");
                     break;
             }
