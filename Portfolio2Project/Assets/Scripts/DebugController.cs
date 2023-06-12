@@ -48,7 +48,7 @@ public class DebugController : MonoBehaviour
 
             HandleInput();
             input = "";
-            //showConsole = false;
+            showConsole = false;
         }
     }
 
@@ -79,8 +79,6 @@ public class DebugController : MonoBehaviour
 
             if (input.Contains(commandBase.commandId))
             {
-                //Debug.Log("Null");
-                Debug.Log("Code Hit");
                 (commandList[i] as DebugCommand).InvokeCommand();
                 if (commandList[i] as DebugCommand != null)
                 {
@@ -88,13 +86,6 @@ public class DebugController : MonoBehaviour
                     (commandList[i] as DebugCommand).InvokeCommand();
                 }
             }
-            else
-            {
-                Debug.Log(input);
-                Debug.Log(commandBase.commandId);
-            }
-
-            
         }
     }
 }
