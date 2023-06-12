@@ -345,9 +345,9 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     public void UpdateHealthBar()
     {
-        uiManager.playerHealthBar.fillAmount = (float)iHP / (baseHealth + playerStats.GetHealth());
+        uiManager.playerHealthBar.fillAmount = (float)iHP / totalHP;
         uiManager.ShowDamage();
-        uiManager.hpText.text = iHP.ToString() + "/" + (baseHealth + playerStats.GetHealth()).ToString();
+        uiManager.hpText.text = iHP.ToString() + "/" + totalHP.ToString();
     }
 
 
@@ -566,6 +566,5 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         totalHP = baseHealth + (playerStats.GetHealth() * 5);
         if (DoesHeal)
             iHP = totalHP;
-        UpdateHealthBar();
     }
 }
