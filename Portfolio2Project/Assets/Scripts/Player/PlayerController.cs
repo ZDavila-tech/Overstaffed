@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     [SerializeField] float baseSpeed;
     [SerializeField] Stats playerStats;
     int iHP;
+    int totalHP;
     public float playerSpeed;
     int playerDamage;
     [Range(0, 100)][SerializeField] float utCharge;
@@ -103,7 +104,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     {
         UpdateSpeed();
         playerDamage = playerStats.Attack + baseAttack;
-        iHP = playerStats.GetHealth() + baseHealth;
+        UpdateHP(true);
     }
 
     void Update()
@@ -155,7 +156,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         groundedPlayer = CheckGround();//controller.isGrounded;
         if (groundedPlayer)
         {
-            if(!isStepping && move.normalized.magnitude > 0.5f)
+            if (!isStepping && move.normalized.magnitude > 0.5f)
             {
                 StartCoroutine(playSteps());
             }
@@ -163,7 +164,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             playerVelocity.y = 0f;
             jumpsUsed = 0;
         }
-        else if(timeSinceLastGroundTouch < coyoteTime)
+        else if (timeSinceLastGroundTouch < coyoteTime)
         {
             //Starting the timer
             timeSinceLastGroundTouch += Time.deltaTime;
@@ -179,7 +180,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             canJump = true;
         }
 
-            // Changes the height position of the player..
+        // Changes the height position of the player..
         if (Input.GetButtonDown("Jump") && jumpsUsed < maxJumps && canJump)
         {
             jumpsUsed++;
@@ -197,7 +198,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     private bool AllowWeaponSway()
     {
-        if(Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+        if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
         {
             return true;
         }
@@ -211,7 +212,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         if (hit.gameObject.tag == "Wall" && !groundedPlayer)
         {
             gravityValue = wallrunGravity;
-            playerSpeed =  playerStats.wallrunSpeed;
+            playerSpeed = playerStats.wallrunSpeed;
         }
         else if (hit.gameObject.tag != "Wall")
         {
@@ -346,7 +347,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     {
         uiManager.playerHealthBar.fillAmount = (float)iHP / (baseHealth + playerStats.GetHealth());
         uiManager.ShowDamage();
-        uiManager.hpText.text = iHP.ToString() + "/"+ (baseHealth + playerStats.GetHealth()).ToString();
+        uiManager.hpText.text = iHP.ToString() + "/" + (baseHealth + playerStats.GetHealth()).ToString();
     }
 
 
@@ -415,7 +416,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     public void UpdateSpeed()
     {
-        origSpeed =  playerSpeed = baseSpeed + (playerStats.Speed / 10);
+        origSpeed = playerSpeed = baseSpeed + (playerStats.Speed / 10);
         Debug.Log("Speed Calculated");
     }
 
@@ -513,31 +514,28 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         {
             case NewStaff.Element.Fire:
                 baseHealth = 10;
-                iHP = baseHealth + playerStats.GetHealth();
-                UpdateHealthBar();
                 baseSpeed = 8.5f;
                 baseAttack = 1;
                 break;
             case NewStaff.Element.Water:
                 baseHealth = 15;
-                iHP = baseHealth + playerStats.GetHealth();
                 UpdateHealthBar();
                 baseSpeed = 8;
                 baseAttack = 1;
                 break;
             case NewStaff.Element.Earth:
                 baseHealth = 10;
-                iHP = baseHealth + playerStats.GetHealth();
-                UpdateHealthBar();
                 baseSpeed = 8;
                 baseAttack = 2;
                 break;
         }
+        UpdateHP(true);
+        UpdateHealthBar();
     }
 
     void ChangeItem()
     {
-        if(itemSelected > items.Count - 1 || itemSelected < 0)
+        if (itemSelected > items.Count - 1 || itemSelected < 0)
         {
             itemSelected = 0;
         }
@@ -561,5 +559,13 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             }
 
         }
+    }
+
+    public void UpdateHP(bool DoesHeal)
+    {
+        totalHP = baseHealth + (playerStats.GetHealth() * 5);
+        if (DoesHeal)
+            iHP = totalHP;
+        UpdateHealthBar();
     }
 }
