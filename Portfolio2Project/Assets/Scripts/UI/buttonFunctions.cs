@@ -75,12 +75,6 @@ public class buttonFunctions : MonoBehaviour
 
         uiManager.creditsMenu.SetActive(true);
     }
-    public void BackFromCred()
-    {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
-
-        uiManager.creditsMenu.SetActive(false);
-    }
     //Go back to Main Menu
     public void GoToMainMenu()
     {
@@ -104,18 +98,6 @@ public class buttonFunctions : MonoBehaviour
         LevelManager.instance.endlessMode = false;
     }
 
-    public void Team()
-    {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
-        uiManager.teamMenu.SetActive(true);
-        uiManager.resMenu.SetActive(false);
-    }
-    public void Resources()
-    {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
-        uiManager.teamMenu.SetActive(false);
-        uiManager.resMenu.SetActive(true);
-    }
     public void MainFromChar()
     {
         buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);

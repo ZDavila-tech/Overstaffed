@@ -272,6 +272,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     {
         if (godMode)
         {
+            Debug.Log("Returned");
             return;
         }
 
