@@ -204,6 +204,7 @@ public class UIManager : MonoBehaviour
         {
             creditsMenu.SetActive(false);
         }
+
     }
 
     public void ShowDamage()
