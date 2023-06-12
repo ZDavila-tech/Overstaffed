@@ -96,6 +96,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         gameManager.instance.SetPlayerVariables(this.gameObject);
         uiManager = UIManager.instance;
         audioManager = AudioManager.instance;
+        UpdateHealthBar();
     }
 
     public void UpdatePlayerStats()
@@ -272,7 +273,6 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             camShake.Shake(damagedScreenshakeIntensity, .1f);
             if (amount > 0)
             {
-                uiManager.ShowDamage();
                 if (iHP <= 0)
                 {
                     iHP = 0;
@@ -345,6 +345,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     public void UpdateHealthBar()
     {
         uiManager.playerHealthBar.fillAmount = (float)iHP / (baseHealth + playerStats.GetHealth());
+        uiManager.ShowDamage();
+        uiManager.hpText.text = iHP.ToString() + "/"+ (baseHealth + playerStats.GetHealth()).ToString();
     }
 
 
@@ -420,6 +422,9 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     IEnumerator Freezing(float duration)
     {
         bool freezing = true;
+        uiManager.freezeIndicator.SetActive(true);
+        Color orig = uiManager.playerHealthBar.color;
+        uiManager.playerHealthBar.color = Color.cyan;
         if (playerElement == NewStaff.Element.Water)
         {
             while (freezing)
@@ -429,7 +434,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             }
         }
         yield return new WaitForSeconds(duration);
-        freezing= false;
+        uiManager.freezeIndicator.SetActive(false);
+        uiManager.playerHealthBar.color = orig;
     }
 
     public void Freeze(float duration)
@@ -440,6 +446,9 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     IEnumerator Burning(float duration, float timeBetween, int damage)
     {
         bool burning = true;
+        Color orig = uiManager.playerHealthBar.color;
+        uiManager.playerHealthBar.color = Color.yellow;
+        uiManager.burnIndicator.SetActive(true);
         float oldSpeed = 0;
         if (playerElement == NewStaff.Element.Fire)
         {
@@ -456,12 +465,17 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         {
             playerSpeed = oldSpeed;
         }
+        uiManager.burnIndicator.SetActive(false);
+        uiManager.playerHealthBar.color = orig;
         burning = false;
     }
 
     IEnumerator Venom(float duration, float timeBetween, int damage)
     {
         bool poisoned = true;
+        Color orig = uiManager.playerHealthBar.color;
+        uiManager.playerHealthBar.color = Color.magenta;
+        uiManager.poisonIndicator.SetActive(true);
         int oldAttack = 0;
         if (playerElement == NewStaff.Element.Earth)
         {
@@ -478,6 +492,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         {
             playerDamage = oldAttack;
         }
+        uiManager.poisonIndicator.SetActive(false);
+        uiManager.playerHealthBar.color = orig;
         poisoned = false;
     }
 
@@ -497,16 +513,22 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         {
             case NewStaff.Element.Fire:
                 baseHealth = 10;
+                iHP = baseHealth + playerStats.GetHealth();
+                UpdateHealthBar();
                 baseSpeed = 8.5f;
                 baseAttack = 1;
                 break;
             case NewStaff.Element.Water:
                 baseHealth = 15;
+                iHP = baseHealth + playerStats.GetHealth();
+                UpdateHealthBar();
                 baseSpeed = 8;
                 baseAttack = 1;
                 break;
             case NewStaff.Element.Earth:
                 baseHealth = 10;
+                iHP = baseHealth + playerStats.GetHealth();
+                UpdateHealthBar();
                 baseSpeed = 8;
                 baseAttack = 2;
                 break;

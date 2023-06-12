@@ -18,6 +18,8 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] List<GameObject> drop;
     [SerializeField] Animator anim;
     [SerializeField] MeshRenderer freezeEffect;
+    [SerializeField] GameObject poisonEffect;
+    [SerializeField] GameObject burnEffect;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int iHP;
@@ -361,20 +363,23 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     IEnumerator Burning(float duration, float timeBetween, int damage)
     {
         bool burning = true;
+        burnEffect.SetActive(true);
+        damageDealt = (int)(damageDealt * 0.5);
         while (burning)
         {
             yield return new WaitForSeconds(timeBetween);
             TakeDamage(damage);
         }
-        damageDealt = (int)(damageDealt * 0.5);
         yield return new WaitForSeconds(duration);
         burning = false;
+        burnEffect.SetActive(false);
         damageDealt *= 2;
     }
 
     IEnumerator Venom(float duration, float timeBetween, int damage)
     {
         bool poisoned = true;
+        poisonEffect.SetActive(true);
         while (poisoned)
         {
             yield return new WaitForSeconds(timeBetween);
@@ -382,6 +387,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         }
         yield return new WaitForSeconds(duration);
         poisoned = false;
+        poisonEffect.SetActive(false);
     }
 
     public void Burn(float duration, float timeBetween)

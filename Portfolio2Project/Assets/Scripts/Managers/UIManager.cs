@@ -48,10 +48,14 @@ public class UIManager : MonoBehaviour
     public GameObject specialIndicator;
     public GameObject expIndicator;
     public GameObject healthIndicator;
+    public GameObject burnIndicator;
+    public GameObject poisonIndicator;
+    public GameObject freezeIndicator;
     public GameObject enemiesRemainingIndicator;
 
     public Image playerHealthBar;
     public TextMeshProUGUI levelText;
+    public TextMeshProUGUI hpText;
     public TextMeshProUGUI enemiesRemainText;
     public TextMeshProUGUI expText;
     public TextMeshProUGUI storeCurrency;
@@ -83,6 +87,7 @@ public class UIManager : MonoBehaviour
 
     private Skills playerSkills;
     float waitTime;
+
 
     private void Awake()
     {
