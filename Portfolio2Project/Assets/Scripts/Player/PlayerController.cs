@@ -513,16 +513,22 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         {
             case NewStaff.Element.Fire:
                 baseHealth = 10;
+                iHP = baseHealth + playerStats.GetHealth();
+                UpdateHealthBar();
                 baseSpeed = 8.5f;
                 baseAttack = 1;
                 break;
             case NewStaff.Element.Water:
                 baseHealth = 15;
+                iHP = baseHealth + playerStats.GetHealth();
+                UpdateHealthBar();
                 baseSpeed = 8;
                 baseAttack = 1;
                 break;
             case NewStaff.Element.Earth:
                 baseHealth = 10;
+                iHP = baseHealth + playerStats.GetHealth();
+                UpdateHealthBar();
                 baseSpeed = 8;
                 baseAttack = 2;
                 break;
