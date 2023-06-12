@@ -420,6 +420,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     IEnumerator Freezing(float duration)
     {
         bool freezing = true;
+        uiManager.freezeIndicator.SetActive(true);
         if (playerElement == NewStaff.Element.Water)
         {
             while (freezing)
@@ -429,7 +430,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             }
         }
         yield return new WaitForSeconds(duration);
-        freezing= false;
+        uiManager.freezeIndicator.SetActive(false);
+        freezing = false;
     }
 
     public void Freeze(float duration)
@@ -440,6 +442,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     IEnumerator Burning(float duration, float timeBetween, int damage)
     {
         bool burning = true;
+        uiManager.burnIndicator.SetActive(true);
         float oldSpeed = 0;
         if (playerElement == NewStaff.Element.Fire)
         {
@@ -456,12 +459,14 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         {
             playerSpeed = oldSpeed;
         }
+        uiManager.burnIndicator.SetActive(false);
         burning = false;
     }
 
     IEnumerator Venom(float duration, float timeBetween, int damage)
     {
         bool poisoned = true;
+        uiManager.poisonIndicator.SetActive(true);
         int oldAttack = 0;
         if (playerElement == NewStaff.Element.Earth)
         {
@@ -478,6 +483,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         {
             playerDamage = oldAttack;
         }
+        uiManager.poisonIndicator.SetActive(false);
         poisoned = false;
     }
 
