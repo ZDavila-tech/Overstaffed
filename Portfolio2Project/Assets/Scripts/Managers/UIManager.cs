@@ -140,6 +140,7 @@ public class UIManager : MonoBehaviour
         if (creditsMenu.activeSelf)
         {
             ExitCreditScreen();
+           
         }
 
         PlayerProgression();
@@ -161,9 +162,6 @@ public class UIManager : MonoBehaviour
         activeMenu = winMenu;
         ShowActiveMenu();
 
-        totalLevelsCompleted.text = ($"{levelManager.currentLevel-1}");
-        totalenemiesDefeated.text = ($"{levelManager.totalEnemiesDefeated}");
-        gamePlayRecap.SetActive(true);
     }
 
     public void ShowEndLetter()
@@ -203,6 +201,13 @@ public class UIManager : MonoBehaviour
         if (creditSlide.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
         {
             creditsMenu.SetActive(false);
+        }
+        else if (creditSlide.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f && levelManager.currentLevel == 22)
+        {
+            gameManager.PauseState();
+            creditsMenu.SetActive(false);
+            Debug.Log("YouWin");
+            YouWin();
         }
 
     }

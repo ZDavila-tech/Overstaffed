@@ -244,7 +244,9 @@ public class buttonFunctions : MonoBehaviour
     {
         buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
         uiManager.HideActiveMenu();
-        uiManager.YouWin();
+        uiManager.totalLevelsCompleted.text = ($"{LevelManager.instance.currentLevel - 1}");
+        uiManager.totalenemiesDefeated.text = ($"{LevelManager.instance.totalEnemiesDefeated}");
+        uiManager.gamePlayRecap.SetActive(true);
     }
 
     public void YesQuit()
@@ -271,9 +273,15 @@ public class buttonFunctions : MonoBehaviour
     {
         buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
        
-        if(uiManager.loseMenu.activeSelf || uiManager.winMenu.activeSelf)
+        if(uiManager.loseMenu.activeSelf)
         {
             uiManager.gamePlayRecap.SetActive(false);
+        }
+        else if(LevelManager.instance.currentLevel == 22)
+        {
+            uiManager.gamePlayRecap.SetActive(false);
+            uiManager.creditsMenu.SetActive(true);
+            gameManager.instance.UnpauseState();
         }
         else
         {
