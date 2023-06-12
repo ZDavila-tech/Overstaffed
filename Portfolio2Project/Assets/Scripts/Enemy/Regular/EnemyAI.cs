@@ -20,6 +20,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] MeshRenderer freezeEffect;
     [SerializeField] GameObject poisonEffect;
     [SerializeField] GameObject burnEffect;
+    public AudioSource aud;
 
     [Header("----- Enemy Stats -----")]
     [SerializeField] int iHP;
@@ -263,6 +264,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
         if (iHP <= 0) //if it dies, get rid of it
         {
+            aud.PlayOneShot(AudioManager.instance.regularEnemyDeath, AudioManager.instance.volumeScale);
             anim.SetTrigger("Died");//play the death animation
             if (Random.Range(0, 100) <= DropRate && drop.Count > 0)
             {

@@ -26,6 +26,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip hurtPickupAudio;
     public AudioClip hubInteractAud;
     public AudioClip switchStaffAud;
+    public AudioClip regularEnemyDeath;
+    public AudioClip bossEnemyDeath;
     public float volumeScale;
 
     // Start is called before the first frame update
