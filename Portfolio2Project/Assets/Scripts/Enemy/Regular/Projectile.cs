@@ -19,6 +19,18 @@ public class Projectile : MonoBehaviour
     GameObject player;
     Vector3 playerPosition;
 
+    enum Effect
+    {
+        Base,
+        Poison,
+        Burn,
+        Freeze
+    }
+
+    [SerializeField] Effect effect;
+    [SerializeField] float duration;
+    [SerializeField] float timeBetween;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +49,15 @@ public class Projectile : MonoBehaviour
         {
             IDamage damageable = other.GetComponent<IDamage>();
             damageable.TakeDamage(shotDmg);
+            switch (effect)
+            {
+                case Effect.Poison:
+                    damageable.Poison(duration, timeBetween); break;
+                case Effect.Burn:
+                    damageable.Burn(duration, timeBetween); break;
+                case Effect.Freeze:
+                    damageable.Freeze(duration); break;
+            }
         }
         Destroy(gameObject);
     }
