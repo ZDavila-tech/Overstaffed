@@ -55,6 +55,7 @@ public class UIManager : MonoBehaviour
 
     public Image playerHealthBar;
     public TextMeshProUGUI levelText;
+    public TextMeshProUGUI hpText;
     public TextMeshProUGUI enemiesRemainText;
     public TextMeshProUGUI expText;
     public TextMeshProUGUI storeCurrency;
