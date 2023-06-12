@@ -6,24 +6,27 @@ using UnityEngine.XR;
 
 public class DebugController : MonoBehaviour
 {
-    [SerializeField] Stats stats;
+    [SerializeField] PlayerController player;
 
     public bool showConsole;
     public string input;
     [SerializeField] public int fontSize;
 
     public static DebugCommand GIVE_EXP;
-    
+    public static DebugCommand GOD_MODE;
+
     public List<object> commandList;
 
 
     private void Awake()
     {
-        GIVE_EXP = new DebugCommand("give_exp~", "Gives 9999 EXP", "give_exp~", () => { stats.Exp += 9999; });
-        
+        GIVE_EXP = new DebugCommand("give_exp~", "Gives 9999 EXP", "give_exp~", () => { player.playerStats.Exp += 9999; });
+        GOD_MODE = new DebugCommand("god_mode~", "Prevents you from taking damage", "god_mode~", () => { player.godMode = !player.godMode; });
+
+
         commandList = new List<object>
         {
-            GIVE_EXP,
+            GIVE_EXP, GOD_MODE, 
         };
     }
 
@@ -70,9 +73,8 @@ public class DebugController : MonoBehaviour
     }
 
     
-    public void HandleInput()
+    public void HandleInput() //Checks to see if you entered a valid command and executes it
     {
-        input = "give_exp~";
         for (int i = 0; i < commandList.Count; i++)
         {
             DebugCommandBase commandBase = commandList[i] as DebugCommandBase;

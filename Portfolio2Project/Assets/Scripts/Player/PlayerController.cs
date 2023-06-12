@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     [SerializeField] int baseAttack;
     [SerializeField] int baseHealth;
     [SerializeField] float baseSpeed;
-    [SerializeField] Stats playerStats;
+    [SerializeField] public Stats playerStats;
     int iHP;
     public float playerSpeed;
     int playerDamage;
@@ -78,6 +78,9 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     public List<AudioClip> audDamage;
     bool ShootSoundInPlay; //checks for the audio cooldown between shots
 
+    [Header("----- Other -----")]
+    public bool godMode;
+
     float origGrav;
     float origSpeed;
 
@@ -91,6 +94,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     void Start()
     {
         UpdatePlayerStats();
+        godMode = false;
         standingHeight = height;
         origGrav = gravityValue;
         gameManager.instance.SetPlayerVariables(this.gameObject);
@@ -264,6 +268,12 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     }
     public void TakeDamage(int amount)
     {
+        if (godMode)
+        {
+            return;
+        }
+
+
         if (damagedRecently == false)
         {
             StartCoroutine(ResetDamagedRecently());
