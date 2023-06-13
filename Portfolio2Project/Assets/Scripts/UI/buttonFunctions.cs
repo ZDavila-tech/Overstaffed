@@ -89,7 +89,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void MainFromChar()
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        AudioManager.instance.MenuTransition();
         uiManager.HideActiveMenu();
         uiManager.playerSelect.SetActive(false);
         uiManager.activeMenu = uiManager.mainMenu;
@@ -100,7 +100,7 @@ public class buttonFunctions : MonoBehaviour
     //If they want to save their game
     public void YesSave()
     {
-       // buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        AudioManager.instance.MenuTransition();
         fileManager.save();
         Destroy(GameObject.FindGameObjectWithTag("Player"));
         uiManager.saveMenu.SetActive(false);
@@ -122,7 +122,7 @@ public class buttonFunctions : MonoBehaviour
     //If they don't want to save their game
     public void NoSave()
     {
-       // buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        AudioManager.instance.MenuTransition();
         fileManager.resetData();
         Destroy(GameObject.FindGameObjectWithTag("Player"));
         uiManager.saveMenu.SetActive(false);
@@ -147,7 +147,7 @@ public class buttonFunctions : MonoBehaviour
     }
     public void ExitSave()
     {
-        //buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        
         AudioManager.instance.MenuTransition();
         uiManager.saveMenu.SetActive(false);
     }
@@ -233,11 +233,8 @@ public class buttonFunctions : MonoBehaviour
 
     public void EndLetterOKButton()
     {
-        //buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
         uiManager.HideActiveMenu();
-        uiManager.totalLevelsCompleted.text = ($"{LevelManager.instance.currentLevel - 1}");
-        uiManager.totalenemiesDefeated.text = ($"{LevelManager.instance.totalEnemiesDefeated}");
-        uiManager.gamePlayRecap.SetActive(true);
+        uiManager.ShowPostRunStats();
     }
 
     public void YesQuit()
@@ -262,7 +259,6 @@ public class buttonFunctions : MonoBehaviour
 
     public void GamePlayRecapOKButton()
     {
-        //buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
         AudioManager.instance.MenuTransition();
         if (uiManager.loseMenu.activeSelf) //if you lose
         {
