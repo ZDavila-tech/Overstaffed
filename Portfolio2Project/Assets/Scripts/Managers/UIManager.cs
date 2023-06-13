@@ -39,6 +39,7 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI totalenemiesDefeated;
     public TextMeshProUGUI expGained;
     public Animator creditSlide;
+    public Animator levelComplete;
 
     [Header("----- HUD Pieces -----")]
     public GameObject highJumpIndicator;
@@ -50,12 +51,11 @@ public class UIManager : MonoBehaviour
     public GameObject burnIndicator;
     public GameObject poisonIndicator;
     public GameObject freezeIndicator;
-    public GameObject enemiesRemainingIndicator;
+    public GameObject levelCompleteText;
 
     public Image playerHealthBar;
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI hpText;
-    public TextMeshProUGUI enemiesRemainText;
     public TextMeshProUGUI expText;
     public TextMeshProUGUI storeCurrency;
     [SerializeField] Image UtCharge;
