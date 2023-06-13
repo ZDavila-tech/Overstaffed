@@ -176,7 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7586307879484128811}
   - component: {fileID: 5764130334414143435}
-  - component: {fileID: 8769646854945745220}
+  - component: {fileID: 7306491109654274296}
   m_Layer: 13
   m_Name: Element Select
   m_TagString: Untagged
@@ -215,8 +215,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionText: Select Staff
---- !u!65 &8769646854945745220
-BoxCollider:
+--- !u!136 &7306491109654274296
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -225,8 +225,9 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Radius: 0.7
+  m_Height: 2
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8431533363843854467
 GameObject:
