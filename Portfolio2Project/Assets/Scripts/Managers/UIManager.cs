@@ -140,6 +140,7 @@ public class UIManager : MonoBehaviour
     }
     public void YouLose()
     {
+        StopAllCoroutines();
         gameManager.PauseState();
         activeMenu = loseMenu;
         ShowActiveMenu();
