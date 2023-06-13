@@ -302,7 +302,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
             gameManager.instance.playerController.ChargeUt(chargeValue);
             --levelManager.enemiesRemaining;
             ++levelManager.totalEnemiesDefeated;
-            var par = Instantiate(deathParticle, transform.position, transform.rotation);
+            var par = Instantiate(deathParticle, new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), transform.rotation);
             Destroy(gameObject);
             Destroy(par.gameObject, 1);
            
@@ -329,7 +329,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
             currentRate += itemRates[i];
             if (currentRate >= Random.Range(0, total))
             {
-                Instantiate(drop[i], new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
+                Instantiate(drop[i], new Vector3(transform.position.x, transform.position.y + 0.7f, transform.position.z), transform.rotation);
                 return;
             }
         }
@@ -372,7 +372,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         }
         yield return new WaitForSeconds(0.5f);
         damageNumbers.transform.position = originalpos;
-        moving= false;
+        moving = false;
     }
 
 
