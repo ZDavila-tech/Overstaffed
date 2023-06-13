@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour, IDamage, IPhysics
 {
@@ -69,6 +70,10 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     [Header("----- Items -----")]
     public List<GameObject> items = new List<GameObject>();
     public int itemSelected;
+    public int potionsAvailable;
+    [SerializeField] Image uiPotion1; 
+    [SerializeField] Image uiPotion2; 
+    [SerializeField] Image uiPotion3; 
 
     [Header("----- Audio -----")]
     [SerializeField] AudioSource aud;
@@ -95,6 +100,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     void Start()
     {
         UpdatePlayerStats();
+        potionsAvailable = 3;
         godMode = false;
         standingHeight = height;
         origGrav = gravityValue;
@@ -148,6 +154,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             skills.useSkill(3);
         }
         ChangeItem();
+        HealingPotion();
     }
     public bool CheckGround()
     {
@@ -573,6 +580,37 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
                 items[i].GetComponent<Item>().isSelected = false;
             }
 
+        }
+    }
+
+    public void HealingPotion()
+    {
+        if(potionsAvailable > 0 && Input.GetKeyDown(KeyCode.Tab))
+        {
+            TakeDamage(5);
+            potionsAvailable--;
+        }
+
+        if(potionsAvailable == 2)
+        {
+            uiPotion3.enabled = false;
+        }
+
+        if (potionsAvailable == 1)
+        {
+            uiPotion2.enabled = false;
+        }
+
+        if (potionsAvailable == 0)
+        {
+            uiPotion1.enabled = false;
+        }
+        
+        if (potionsAvailable == 3)
+        {
+            uiPotion3.enabled = true;
+            uiPotion2.enabled = true;
+            uiPotion1.enabled = true;
         }
     }
 
