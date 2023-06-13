@@ -30,6 +30,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip switchStaffAud;
     public AudioClip menuPopUpClip;
     public AudioClip enemyShootClip;
+    public AudioClip throwClip;
+    public AudioClip crstalShootClip;
     public float volumeScale;
 
     // Start is called before the first frame update
@@ -126,7 +128,16 @@ public class AudioManager : MonoBehaviour
 
     public void EnemyShoot()
     {
-        seAud.PlayOneShot(enemyShootClip, volumeScale);
+        seAud.PlayOneShot(enemyShootClip, volumeScale*0.5f);
     }
 
+    public void Throwing()
+    {
+        seAud.PlayOneShot(throwClip, volumeScale);
+    }
+
+    public void CrystalShoot()
+    {
+        seAud.PlayOneShot(crstalShootClip, volumeScale);
+    }
 }
