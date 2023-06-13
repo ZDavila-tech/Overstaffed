@@ -35,6 +35,9 @@ public class TransitionCube : MonoBehaviour, IDamage
         if (susan != null)
         {
             healthPoints -= damage;
+
+            AudioManager.instance.CrystalShoot();
+
             if (healthPoints <= 0)
             {
                 switch (myCubeNumber)
