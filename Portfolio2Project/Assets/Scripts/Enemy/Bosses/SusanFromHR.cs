@@ -252,6 +252,8 @@ public class SusanFromHR : MonoBehaviour
             phaseThreePropsFinalPositions[targetIndex].GetComponent<PropCatcher>().expectedProjectile = launchableProp;
         }
 
+        AudioManager.instance.Throwing();
+
         doPhaseThree = true;
     }
 
@@ -325,6 +327,8 @@ public class SusanFromHR : MonoBehaviour
         ++phaseOneCountToFour;
         ++phaseOneCurrentSpawner;
 
+        AudioManager.instance.Throwing();
+
         yield return new WaitForSeconds(phaseOneTimeBetweenFirings);
 
         phaseOneIsFiring = false;
@@ -354,6 +358,8 @@ public class SusanFromHR : MonoBehaviour
         bossProjectileScript.spawnPosition = phaseTwoSpawners[phaseTwoCurrentSpawner].transform;
         bossProjectileScript.targetToMoveTo = phaseTwoCatchers[phaseTwoCurrentSpawner].transform;
         ++phaseTwoCurrentSpawner;
+
+        AudioManager.instance.Throwing();
 
         yield return new WaitForSeconds(phaseTwoTimeBetweenFirings);
 
