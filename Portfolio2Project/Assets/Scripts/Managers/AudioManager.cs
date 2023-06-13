@@ -17,6 +17,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource aud;
     public AudioSource seAud;
     public List<AudioClip> bgms;
+    public List<AudioClip> enemyDeath;
     
     [SerializeField] float volume;
     public int currSong;
@@ -28,8 +29,6 @@ public class AudioManager : MonoBehaviour
     public AudioClip hubInteractAud;
     public AudioClip switchStaffAud;
     public AudioClip menuPopUpClip;
-    public AudioClip regularEnemyDeath;
-    public AudioClip bossEnemyDeath;
     public float volumeScale;
 
     // Start is called before the first frame update
@@ -116,12 +115,7 @@ public class AudioManager : MonoBehaviour
 
     public void EnemyDeath()
     {
-        seAud.PlayOneShot(regularEnemyDeath, volumeScale*2.0f);
-    }
-
-    public void BossDeath()
-    {
-        seAud.PlayOneShot(bossEnemyDeath, volumeScale);
+        seAud.PlayOneShot(enemyDeath[Random.Range(0, enemyDeath.Count)], volumeScale * 2.0f);
     }
 
     public void MenuTransition()
