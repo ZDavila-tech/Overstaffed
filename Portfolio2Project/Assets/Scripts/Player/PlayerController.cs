@@ -288,6 +288,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
                 if (iHP <= 0)
                 {
                     iHP = 0;
+                    StopAllCoroutines();
                     uiManager.YouLose();
                 }
             }
