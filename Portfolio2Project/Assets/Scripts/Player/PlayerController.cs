@@ -587,7 +587,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     {
         if(potionsAvailable > 0 && Input.GetKeyDown(KeyCode.Tab))
         {
-            TakeDamage(5);
+            TakeDamage(-5);
             potionsAvailable--;
         }
 
