@@ -203,15 +203,12 @@ public class UIManager : MonoBehaviour
         if (creditSlide.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
         {
             creditsMenu.SetActive(false);
+            if(levelManager.currentLevel == 22)
+            {
+                Debug.Log("YouWin");
+                YouWin();
+            }
         }
-        else if (creditSlide.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f && levelManager.currentLevel == 22)
-        {
-            gameManager.PauseState();
-            creditsMenu.SetActive(false);
-            Debug.Log("YouWin");
-            YouWin();
-        }
-
     }
 
     public void ShowDamage()
