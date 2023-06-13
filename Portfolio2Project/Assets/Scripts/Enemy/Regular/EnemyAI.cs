@@ -7,6 +7,11 @@ using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 {
+    enum shotType
+    {
+        single,
+        spread
+    }
     LevelManager levelManager;
     GameObject player;
 
@@ -38,7 +43,10 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     [SerializeField] Transform deathParticle;
     [SerializeField] Vector3 knockbackResistance;
     [SerializeField] int damageDealt;
+    [SerializeField] shotType ShotType = shotType.single;
     [SerializeField, Range(0, 1)] float bulletSprayVar;
+    [SerializeField, Range(0, 10)] float spreadShotSize;
+    [SerializeField] int spreadShotCount;
 
     [Header("----- Weapon Stats -----")]
     [SerializeField] GameObject bullet;
@@ -240,13 +248,31 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
     public void CreateBullet()
     {
-        Vector3 variance = new Vector3(transform.rotation.x + Random.Range(-bulletSprayVar, bulletSprayVar), transform.rotation.y + Random.Range(-bulletSprayVar, bulletSprayVar), transform.rotation.z);
-        GameObject proj = Instantiate(bullet, shootPosition.position, Quaternion.Euler(variance)) ;//create bullet
-        Projectile projSet;
-        if (proj.TryGetComponent<Projectile>(out projSet))
+        if (ShotType == shotType.single)
         {
-            projSet.SetDamage(damageDealt);
+
+            GameObject proj = Instantiate(bullet, shootPosition.position, Quaternion.identity) ;//create bullet
+            Projectile projSet;
+            if (proj.TryGetComponent<Projectile>(out projSet))
+            {
+                projSet.SetDamage(damageDealt);
+                projSet.SetVariance(bulletSprayVar);
+            }
         }
+        else if (ShotType == shotType.spread)
+        {
+            for (int i = 0; i < spreadShotCount; i++)
+            {
+                GameObject proj = Instantiate(bullet, shootPosition.position, Quaternion.identity);//create bullet
+                Projectile projSet;
+                if (proj.TryGetComponent<Projectile>(out projSet))
+                {
+                    projSet.SetDamage(damageDealt);
+                    projSet.SetVariance(spreadShotSize);
+                }
+            }
+        }
+
     }
 
     public void TakeDamage(int dmg)

@@ -226,7 +226,7 @@ public class Skills : MonoBehaviour
         while (aiming)
         {
             RaycastHit hit;
-
+            Debug.DrawRay(Camera.main.transform.position,Vector3.forward * BlinkDistance);
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, BlinkDistance))
             {
                 if (!blinkAimIndicator)
