@@ -80,7 +80,7 @@ public class LevelManager : MonoBehaviour
         if (uiManager != null)
         {
             uiManager.UpdateLevelCount();
-         //   uiManager.UpdateEnemiesRemaining();
+        
         }        
 
         if (loadingLevel == false)
@@ -117,7 +117,6 @@ public class LevelManager : MonoBehaviour
         if (levelStarted && enemiesRemaining <= 0) //if level is started and all enemies are dead level is considered completed
         {
             levelCompleted = true;
-
             if (inElevator && !loadingLevel)
             {
                 loadingLevel = true;
