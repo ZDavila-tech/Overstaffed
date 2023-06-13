@@ -22,15 +22,14 @@ public class buttonFunctions : MonoBehaviour
     //Resume the game
     public void Resume()
     {
-        // buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
-        AudioManager.instance.MenuTransition();
+        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
         gameManager.instance.UnpauseState();
     }
 
     //Restarts the level from the beginning
     public void Restart()
     {
-        //buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
         Debug.Log("Player Character destroyed");
 
         uiManager.HideActiveMenu();
@@ -59,14 +58,12 @@ public class buttonFunctions : MonoBehaviour
 
     public void GoBackMenu()
     {
-        //buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
-        AudioManager.instance.MenuTransition();
+        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
         uiManager.settingsMenu.SetActive(false);
        
     }
     public void GoToSettings() //goes to settings menu
     {
-        //buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
         AudioManager.instance.MenuTransition();
         uiManager.settingsMenu.SetActive(true);
     }
@@ -80,7 +77,6 @@ public class buttonFunctions : MonoBehaviour
     //Go back to Main Menu
     public void GoToMainMenu()
     {
-        //buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
         AudioManager.instance.MenuTransition();
         uiManager.saveMenu.SetActive(true);
         
@@ -147,8 +143,8 @@ public class buttonFunctions : MonoBehaviour
     }
     public void ExitSave()
     {
-        
-        AudioManager.instance.MenuTransition();
+
+        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
         uiManager.saveMenu.SetActive(false);
     }
     public void PlaySaveGame() //Takes player to character select scene
@@ -252,14 +248,14 @@ public class buttonFunctions : MonoBehaviour
 
     public void Continue()
     {
-        AudioManager.instance.MenuTransition();
+        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
         gameManager.instance.UnpauseState();
         
     }
 
     public void GamePlayRecapOKButton()
     {
-        AudioManager.instance.MenuTransition();
+        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
         if (uiManager.loseMenu.activeSelf) //if you lose
         {
             uiManager.gamePlayRecap.SetActive(false);
