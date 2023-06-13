@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("----- Audio Stuff -----")]
     public AudioSource aud;
+    public AudioSource seAud;
     public List<AudioClip> bgms;
     
     [SerializeField] float volume;
@@ -110,6 +111,12 @@ public class AudioManager : MonoBehaviour
         {
             bgToggle.isOn = false;
         }
+    }
+
+    public void EnemyDeath()
+    {
+        Debug.Log("Dead");
+        seAud.PlayOneShot(regularEnemyDeath, volumeScale*1.5f);
     }
 
 }
