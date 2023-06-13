@@ -97,9 +97,7 @@ public class UIManager : MonoBehaviour
         else
         {
             instance = this;
-        }
-
-        
+        }        
     }
 
     private void Start()
@@ -127,11 +125,8 @@ public class UIManager : MonoBehaviour
         {
             AbilityCoolDown();
 
-            if (playerElement != gameManager.playerController.playerElement)
-            {
-                SetElement();
-                SetElementIcon();
-            }
+            SetElement();
+            SetElementIcon();
         }
         if (creditsMenu.activeSelf)
         {
@@ -229,7 +224,7 @@ public class UIManager : MonoBehaviour
     //displays the correct element based on character type
     public void SetElementIcon()
     {
-        Debug.Log("Set ELement");
+        //Debug.Log("Set ELement");
         //Debug.Log(playerScript.GetWeapon());
         elementSprite.sprite = spriteArray[(int) playerElement];
         switch (playerElement)
