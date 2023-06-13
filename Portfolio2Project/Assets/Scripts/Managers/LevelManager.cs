@@ -169,7 +169,7 @@ public class LevelManager : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        if (SceneManager.GetActiveScene().buildIndex == hubSceneIndex || SceneManager.GetActiveScene().buildIndex == characterSelectIndex)
+        if (SceneManager.GetActiveScene().buildIndex == hubSceneIndex)
         {
             if (currentLevel == bossLevelOne)
             {
