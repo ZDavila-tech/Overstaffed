@@ -116,6 +116,7 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Cancel") && activeMenu == null)
         {
+            AudioManager.instance.MenuTransition();
             activeMenu = pauseMenu;
             ShowActiveMenu();
             gameManager.PauseState();

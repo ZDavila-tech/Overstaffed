@@ -252,7 +252,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void Continue()
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        AudioManager.instance.MenuTransition();
         gameManager.instance.UnpauseState();
         
     }

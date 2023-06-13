@@ -123,7 +123,7 @@ public class AudioManager : MonoBehaviour
 
     public void MenuTransition()
     {
-        seAud.PlayOneShot(menuPopUpClip, volumeScale);
+        seAud.PlayOneShot(menuPopUpClip, volumeScale*1.5f);
     }
 
     public void EnemyShoot()
