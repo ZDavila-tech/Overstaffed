@@ -1522,7 +1522,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &266676429
 RectTransform:
   m_ObjectHideFlags: 0
@@ -33931,7 +33931,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &651024810964650701
 Transform:
   m_ObjectHideFlags: 0
@@ -35573,7 +35573,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7899493476224669430
 Transform:
   m_ObjectHideFlags: 0
@@ -39494,6 +39494,7 @@ MonoBehaviour:
   totalenemiesDefeated: {fileID: 4120763903753409514}
   expGained: {fileID: 22110439901418252}
   creditSlide: {fileID: 1139351115}
+  levelComplete: {fileID: 0}
   highJumpIndicator: {fileID: 1773610230}
   dashIndicator: {fileID: 1310454335}
   blinkIndicator: {fileID: 566511692}
@@ -39503,11 +39504,10 @@ MonoBehaviour:
   burnIndicator: {fileID: 4994233567666827764}
   poisonIndicator: {fileID: 5232340658016326593}
   freezeIndicator: {fileID: 1883609311315884720}
-  enemiesRemainingIndicator: {fileID: 0}
+  levelCompleteText: {fileID: 0}
   playerHealthBar: {fileID: 7748937549668574394}
   levelText: {fileID: 88375043}
   hpText: {fileID: 3057086811706132977}
-  enemiesRemainText: {fileID: 0}
   expText: {fileID: 2004775180}
   storeCurrency: {fileID: 2671305368170645350}
   UtCharge: {fileID: 5312609800976647544}
