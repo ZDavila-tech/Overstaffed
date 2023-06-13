@@ -116,7 +116,7 @@ public class AudioManager : MonoBehaviour
     public void EnemyDeath()
     {
         Debug.Log("Dead");
-        seAud.PlayOneShot(regularEnemyDeath, volumeScale*1.5f);
+        seAud.PlayOneShot(regularEnemyDeath, volumeScale*2.0f);
     }
 
 }
