@@ -34,8 +34,6 @@ public class UIManager : MonoBehaviour
     public GameObject endLetter;
     public GameObject interactTextGameObject;
     public GameObject gamePlayRecap;
-    public GameObject teamMenu;
-    public GameObject resMenu;
     public TextMeshProUGUI interactText;
     public TextMeshProUGUI totalLevelsCompleted;
     public TextMeshProUGUI totalenemiesDefeated;
@@ -193,6 +191,7 @@ public class UIManager : MonoBehaviour
 
     public void HideActiveMenu() //hides active menu and sets it to null
     {
+        AudioManager.instance.MenuTransition();
         if (activeMenu != null)
         {
             activeMenu.SetActive(false);

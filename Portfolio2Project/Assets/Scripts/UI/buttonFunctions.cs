@@ -53,6 +53,7 @@ public class buttonFunctions : MonoBehaviour
     public void QuitCheck()
     {
         buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        AudioManager.instance.MenuTransition();
         uiManager.quitCheckMenu.SetActive(true);
     }
 
@@ -61,11 +62,12 @@ public class buttonFunctions : MonoBehaviour
         buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
 
         uiManager.settingsMenu.SetActive(false);
+        AudioManager.instance.MenuTransition();
     }
     public void GoToSettings() //goes to settings menu
     {
         buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
-
+        AudioManager.instance.MenuTransition();
         uiManager.settingsMenu.SetActive(true);
     }
 
@@ -79,6 +81,7 @@ public class buttonFunctions : MonoBehaviour
     public void GoToMainMenu()
     {
         buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        AudioManager.instance.MenuTransition();
         uiManager.saveMenu.SetActive(true);
         
         LevelManager.instance.endlessMode = false;
@@ -146,6 +149,7 @@ public class buttonFunctions : MonoBehaviour
     {
         buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
         uiManager.saveMenu.SetActive(false);
+        AudioManager.instance.MenuTransition();
     }
     public void PlaySaveGame() //Takes player to character select scene
     {
@@ -258,8 +262,8 @@ public class buttonFunctions : MonoBehaviour
     public void GamePlayRecapOKButton()
     {
         buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
-       
-        if(uiManager.loseMenu.activeSelf) //if you lose
+        AudioManager.instance.MenuTransition();
+        if (uiManager.loseMenu.activeSelf) //if you lose
         {
             uiManager.gamePlayRecap.SetActive(false);
         }
