@@ -13,6 +13,8 @@ public class Projectile : MonoBehaviour
     //the speed that the projectile travels at
     [SerializeField] int bulletSpeed;
 
+    float bulletVariance = 0;
+
     [Header("----- Components -----")]
     //this object's Rigidbody
     [SerializeField] Rigidbody rb;
@@ -40,7 +42,10 @@ public class Projectile : MonoBehaviour
         //move the bullet
         player = GameObject.FindGameObjectWithTag("Player");
         playerPosition = player.transform.position;
-        rb.velocity = (playerPosition - rb.position).normalized * bulletSpeed;
+        Vector3 variance = new Vector3(Random.Range(-bulletVariance, bulletVariance), Random.Range(-bulletVariance, bulletVariance), 0);
+        rb.velocity = ((playerPosition - rb.position).normalized * bulletSpeed);
+        rb.velocity = variance + rb.velocity;
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -65,5 +70,10 @@ public class Projectile : MonoBehaviour
     public void SetDamage(int damage)
     {
         shotDmg = damage;
+    }
+
+    public void SetVariance(float _variance)
+    {
+        bulletVariance= _variance;
     }
 }
