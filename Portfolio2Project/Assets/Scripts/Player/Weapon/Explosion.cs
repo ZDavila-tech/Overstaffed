@@ -7,6 +7,7 @@ public class Explosion : MonoBehaviour
     [SerializeField] int damage;
     [SerializeField] int pushAmount;
     [SerializeField] bool doesBurn;
+    [SerializeField] float burnDuration;
 
 
     // Start is called before the first frame update
@@ -32,7 +33,7 @@ public class Explosion : MonoBehaviour
             damageable.TakeDamage(damage);
             if(doesBurn)
             {
-                damageable.Burn(10, 1);
+                damageable.Burn(burnDuration, 1);
             }
         }
     }
