@@ -27,6 +27,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip hurtPickupAudio;
     public AudioClip hubInteractAud;
     public AudioClip switchStaffAud;
+    public AudioClip menuPopUpClip;
     public AudioClip regularEnemyDeath;
     public AudioClip bossEnemyDeath;
     public float volumeScale;
@@ -115,8 +116,17 @@ public class AudioManager : MonoBehaviour
 
     public void EnemyDeath()
     {
-        Debug.Log("Dead");
         seAud.PlayOneShot(regularEnemyDeath, volumeScale*2.0f);
+    }
+
+    public void BossDeath()
+    {
+        seAud.PlayOneShot(bossEnemyDeath, volumeScale);
+    }
+
+    public void MenuTransition()
+    {
+        seAud.PlayOneShot(menuPopUpClip, volumeScale);
     }
 
 }

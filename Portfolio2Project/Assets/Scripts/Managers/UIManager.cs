@@ -168,6 +168,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowEndLetter()
     {
+        AudioManager.instance.MenuTransition();
         gameManager.PauseState();
         activeMenu = endLetter;
         ShowActiveMenu();
@@ -183,6 +184,7 @@ public class UIManager : MonoBehaviour
     }
     public void ShowActiveMenu() //shows active menu if there is one.
     {
+        AudioManager.instance.MenuTransition();
         if (activeMenu != null)
         {
             activeMenu.SetActive(true);
@@ -205,7 +207,6 @@ public class UIManager : MonoBehaviour
             creditsMenu.SetActive(false);
             if(levelManager.currentLevel == 22)
             {
-                Debug.Log("YouWin");
                 YouWin();
             }
         }
