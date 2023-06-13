@@ -72,6 +72,7 @@ public class UIManager : MonoBehaviour
 
     [Header("-----Misc Stuff-----")]
     public Toggle invert;
+    public Slider mouseSen;
 
     public Image ability1; //Hi-Jump
     public Image ability2; //Dash
