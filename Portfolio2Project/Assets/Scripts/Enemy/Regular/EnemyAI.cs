@@ -206,6 +206,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
             switch (category)
             {
                 case Category.Shooting:
+                    AudioManager.instance.EnemyShoot();
                     StartCoroutine(Shoot());
                     break;
                 case Category.Exploding:
