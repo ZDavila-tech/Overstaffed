@@ -11,6 +11,7 @@ public class CameraControls : MonoBehaviour
 
     [SerializeField] int lockVerMin;
     [SerializeField] int lockVerMax;
+    
 
 
     float xRotation;
@@ -26,6 +27,9 @@ public class CameraControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        sensHor = (int)(uiManager.mouseSen.value * 1000);
+        sensVert = (int)(uiManager.mouseSen.value * 1000);
         //Get Input
         float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * sensVert;
         float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * sensHor;
