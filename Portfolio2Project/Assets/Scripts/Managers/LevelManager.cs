@@ -47,7 +47,7 @@ public class LevelManager : MonoBehaviour
     private UIManager uiManager;
     private AudioManager audioManager;
 
-    private void Awake()
+    void Awake()
     {
         if (LevelManager.instance != null)
         {
@@ -71,11 +71,18 @@ public class LevelManager : MonoBehaviour
         {
             audioManager = AudioManager.instance;
         }
-        NewGame();
-      
+        
+        currentLevel = 1;
+        loadingLevel = false;
+        totalEnemiesDefeated = 0;
+        endlessMode = false;
+        levelStarted = false;
+        enemiesRemaining = 0;
+        currentEnemiesSpawned = 0;
+        inElevator = false;
     }
 
-    private void Update()
+    void Update()
     {
         if (uiManager != null)
         {
@@ -86,7 +93,7 @@ public class LevelManager : MonoBehaviour
         if (loadingLevel == false)
         {
             currentEnemiesAlive = GameObject.FindGameObjectsWithTag("Enemy").Length;
-            if (!isSpawning && !levelCompleted && totalEnemiesToSpawn > currentEnemiesSpawned && currentEnemiesAlive < maxEnemiesAtOneTime)
+            if (!isSpawning && !levelCompleted && (totalEnemiesToSpawn > currentEnemiesSpawned) && (currentEnemiesAlive < maxEnemiesAtOneTime))
             {
                 StartCoroutine(SpawnersSpawn());
             }
@@ -96,20 +103,13 @@ public class LevelManager : MonoBehaviour
 
     public void NewGame()
     {
-        currentLevel = 1;
-        loadingLevel = false;
-        totalEnemiesDefeated = 0;
-        endlessMode = false;
-        NewLevelVariableResets();
+        
     }
 
 
     public void NewLevelVariableResets()
     {
-        levelStarted = false;
-        enemiesRemaining = 0;
-        currentEnemiesSpawned = 0;
-        inElevator = false;
+        
     }
 
     public void TrackLevelCompletion()
