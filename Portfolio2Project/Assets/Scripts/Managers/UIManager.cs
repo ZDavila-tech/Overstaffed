@@ -168,6 +168,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowEndLetter()
     {
+        AudioManager.instance.MenuTransition();
         gameManager.PauseState();
         activeMenu = endLetter;
         ShowActiveMenu();
@@ -183,6 +184,7 @@ public class UIManager : MonoBehaviour
     }
     public void ShowActiveMenu() //shows active menu if there is one.
     {
+        AudioManager.instance.MenuTransition();
         if (activeMenu != null)
         {
             activeMenu.SetActive(true);
@@ -203,15 +205,11 @@ public class UIManager : MonoBehaviour
         if (creditSlide.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
         {
             creditsMenu.SetActive(false);
+            if(levelManager.currentLevel == 22)
+            {
+                YouWin();
+            }
         }
-        else if (creditSlide.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f && levelManager.currentLevel == 22)
-        {
-            gameManager.PauseState();
-            creditsMenu.SetActive(false);
-            Debug.Log("YouWin");
-            YouWin();
-        }
-
     }
 
     public void ShowDamage()

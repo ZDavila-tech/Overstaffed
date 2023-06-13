@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
 
     [Header("----- Audio Stuff -----")]
     public AudioSource aud;
+    public AudioSource seAud;
     public List<AudioClip> bgms;
     
     [SerializeField] float volume;
@@ -26,6 +27,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip hurtPickupAudio;
     public AudioClip hubInteractAud;
     public AudioClip switchStaffAud;
+    public AudioClip menuPopUpClip;
     public AudioClip regularEnemyDeath;
     public AudioClip bossEnemyDeath;
     public float volumeScale;
@@ -110,6 +112,21 @@ public class AudioManager : MonoBehaviour
         {
             bgToggle.isOn = false;
         }
+    }
+
+    public void EnemyDeath()
+    {
+        seAud.PlayOneShot(regularEnemyDeath, volumeScale*2.0f);
+    }
+
+    public void BossDeath()
+    {
+        seAud.PlayOneShot(bossEnemyDeath, volumeScale);
+    }
+
+    public void MenuTransition()
+    {
+        seAud.PlayOneShot(menuPopUpClip, volumeScale);
     }
 
 }

@@ -280,7 +280,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         if (damagedRecently == false)
         {
             StartCoroutine(ResetDamagedRecently());
-            aud.PlayOneShot(audDamage[Random.Range(0, audDamage.Count)], audioManager.volumeScale * 1.2f);
+            aud.PlayOneShot(audDamage[Random.Range(0, audDamage.Count)], audioManager.volumeScale);
             iHP -= amount;
             camShake.Shake(damagedScreenshakeIntensity, .1f);
             if (amount > 0)

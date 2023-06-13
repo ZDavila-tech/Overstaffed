@@ -259,17 +259,15 @@ public class buttonFunctions : MonoBehaviour
     {
         buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
        
-        if(uiManager.loseMenu.activeSelf)
+        if(uiManager.loseMenu.activeSelf) //if you lose
         {
             uiManager.gamePlayRecap.SetActive(false);
         }
-        else if(LevelManager.instance.currentLevel == 22)
+        else if(LevelManager.instance.currentLevel == 22) //if you win
         {
             uiManager.gamePlayRecap.SetActive(false);
-            uiManager.creditsMenu.SetActive(true);
-            gameManager.instance.UnpauseState();
-        }
-        else
+            uiManager.creditsMenu.SetActive(true);        }
+        else //after each level
         {
             uiManager.gamePlayRecap.SetActive(false);
             gameManager.instance.UnpauseState();
