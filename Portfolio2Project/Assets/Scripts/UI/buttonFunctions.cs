@@ -45,8 +45,8 @@ public class buttonFunctions : MonoBehaviour
         Time.timeScale = gameManager.instance.timeScaleOriginal;
 
         Destroy(GameObject.FindGameObjectWithTag("Player"));
-        SceneManager.LoadScene("Character Select");
         LevelManager.instance.endlessMode = false;
+        SceneManager.LoadScene("Character Select");
     }
 
     //Quits the game; doesn't work unless built
@@ -222,6 +222,7 @@ public class buttonFunctions : MonoBehaviour
     {
         //Debug.Log("Player Element Set");
         AudioManager.instance.ChangeSong();
+        gameManager.instance.isPaused = false;
         if(LevelManager.instance != null)
         {
             LevelManager.instance.TutorialBeatenGoToLevelSix();
