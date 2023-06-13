@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1570852443671573167}
   - component: {fileID: 1570852443671573166}
   - component: {fileID: 1570852443671573163}
-  - component: {fileID: 8971753605827630776}
   - component: {fileID: 1570852443671573165}
   - component: {fileID: 1570852443671573162}
   - component: {fileID: 1679513090977880366}
@@ -38,7 +37,6 @@ Transform:
   m_Children:
   - {fileID: 9078338190383836853}
   - {fileID: 3502032409038535077}
-  - {fileID: 8086578862150439711}
   - {fileID: 1586786082821200154}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -102,18 +100,6 @@ MonoBehaviour:
   explosion: {fileID: 8927623178732523374, guid: 7fcb13bc71ade77489daa414b2e0eb97, type: 3}
   isSlowed: 0
   spawnedBySpawner: 0
---- !u!114 &8971753605827630776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1570852443671573161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8a5dd0ac9b52344a8a469bfafd39f6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!23 &1570852443671573165
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -229,52 +215,6 @@ CapsuleCollider:
   m_Height: 1.2
   m_Direction: 1
   m_Center: {x: 0, y: 0.6, z: 0}
---- !u!1 &1662672586069181638
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8086578862150439711}
-  - component: {fileID: 7945911725383154855}
-  m_Layer: 12
-  m_Name: MeleeHitbox
-  m_TagString: EnemyCollision
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &8086578862150439711
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1662672586069181638}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0000004172325, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1570852443671573167}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &7945911725383154855
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1662672586069181638}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2.0458622
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7889498434623450419
 GameObject:
   m_ObjectHideFlags: 0
@@ -35924,7 +35864,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5579666062739783361, guid: 591366f2a7117534bb354d8468c702ee, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5579666062739783361, guid: 591366f2a7117534bb354d8468c702ee, type: 3}
       propertyPath: m_LocalPosition.x
