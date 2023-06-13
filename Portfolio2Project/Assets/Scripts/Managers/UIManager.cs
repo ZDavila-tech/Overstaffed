@@ -129,11 +129,9 @@ public class UIManager : MonoBehaviour
 
             if (playerElement != gameManager.playerController.playerElement)
             {
-
+                SetElement();
+                SetElementIcon();
             }
-
-            SetElement();
-            SetElementIcon();
         }
         if (creditsMenu.activeSelf)
         {
