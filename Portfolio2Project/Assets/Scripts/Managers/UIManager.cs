@@ -248,11 +248,11 @@ public class UIManager : MonoBehaviour
         levelText.text = level.ToString("F0");
     }
 
-    public void UpdateEnemiesRemaining()
-    {
-        int enemies = levelManager.enemiesRemaining;
-        enemiesRemainText.text = enemies.ToString("F0");
-    }
+    //public void UpdateEnemiesRemaining()
+    //{
+    //    int enemies = levelManager.enemiesRemaining;
+    //    enemiesRemainText.text = enemies.ToString("F0");
+    //}
 
     public void UpdateExp()
     {
@@ -388,14 +388,14 @@ public class UIManager : MonoBehaviour
             specialIndicator.SetActive(true);
             expIndicator.SetActive(true);
             healthIndicator.SetActive(true);
-            enemiesRemainingIndicator.SetActive(true);
+            //enemiesRemainingIndicator.SetActive(true);
         }
         else
         {
             specialIndicator.SetActive(false);
             expIndicator.SetActive(false);
             healthIndicator.SetActive(false);
-            enemiesRemainingIndicator.SetActive(false);
+           // enemiesRemainingIndicator.SetActive(false);
         }
     }
 }
