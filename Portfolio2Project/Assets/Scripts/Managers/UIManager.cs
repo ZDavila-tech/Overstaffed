@@ -249,12 +249,14 @@ public class UIManager : MonoBehaviour
         levelText.text = level.ToString("F0");
     }
 
-    //public void UpdateEnemiesRemaining()
-    //{
-    //    int enemies = levelManager.enemiesRemaining;
-    //    enemiesRemainText.text = enemies.ToString("F0");
-    //}
-
+    public void LevelComplete()
+    {
+        levelCompleteText.SetActive(true);
+    }
+    public void LevelTextOff()
+    {
+        levelCompleteText.SetActive(false);
+    }
     public void UpdateExp()
     {
         int exp = gameManager.instance.playerStats.Exp;
