@@ -24542,10 +24542,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6550645790012497544}
+  - component: {fileID: 214741726597947914}
   - component: {fileID: 8241993593419849372}
   - component: {fileID: 5093071640425775599}
   - component: {fileID: 5667028003762357639}
-  - component: {fileID: 214741726597947914}
   m_Layer: 16
   m_Name: BombExplosion
   m_TagString: Untagged
@@ -24570,6 +24570,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &214741726597947914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8927623178732523374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dba1f3d0646e8347b531cd4c798385c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 4
+  pushAmount: 2
+  doesBurn: 1
+  burnDuration: 3
 --- !u!33 &8241993593419849372
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -24633,18 +24649,3 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.65
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &214741726597947914
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8927623178732523374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dba1f3d0646e8347b531cd4c798385c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 4
-  pushAmount: 2
-  doesBurn: 1

@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     [Header("----- Other -----")]
     public bool godMode;
-
+    Color orig;
     float origGrav;
     float origSpeed;
 
@@ -289,6 +289,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
                 {
                     iHP = 0;
                     StopAllCoroutines();
+                    TurnOfStatusEffects();
                     uiManager.YouLose();
                 }
             }
@@ -434,9 +435,9 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     IEnumerator Freezing(float duration)
     {
+        orig = uiManager.playerHealthBar.color;
         bool freezing = true;
         uiManager.freezeIndicator.SetActive(true);
-        Color orig = uiManager.playerHealthBar.color;
         uiManager.playerHealthBar.color = Color.cyan;
         if (playerElement == NewStaff.Element.Water)
         {
@@ -458,8 +459,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     IEnumerator Burning(float duration, float timeBetween, int damage)
     {
+        orig = uiManager.playerHealthBar.color;
         bool burning = true;
-        Color orig = uiManager.playerHealthBar.color;
         uiManager.playerHealthBar.color = Color.yellow;
         uiManager.burnIndicator.SetActive(true);
         float oldSpeed = 0;
@@ -485,8 +486,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     IEnumerator Venom(float duration, float timeBetween, int damage)
     {
+        orig = uiManager.playerHealthBar.color;
         bool poisoned = true;
-        Color orig = uiManager.playerHealthBar.color;
         uiManager.playerHealthBar.color = Color.magenta;
         uiManager.poisonIndicator.SetActive(true);
         int oldAttack = 0;
@@ -578,5 +579,14 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         totalHP = baseHealth + (playerStats.GetHealth() * 5);
         if (DoesHeal)
             iHP = totalHP;
+    }
+
+    void TurnOfStatusEffects()
+    {
+        uiManager.poisonIndicator.SetActive(false);
+        uiManager.burnIndicator.SetActive(false);
+        uiManager.freezeIndicator.SetActive(false);
+
+        uiManager.playerHealthBar.color = orig;
     }
 }
