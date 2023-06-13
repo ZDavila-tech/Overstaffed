@@ -210,6 +210,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
                     StartCoroutine(Shoot());
                     break;
                 case Category.Exploding:
+                    AudioManager.instance.EnemyExpShoot();
                     StartCoroutine(Explode());
                     break;
             }

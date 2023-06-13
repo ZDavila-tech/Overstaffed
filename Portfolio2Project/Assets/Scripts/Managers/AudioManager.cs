@@ -30,6 +30,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip switchStaffAud;
     public AudioClip menuPopUpClip;
     public AudioClip enemyShootClip;
+    public AudioClip enemyExpShootClip;
     public AudioClip throwClip;
     public AudioClip crstalShootClip;
     public AudioClip healAudClip;
@@ -145,5 +146,10 @@ public class AudioManager : MonoBehaviour
     public void HealAud()
     {
         seAud.PlayOneShot(healAudClip, volumeScale);
+    }
+
+    public void EnemyExpShoot()
+    {
+        seAud.PlayOneShot(enemyExpShootClip, volumeScale);
     }
 }
