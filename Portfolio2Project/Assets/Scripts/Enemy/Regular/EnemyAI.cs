@@ -263,6 +263,8 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
 
         if (iHP <= 0) //if it dies, get rid of it
         {
+
+            AudioManager.instance.EnemyDeath();
             anim.SetTrigger("Died");//play the death animation
             if (Random.Range(0, 100) <= DropRate && drop.Count > 0)
             {
@@ -276,6 +278,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
             var par = Instantiate(deathParticle, transform.position, transform.rotation);
             Destroy(gameObject);
             Destroy(par.gameObject, 1);
+           
         }
         else
         {

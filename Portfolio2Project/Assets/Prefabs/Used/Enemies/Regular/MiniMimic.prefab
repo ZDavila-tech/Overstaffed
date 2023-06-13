@@ -1036,7 +1036,6 @@ GameObject:
   - component: {fileID: 1679513090977880366}
   - component: {fileID: 104614007396169845}
   - component: {fileID: 1011368657515646225}
-  - component: {fileID: 7037184874063263595}
   m_Layer: 6
   m_Name: MiniMimic
   m_TagString: Enemy
@@ -1187,55 +1186,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &7037184874063263595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1570852443671573161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3578921f273289e4d83e6cabbda1655b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rModel: {fileID: 4565343553100441356}
-  navAgent: {fileID: 1011368657515646225}
-  shootPosition: {fileID: 4195430793932013719}
-  headPosition: {fileID: 4195430793932013719}
-  drop:
-  - {fileID: 0}
-  anim: {fileID: 1080602852015138143}
-  freezeEffect: {fileID: 0}
-  poisonEffect: {fileID: 0}
-  burnEffect: {fileID: 0}
-  iHP: 2
-  hpBar: {fileID: 8883267535683534846}
-  hpDisplay: {fileID: 4717209512966480328}
-  damageNumbers: {fileID: 0}
-  turnRate: 0
-  fFieldOfView: 100
-  DropRate: 0
-  itemRates: 
-  chargeValue: 100
-  ExperienceYield: 0
-  interuptionCoolDown: 1
-  moveSpeed: 10
-  brokenAnimations: 0
-  deathParticle: {fileID: 0}
-  knockbackResistance: {x: 0, y: 0, z: 0}
-  damageDealt: 0
-  bulletSprayVar: 0
-  bullet: {fileID: 8060328068600632496, guid: 21d34616d4bd55d46ad893c2322ce70a, type: 3}
-  shootDistance: 50
-  shootRate: 0.3
-  shootAngle: 0
-  category: 0
-  pointOfNoReturn: 0
-  explodeTime: 0
-  explosion: {fileID: 0}
-  isSlowed: 0
-  spawnedBySpawner: 0
 --- !u!1 &1662672586069181638
 GameObject:
   m_ObjectHideFlags: 0
@@ -2449,27 +2399,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &4717209512966480328 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7693426329512606905, guid: 2d6cfe7ffe2cd2a4eb47e9cc1be04c5e, type: 3}
-  m_PrefabInstance: {fileID: 3148701629520911729}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6147934885568694951 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9143350987719989206, guid: 2d6cfe7ffe2cd2a4eb47e9cc1be04c5e, type: 3}
   m_PrefabInstance: {fileID: 3148701629520911729}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8883267535683534846 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5833810445691298447, guid: 2d6cfe7ffe2cd2a4eb47e9cc1be04c5e, type: 3}
-  m_PrefabInstance: {fileID: 3148701629520911729}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &6420310681283211865
 PrefabInstance:
   m_ObjectHideFlags: 0
