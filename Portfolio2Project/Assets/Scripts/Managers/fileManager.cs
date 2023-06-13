@@ -8,6 +8,7 @@ public static class fileManager// : MonoBehaviour
     public static float masterVolume;
     public static float effectVolume;
     public static float musicVolume;
+    public static float sensitivity;
     public static int level;
     public static int maxLevel;
     public static bool invertY;
@@ -33,6 +34,7 @@ public static class fileManager// : MonoBehaviour
         PlayerPrefs.SetFloat("MV", masterVolume);
         PlayerPrefs.SetFloat("EV", effectVolume);
         PlayerPrefs.SetFloat("MuV", musicVolume);
+        PlayerPrefs.SetFloat("Sen", sensitivity);
         PlayerPrefs.SetInt("LvL", level);
         PlayerPrefs.SetInt("MaxLvL", maxLevel);
         PlayerPrefs.SetString("inv", invertY.ToString());
@@ -44,6 +46,7 @@ public static class fileManager// : MonoBehaviour
         masterVolume = PlayerPrefs.GetFloat("MV");
         effectVolume = PlayerPrefs.GetFloat("EV");
         musicVolume = PlayerPrefs.GetFloat("MuV");
+        sensitivity = PlayerPrefs.GetFloat("Sen");
         level = PlayerPrefs.GetInt("LvL");
         maxLevel = PlayerPrefs.GetInt("MaxLvL");
         infinite = bool.Parse(PlayerPrefs.GetString("inf"));
@@ -64,6 +67,7 @@ public static class fileManager// : MonoBehaviour
         invertY = false;
         UIManager.instance.invert.isOn = invertY;
         infinite = false;
+        sensitivity= 1;
         save();
 
     }
