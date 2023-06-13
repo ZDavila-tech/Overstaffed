@@ -186,9 +186,15 @@ public class LevelManager : MonoBehaviour
                 }
                 else
                 {
-                    SceneManager.LoadScene("HUB");
+                    if(SceneManager.GetActiveScene().buildIndex == hubSceneIndex)
+                    {
+                        SceneManager.LoadScene(GetRandomLevelIndex());
+                    }
+                    else
+                    {
+                        SceneManager.LoadScene("HUB");
+                    }
                 }
-
             }
         }
         else
@@ -288,8 +294,7 @@ public class LevelManager : MonoBehaviour
                         }
                         SceneManager.LoadScene(GetRandomLevelIndex());
                     }
-                }
-                
+                }                
             }
         }
     }
