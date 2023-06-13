@@ -140,6 +140,7 @@ public class UIManager : MonoBehaviour
     }
     public void YouLose()
     {
+        AudioManager.instance.MenuTransition();
         gameManager.PauseState();
         activeMenu = loseMenu;
         ShowActiveMenu();
@@ -151,6 +152,7 @@ public class UIManager : MonoBehaviour
 
     public void YouWin()
     {
+        AudioManager.instance.MenuTransition();
         gameManager.PauseState();
         activeMenu = winMenu;
         ShowActiveMenu();
@@ -167,6 +169,7 @@ public class UIManager : MonoBehaviour
 
     public void ShowPostRunStats()
     {
+        AudioManager.instance.MenuTransition();
         gameManager.PauseState();
         gamePlayRecap.SetActive(true);
         totalLevelsCompleted.text = ($"{levelManager.currentLevel - 1}");
@@ -175,7 +178,6 @@ public class UIManager : MonoBehaviour
     }
     public void ShowActiveMenu() //shows active menu if there is one.
     {
-        AudioManager.instance.MenuTransition();
         if (activeMenu != null)
         {
             activeMenu.SetActive(true);
@@ -184,7 +186,6 @@ public class UIManager : MonoBehaviour
 
     public void HideActiveMenu() //hides active menu and sets it to null
     {
-        AudioManager.instance.MenuTransition();
         if (activeMenu != null)
         {
             activeMenu.SetActive(false);
