@@ -280,11 +280,12 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         if (damagedRecently == false)
         {
             StartCoroutine(ResetDamagedRecently());
-            aud.PlayOneShot(audDamage[Random.Range(0, audDamage.Count)], audioManager.volumeScale);
             iHP -= amount;
-            camShake.Shake(damagedScreenshakeIntensity, .1f);
             if (amount > 0)
             {
+                aud.PlayOneShot(audDamage[Random.Range(0, audDamage.Count)], audioManager.volumeScale);
+                uiManager.ShowDamage();
+                camShake.Shake(damagedScreenshakeIntensity, .1f);
                 if (iHP <= 0)
                 {
                     iHP = 0;
@@ -295,6 +296,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             }
             else
             {
+                audioManager.HealAud();
                 if (iHP > (baseHealth + playerStats.GetHealth()))
                 {
                     iHP = (baseHealth + playerStats.GetHealth());
@@ -359,7 +361,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     public void UpdateHealthBar()
     {
         uiManager.playerHealthBar.fillAmount = (float)iHP / totalHP;
-        uiManager.ShowDamage();
+     
         uiManager.hpText.text = iHP.ToString() + "/" + totalHP.ToString();
     }
 
