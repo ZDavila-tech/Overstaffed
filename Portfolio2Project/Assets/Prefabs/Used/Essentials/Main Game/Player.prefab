@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 32255116}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6299999, z: 0}
+  m_LocalPosition: {x: 0, y: 0.6300659, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0855c50740626d43a4989ea22e8dbb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeTime: 0
+  shakeTime: 1
 --- !u!114 &2077410996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 32255116}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32ffcfe1f9ccc104786a0411f1500734, type: 3}
   m_Name: 
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 32255116}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a779fbf482507a64c80c55e00537d1ee, type: 3}
   m_Name: 
@@ -193,7 +193,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 242991421}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -383,7 +383,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 727314797}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -444,7 +444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 6256373690464243921}
-  hurtAmount: 0
+  hurtAmount: 5
 --- !u!114 &1879878902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,7 +510,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 879365999}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -6326,7 +6326,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3199465538200053613}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.416, z: 0}
+  m_LocalPosition: {x: 0, y: 0.411, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13408,7 +13408,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6256373689337983851}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.6299999, z: 0}
+  m_LocalPosition: {x: 0, y: 0.6300659, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13503,7 +13503,7 @@ MonoBehaviour:
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
   m_UpdateMethod: 2
-  m_BlendUpdateMethod: 1
+  m_BlendUpdateMethod: 0
   m_DefaultBlend:
     m_Style: 1
     m_Time: 2
@@ -13541,8 +13541,9 @@ GameObject:
   - component: {fileID: 1444516656452086230}
   - component: {fileID: 628356849}
   - component: {fileID: 628356850}
-  - component: {fileID: 1847456080298233898}
-  - component: {fileID: 5723900235864043413}
+  - component: {fileID: 2010137789}
+  - component: {fileID: 1414514684}
+  - component: {fileID: 1414514708}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -13602,7 +13603,7 @@ MonoBehaviour:
   baseSpeed: 8
   playerStats: {fileID: 5227066611642462926}
   playerSpeed: 0
-  utCharge: 0
+  utCharge: 100
   jumpHeight: 8
   shootScreenshakeIntensity: 1
   damagedScreenshakeIntensity: 1
@@ -13612,7 +13613,7 @@ MonoBehaviour:
   sprintMod: 1.5
   damagecoolDown: 0.1
   pushBackResolve: 2
-  playerElement: 3
+  playerElement: 0
   coyoteTime: 0.5
   crouchHeight: 0
   standingHeight: 0
@@ -13628,11 +13629,12 @@ MonoBehaviour:
   isSprinting: 0
   isCrouching: 0
   isStepping: 0
-  items:
-  - {fileID: 242991421}
-  - {fileID: 4089343999757136563}
-  - {fileID: 7260730739155385229}
+  items: []
   itemSelected: 0
+  potionsAvailable: 0
+  uiPotion1: {fileID: 0}
+  uiPotion2: {fileID: 0}
+  uiPotion3: {fileID: 0}
   aud: {fileID: 1444516656452086230}
   AttackVolume: 0.3
   JumpVolume: 0.5
@@ -13969,19 +13971,29 @@ MonoBehaviour:
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: 0, y: -1, z: 0}
---- !u!114 &1847456080298233898
-MonoBehaviour:
+--- !u!1773428102 &2010137789
+ParentConstraint:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6256373690464243930}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74dc70b9b912b4440b38f1577d95b8dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5723900235864043413
+  m_Weight: 1
+  m_TranslationAtRest: {x: 0, y: 0, z: 0}
+  m_RotationAtRest: {x: 0, y: 0, z: 0}
+  m_TranslationOffsets: []
+  m_RotationOffsets: []
+  m_AffectTranslationX: 1
+  m_AffectTranslationY: 1
+  m_AffectTranslationZ: 1
+  m_AffectRotationX: 0
+  m_AffectRotationY: 0
+  m_AffectRotationZ: 0
+  m_IsContraintActive: 0
+  m_IsLocked: 1
+  m_Sources: []
+--- !u!114 &1414514684
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13996,7 +14008,19 @@ MonoBehaviour:
   player: {fileID: 6256373690464243921}
   showConsole: 0
   input: 
-  fontSize: 30
+  fontSize: 35
+--- !u!114 &1414514708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6256373690464243930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74dc70b9b912b4440b38f1577d95b8dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6701728123110036513
 GameObject:
   m_ObjectHideFlags: 0

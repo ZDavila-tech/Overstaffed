@@ -5,12 +5,11 @@ using UnityEngine.UI;
 
 public class PotionUiController : MonoBehaviour
 {
-    [SerializeField] Image potionImage;
-    [SerializeField] Image potionIndicator;
-    [SerializeField] PlayerController player;
+    [SerializeField] public Image potionImage;
+    [SerializeField] public Image potionIndicator;
+    [SerializeField] public PlayerController player;
     public bool selected;
     public bool used;
-    //[SerializeField] PlayerController player;
     // Start is called before the first frame update
     void Start()
     {

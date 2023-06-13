@@ -47,7 +47,7 @@ public class LevelManager : MonoBehaviour
     private UIManager uiManager;
     private AudioManager audioManager;
 
-    private void Awake()
+    void Awake()//occurs before start
     {
         if (LevelManager.instance != null)
         {
@@ -61,7 +61,7 @@ public class LevelManager : MonoBehaviour
         currentLevel = 1;
         totalEnemiesDefeated = 0;
     }
-    void Start()
+    void Start()//occurs before the first frame
     {
         if(UIManager.instance != null) 
         {
@@ -71,45 +71,34 @@ public class LevelManager : MonoBehaviour
         {
             audioManager = AudioManager.instance;
         }
-        NewGame();
-      
+        //setting starting variables
+        currentLevel = 1;
+        loadingLevel = false;
+        totalEnemiesDefeated = 0;
+        endlessMode = false;
+        levelStarted = false;
+        enemiesRemaining = 0;
+        currentEnemiesSpawned = 0;
+        inElevator = false;
     }
 
-    private void Update()
+    void Update()
     {
         if (uiManager != null)
         {
-            uiManager.UpdateLevelCount();
+            uiManager.UpdateLevelCount();//make sure we have the right level number displayed
         
         }        
 
         if (loadingLevel == false)
         {
             currentEnemiesAlive = GameObject.FindGameObjectsWithTag("Enemy").Length;
-            if (!isSpawning && !levelCompleted && totalEnemiesToSpawn > currentEnemiesSpawned && currentEnemiesAlive < maxEnemiesAtOneTime)
+            if (!isSpawning && !levelCompleted && (totalEnemiesToSpawn > currentEnemiesSpawned) && (currentEnemiesAlive < maxEnemiesAtOneTime))
             {
-                StartCoroutine(SpawnersSpawn());
+                StartCoroutine(SpawnersSpawn());//if there are more enemies that can be spawned, then begin spawning another
             }
             TrackLevelCompletion();
         }
-    }
-
-    public void NewGame()
-    {
-        currentLevel = 1;
-        loadingLevel = false;
-        totalEnemiesDefeated = 0;
-        endlessMode = false;
-        NewLevelVariableResets();
-    }
-
-
-    public void NewLevelVariableResets()
-    {
-        levelStarted = false;
-        enemiesRemaining = 0;
-        currentEnemiesSpawned = 0;
-        inElevator = false;
     }
 
     public void TrackLevelCompletion()
@@ -120,7 +109,7 @@ public class LevelManager : MonoBehaviour
             if (inElevator && !loadingLevel)
             {
                 loadingLevel = true;
-                if(currentLevel >= 5)
+                if(currentLevel >= 5)//update the player on how well they're doing after each level after the tutorial
                 {
                     uiManager.ShowPostRunStats();
                 }
@@ -141,7 +130,7 @@ public class LevelManager : MonoBehaviour
         //loads a new level != the current level index
     }
 
-    public int GetRandomLevelIndex()
+    public int GetRandomLevelIndex()//get a random, repeatable level that isn't the current one
     {
         int randomIndex = Random.Range(repeatableLevelsMinIndex, repeatableLevelsMaxIndex + 1);
         while (randomIndex == SceneManager.GetActiveScene().buildIndex)
@@ -152,7 +141,6 @@ public class LevelManager : MonoBehaviour
                 break;
             }
         }
-        //Debug.Log($"Random Index is {randomIndex}");
         return randomIndex;
     }
 
@@ -169,16 +157,15 @@ public class LevelManager : MonoBehaviour
     public void LoadNextLevel()
     {
         if (SceneManager.GetActiveScene().buildIndex == hubSceneIndex || SceneManager.GetActiveScene().buildIndex == characterSelectIndex)
-        {
+        {//chcking if the current scene is a hub or character select scene
             if (currentLevel == bossLevelOne)
-            {
+            {//if the current level should be the boss
                 LoadLevelVariableReset();
-                SceneManager.LoadScene("HR");
+                SceneManager.LoadScene("HR");//load the boss level
             }
             else
             {
                 LoadLevelVariableReset();
-                //enemiesRemaining = totalEnemiesToSpawn;
                 if (currentLevel == 1)
                 {
                     SceneManager.LoadScene("Home");
@@ -197,7 +184,7 @@ public class LevelManager : MonoBehaviour
             }
         }
         else
-        {
+        {//if it's a normal level
             if (currentLevel % 3 == 0)
             {
                 audioManager.ChangeSong();
@@ -226,7 +213,7 @@ public class LevelManager : MonoBehaviour
                 else
                 {
                     ScaleSpawners();
-                    if (currentLevel < 6) //if (SceneManager.GetActiveScene().buildIndex < repeatableLevelsMinIndex)
+                    if (currentLevel < 6) 
                     {
                         LoadLevelVariableReset();
                         switch (currentLevel)

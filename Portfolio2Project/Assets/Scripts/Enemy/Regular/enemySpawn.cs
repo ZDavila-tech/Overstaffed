@@ -23,23 +23,16 @@ public class enemySpawn : MonoBehaviour
     // start is called before the first frame update
     void Start()
     {
-        initializelength();
-        sortarrays();
-        totalWeight = initializeEnemyWeight();
+        InitializeLength();
+        SortArrays();
+        foreach (int f in enemyTypeSpawnWeighting)
+        {
+            totalWeight += f;
+        }
         if(LevelManager.instance != null)
         {
             levelManager = LevelManager.instance;
         }
-    }
-
-    int initializeEnemyWeight()
-    {
-        int total = 0;
-        foreach (int f in enemyTypeSpawnWeighting)
-        {
-            total += f;
-        }
-        return total;
     }
 
     // update is called once per frame
@@ -54,8 +47,8 @@ public class enemySpawn : MonoBehaviour
     IEnumerator Spawn()
     {
         isSpawning = true;
-        GameObject tospawn = weightedenemyselection();
-        GameObject spawned = Instantiate(tospawn, transform.position + spawncoords(), spawnRotation.transform.rotation);
+        GameObject tospawn = WeightedEnemySelection();
+        GameObject spawned = Instantiate(tospawn, transform.position + GetSpawnCoords(), spawnRotation.transform.rotation);
         spawned.GetComponent<EnemyAI>().spawnedBySpawner = true;
         ++LevelManager.instance.currentEnemiesSpawned;
 
@@ -63,12 +56,12 @@ public class enemySpawn : MonoBehaviour
         isSpawning = false;
     }
 
-    Vector3 spawncoords()
+    Vector3 GetSpawnCoords()
     {
         return new Vector3(Random.Range(transform.position.x - (spawnAreaX / 2), transform.position.x + (spawnAreaX / 2)), 0, Random.Range(transform.position.y - (spawnAreaX / 2), transform.position.y + (spawnAreaX / 2)));
     }
 
-    GameObject weightedenemyselection()
+    GameObject WeightedEnemySelection()
     {
         int rand = Random.Range(0, totalWeight - 1);
         for (int i = 0; i < arrayLength; i++)
@@ -88,33 +81,30 @@ public class enemySpawn : MonoBehaviour
         Gizmos.DrawWireCube(new Vector3(transform.position.x, transform.position.y + 1, transform.position.z), new Vector3(spawnAreaX, 2, spawnAreaY));
     }
 
-    void sortarrays()
+    void SortArrays()
     {
         for (int i = 0; i < arrayLength - 1; i++)
         {
             for (int j = 0; j < arrayLength - i - 1; j++)
-                if (enemyTypeSpawnWeighting[j] > enemyTypeSpawnWeighting[j + 1])
-                {
-                    var temp = enemyTypeSpawnWeighting[j];
-                    var temp2 = enemyTypesToSpawn[j];
-                    enemyTypeSpawnWeighting[j] = enemyTypeSpawnWeighting[j + 1];
-                    enemyTypesToSpawn[j] = enemyTypesToSpawn[j + 1];
-                    enemyTypeSpawnWeighting[j + 1] = temp;
-                    enemyTypesToSpawn[j + 1] = temp2;
-                }
+            if (enemyTypeSpawnWeighting[j] > enemyTypeSpawnWeighting[j + 1])
+            {
+                var temp = enemyTypeSpawnWeighting[j];
+                var temp2 = enemyTypesToSpawn[j];
+                enemyTypeSpawnWeighting[j] = enemyTypeSpawnWeighting[j + 1];
+                enemyTypesToSpawn[j] = enemyTypesToSpawn[j + 1];
+                enemyTypeSpawnWeighting[j + 1] = temp;
+                enemyTypesToSpawn[j + 1] = temp2;
+            }
         }
     }
-    void initializelength()
+    void InitializeLength()
     {
         arrayLength = 0;
         foreach (int i in enemyTypeSpawnWeighting)
         {
-
             arrayLength++;
-
         }
     }
-
 }
 
 
