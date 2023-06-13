@@ -7,8 +7,9 @@ public class PotionUiController : MonoBehaviour
 {
     [SerializeField] Image potionImage;
     [SerializeField] Image potionIndicator;
-    [SerializeField] Item item;
+    [SerializeField] PlayerController player;
     public bool selected;
+    public bool used;
     //[SerializeField] PlayerController player;
     // Start is called before the first frame update
     void Start()
@@ -19,8 +20,8 @@ public class PotionUiController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        selected = item.isSelected;
-        if (item.isSelected)
+        selected = player.items[player.itemSelected].GetComponent<Item>().isSelected;
+        if (selected)
         {
             potionIndicator.enabled = true;
         }
@@ -28,8 +29,8 @@ public class PotionUiController : MonoBehaviour
         {
             potionIndicator.enabled = false;
         }
-
-        if(item.used)
+        used = player.items[player.itemSelected].GetComponent<Item>().used;
+        if (used)
         {
             potionImage.enabled = false;
         }
