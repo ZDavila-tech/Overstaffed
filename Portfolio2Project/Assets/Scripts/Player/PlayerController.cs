@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         if (audioManager != null)
         {
             AttackVolume = AudioManager.instance.soundEffectsVolume.value;
-            JumpVolume = AudioManager.instance.soundEffectsVolume.value;
+            JumpVolume = AudioManager.instance.soundEffectsVolume.value*0.2f;
         }
         Sprint();
         Crouching();
