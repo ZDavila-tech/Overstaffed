@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     private bool damagedRecently;
     public bool isCrouching;
     public bool isStepping;
+    public bool enableCamShake;
 
     [Header("----- Items -----")]
     //public List<GameObject> items = new List<GameObject>();
@@ -98,6 +99,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     void Start()
     {
         UpdatePlayerStats();
+        enableCamShake = true;
         potionsAvailable = 3;
         godMode = false;
         standingHeight = height;
@@ -341,7 +343,12 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             {
                 playerWeapon.Shoot();
                 StartCoroutine(PlayShootSound());
-                camShake.Shake(shootScreenshakeIntensity, 0.1f);
+                
+                if (enableCamShake)
+                {
+                    camShake.Shake(shootScreenshakeIntensity, 0.1f);
+                }
+
                 proceduralRecoil.Recoil();
             }
 
