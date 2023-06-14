@@ -22,13 +22,6 @@ public class PotionRefill : MonoBehaviour, IInteract
     public bool Interact(PlayerInteractionSystem player)
     {
         playerController.potionsAvailable = 3;
-        for (int i = 0; i < playerController.items.Count; i++)
-        {
-            playerController.items[i].GetComponent<Item>().used = false;
-            
-            Debug.Log("Refilled");
-        }
-
         return true;
     }
 }

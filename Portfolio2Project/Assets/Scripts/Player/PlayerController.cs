@@ -68,12 +68,10 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     public bool isStepping;
 
     [Header("----- Items -----")]
-    public List<GameObject> items = new List<GameObject>();
+    //public List<GameObject> items = new List<GameObject>();
     public int itemSelected;
     public int potionsAvailable;
-    [SerializeField] Image uiPotion1; 
-    [SerializeField] Image uiPotion2; 
-    [SerializeField] Image uiPotion3; 
+    
 
     [Header("----- Audio -----")]
     [SerializeField] AudioSource aud;
@@ -153,7 +151,6 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         {
             skills.useSkill(3);
         }
-        ChangeItem();
         HealingPotion();
     }
     public bool CheckGround()
@@ -555,33 +552,33 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         UpdateHealthBar();
     }
 
-    void ChangeItem()
-    {
-        if (itemSelected > items.Count - 1 || itemSelected < 0)
-        {
-            itemSelected = 0;
-        }
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && itemSelected < items.Count - 1)
-        {
-            itemSelected++;
-            items[itemSelected].GetComponent<Item>().isSelected = true;
-            //items[itemSelected-1].GetComponent<MeshRenderer>().enabled = false;
-        }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && itemSelected > 0)
-        {
-            itemSelected--;
-            items[itemSelected].GetComponent<Item>().isSelected = true;
-            //items[itemSelected+1].GetComponent<MeshRenderer>().enabled = false;
-        }
-        for (int i = 0; i < items.Count; i++)
-        {
-            if (items[i] != items[itemSelected])
-            {
-                items[i].GetComponent<Item>().isSelected = false;
-            }
+    //void ChangeItem()
+    //{
+    //    if (itemSelected > items.Count - 1 || itemSelected < 0)
+    //    {
+    //        itemSelected = 0;
+    //    }
+    //    if (Input.GetAxis("Mouse ScrollWheel") > 0 && itemSelected < items.Count - 1)
+    //    {
+    //        itemSelected++;
+    //        items[itemSelected].GetComponent<Item>().isSelected = true;
+    //        //items[itemSelected-1].GetComponent<MeshRenderer>().enabled = false;
+    //    }
+    //    else if (Input.GetAxis("Mouse ScrollWheel") < 0 && itemSelected > 0)
+    //    {
+    //        itemSelected--;
+    //        items[itemSelected].GetComponent<Item>().isSelected = true;
+    //        //items[itemSelected+1].GetComponent<MeshRenderer>().enabled = false;
+    //    }
+    //    for (int i = 0; i < items.Count; i++)
+    //    {
+    //        if (items[i] != items[itemSelected])
+    //        {
+    //            items[i].GetComponent<Item>().isSelected = false;
+    //        }
 
-        }
-    }
+    //    }
+    //}
 
     public void HealingPotion()
     {
@@ -589,28 +586,6 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         {
             TakeDamage(-5);
             potionsAvailable--;
-        }
-
-        if(potionsAvailable == 2)
-        {
-            uiPotion3.enabled = false;
-        }
-
-        if (potionsAvailable == 1)
-        {
-            uiPotion2.enabled = false;
-        }
-
-        if (potionsAvailable == 0)
-        {
-            uiPotion1.enabled = false;
-        }
-        
-        if (potionsAvailable == 3)
-        {
-            uiPotion3.enabled = true;
-            uiPotion2.enabled = true;
-            uiPotion1.enabled = true;
         }
     }
 

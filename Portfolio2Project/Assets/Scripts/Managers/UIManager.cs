@@ -56,6 +56,7 @@ public class UIManager : MonoBehaviour
     public Image playerHealthBar;
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI hpText;
+    public TextMeshProUGUI potionText;
     public TextMeshProUGUI expText;
     public TextMeshProUGUI storeCurrency;
     [SerializeField] Image UtCharge;
@@ -139,6 +140,7 @@ public class UIManager : MonoBehaviour
 
 
         PlayerProgression();
+        UpdatePotionCount();
     }
     public void YouLose()
     {
@@ -265,6 +267,12 @@ public class UIManager : MonoBehaviour
         expText.text = exp.ToString("F0");
         storeCurrency.text = exp.ToString("F0");
         expGained.text = exp.ToString("F0");
+    }
+
+    public void UpdatePotionCount()
+    {
+        int potionCount = gameManager.instance.playerController.potionsAvailable;
+        potionText.text = potionCount.ToString("F0");
     }
 
     public void AbilityCoolDown()
