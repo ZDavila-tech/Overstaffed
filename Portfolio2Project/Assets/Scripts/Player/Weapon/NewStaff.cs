@@ -95,7 +95,7 @@ public class NewStaff : MonoBehaviour
         SpecialAttack();
     }
 
-    public void Shoot()
+    public void Shoot(Transform enemyHitTransform)
     {
         Animator anim = weapon.GetComponent<Animator>();
         //Debug.Log("Weapon Shoot Called");
@@ -107,7 +107,7 @@ public class NewStaff : MonoBehaviour
             canSpecial = false;
             if (lastShootTime + delay < Time.time)
             {
-                Vector3 direction = GetDirection();
+                Vector3 direction = GetDirection(enemyHitTransform);
                 if (Physics.Raycast(shootPos.position, direction, out RaycastHit hit, float.MaxValue, mask))
                 {
                     anim.SetTrigger("Shooting");
@@ -127,9 +127,9 @@ public class NewStaff : MonoBehaviour
         StartCoroutine(ResetShootingAnimation());
     }
 
-    private Vector3 GetDirection()
+    private Vector3 GetDirection(Transform enemyHitTransform)
     {
-        Vector3 dir = transform.parent.forward;
+        Vector3 dir = enemyHitTransform.position - shootPos.position;
 
         if (addBulletSpread)
         {
@@ -279,7 +279,7 @@ public class NewStaff : MonoBehaviour
     private void FireSpecial()
     {
         RaycastHit hit;
-        Vector3 direction = GetDirection();
+        Vector3 direction = gameManager.instance.playerCharacter.transform.forward + new Vector3(0, 1, 0);
         if (Physics.Raycast(shootPos.position, direction, out hit, float.MaxValue, mask))
         {
             if (hit.transform.tag == "Player")
@@ -326,7 +326,7 @@ public class NewStaff : MonoBehaviour
     void EarthAOE()
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        Vector3 direction = GetDirection();
+        Vector3 direction = gameManager.instance.playerCharacter.transform.forward + new Vector3 (0, 1, 0);
         RaycastHit hit;
         if (Physics.Raycast(shootPos.position, direction, out hit, float.MaxValue, mask))
         {
