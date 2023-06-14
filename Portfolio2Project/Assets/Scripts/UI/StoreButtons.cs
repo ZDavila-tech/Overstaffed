@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using TMPro;
 //using UnityEditorInternal;
 using UnityEngine;
 
@@ -7,6 +9,7 @@ public class StoreButtons : MonoBehaviour
 {
     public AudioSource buttonAudio;
     int cost = 0;
+    [SerializeField] TextMeshProUGUI[] texts;
 
     public void BuyAttack(int amount)
     {
@@ -23,6 +26,7 @@ public class StoreButtons : MonoBehaviour
                 gameManager.instance.playerStats.AttackUp(1);
             }
             gameManager.instance.playerController.UpdatePlayerStats();
+            DisplayCosts();
         }
     }
     public void BuyHealth(int amount)
@@ -40,6 +44,7 @@ public class StoreButtons : MonoBehaviour
                 gameManager.instance.playerStats.HealthUp(1);
             }
             gameManager.instance.playerController.UpdatePlayerStats();
+            DisplayCosts();
         }
     }
     public void BuySpeed(int amount)
@@ -57,6 +62,7 @@ public class StoreButtons : MonoBehaviour
                 gameManager.instance.playerStats.SpeedUp(1);
             }
             gameManager.instance.playerController.UpdatePlayerStats();
+            DisplayCosts();
         }
     }
 
@@ -120,6 +126,7 @@ public class StoreButtons : MonoBehaviour
         UIManager.instance.buyScreen.SetActive(true);
         UIManager.instance.sellScreen.SetActive(false);
         UIManager.instance.inventoryScreen.SetActive(false);
+        DisplayCosts();
     }
 
     public void SellScreen()
@@ -154,5 +161,50 @@ public class StoreButtons : MonoBehaviour
         SellAttack(gameManager.instance.playerStats.GetAttack());
         SellHealth(gameManager.instance.playerStats.GetHealth());
         SellSpeed(gameManager.instance.playerStats.GetSpeed());
+        DisplayCosts();
+    }
+
+    public int getCost(int amount) { CalculateCost(amount); return cost; }
+
+    private void Start()
+    {
+        DisplayCosts();
+    }
+
+    void DisplayCosts()
+    {
+        for (int i = 0; i < texts.Length; i++)
+        {
+            switch (i) 
+            {
+                case 0:
+                    texts[i].text = "COST: " + getCost(1).ToString();
+                    break;
+                case 1:
+                    texts[i].text = "COST: " + getCost(5).ToString();
+                    break;
+                case 2:
+                    texts[i].text = "COST: " + getCost(10).ToString();
+                    break;
+                case 3:
+                    texts[i].text = "COST: " + getCost(1).ToString();
+                    break;
+                case 4:
+                    texts[i].text = "COST: " + getCost(5).ToString();
+                    break;
+                case 5:
+                    texts[i].text = "COST: " + getCost(10).ToString();
+                    break;
+                case 6:
+                    texts[i].text = "COST: " + getCost(1).ToString();
+                    break;
+                case 7:
+                    texts[i].text = "COST: " + getCost(5).ToString();
+                    break;
+                case 8:
+                    texts[i].text = "COST: " + getCost(10).ToString();
+                    break;
+            }
+        }
     }
 }
