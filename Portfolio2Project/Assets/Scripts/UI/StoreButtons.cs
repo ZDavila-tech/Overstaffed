@@ -146,6 +146,7 @@ public class StoreButtons : MonoBehaviour
 
     void CalculateCost(int amount)
     {
+        cost = 0;
         buttonAudio.PlayOneShot(AudioManager.instance.transactionClick, AudioManager.instance.volumeScale);
         for (int i = 0; i < amount; i++)
         {
@@ -163,43 +164,38 @@ public class StoreButtons : MonoBehaviour
 
     public int getCost(int amount) { CalculateCost(amount); return cost; }
 
-    private void Start()
-    {
-        DisplayCosts();
-    }
-
-    void DisplayCosts()
+    public void DisplayCosts()
     {
         for (int i = 0; i < texts.Length; i++)
         {
             switch (i) 
             {
                 case 0:
-                    texts[i].text = "COST: " + getCost(1).ToString();
+                    texts[i].text = "COST: " + (gameManager.instance.playerStats.GetAttack() * 10 + getCost(1)).ToString();
                     break;
                 case 1:
-                    texts[i].text = "COST: " + getCost(5).ToString();
+                    texts[i].text = "COST: " + (gameManager.instance.playerStats.GetAttack() * 10 + getCost(5)).ToString();
                     break;
                 case 2:
-                    texts[i].text = "COST: " + getCost(10).ToString();
+                    texts[i].text = "COST: " + (gameManager.instance.playerStats.GetAttack() * 10 + getCost(10)).ToString();
                     break;
                 case 3:
-                    texts[i].text = "COST: " + getCost(1).ToString();
+                    texts[i].text = "COST: " + (gameManager.instance.playerStats.GetHealth() * 10 + getCost(1)).ToString();
                     break;
                 case 4:
-                    texts[i].text = "COST: " + getCost(5).ToString();
+                    texts[i].text = "COST: " + (gameManager.instance.playerStats.GetHealth() * 10 + getCost(5)).ToString();
                     break;
                 case 5:
-                    texts[i].text = "COST: " + getCost(10).ToString();
+                    texts[i].text = "COST: " + (gameManager.instance.playerStats.GetHealth() * 10 + getCost(10)).ToString();
                     break;
                 case 6:
-                    texts[i].text = "COST: " + getCost(1).ToString();
+                    texts[i].text = "COST: " + (gameManager.instance.playerStats.GetSpeed() * 10 + getCost(1)).ToString();
                     break;
                 case 7:
-                    texts[i].text = "COST: " + getCost(5).ToString();
+                    texts[i].text = "COST: " + (gameManager.instance.playerStats.GetSpeed() * 10 + getCost(5)).ToString();
                     break;
                 case 8:
-                    texts[i].text = "COST: " + getCost(10).ToString();
+                    texts[i].text = "COST: " + (gameManager.instance.playerStats.GetSpeed() * 10 + getCost(10)).ToString();
                     break;
             }
         }

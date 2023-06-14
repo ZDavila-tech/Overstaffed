@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
 
     [Header("----- UI Stuff -----")]
+    public StoreButtons storeBtns;
     public GameObject HUD;
     public GameObject activeMenu;
     public GameObject mainMenu;

@@ -47,6 +47,7 @@ public class Store : MonoBehaviour, IInteract
         else //if it's not, normal store behaviour applies and the store menu is opened
         {
             gameManager.PauseState();
+            uiManager.storeBtns.DisplayCosts();
             uiManager.activeMenu = uiManager.storeMenu;
             uiManager.ShowActiveMenu();
         }
