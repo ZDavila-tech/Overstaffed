@@ -119,7 +119,6 @@ public class StoreButtons : MonoBehaviour
 
         UIManager.instance.buyScreen.SetActive(true);
         UIManager.instance.sellScreen.SetActive(false);
-        UIManager.instance.inventoryScreen.SetActive(false);
     }
 
     public void SellScreen()
@@ -128,16 +127,6 @@ public class StoreButtons : MonoBehaviour
 
         UIManager.instance.buyScreen.SetActive(false);
         UIManager.instance.sellScreen.SetActive(true);
-        UIManager.instance.inventoryScreen.SetActive(false);
-    }
-
-    public void InventoryScreen()
-    {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
-
-        UIManager.instance.buyScreen.SetActive(false);
-        UIManager.instance.sellScreen.SetActive(false);
-        UIManager.instance.inventoryScreen.SetActive(true);
     }
 
     void CalculateCost(int amount)
