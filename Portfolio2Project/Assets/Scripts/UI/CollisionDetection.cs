@@ -26,7 +26,7 @@ public class CollisionDetection : MonoBehaviour
 
             if (damageable != null)
             {
- 
+                
                 damageable.TakeDamage(hitDmg);
                 DamageCooldown();
             }
