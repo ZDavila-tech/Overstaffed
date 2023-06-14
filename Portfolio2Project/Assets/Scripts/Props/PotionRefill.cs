@@ -7,7 +7,7 @@ public class PotionRefill : MonoBehaviour, IInteract
     [SerializeField] string interactionText;
     public string InteractionPrompt => interactionText;
 
-    [SerializeField] PlayerController playerController;
+    public GameObject playerController;
 
     private UIManager uiManager;
     private gameManager gameManager;
@@ -17,11 +17,12 @@ public class PotionRefill : MonoBehaviour, IInteract
     {
         uiManager = UIManager.instance;
         gameManager = gameManager.instance;
+        playerController = GameObject.FindGameObjectWithTag("Player");
     }
 
     public bool Interact(PlayerInteractionSystem player)
     {
-        playerController.potionsAvailable = 3;
+        playerController.GetComponent<PlayerController>().potionsAvailable = 3;
         return true;
     }
 }
