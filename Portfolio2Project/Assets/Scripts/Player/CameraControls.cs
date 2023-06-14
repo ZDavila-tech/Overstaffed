@@ -28,8 +28,8 @@ public class CameraControls : MonoBehaviour
     void Update()
     {
 
-        sensHor = (int)(uiManager.mouseSen.value * 1000);
-        sensVert = (int)(uiManager.mouseSen.value * 1000);
+        sensHor = (int)(uiManager.mouseSen.value * 200);
+        sensVert = (int)(uiManager.mouseSen.value * 200);
         //Get Input
         float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * sensVert;
         float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * sensHor;
