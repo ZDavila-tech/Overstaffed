@@ -134,9 +134,9 @@ public class NewStaff : MonoBehaviour
         if (addBulletSpread)
         {
             dir += new Vector3(
-                Random.Range(bulletSpread.x, bulletSpread.x),
-                Random.Range(bulletSpread.y, bulletSpread.y),
-                Random.Range(bulletSpread.z, bulletSpread.z)
+                Random.Range(-bulletSpread.x, bulletSpread.x),
+                Random.Range(-bulletSpread.y, bulletSpread.y),
+                Random.Range(-bulletSpread.z, bulletSpread.z)
                 );
         }
         return dir;
