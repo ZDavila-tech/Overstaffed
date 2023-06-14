@@ -106,39 +106,24 @@ public class NewStaff : MonoBehaviour
             canMelee = false;
             canSpecial = false;
             if (lastShootTime + delay < Time.time)
-            {
-                Vector3 direction = GetDirection(enemyHitTransform);
-                if (Physics.Raycast(shootPos.position, direction, out RaycastHit hit, float.MaxValue, mask))
+            {               
+                if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out RaycastHit hit, float.MaxValue, mask))
                 {
                     anim.SetTrigger("Shooting");
                     GameObject trail = Instantiate(trailRenderer[(int)playerElement].gameObject, shootPos.position, Quaternion.identity);
                     StartCoroutine(SpawnTrail(trail.GetComponent<TrailRenderer>(), hit));
                     lastShootTime = Time.time;
-                    
-
-                }
-                
+                }                
             }
         }
-        
-            
-        
+
         StartCoroutine(ResetShooting());
         StartCoroutine(ResetShootingAnimation());
     }
 
-    private Vector3 GetDirection(Transform enemyHitTransform)
+    private Vector3 GetSpread()
     {
-        Vector3 dir = enemyHitTransform.position - shootPos.position;
-
-        if (addBulletSpread)
-        {
-            dir += new Vector3(
-                Random.Range(-bulletSpread.x, bulletSpread.x),
-                Random.Range(-bulletSpread.y, bulletSpread.y),
-                Random.Range(-bulletSpread.z, bulletSpread.z)
-                );
-        }
+        Vector3 dir = new Vector3(Random.Range(-bulletSpread.x, bulletSpread.x), Random.Range(-bulletSpread.y, bulletSpread.y), Random.Range(-bulletSpread.z, bulletSpread.z));
         return dir;
     }
 
@@ -278,9 +263,7 @@ public class NewStaff : MonoBehaviour
 
     private void FireSpecial()
     {
-        RaycastHit hit;
-        Vector3 direction = gameManager.instance.playerCharacter.transform.forward + new Vector3(0, 1, 0);
-        if (Physics.Raycast(shootPos.position, direction, out hit, float.MaxValue, mask))
+        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out RaycastHit hit, float.MaxValue, mask))
         {
             if (hit.transform.tag == "Player")
             {
@@ -326,9 +309,7 @@ public class NewStaff : MonoBehaviour
     void EarthAOE()
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        Vector3 direction = gameManager.instance.playerCharacter.transform.forward + new Vector3 (0, 1, 0);
-        RaycastHit hit;
-        if (Physics.Raycast(shootPos.position, direction, out hit, float.MaxValue, mask))
+        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out RaycastHit hit, float.MaxValue, mask))
         {
             Instantiate(earthEffect, hit.point, earthEffect.transform.rotation);
         }
