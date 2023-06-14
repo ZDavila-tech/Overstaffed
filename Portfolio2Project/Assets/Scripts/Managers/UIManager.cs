@@ -51,6 +51,7 @@ public class UIManager : MonoBehaviour
     public GameObject poisonIndicator;
     public GameObject freezeIndicator;
     public GameObject levelCompleteText;
+    public GameObject potionsIndicator;
 
     public Image playerHealthBar;
     public TextMeshProUGUI levelText;
@@ -129,6 +130,7 @@ public class UIManager : MonoBehaviour
 
             SetElement();
             SetElementIcon();
+            UpdatePotionCount();
         }
         if (creditsMenu.activeSelf)
         {
@@ -136,10 +138,8 @@ public class UIManager : MonoBehaviour
            
         }
 
-
-
         PlayerProgression();
-        UpdatePotionCount();
+
     }
     public void YouLose()
     {
@@ -400,6 +400,7 @@ public class UIManager : MonoBehaviour
             specialIndicator.SetActive(true);
             expIndicator.SetActive(true);
             healthIndicator.SetActive(true);
+            potionsIndicator.SetActive(true);
             //enemiesRemainingIndicator.SetActive(true);
         }
         else
@@ -407,6 +408,7 @@ public class UIManager : MonoBehaviour
             specialIndicator.SetActive(false);
             expIndicator.SetActive(false);
             healthIndicator.SetActive(false);
+            potionsIndicator.SetActive(false);
            // enemiesRemainingIndicator.SetActive(false);
         }
     }
