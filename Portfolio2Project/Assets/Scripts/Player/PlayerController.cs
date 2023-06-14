@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     void Start()
     {
         UpdatePlayerStats();
-        enableCamShake = true;
+        //enableCamShake = true;
         potionsAvailable = 3;
         godMode = false;
         standingHeight = height;
@@ -339,17 +339,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         {
             isShooting = true;
 
-            if (playerWeapon != null)
-            {
-                playerWeapon.Shoot();
-                StartCoroutine(PlayShootSound());
-                
-                if (enableCamShake)
-                {
-                    camShake.Shake(shootScreenshakeIntensity, 0.1f);
-                    proceduralRecoil.Recoil();
-                }
-            }
+
 
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out RaycastHit hit, ShootRange))
             {
@@ -359,6 +349,18 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
                 {
                     IDamage damageable = hit.collider.GetComponent<IDamage>();
                     damageable.TakeDamage(playerDamage);
+                }
+
+                if (playerWeapon != null)
+                {
+                    playerWeapon.Shoot(hit.transform);
+                    StartCoroutine(PlayShootSound());
+
+                    if (enableCamShake)
+                    {
+                        camShake.Shake(shootScreenshakeIntensity, 0.1f);
+                        proceduralRecoil.Recoil();
+                    }
                 }
             }
         }
