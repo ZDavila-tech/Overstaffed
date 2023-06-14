@@ -95,7 +95,7 @@ public class NewStaff : MonoBehaviour
         SpecialAttack();
     }
 
-    public void Shoot(Transform enemyHitTransform)
+    public void Shoot()
     {
         Animator anim = weapon.GetComponent<Animator>();
         //Debug.Log("Weapon Shoot Called");
