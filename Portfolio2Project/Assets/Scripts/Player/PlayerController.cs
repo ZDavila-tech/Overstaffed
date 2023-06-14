@@ -471,6 +471,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     IEnumerator Burning(float duration, float timeBetween, int damage)
     {
+        float timePassed = 0;
         orig = uiManager.playerHealthBar.color;
         bool burning = true;
         uiManager.playerHealthBar.color = Color.yellow;
@@ -483,6 +484,11 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         }
         while (burning)
         {
+            timePassed += Time.deltaTime;
+            if (timePassed >= duration)
+            {
+                burning = false;
+            }
             yield return new WaitForSeconds(timeBetween);
             TakeDamage(damage);
         }
@@ -498,6 +504,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     IEnumerator Venom(float duration, float timeBetween, int damage)
     {
+        float timePassed = 0;
         orig = uiManager.playerHealthBar.color;
         bool poisoned = true;
         uiManager.playerHealthBar.color = Color.magenta;
@@ -510,6 +517,11 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         }
         while (poisoned)
         {
+            timePassed += Time.deltaTime;
+            if (timePassed >= duration)
+            {
+                poisoned = false;
+            }
             yield return new WaitForSeconds(timeBetween);
             TakeDamage(damage);
         }
