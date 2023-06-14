@@ -14,7 +14,7 @@ public class NewStaff : MonoBehaviour
     [SerializeField] private bool addBulletSpread;
     [SerializeField] private Vector3 bulletSpread = new Vector3(0.1f, 0.1f, 0.1f);
     [SerializeField] private ParticleSystem shootingSystem;
-    [SerializeField] private Transform shootPos;
+    public Transform shootPos;
     [SerializeField] private ParticleSystem impactParticles;
     [SerializeField] private List<TrailRenderer> trailRenderer;
     [SerializeField] private float delay;
