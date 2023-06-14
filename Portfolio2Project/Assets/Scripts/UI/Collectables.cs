@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Collectables : MonoBehaviour
 {
-    [SerializeField] int value;
+    [SerializeField] float value;
     enum PickupType
     {
         Health,
@@ -37,7 +37,7 @@ public class Collectables : MonoBehaviour
                         collectSound.PlayOneShot(AudioManager.instance.healthPickupAudio, AudioManager.instance.volumeScale);
                     else
                         collectSound.PlayOneShot(AudioManager.instance.hurtPickupAudio, AudioManager.instance.volumeScale);
-                    gameManager.instance.playerController.TakeDamage(-value);
+                    gameManager.instance.playerController.TakeDamage((int)-value);
                     break;
                 case PickupType.UltimateCharge:
                     gameManager.instance.playerController.ChargeUt(value);
@@ -46,7 +46,7 @@ public class Collectables : MonoBehaviour
                     Instantiate(mimic, transform.position, mimic.transform.rotation);
                     break;
                 case PickupType.Exp:
-                    gameManager.instance.playerStats.GainExp(value);
+                    gameManager.instance.playerStats.GainExp((int)value);
                     break;
                 case PickupType.Poison:
                     gameManager.instance.playerController.Poison(value, 1);

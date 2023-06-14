@@ -506,7 +506,6 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     {
         float timePassed = 0;
         orig = uiManager.playerHealthBar.color;
-        bool poisoned = true;
         uiManager.playerHealthBar.color = Color.magenta;
         uiManager.poisonIndicator.SetActive(true);
         int oldAttack = 0;
@@ -515,24 +514,18 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             oldAttack = playerDamage;
             playerDamage = (int)(playerDamage * 1.5f);
         }
-        while (poisoned)
+        while (timePassed <= duration)
         {
             timePassed += Time.deltaTime;
-            if (timePassed >= duration)
-            {
-                poisoned = false;
-            }
             yield return new WaitForSeconds(timeBetween);
             TakeDamage(damage);
         }
-        yield return new WaitForSeconds(duration);
         if (playerElement == NewStaff.Element.Earth)
         {
             playerDamage = oldAttack;
         }
         uiManager.poisonIndicator.SetActive(false);
         uiManager.playerHealthBar.color = orig;
-        poisoned = false;
     }
 
     public void Burn(float duration, float timeBetween)
