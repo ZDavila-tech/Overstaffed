@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5290288929384632825}
-  - component: {fileID: 6677674672079467568}
   - component: {fileID: 2058691816349926398}
   - component: {fileID: 3300836775158433523}
   - component: {fileID: 7446089236379023570}
@@ -37,19 +36,6 @@ Transform:
   m_Father: {fileID: 2913172950106796936}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6677674672079467568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2499144469899351205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ea5c3460058615478690ce44271606c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactionText: Level Select
 --- !u!33 &2058691816349926398
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -122,7 +108,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2913172950106796936}
-  - component: {fileID: 2913172950106796939}
+  - component: {fileID: 3982445922100182217}
   - component: {fileID: 2913172950106796938}
   - component: {fileID: 2913172950106796941}
   - component: {fileID: 2913172950106796940}
@@ -149,7 +135,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2913172950106796939
+--- !u!114 &3982445922100182217
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -190,7 +176,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bf217d7e31889e04aaf8f69e474a684d, type: 2}
+  - {fileID: 2100000, guid: b422ab26ae68e8b48a199287b4350caa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
