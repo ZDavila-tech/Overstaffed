@@ -447,19 +447,23 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     IEnumerator Freezing(float duration)
     {
+        float timePassed = 0;
         orig = uiManager.playerHealthBar.color;
-        bool freezing = true;
         uiManager.freezeIndicator.SetActive(true);
         uiManager.playerHealthBar.color = Color.cyan;
+        float origSpd = playerSpeed;
+        playerSpeed = 0;
         if (playerElement == NewStaff.Element.Water)
         {
-            while (freezing)
+            while (timePassed <= duration)
             {
+                timePassed += Time.deltaTime;
                 yield return new WaitForSeconds(1);
                 TakeDamage(-1);
             }
         }
         yield return new WaitForSeconds(duration);
+        playerSpeed = origSpeed;
         uiManager.freezeIndicator.SetActive(false);
         uiManager.playerHealthBar.color = orig;
     }
@@ -473,7 +477,6 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     {
         float timePassed = 0;
         orig = uiManager.playerHealthBar.color;
-        bool burning = true;
         uiManager.playerHealthBar.color = Color.yellow;
         uiManager.burnIndicator.SetActive(true);
         float oldSpeed = 0;
@@ -482,13 +485,9 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             oldSpeed = playerSpeed;
             playerSpeed *= 1.5f;
         }
-        while (burning)
+        while (timePassed <= duration)
         {
             timePassed += Time.deltaTime;
-            if (timePassed >= duration)
-            {
-                burning = false;
-            }
             yield return new WaitForSeconds(timeBetween);
             TakeDamage(damage);
         }
@@ -499,7 +498,6 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         }
         uiManager.burnIndicator.SetActive(false);
         uiManager.playerHealthBar.color = orig;
-        burning = false;
     }
 
     IEnumerator Venom(float duration, float timeBetween, int damage)
@@ -530,7 +528,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     public void Burn(float duration, float timeBetween)
     {
-        StartCoroutine(Burning(duration, timeBetween, playerStats.GetHealth() * (100 / 10)));
+        StartCoroutine(Burning(duration, timeBetween, playerStats.GetHealth() * (1)));
     }
 
     public void Poison(float duration, float timeBetweeen)

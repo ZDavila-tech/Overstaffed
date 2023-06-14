@@ -28,7 +28,7 @@ public class Stats : MonoBehaviour
     //Getters
     public int GetHealth()
     {
-        return Health * 10;
+        return Health;
     }
     public int GetSpeed()
     {

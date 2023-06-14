@@ -44,6 +44,7 @@ public class StoreButtons : MonoBehaviour
                 gameManager.instance.playerStats.HealthUp(1);
             }
             gameManager.instance.playerController.UpdatePlayerStats();
+            gameManager.instance.playerController.UpdateHealthBar();
             DisplayCosts();
         }
     }
@@ -93,6 +94,7 @@ public class StoreButtons : MonoBehaviour
                 gameManager.instance.playerStats.HealthUp(-1);
             }
             gameManager.instance.playerController.UpdatePlayerStats();
+            gameManager.instance.playerController.UpdateHealthBar();
         }
     }
     public void SellSpeed(int amount)
