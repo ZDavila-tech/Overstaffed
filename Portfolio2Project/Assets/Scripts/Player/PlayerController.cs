@@ -347,9 +347,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
                 if (enableCamShake)
                 {
                     camShake.Shake(shootScreenshakeIntensity, 0.1f);
+                    proceduralRecoil.Recoil();
                 }
-
-                proceduralRecoil.Recoil();
             }
 
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out RaycastHit hit, ShootRange))
