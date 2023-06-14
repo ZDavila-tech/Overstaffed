@@ -25,7 +25,6 @@ public class UIManager : MonoBehaviour
     public GameObject storeMenu;
     public GameObject buyScreen;
     public GameObject sellScreen;
-    public GameObject inventoryScreen;
     public GameObject elementSelectMenu;
     public GameObject saveMenu;
     public GameObject creditsMenu;
