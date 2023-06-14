@@ -28,11 +28,11 @@ public class CameraControls : MonoBehaviour
     void Update()
     {
 
-        sensHor = (int)(uiManager.mouseSen.value * 300);
-        sensVert = (int)(uiManager.mouseSen.value * 300);
+        //sensHor = (int)(uiManager.mouseSen.value * 300);
+        //sensVert = (int)(uiManager.mouseSen.value * 300);
         //Get Input
-        float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * sensVert;
-        float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * sensHor;
+        float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * (sensVert + (uiManager.mouseSen.value * 300));
+        float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * (sensHor + (uiManager.mouseSen.value * 300));
 
         //Convert input to rotation float and give the option for inverted controls
         if (uiManager != null && uiManager.invert.isOn)
