@@ -98,7 +98,6 @@ public class buttonFunctions : MonoBehaviour
     {
         AudioManager.instance.MenuTransition();
         fileManager.save();
-        Destroy(GameObject.FindGameObjectWithTag("Player"));
         uiManager.saveMenu.SetActive(false);
         uiManager.HideActiveMenu();
         uiManager.HUD.SetActive(false);
@@ -112,6 +111,7 @@ public class buttonFunctions : MonoBehaviour
         Debug.Log("Player Character destroyed");
         Time.timeScale = gameManager.instance.timeScaleOriginal;
 
+        Destroy(GameObject.FindGameObjectWithTag("Player"));
         SceneManager.LoadScene("Main Menu");
     }
 
@@ -156,7 +156,7 @@ public class buttonFunctions : MonoBehaviour
         uiManager.activeMenu = uiManager.playerSelect;
         AudioManager.instance.ChangeSong();
         uiManager.ShowActiveMenu();
-        LevelManager.instance.currentLevel = fileManager.level;
+        //LevelManager.instance.currentLevel = fileManager.level;
         SceneManager.LoadScene("Character Select");
     }
 
@@ -170,7 +170,7 @@ public class buttonFunctions : MonoBehaviour
         uiManager.activeMenu = uiManager.playerSelect;
         AudioManager.instance.ChangeSong();
         uiManager.ShowActiveMenu();
-        LevelManager.instance.tutorialBeaten = false;
+        //LevelManager.instance.tutorialBeaten = false;
         LevelManager.instance.highestLevelCompleted = 0;
         LevelManager.instance.totalEnemiesDefeated = 0;
 
