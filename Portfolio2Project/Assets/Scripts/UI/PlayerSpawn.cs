@@ -52,7 +52,9 @@ public class PlayerSpawn : MonoBehaviour
         {
             if(player != null)
             {
+                player.GetComponent<CharacterController>().enabled = false;
                 player.transform.SetPositionAndRotation(this.gameObject.transform.position, this.gameObject.transform.rotation);
+                player.GetComponent<CharacterController>().enabled = true;
             }
             else
             {
