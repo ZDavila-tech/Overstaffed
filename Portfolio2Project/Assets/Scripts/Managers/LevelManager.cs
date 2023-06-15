@@ -215,51 +215,35 @@ public class LevelManager : MonoBehaviour
                     ScaleSpawners();
                     if (currentLevel < 6) 
                     {
+                        if (currentLevel > highestLevelCompleted)
+                        {
+                            highestLevelCompleted = currentLevel;
+                        }
                         LoadLevelVariableReset();
                         switch (currentLevel)
                         {
                             case 1:
                                 {
-                                    if (currentLevel > highestLevelCompleted)
-                                    {
-                                        highestLevelCompleted = currentLevel;
-                                    }
                                     SceneManager.LoadScene("Home");
                                     break;
                                 }
                             case 2:
                                 {
-                                    if (currentLevel > highestLevelCompleted)
-                                    {
-                                        highestLevelCompleted = currentLevel;
-                                    }
                                     SceneManager.LoadScene("UpTheCliffs");
                                     break;
                                 }
                             case 3:
                                 {
-                                    if (currentLevel > highestLevelCompleted)
-                                    {
-                                        highestLevelCompleted = currentLevel;
-                                    }
                                     SceneManager.LoadScene("AcrossTheGap");
                                     break;
                                 }
                             case 4:
                                 {
-                                    if (currentLevel > highestLevelCompleted)
-                                    {
-                                        highestLevelCompleted = currentLevel;
-                                    }
                                     SceneManager.LoadScene("RoadBlock");
                                     break;
                                 }
                             case 5:
                                 {
-                                    if (currentLevel > highestLevelCompleted)
-                                    {
-                                        highestLevelCompleted = currentLevel;
-                                    }
                                     enemiesRemaining = totalEnemiesToSpawn;
                                     SceneManager.LoadScene("Reception");                                    
                                     break;
@@ -323,7 +307,7 @@ public class LevelManager : MonoBehaviour
 
     public void TutorialBeatenGoToLevelSix()
     {
-        if (tutorialBeaten)
+        if (highestLevelCompleted >= 5)
         {
             currentLevel = 6;
         }

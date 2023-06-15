@@ -10,7 +10,7 @@ public static class fileManager// : MonoBehaviour
     public static float musicVolume;
     public static float sensitivity;
     public static int level;
-    public static int maxLevel;
+    public static int highestLevelCompleted;
     public static bool invertY;
     public static bool infinite = true;
 
@@ -36,7 +36,7 @@ public static class fileManager// : MonoBehaviour
         PlayerPrefs.SetFloat("MuV", musicVolume);
         PlayerPrefs.SetFloat("Sen", sensitivity);
         PlayerPrefs.SetInt("LvL", level);
-        PlayerPrefs.SetInt("MaxLvL", maxLevel);
+        PlayerPrefs.SetInt("MaxLvL", highestLevelCompleted);
         PlayerPrefs.SetString("inv", invertY.ToString());
         PlayerPrefs.SetString("inf", infinite.ToString());
     }
@@ -48,7 +48,7 @@ public static class fileManager// : MonoBehaviour
         musicVolume = PlayerPrefs.GetFloat("MuV");
         sensitivity = PlayerPrefs.GetFloat("Sen");
         level = PlayerPrefs.GetInt("LvL");
-        maxLevel = PlayerPrefs.GetInt("MaxLvL");
+        highestLevelCompleted = PlayerPrefs.GetInt("MaxLvL");
         infinite = bool.Parse(PlayerPrefs.GetString("inf"));
         invertY = bool.Parse( PlayerPrefs.GetString("inv"));
 
