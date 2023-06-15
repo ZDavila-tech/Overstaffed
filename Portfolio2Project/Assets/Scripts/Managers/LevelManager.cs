@@ -37,7 +37,7 @@ public class LevelManager : MonoBehaviour
     public bool levelLoading;
     public bool levelStarted; //player successfully teleported/close enough to spawn
     public bool levelCompleted; //for use by other scripts, makes life easier -> if levelStarted, no enemies, and player in elevator -> load new level
-    public bool tutorialBeaten;
+    //public bool tutorialBeaten;
     public bool endlessMode;//to determine if the player is currently playing Endless Mode
 
     [Header("----- High Score Stuff (Ignore)-----")]
@@ -193,10 +193,6 @@ public class LevelManager : MonoBehaviour
             
             if (currentLevel % 5 == 0)
             {
-                if (!tutorialBeaten)
-                {
-                    tutorialBeaten = true;
-                }
                 ++currentLevel; //ups difficulty
                 ScaleSpawners();
                 LoadLevelVariableReset();
@@ -252,10 +248,6 @@ public class LevelManager : MonoBehaviour
                     }
                     else
                     {
-                        if(!tutorialBeaten)
-                        {
-                            tutorialBeaten = true;
-                        }
                         LoadLevelVariableReset();
                         enemiesRemaining = totalEnemiesToSpawn;
                         if (currentLevel > highestLevelCompleted)
