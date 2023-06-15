@@ -34,10 +34,10 @@ public class LevelManager : MonoBehaviour
 
     [Header("----- Level Transition Stuff (Ignore)-----")]
     public bool inElevator; //player is in elevator
+    public bool levelLoading;
     public bool levelStarted; //player successfully teleported/close enough to spawn
     public bool levelCompleted; //for use by other scripts, makes life easier -> if levelStarted, no enemies, and player in elevator -> load new level
-    public bool hasBeatenTutorial;
-    public bool loadingLevel;
+    public bool tutorialBeaten;
     public bool endlessMode;//to determine if the player is currently playing Endless Mode
 
     [Header("----- High Score Stuff (Ignore)-----")]
@@ -73,7 +73,7 @@ public class LevelManager : MonoBehaviour
         }
         //setting starting variables
         currentLevel = 1;
-        loadingLevel = false;
+        levelLoading = false;
         totalEnemiesDefeated = 0;
         endlessMode = false;
         levelStarted = false;
@@ -90,7 +90,7 @@ public class LevelManager : MonoBehaviour
         
         }        
 
-        if (loadingLevel == false)
+        if (levelLoading == false)
         {
             currentEnemiesAlive = GameObject.FindGameObjectsWithTag("Enemy").Length;
             if (!isSpawning && !levelCompleted && (totalEnemiesToSpawn > currentEnemiesSpawned) && (currentEnemiesAlive < maxEnemiesAtOneTime))
@@ -106,9 +106,9 @@ public class LevelManager : MonoBehaviour
         if (levelStarted && enemiesRemaining <= 0) //if level is started and all enemies are dead level is considered completed
         {
             levelCompleted = true;
-            if (inElevator && !loadingLevel)
+            if (inElevator && !levelLoading)
             {
-                loadingLevel = true;
+                levelLoading = true;
                 if(currentLevel >= 5)//update the player on how well they're doing after each level after the tutorial
                 {
                     uiManager.ShowPostRunStats();
@@ -193,9 +193,9 @@ public class LevelManager : MonoBehaviour
             
             if (currentLevel % 5 == 0)
             {
-                if (!hasBeatenTutorial)
+                if (!tutorialBeaten)
                 {
-                    hasBeatenTutorial = true;
+                    tutorialBeaten = true;
                 }
                 ++currentLevel; //ups difficulty
                 ScaleSpawners();
@@ -268,9 +268,9 @@ public class LevelManager : MonoBehaviour
                     }
                     else
                     {
-                        if(!hasBeatenTutorial)
+                        if(!tutorialBeaten)
                         {
-                            hasBeatenTutorial = true;
+                            tutorialBeaten = true;
                         }
                         LoadLevelVariableReset();
                         enemiesRemaining = totalEnemiesToSpawn;
@@ -315,7 +315,7 @@ public class LevelManager : MonoBehaviour
         enemiesRemaining = 0;
         currentEnemiesSpawned = 0;
         inElevator = false;
-        loadingLevel = false;
+        levelLoading = false;
         levelStarted = false;
         levelCompleted = false;   
         StopAllCoroutines();
@@ -323,7 +323,7 @@ public class LevelManager : MonoBehaviour
 
     public void TutorialBeatenGoToLevelSix()
     {
-        if (hasBeatenTutorial)
+        if (tutorialBeaten)
         {
             currentLevel = 6;
         }

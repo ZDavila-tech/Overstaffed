@@ -170,7 +170,7 @@ public class buttonFunctions : MonoBehaviour
         uiManager.activeMenu = uiManager.playerSelect;
         AudioManager.instance.ChangeSong();
         uiManager.ShowActiveMenu();
-        LevelManager.instance.hasBeatenTutorial = false;
+        LevelManager.instance.tutorialBeaten = false;
         LevelManager.instance.highestLevelCompleted = 0;
         LevelManager.instance.totalEnemiesDefeated = 0;
 

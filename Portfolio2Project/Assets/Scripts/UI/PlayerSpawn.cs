@@ -8,8 +8,8 @@ public class PlayerSpawn : MonoBehaviour
 
     LevelManager levelManager;
 
-    bool playerInSpawn;
-    bool keepPullingPlayer;
+    private bool playerInSpawn;
+    private bool pullPlayer;
 
     private void Start()
     {
@@ -20,9 +20,32 @@ public class PlayerSpawn : MonoBehaviour
 
     private void Update()
     {
-        if(keepPullingPlayer == true)
+        if(pullPlayer)
         {
             PullPlayer();
+        }
+    }
+
+    public void PullPlayer() //Player is in spawn or close enough -> Start Game
+    {
+        if (playerInSpawn)
+        {
+            levelManager.levelLoading = false;
+            pullPlayer = false;
+        }
+        else
+        {
+            if (player != null)
+            {
+                player.GetComponent<CharacterController>().enabled = false;
+                player.transform.SetPositionAndRotation(gameObject.transform.position, gameObject.transform.rotation);
+                player.GetComponent<CharacterController>().enabled = true;
+            }
+            else
+            {
+                player = GameObject.FindGameObjectWithTag("Player");
+            }
+            pullPlayer = true;
         }
     }
 
@@ -30,40 +53,27 @@ public class PlayerSpawn : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            playerInSpawn = true;
-            levelManager.inElevator = false;
-            keepPullingPlayer = false;
+            PlayerInSpawn();
         }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            PlayerInSpawn();
+        }
+    }
+
+    public void PlayerInSpawn()
+    {
+        playerInSpawn = true;
+        //levelManager.inElevator = false;
     }
 
     private void OnTriggerExit(Collider other)
     {
         PlayerLeftSpawn();
-    }
-
-    public void PullPlayer() //Player is in spawn or close enough -> Start Game
-    {
-        if (playerInSpawn == true)
-        {
-            levelManager.loadingLevel = false;
-            //Debug.Log("Player spawn pulled player");
-        }
-        else
-        {
-            if(player != null)
-            {
-                player.GetComponent<CharacterController>().enabled = false;
-                player.transform.SetPositionAndRotation(this.gameObject.transform.position, this.gameObject.transform.rotation);
-                player.GetComponent<CharacterController>().enabled = true;
-            }
-            else
-            {
-                player = GameObject.FindGameObjectWithTag("Player");
-            }
-
-            keepPullingPlayer = true;
-            //Debug.Log("Player spawn tried to pull player player");
-        }
     }
 
     public void PlayerLeftSpawn()
