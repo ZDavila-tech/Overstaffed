@@ -34,7 +34,7 @@ public class InElevator : MonoBehaviour
         {
             ding();
             //Debug.Log("Opening");
-            uiManager.LevelComplete();
+            uiManager.ShowLevelCompleteText();
             doorAnim.SetBool("Open", true);
             lightOn.SetActive(true);
             lightOff.SetActive(false);
@@ -64,9 +64,6 @@ public class InElevator : MonoBehaviour
             StartCoroutine(openDoors());
             levelManager.inElevator = true;
         }
-
-
-
     }
 
     void ding()

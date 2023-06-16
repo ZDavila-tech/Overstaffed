@@ -253,7 +253,7 @@ public class UIManager : MonoBehaviour
         levelText.text = level.ToString("F0");
     }
 
-    public void LevelComplete()
+    public void ShowLevelCompleteText()
     {
         levelCompleteText.SetActive(true);
     }
