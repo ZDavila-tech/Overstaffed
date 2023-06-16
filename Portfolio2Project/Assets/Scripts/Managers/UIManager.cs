@@ -257,7 +257,7 @@ public class UIManager : MonoBehaviour
     {
         levelCompleteText.SetActive(true);
     }
-    public void LevelTextOff()
+    public void StopLevelCompleteText()
     {
         levelCompleteText.SetActive(false);
     }

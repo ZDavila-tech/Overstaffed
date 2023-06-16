@@ -21,6 +21,7 @@ public class InElevator : MonoBehaviour
     AudioManager audioManager;
 
     bool hasDinged = false;
+
     private void Start()
     {
         levelManager = LevelManager.instance;
@@ -30,28 +31,26 @@ public class InElevator : MonoBehaviour
 
     private void Update()
     {
-        if (levelManager.levelCompleted == true && levelManager.inElevator == false)
+        if (levelManager.levelCompleted && !levelManager.inElevator)
         {
             ding();
             //Debug.Log("Opening");
             uiManager.ShowLevelCompleteText();
             doorAnim.SetBool("Open", true);
-            lightOn.SetActive(true);
-            lightOff.SetActive(false);
+            TurnLightOn();
         }
-        else if (levelManager.levelCompleted == false && levelManager.inElevator == false)
+        //else if (!levelManager.levelCompleted && !levelManager.inElevator)
+        //{
+        //    //Debug.Log("Closing");
+        //    doorAnim.SetBool("Open", false); //closes door
+        //    TurnLightOff();
+        //}
+        else if (levelManager.levelCompleted && levelManager.inElevator)
         {
-            //Debug.Log("Closing");
-            doorAnim.SetBool("Open", false);
-            lightOn.SetActive(false);
-            lightOff.SetActive(true);
-        }
-        else if (levelManager.levelCompleted == true && levelManager.inElevator == true)
-        {
-            uiManager.LevelTextOff();
+            uiManager.StopLevelCompleteText();
             StartCoroutine(closeDoors());
         }
-        else
+        else if (!levelManager.levelCompleted && levelManager.inElevator)
         {
             StartCoroutine(openDoors());
         }
@@ -73,7 +72,7 @@ public class InElevator : MonoBehaviour
             //Debug.Log("DING");
             aud.volume = AudioManager.instance.volumeScale*0.75f;
             aud.Play();
-            hasDinged= true;
+            hasDinged = true;
         }
     }
 
@@ -101,5 +100,15 @@ public class InElevator : MonoBehaviour
         doorAnim.SetBool("Open", false);
     }
 
+    public void TurnLightOn()
+    {
+        lightOn.SetActive(true);
+        lightOff.SetActive(false);
+    }
 
+    public void TurnLightOff()
+    {
+        lightOn.SetActive(false);
+        lightOff.SetActive(true);
+    }
 }
