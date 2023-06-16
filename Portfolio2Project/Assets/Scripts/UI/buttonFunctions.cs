@@ -44,7 +44,6 @@ public class buttonFunctions : MonoBehaviour
         Time.timeScale = gameManager.instance.timeScaleOriginal;
 
         Destroy(GameObject.FindGameObjectWithTag("Player"));
-        LevelManager.instance.endlessMode = false;
         SceneManager.LoadScene("Character Select");
     }
 
@@ -79,8 +78,6 @@ public class buttonFunctions : MonoBehaviour
     {
         AudioManager.instance.MenuTransition();
         uiManager.saveMenu.SetActive(true);
-        
-        LevelManager.instance.endlessMode = false;
     }
 
     public void MainFromChar()
