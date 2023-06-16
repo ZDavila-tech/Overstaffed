@@ -305,6 +305,7 @@ public class LevelManager : MonoBehaviour
     {
         currentLevel = levelToSetTo;
         ScaleSpawners();
+        enemiesRemaining = 0;
     }
 
     public void TutorialBeatenGoToLevelSix()
