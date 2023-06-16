@@ -63,7 +63,7 @@ public class LevelSelectButtons : MonoBehaviour
             ButtonSwap(levelTwentyOneButtonOff, levelTwentyOneButtonOn);
         }
 
-        if (levelManager.highestLevelCompleted >= 20)
+        if (levelManager.highestLevelCompleted >= 21)
         {
             ButtonSwap(levelInfiniteButtonOff, levelInfiniteButtonOn);
         }
@@ -113,7 +113,7 @@ public class LevelSelectButtons : MonoBehaviour
     public void InfinityButtonPressed()
     {
         butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
-        levelManager.maxPlayableLevel = int.MaxValue;
+        levelManager.maxPlayableLevel = int.MaxValue - 1;
         levelManager.SetCurrentLevel(22);
     }
 
