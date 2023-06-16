@@ -17,42 +17,56 @@ public class InElevator : MonoBehaviour
     [Header("----- Set By Script -----")]
     public LevelManager levelManager;
 
+    private bool doorsOpen;
+    private bool levelCompletedTextShowing;
     UIManager uiManager;
-    AudioManager audioManager;
-
-    bool hasDinged = false;
 
     private void Start()
     {
         levelManager = LevelManager.instance;
         uiManager = UIManager.instance;
-        audioManager = AudioManager.instance;
+        doorsOpen= false;
     }
 
     private void Update()
     {
         if (levelManager.levelCompleted && !levelManager.inElevator)
         {
-            ding();
             //Debug.Log("Opening");
-            uiManager.ShowLevelCompleteText();
-            doorAnim.SetBool("Open", true);
-            TurnLightOn();
+            if(!levelCompletedTextShowing)
+            {
+                uiManager.ShowLevelCompleteText();
+                levelCompletedTextShowing = true;
+            }
+            StartCoroutine(OpenDoors());
         }
-        //else if (!levelManager.levelCompleted && !levelManager.inElevator)
-        //{
-        //    //Debug.Log("Closing");
-        //    doorAnim.SetBool("Open", false); //closes door
-        //    TurnLightOff();
-        //}
+        else if (!levelManager.levelCompleted && !levelManager.inElevator)
+        {
+            //Debug.Log("Closing");
+            if(levelCompletedTextShowing)
+            {
+                uiManager.StopLevelCompleteText();
+                levelCompletedTextShowing = false;
+            }
+            StartCoroutine(CloseDoors());
+        }
         else if (levelManager.levelCompleted && levelManager.inElevator)
         {
-            uiManager.StopLevelCompleteText();
-            StartCoroutine(closeDoors());
+            if(levelCompletedTextShowing)
+            {
+                uiManager.StopLevelCompleteText();
+                levelCompletedTextShowing = false;
+            }
+            StartCoroutine(CloseDoors());
         }
         else if (!levelManager.levelCompleted && levelManager.inElevator)
         {
-            StartCoroutine(openDoors());
+            if(levelCompletedTextShowing)
+            {
+                uiManager.StopLevelCompleteText();
+                levelCompletedTextShowing = false;
+            }
+            StartCoroutine(OpenDoors());
         }
     }
 
@@ -60,44 +74,48 @@ public class InElevator : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            StartCoroutine(openDoors());
             levelManager.inElevator = true;
         }
     }
 
-    void ding()
+    void Ding()
     {
-        if (!hasDinged)
-        {
-            //Debug.Log("DING");
-            aud.volume = AudioManager.instance.volumeScale*0.75f;
-            aud.Play();
-            hasDinged = true;
-        }
+        //Debug.Log("DING");
+        aud.volume = AudioManager.instance.volumeScale * 0.75f;
+        aud.Play();
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            //Debug.Log("NOT IN ELEVATOR");
-            doorAnim.SetBool("Open", false);
             levelManager.inElevator = false;
         }
     }
 
-    IEnumerator openDoors()
+    IEnumerator OpenDoors()
     {
-        //Debug.Log("Opening Coroutine");
-        yield return new WaitForSeconds(3);
-        doorAnim.SetBool("Open", true);
+        if(!doorsOpen)
+        {
+            doorsOpen = true;
+            Ding();
+            TurnLightOn();
+            //Debug.Log("Opening Coroutine");
+            yield return new WaitForSeconds(3);
+            doorAnim.SetBool("Open", true);
+        }
     }
 
-    IEnumerator closeDoors()
+    IEnumerator CloseDoors()
     {
-        //Debug.Log("Closing");
-        yield return new WaitForSeconds(3);
-        doorAnim.SetBool("Open", false);
+        if(doorsOpen)
+        {
+            doorsOpen = false;
+            TurnLightOff();
+            //Debug.Log("Closing");
+            yield return new WaitForSeconds(3);
+            doorAnim.SetBool("Open", false);
+        }
     }
 
     public void TurnLightOn()
