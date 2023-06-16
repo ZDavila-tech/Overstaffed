@@ -67,6 +67,7 @@ public class UIManager : MonoBehaviour
     [Header("-----Fade Stuff-----")]
     public int fadeSpeed;
     public Animator fadeScreen;
+    public bool isFading;
 
 
     [Header("-----Tutorial Stuff-----")]
@@ -124,7 +125,7 @@ public class UIManager : MonoBehaviour
     void Update()
     {
 
-         if (Input.GetButtonDown("Cancel") && activeMenu == null)
+         if (Input.GetButtonDown("Cancel") && activeMenu == null && !isFading)
          {
 
              AudioManager.instance.MenuTransition();
@@ -331,10 +332,11 @@ public class UIManager : MonoBehaviour
     //Animation for fade screen
     public IEnumerator FadeScreen()
     {
-        activeMenu = fademenu;
+        isFading = true;
         fadeScreen.SetTrigger("StartFade");
         yield return new WaitForSeconds(fadeSpeed);
         LevelManager.instance.LoadNextLevel();
+        isFading = false;
     }
 
     public void UpdateUtCharge(float amount)
