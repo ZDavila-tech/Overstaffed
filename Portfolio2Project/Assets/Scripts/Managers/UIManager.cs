@@ -21,6 +21,7 @@ public class UIManager : MonoBehaviour
     public GameObject loseMenu;
     public GameObject winMenu;
     public GameObject settingsMenu;
+    public GameObject fademenu;
     public GameObject flashDamage;
     public GameObject levelSelectMenu;
     public GameObject storeMenu;
@@ -64,7 +65,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image UtCharge;
 
     [Header("-----Fade Stuff-----")]
-    public float fadeSpeed;
+    public int fadeSpeed;
     public Animator fadeScreen;
 
 
@@ -125,14 +126,12 @@ public class UIManager : MonoBehaviour
 
          if (Input.GetButtonDown("Cancel") && activeMenu == null)
          {
-             if (fadeScreen.GetBool("StartFade") == false)
-             {
-                AudioManager.instance.MenuTransition();
-                activeMenu = pauseMenu;
-                ShowActiveMenu();
-                gameManager.PauseState();
-                flashDamage.SetActive(false);
-             }
+
+             AudioManager.instance.MenuTransition();
+             activeMenu = pauseMenu;
+             ShowActiveMenu();
+             gameManager.PauseState();
+             flashDamage.SetActive(false);
 
          }
 
@@ -332,10 +331,9 @@ public class UIManager : MonoBehaviour
     //Animation for fade screen
     public IEnumerator FadeScreen()
     {
+        activeMenu = fademenu;
         fadeScreen.SetTrigger("StartFade");
-        Debug.Log(fadeScreen.GetBool("StartFade"));
         yield return new WaitForSeconds(fadeSpeed);
-        Debug.Log(fadeScreen.GetBool("StartFade"));
         LevelManager.instance.LoadNextLevel();
     }
 

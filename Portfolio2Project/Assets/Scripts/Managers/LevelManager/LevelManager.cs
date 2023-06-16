@@ -158,6 +158,7 @@ public class LevelManager : MonoBehaviour
     public void StartLevelTransitionSequence() //if levelStarted, no enemies, and player in elevator -> load new level
     {
         StartCoroutine(uiManager.FadeScreen()); //loads a new level != the current level index
+     
     }
 
     public void LoadNextLevel()
