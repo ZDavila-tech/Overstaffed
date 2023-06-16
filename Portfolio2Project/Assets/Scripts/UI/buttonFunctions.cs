@@ -30,13 +30,14 @@ public class buttonFunctions : MonoBehaviour
     public void Restart()
     {
         buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
-        Debug.Log("Player Character destroyed");
 
         uiManager.HideActiveMenu();
         uiManager.HUD.SetActive(false);
         uiManager.activeMenu = uiManager.playerSelect;
 
         LevelManager.instance.totalEnemiesDefeated = 0;
+        Debug.Log(gameManager.instance.playerController.totalHP);
+        Debug.Log("Health: " + gameManager.instance.playerStats.Health);
 
         AudioManager.instance.currSong = 1;
         AudioManager.instance.PlaySong();

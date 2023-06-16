@@ -20,8 +20,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     [SerializeField] int baseHealth;
     [SerializeField] float baseSpeed;
     [SerializeField] public Stats playerStats;
-    int iHP;
-    int totalHP;
+    public int iHP;
+    public int totalHP;
     public float playerSpeed;
     int playerDamage;
     [Range(0, 100)][SerializeField] float utCharge;
@@ -115,6 +115,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         UpdateSpeed();
         playerDamage = playerStats.Attack + baseAttack;
         UpdateHP(true);
+
     }
 
     void Update()
@@ -547,7 +548,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
                 break;
             case NewStaff.Element.Water:
                 baseHealth = 15;
-                UpdateHealthBar();
+                //UpdateHealthBar();
                 baseSpeed = 8;
                 baseAttack = 1;
                 break;

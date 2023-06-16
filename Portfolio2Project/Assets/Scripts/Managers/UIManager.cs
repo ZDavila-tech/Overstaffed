@@ -41,6 +41,7 @@ public class UIManager : MonoBehaviour
     public Animator creditSlide;
     public Animator levelComplete;
 
+
     [Header("----- HUD Pieces -----")]
     public GameObject highJumpIndicator;
     public GameObject dashIndicator;
@@ -63,8 +64,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image UtCharge;
 
     [Header("-----Fade Stuff-----")]
-    public int fadeSpeed;
+    public float fadeSpeed;
     public Animator fadeScreen;
+
 
     [Header("-----Tutorial Stuff-----")]
     public GameObject tut1;
@@ -100,31 +102,40 @@ public class UIManager : MonoBehaviour
         else
         {
             instance = this;
-        }        
+        }
+       
     }
 
     private void Start()
     {
         fileManager.firstLoad();
-        gameManager = gameManager.instance;
+       
         activeMenu = mainMenu;
         //playerElement = gameManager.playerElement;
+        gameManager = gameManager.instance;
         levelManager = LevelManager.instance;
         playerSkills = gameManager.playerSkills;
         //fileManager.save();
         fileManager.load();
+
     }
 
     void Update()
     {
-        if (Input.GetButtonDown("Cancel") && activeMenu == null)
-        {
-            AudioManager.instance.MenuTransition();
-            activeMenu = pauseMenu;
-            ShowActiveMenu();
-            gameManager.PauseState();
-            flashDamage.SetActive(false);
-        }
+
+         if (Input.GetButtonDown("Cancel") && activeMenu == null)
+         {
+             if (fadeScreen.GetBool("StartFade") == false)
+             {
+                AudioManager.instance.MenuTransition();
+                activeMenu = pauseMenu;
+                ShowActiveMenu();
+                gameManager.PauseState();
+                flashDamage.SetActive(false);
+             }
+
+         }
+
         if(gameManager.playerCharacter != null)
         {
             AbilityCoolDown();
@@ -198,7 +209,7 @@ public class UIManager : MonoBehaviour
 
     public void ExitCreditScreen()
     {
-        if (creditSlide.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        if (creditSlide.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f  || Input.anyKeyDown)
         {
             creditsMenu.SetActive(false);
             if(levelManager.currentLevel == 22)
@@ -322,8 +333,9 @@ public class UIManager : MonoBehaviour
     public IEnumerator FadeScreen()
     {
         fadeScreen.SetTrigger("StartFade");
-
+        Debug.Log(fadeScreen.GetBool("StartFade"));
         yield return new WaitForSeconds(fadeSpeed);
+        Debug.Log(fadeScreen.GetBool("StartFade"));
         LevelManager.instance.LoadNextLevel();
     }
 
