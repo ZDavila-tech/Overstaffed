@@ -265,7 +265,7 @@ public class NewStaff : MonoBehaviour
     {
         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out RaycastHit hit, float.MaxValue, mask))
         {
-            if (hit.transform.tag == "Player")
+            if (hit.transform.CompareTag("Player"))
             {
                 Physics.IgnoreCollision(hit.collider, player.GetComponent<Collider>());
             }
