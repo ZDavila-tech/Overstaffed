@@ -245,6 +245,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
         yield return new WaitForSeconds(pointOfNoReturn);
         yield return new WaitForSeconds(explodeTime);
         Instantiate(explosion, transform.position, explosion.transform.rotation);
+        --levelManager.enemiesRemaining;
         Destroy(gameObject);
     }
 

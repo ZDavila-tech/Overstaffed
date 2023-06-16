@@ -167,6 +167,7 @@ public class LevelManager : MonoBehaviour
         {//chcking if the current scene is a hub or character select scene
             if (currentLevel == bossLevelOne)
             {//if the current level should be the boss
+                ++currentLevel; //ups difficulty
                 enemiesRemaining = 1;
                 SceneManager.LoadScene("HR");//load the boss level
             }
@@ -181,6 +182,8 @@ public class LevelManager : MonoBehaviour
                 {
                     if(SceneManager.GetActiveScene().buildIndex == hubSceneIndex)
                     {
+                        ++currentLevel; //ups difficulty
+                        ScaleSpawners();
                         SceneManager.LoadScene(GetRandomLevelIndex());
                     }
                     else
@@ -201,8 +204,6 @@ public class LevelManager : MonoBehaviour
             
             if (currentLevel % 5 == 0)
             {
-                ++currentLevel; //ups difficulty
-                ScaleSpawners();
                 enemiesRemaining = 0;
                 SceneManager.LoadScene(hubSceneIndex);
             }
@@ -263,6 +264,10 @@ public class LevelManager : MonoBehaviour
 
     private void SetUpForNewLevel()
     {
+        if (currentLevel > highestLevelCompleted)
+        {
+            highestLevelCompleted = currentLevel;
+        }
         currentEnemiesSpawned = 0;
         ScaleSpawners();
         levelStarted = false;
