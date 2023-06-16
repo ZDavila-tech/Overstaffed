@@ -165,7 +165,7 @@ public class LevelManager : MonoBehaviour
         SetUpForNewLevel();
         if (SceneManager.GetActiveScene().buildIndex == hubSceneIndex || SceneManager.GetActiveScene().buildIndex == characterSelectIndex)
         {//chcking if the current scene is a hub or character select scene
-            if (currentLevel == bossLevelOne)
+            if (currentLevel == bossLevelOne - 1)
             {//if the current level should be the boss
                 ++currentLevel; //ups difficulty
                 enemiesRemaining = 1;

@@ -47,25 +47,45 @@ public class LevelSelectButtons : MonoBehaviour
         {
             ButtonSwap(levelSixButtonOff, levelSixButtonOn);
         }
+        else
+        {
+            ButtonSwap(levelSixButtonOn, levelSixButtonOff);
+        }
 
         if (levelManager.highestLevelCompleted >= 10)
         {
             ButtonSwap(levelElevenButtonOff, levelElevenButtonOn);
+        }
+        else
+        {
+            ButtonSwap(levelElevenButtonOn, levelElevenButtonOff);
         }
 
         if (levelManager.highestLevelCompleted >= 15)
         {
             ButtonSwap(levelSixteenButtonOff, levelSixteenButtonOn);
         }
+        else
+        {
+            ButtonSwap(levelSixteenButtonOn, levelSixteenButtonOff);
+        }
 
         if (levelManager.highestLevelCompleted >= 20)
         {
             ButtonSwap(levelTwentyOneButtonOff, levelTwentyOneButtonOn);
         }
+        else
+        {
+            ButtonSwap(levelTwentyOneButtonOn, levelTwentyOneButtonOff);
+        }
 
         if (levelManager.highestLevelCompleted >= 21)
         {
             ButtonSwap(levelInfiniteButtonOff, levelInfiniteButtonOn);
+        }
+        else
+        {
+            ButtonSwap(levelInfiniteButtonOn, levelInfiniteButtonOff);
         }
     }
 
@@ -83,31 +103,31 @@ public class LevelSelectButtons : MonoBehaviour
     public void TutorialButtonPressed()
     {
         butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
-        levelManager.SetCurrentLevel(1);
+        levelManager.SetCurrentLevel(0);
     }
 
     public void SixButtonPressed()
     {
         butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
-        levelManager.SetCurrentLevel(6);
+        levelManager.SetCurrentLevel(5);
     }
 
     public void ElevenButtonPressed()
     {
         butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
-        levelManager.SetCurrentLevel(11);
+        levelManager.SetCurrentLevel(10);
     }
 
     public void SixteenButtonPressed()
     {
         butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
-        levelManager.SetCurrentLevel(16);
+        levelManager.SetCurrentLevel(15);
     }
 
     public void TwentyOneButtonPressed()
     {
         butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
-        levelManager.SetCurrentLevel(21);
+        levelManager.SetCurrentLevel(20);
     }
 
     public void InfinityButtonPressed()

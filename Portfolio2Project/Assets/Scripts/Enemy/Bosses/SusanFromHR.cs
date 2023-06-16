@@ -104,7 +104,6 @@ public class SusanFromHR : MonoBehaviour
     {
         uiManager = UIManager.instance;
         levelManager = LevelManager.instance;
-        ++levelManager.enemiesRemaining;
     }
 
     private void Update()
