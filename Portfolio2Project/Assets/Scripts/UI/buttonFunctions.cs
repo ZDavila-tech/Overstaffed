@@ -268,7 +268,7 @@ public class buttonFunctions : MonoBehaviour
         {
             uiManager.gamePlayRecap.SetActive(false);
             gameManager.instance.UnpauseState();
-            LevelManager.instance.LevelTransitionSequence();
+            LevelManager.instance.StartLevelTransitionSequence();
         }
         
     }
