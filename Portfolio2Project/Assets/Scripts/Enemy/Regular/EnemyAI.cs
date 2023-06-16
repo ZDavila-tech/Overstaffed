@@ -331,7 +331,7 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
             currentRate += itemRates[i];
             if (currentRate >= Random.Range(0, total))
             {
-                Instantiate(drop[i], new Vector3(transform.position.x, transform.position.y + 0.7f, transform.position.z), transform.rotation);
+                Instantiate(drop[i], new Vector3(transform.position.x, transform.position.y + 0.9f, transform.position.z), transform.rotation);
                 return;
             }
         }
