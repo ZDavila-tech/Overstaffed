@@ -8,7 +8,6 @@ public class PlayerSpawn : MonoBehaviour
 
     LevelManager levelManager;
 
-    private bool playerInSpawn;
     private bool pullPlayer;
 
     private void Start()
@@ -28,9 +27,8 @@ public class PlayerSpawn : MonoBehaviour
 
     public void PullPlayer() //Player is in spawn or close enough -> Start Game
     {
-        if (playerInSpawn)
+        if (levelManager.playerInPlayerSpawn)
         {
-            levelManager.levelLoading = false;
             pullPlayer = false;
         }
         else
@@ -57,17 +55,17 @@ public class PlayerSpawn : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            PlayerInSpawn();
-        }
-    }
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (other.CompareTag("Player"))
+    //    {
+    //        PlayerInSpawn();
+    //    }
+    //}
 
     public void PlayerInSpawn()
     {
-        playerInSpawn = true;
+        levelManager.playerInPlayerSpawn = true;
         //levelManager.inElevator = false;
     }
 
@@ -78,9 +76,7 @@ public class PlayerSpawn : MonoBehaviour
 
     public void PlayerLeftSpawn()
     {
-        playerInSpawn = false;
-        levelManager.levelStarted = true;
-        levelManager.levelCompleted = false;
+        levelManager.StartLevel();
         Destroy(this.gameObject);
     }
 }

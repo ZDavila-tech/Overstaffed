@@ -30,7 +30,7 @@ public class InElevator : MonoBehaviour
 
     private void Update()
     {
-        if (levelManager.levelCompleted && !levelManager.inElevator)
+        if (levelManager.levelCompleted && !levelManager.playerInElevator)
         {
             //Debug.Log("Opening");
             if(!levelCompletedTextShowing)
@@ -40,7 +40,7 @@ public class InElevator : MonoBehaviour
             }
             StartCoroutine(OpenDoors());
         }
-        else if (!levelManager.levelCompleted && !levelManager.inElevator)
+        else if (!levelManager.levelCompleted && !levelManager.playerInElevator)
         {
             //Debug.Log("Closing");
             if(levelCompletedTextShowing)
@@ -50,7 +50,7 @@ public class InElevator : MonoBehaviour
             }
             StartCoroutine(CloseDoors());
         }
-        else if (levelManager.levelCompleted && levelManager.inElevator)
+        else if (levelManager.levelCompleted && levelManager.playerInElevator)
         {
             if(levelCompletedTextShowing)
             {
@@ -59,7 +59,7 @@ public class InElevator : MonoBehaviour
             }
             StartCoroutine(CloseDoors());
         }
-        else if (!levelManager.levelCompleted && levelManager.inElevator)
+        else if (!levelManager.levelCompleted && levelManager.playerInElevator)
         {
             if(levelCompletedTextShowing)
             {
@@ -74,7 +74,7 @@ public class InElevator : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            levelManager.inElevator = true;
+            levelManager.playerInElevator = true;
         }
     }
 
@@ -89,7 +89,7 @@ public class InElevator : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            levelManager.inElevator = false;
+            levelManager.playerInElevator = false;
         }
     }
 
@@ -101,7 +101,7 @@ public class InElevator : MonoBehaviour
             Ding();
             TurnLightOn();
             //Debug.Log("Opening Coroutine");
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(0.5f);
             doorAnim.SetBool("Open", true);
         }
     }
@@ -113,7 +113,7 @@ public class InElevator : MonoBehaviour
             doorsOpen = false;
             TurnLightOff();
             //Debug.Log("Closing");
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(0.5f);
             doorAnim.SetBool("Open", false);
         }
     }
