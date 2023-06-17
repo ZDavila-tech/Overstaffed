@@ -311,26 +311,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 32255118, guid: 45de30749b3650d43830070e711739ef, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.63006496
-      objectReference: {fileID: 0}
-    - target: {fileID: 6256373689337983844, guid: 45de30749b3650d43830070e711739ef, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.63006496
-      objectReference: {fileID: 0}
-    - target: {fileID: 6256373690464243921, guid: 45de30749b3650d43830070e711739ef, type: 3}
-      propertyPath: uiPotion1
-      value: 
-      objectReference: {fileID: 1678641056}
-    - target: {fileID: 6256373690464243921, guid: 45de30749b3650d43830070e711739ef, type: 3}
-      propertyPath: uiPotion2
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 6256373690464243921, guid: 45de30749b3650d43830070e711739ef, type: 3}
-      propertyPath: uiPotion3
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6256373690464243926, guid: 45de30749b3650d43830070e711739ef, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -19511,6 +19491,8 @@ MonoBehaviour:
   baseHealth: 10
   baseSpeed: 8
   playerStats: {fileID: 5227066611999161154}
+  iHP: 0
+  totalHP: 0
   playerSpeed: 0
   utCharge: 0
   jumpHeight: 8

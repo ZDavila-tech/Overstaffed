@@ -91,6 +91,13 @@ public class NewStaff : MonoBehaviour
             SetElement();
             SetWeaponModel();
         }
+
+        if (gameManager.instance.isPaused)
+        {
+            canMelee = false;
+            canSpecial = false;
+        }
+
         Melee();
         SpecialAttack();
         StartCoroutine(ResetShooting());
