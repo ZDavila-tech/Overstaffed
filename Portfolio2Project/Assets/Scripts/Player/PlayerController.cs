@@ -592,7 +592,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             iHP = totalHP;
     }
 
-    void TurnOfStatusEffects()
+        void TurnOfStatusEffects()
     {
         uiManager.poisonIndicator.SetActive(false);
         uiManager.burnIndicator.SetActive(false);
