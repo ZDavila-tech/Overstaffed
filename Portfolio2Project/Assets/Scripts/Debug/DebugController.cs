@@ -49,7 +49,7 @@ public class DebugController : MonoBehaviour
     public void OnToggleDebug()
     {
         
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             showConsole = !showConsole;
 
