@@ -294,9 +294,9 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             else
             {
                 audioManager.HealAud();
-                if (iHP > (baseHealth + playerStats.GetHealth()))
+                if (iHP > totalHP)
                 {
-                    iHP = (baseHealth + playerStats.GetHealth());
+                    iHP = totalHP;
                 }
             }
             UpdateHealthBar();
