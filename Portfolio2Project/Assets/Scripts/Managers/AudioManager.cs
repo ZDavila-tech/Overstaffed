@@ -22,9 +22,14 @@ public class AudioManager : MonoBehaviour
     public AudioSource seAud;
     public List<AudioClip> bgms;
     public List<AudioClip> enemyDeath;
-    
-    [SerializeField] float volume;
-    public int currSong;
+    public List<AudioClip> walking;
+    public List<AudioClip> audDamage;
+    public List<AudioClip> staffClips;
+    public AudioClip jumpClip;
+   
+    public AudioClip dashClip;
+    public AudioClip hijumpClip;
+    public AudioClip blinkClip;
     public AudioClip buttonClick;
     public AudioClip transactionClick;
     public AudioClip pickUpAud;
@@ -39,7 +44,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip crstalShootClip;
     public AudioClip healAudClip;
     public float volumeScale;
-
+    public int currSong;
     // Start is called before the first frame update
     void Awake()
     {
@@ -70,9 +75,7 @@ public class AudioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // UpdateBGVolume();
         UpdateToggles();
-        volumeScale = soundEffectsVolume.value * 0.10f;
     }
 
     public void SetSliders()
@@ -127,8 +130,7 @@ public class AudioManager : MonoBehaviour
         else
         {
             mvToggle.isOn = false;
-            volumeValue.value = 0;
-            soundEffectsVolume.value =0;
+           
         }
     }
 
@@ -155,52 +157,118 @@ public class AudioManager : MonoBehaviour
         }
         PlaySong();
     }
-    //public void UpdateBGVolume()
-    //{
-    //    volume = volumeValue.value;
-    //    aud.volume = (float)(volume * 0.05f);
-    //    if (volumeValue.value == 0)
-    //    {
-    //        bgToggle.isOn = true;
-    //    }
-    //    else
-    //    {
-    //        bgToggle.isOn = false;
-    //    }
-    //}
 
-    public void EnemyDeath()
+    public void WalkingSound()
     {
-        seAud.PlayOneShot(enemyDeath[Random.Range(0, enemyDeath.Count)], volumeScale * 2.0f);
+        seAud.clip = walking[Random.Range(0, walking.Count)];
+       
+        seAud.Play();
     }
 
+    public void PlayerHurt()
+    {
+        seAud.clip = audDamage[Random.Range(0, audDamage.Count)];
+        seAud.Play();
+    }
+
+    public void MeleeSound()
+    {
+        switch (gameManager.instance.playerController.playerElement)
+        {
+            case NewStaff.Element.Fire:
+                seAud.clip = staffClips[3];
+                seAud.Play();
+                break;
+            case NewStaff.Element.Water:
+                seAud.clip = staffClips[4];
+                seAud.Play();
+                break;
+            case NewStaff.Element.Earth:
+                seAud.clip = staffClips[5];
+                seAud.Play();
+                break;
+        }
+
+    }
+
+    public void ShootSound()
+    {
+        seAud.clip = gameManager.instance.playerController.playerWeapon.GetShootAudio();
+        seAud.Play();
+    }
+
+    public void JumpSound()
+    {
+        seAud.clip = jumpClip;
+        seAud.Play();
+    }
+
+    public void DashSound()
+    {
+        seAud.clip = dashClip;
+        seAud.Play();
+    }
+
+    public void HiJumpSound()
+    {
+        seAud.clip = hijumpClip;
+        seAud.Play();
+    }
+
+    public void BlinkSound()
+    {
+        seAud.clip = blinkClip;
+        seAud.Play();
+    }
+    public void EnemyDeath()
+    {
+        seAud.clip = enemyDeath[Random.Range(0, enemyDeath.Count)];
+        seAud.Play();
+    }
+
+    public void ButtonClick()
+    {
+        seAud.clip = buttonClick;
+        seAud.Play();
+    }
+    public void TransactionClick()
+    {
+        seAud.clip = transactionClick;
+        seAud.Play();
+    }
     public void MenuTransition()
     {
-        seAud.PlayOneShot(menuPopUpClip, volumeScale*1.5f);
+        seAud.clip = menuPopUpClip;
+        seAud.Play();
     }
 
     public void EnemyShoot()
     {
-        seAud.PlayOneShot(enemyShootClip, volumeScale*0.5f);
+        seAud.clip = enemyShootClip;
+        seAud.Play();
     }
 
     public void Throwing()
     {
-        seAud.PlayOneShot(throwClip, volumeScale);
+        seAud.clip = throwClip;
+        seAud.Play(); ;
     }
 
     public void CrystalShoot()
     {
-        seAud.PlayOneShot(crstalShootClip, volumeScale);
+        seAud.clip = crstalShootClip;
+        seAud.Play();
     }
 
     public void HealAud()
     {
-        seAud.PlayOneShot(healAudClip, volumeScale);
+        seAud.clip = healAudClip;
+        seAud.Play();
     }
 
     public void EnemyExpShoot()
     {
-        seAud.PlayOneShot(enemyExpShootClip, volumeScale);
+        seAud.clip = enemyExpShootClip;
+        seAud.Play();
     }
 }
