@@ -103,7 +103,7 @@ public class LevelSelectButtons : MonoBehaviour
     public void TutorialButtonPressed()
     {
         butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
-        levelManager.SetCurrentLevel(0);
+        levelManager.SetCurrentLevel(1);
     }
 
     public void SixButtonPressed()
