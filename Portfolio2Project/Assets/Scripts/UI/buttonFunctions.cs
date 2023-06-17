@@ -22,14 +22,14 @@ public class buttonFunctions : MonoBehaviour
     //Resume the game
     public void Resume()
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        AudioManager.instance.ButtonClick();
         gameManager.instance.UnpauseState();
     }
 
     //Restarts the level from the beginning
     public void Restart()
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        AudioManager.instance.ButtonClick();
 
         uiManager.HideActiveMenu();
         uiManager.HUD.SetActive(false);
@@ -58,7 +58,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void GoBackMenu()
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        AudioManager.instance.ButtonClick();
         uiManager.settingsMenu.SetActive(false);
        
     }
@@ -70,7 +70,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void GoToCredits()
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        AudioManager.instance.ButtonClick();
 
         uiManager.creditsMenu.SetActive(true);
     }
@@ -142,12 +142,12 @@ public class buttonFunctions : MonoBehaviour
     public void ExitSave()
     {
 
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        AudioManager.instance.ButtonClick();
         uiManager.saveMenu.SetActive(false);
     }
     public void PlaySaveGame() //Takes player to character select scene
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        AudioManager.instance.ButtonClick();
 
         //Debug.Log("Play Button Pressed");
         uiManager.HideActiveMenu();
@@ -161,7 +161,7 @@ public class buttonFunctions : MonoBehaviour
     public void PlayNewGame() //Takes player to character select scene
     {
 
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        AudioManager.instance.ButtonClick();
         fileManager.resetData();
         //Debug.Log("Play Button Pressed");
         uiManager.HideActiveMenu();
@@ -177,7 +177,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void SelectedFire()
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.switchStaffAud, AudioManager.instance.volumeScale);
+        AudioManager.instance.ButtonClick();
 
         PrePlayerElementSetup();
         playerController.playerElement = NewStaff.Element.Fire;
@@ -186,7 +186,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void SelectedWater()
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.switchStaffAud, AudioManager.instance.volumeScale);
+        AudioManager.instance.ButtonClick();
         PrePlayerElementSetup();
         playerController.playerElement = NewStaff.Element.Water;
         PostPlayerElementSetup();
@@ -194,7 +194,7 @@ public class buttonFunctions : MonoBehaviour
 
     public void SelectedEarth()
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.switchStaffAud, AudioManager.instance.volumeScale);
+        AudioManager.instance.ButtonClick();
 
         PrePlayerElementSetup();
         playerController.playerElement = NewStaff.Element.Earth;
@@ -233,27 +233,27 @@ public class buttonFunctions : MonoBehaviour
 
     public void YesQuit()
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        AudioManager.instance.ButtonClick();
 
         Application.Quit();
     }
 
     public void NoQuit()
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        AudioManager.instance.ButtonClick();
         uiManager.quitCheckMenu.SetActive(false);
     }
 
     public void Continue()
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        AudioManager.instance.ButtonClick();
         gameManager.instance.UnpauseState();
         
     }
 
     public void GamePlayRecapOKButton()
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        AudioManager.instance.ButtonClick();
         if (uiManager.loseMenu.activeSelf) //if you lose
         {
             uiManager.gamePlayRecap.SetActive(false);

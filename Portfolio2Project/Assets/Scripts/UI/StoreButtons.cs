@@ -19,7 +19,7 @@ public class StoreButtons : MonoBehaviour
 
     public void BuyAttack(int amount)
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.transactionClick, AudioManager.instance.volumeScale);
+        AudioManager.instance.TransactionClick();
 
         CalculateCost(amount, UpgradeType.Atk);
 
@@ -36,7 +36,7 @@ public class StoreButtons : MonoBehaviour
     }
     public void BuyHealth(int amount)
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.transactionClick, AudioManager.instance.volumeScale);
+        AudioManager.instance.TransactionClick();
 
         CalculateCost(amount, UpgradeType.Hp);
 
@@ -54,7 +54,7 @@ public class StoreButtons : MonoBehaviour
     }
     public void BuySpeed(int amount)
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.transactionClick, AudioManager.instance.volumeScale);
+        AudioManager.instance.TransactionClick();
 
         CalculateCost(amount, UpgradeType.Spd);
 
@@ -73,7 +73,7 @@ public class StoreButtons : MonoBehaviour
 
     public void SellAttack(int amount)
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.transactionClick, AudioManager.instance.volumeScale);
+        AudioManager.instance.TransactionClick();
 
         if (gameManager.instance.playerStats.GetAttack() > 0)
         {
@@ -88,7 +88,7 @@ public class StoreButtons : MonoBehaviour
     }
     public void SellHealth(int amount)
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.transactionClick, AudioManager.instance.volumeScale);
+        AudioManager.instance.TransactionClick();
 
         if (gameManager.instance.playerStats.Health > 0)
         {
@@ -104,7 +104,7 @@ public class StoreButtons : MonoBehaviour
     }
     public void SellSpeed(int amount)
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.transactionClick, AudioManager.instance.volumeScale);
+        AudioManager.instance.TransactionClick();
 
         if (gameManager.instance.playerStats.GetSpeed() > 0)
         {
@@ -121,7 +121,7 @@ public class StoreButtons : MonoBehaviour
 
     public void Exit()
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        AudioManager.instance.ButtonClick();
 
         gameManager.instance.UnpauseState();
         UIManager.instance.HideActiveMenu();
@@ -129,7 +129,7 @@ public class StoreButtons : MonoBehaviour
 
     public void BuyScreen()
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        AudioManager.instance.ButtonClick();
 
         UIManager.instance.buyScreen.SetActive(true);
         UIManager.instance.sellScreen.SetActive(false);
@@ -138,7 +138,7 @@ public class StoreButtons : MonoBehaviour
 
     public void SellScreen()
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        AudioManager.instance.ButtonClick();
 
         UIManager.instance.buyScreen.SetActive(false);
         UIManager.instance.sellScreen.SetActive(true);
@@ -146,7 +146,7 @@ public class StoreButtons : MonoBehaviour
 
     public void InventoryScreen()
     {
-        buttonAudio.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        AudioManager.instance.ButtonClick();
 
         UIManager.instance.buyScreen.SetActive(false);
         UIManager.instance.sellScreen.SetActive(false);
@@ -155,7 +155,7 @@ public class StoreButtons : MonoBehaviour
     void CalculateCost(int amount, UpgradeType upgrade)
     {
         cost = 0;
-        buttonAudio.PlayOneShot(AudioManager.instance.transactionClick, AudioManager.instance.volumeScale);
+        AudioManager.instance.TransactionClick();
         switch (upgrade)
         {
             case UpgradeType.Atk:

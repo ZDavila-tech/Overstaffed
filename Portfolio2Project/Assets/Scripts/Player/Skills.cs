@@ -11,15 +11,7 @@ public class Skills : MonoBehaviour
     [SerializeField] PlayerController playerController;
     [SerializeField] Transform blinkAimIndicatorPrefab;
     UIManager uiManager;
-    AudioManager audioManager;
 
-    [Header("----- Audio -----")]
-    [SerializeField] AudioClip hiJumpAudio;
-    [SerializeField] AudioClip blinkAudio;
-    [SerializeField] AudioClip dashAudio;
-    [SerializeField] float hiJumpVolume;
-    [SerializeField] float blinkVolume;
-    [SerializeField] float dashVolume;
     public enum skill
     {
         Dash, HiJump, SlowFall, Blink, Invisibility
@@ -66,7 +58,6 @@ public class Skills : MonoBehaviour
     private void Start()
     {
         uiManager = UIManager.instance;
-        audioManager = AudioManager.instance;
     }
 
     private void Update()
@@ -92,8 +83,7 @@ public class Skills : MonoBehaviour
     IEnumerator dashCoroutine()
     {
         var startTime = Time.time;
-        dashVolume = AudioManager.instance.volumeScale;
-        gameManager.instance.playerController.PlayExternalAudio(dashAudio, dashVolume);
+        AudioManager.instance.DashSound();
         while (Time.time < startTime + DashTime)
         {
             if(directionalDash == false || playerController.move.Equals(Vector3.zero))
@@ -146,8 +136,7 @@ public class Skills : MonoBehaviour
     IEnumerator hiJumpCoroutine()
     {
         var startTime = Time.time;
-        hiJumpVolume = AudioManager.instance.volumeScale;
-        gameManager.instance.playerController.PlayExternalAudio(hiJumpAudio, hiJumpVolume);
+        AudioManager.instance.HiJumpSound();
         while (Time.time < startTime + JumpTime)
         {
             controller.Move(transform.up * JumpForce * Time.deltaTime);
@@ -284,8 +273,7 @@ public class Skills : MonoBehaviour
         if (blinkAimIndicator)
         {
             transform.position = new Vector3(blinkAimIndicator.position.x, blinkAimIndicator.position.y, blinkAimIndicator.position.z);
-            blinkVolume = AudioManager.instance.volumeScale;
-            gameManager.instance.playerController.PlayExternalAudio(blinkAudio, blinkVolume);
+            AudioManager.instance.BlinkSound();
             Destroy(blinkAimIndicator.gameObject,1.5f);
         }
         controller.enabled = true;

@@ -102,44 +102,44 @@ public class LevelSelectButtons : MonoBehaviour
 
     public void TutorialButtonPressed()
     {
-        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        audioManager.ButtonClick();
         levelManager.SetCurrentLevel(1);
     }
 
     public void SixButtonPressed()
     {
-        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        audioManager.ButtonClick();
         levelManager.SetCurrentLevel(5);
     }
 
     public void ElevenButtonPressed()
     {
-        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        audioManager.ButtonClick();
         levelManager.SetCurrentLevel(10);
     }
 
     public void SixteenButtonPressed()
     {
-        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        audioManager.ButtonClick();
         levelManager.SetCurrentLevel(15);
     }
 
     public void TwentyOneButtonPressed()
     {
-        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        audioManager.ButtonClick();
         levelManager.SetCurrentLevel(20);
     }
 
     public void InfinityButtonPressed()
     {
-        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        audioManager.ButtonClick();
         levelManager.maxPlayableLevel = int.MaxValue - 1;
         levelManager.SetCurrentLevel(22);
     }
 
     public void CloseLevelSelect()
     {
-        butAud.PlayOneShot(AudioManager.instance.buttonClick, AudioManager.instance.volumeScale);
+        audioManager.ButtonClick();
         gameManager.UnpauseState();
         uiManager.HideActiveMenu();
     }
