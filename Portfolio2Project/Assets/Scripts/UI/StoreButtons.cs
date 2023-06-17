@@ -196,31 +196,31 @@ public class StoreButtons : MonoBehaviour
             switch (i) 
             {
                 case 0:
-                    texts[i].text = "COST: " + (gameManager.instance.playerStats.GetAttack() * 10 + getCost(1, UpgradeType.Atk)).ToString();
+                    texts[i].text = "COST: " + getCost(1, UpgradeType.Atk).ToString();
                     break;
                 case 1:
-                    texts[i].text = "COST: " + (gameManager.instance.playerStats.GetAttack() * 10 + getCost(5, UpgradeType.Atk)).ToString();
+                    texts[i].text = "COST: " + getCost(5, UpgradeType.Atk).ToString();
                     break;
                 case 2:
-                    texts[i].text = "COST: " + (gameManager.instance.playerStats.GetAttack() * 10 + getCost(10, UpgradeType.Atk)).ToString();
+                    texts[i].text = "COST: " + getCost(10, UpgradeType.Atk).ToString();
                     break;
                 case 3:
-                    texts[i].text = "COST: " + (gameManager.instance.playerStats.GetHealth() * 10 + getCost(1, UpgradeType.Hp)).ToString();
+                    texts[i].text = "COST: " + getCost(1, UpgradeType.Hp).ToString();
                     break;
                 case 4:
-                    texts[i].text = "COST: " + (gameManager.instance.playerStats.GetHealth() * 10 + getCost(5, UpgradeType.Hp)).ToString();
+                    texts[i].text = "COST: " + getCost(5, UpgradeType.Hp).ToString();
                     break;
                 case 5:
-                    texts[i].text = "COST: " + (gameManager.instance.playerStats.GetHealth() * 10 + getCost(10, UpgradeType.Hp)).ToString();
+                    texts[i].text = "COST: " + getCost(10, UpgradeType.Hp).ToString();
                     break;
                 case 6:
-                    texts[i].text = "COST: " + (gameManager.instance.playerStats.GetSpeed() * 10 + getCost(1, UpgradeType.Spd)).ToString();
+                    texts[i].text = "COST: " + getCost(1, UpgradeType.Spd).ToString();
                     break;
                 case 7:
-                    texts[i].text = "COST: " + (gameManager.instance.playerStats.GetSpeed() * 10 + getCost(5, UpgradeType.Spd)).ToString();
+                    texts[i].text = "COST: " + getCost(5, UpgradeType.Spd).ToString();
                     break;
                 case 8:
-                    texts[i].text = "COST: " + (gameManager.instance.playerStats.GetSpeed() * 10 + getCost(10, UpgradeType.Spd)).ToString();
+                    texts[i].text = "COST: " + getCost(10, UpgradeType.Spd).ToString();
                     break;
             }
         }

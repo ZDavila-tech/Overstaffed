@@ -294,9 +294,9 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             else
             {
                 audioManager.HealAud();
-                if (iHP > (baseHealth + playerStats.GetHealth()))
+                if (iHP > totalHP)
                 {
-                    iHP = (baseHealth + playerStats.GetHealth());
+                    iHP = totalHP;
                 }
             }
             UpdateHealthBar();
@@ -592,7 +592,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             iHP = totalHP;
     }
 
-    void TurnOfStatusEffects()
+        void TurnOfStatusEffects()
     {
         uiManager.poisonIndicator.SetActive(false);
         uiManager.burnIndicator.SetActive(false);

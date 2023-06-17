@@ -44,6 +44,7 @@ public class Stats : MonoBehaviour
     {
         Health += amount;
         gameManager.instance.playerController.UpdateHP(true);
+        gameManager.instance.playerController.UpdateHealthBar();
     }
     public void SpeedUp (int amount)
     {
