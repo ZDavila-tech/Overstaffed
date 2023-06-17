@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -20,29 +21,33 @@ public class AudioManager : MonoBehaviour
     [Header("----- Audio Stuff -----")]
     public AudioSource aud;
     public AudioSource seAud;
+    //List audio clips
     public List<AudioClip> bgms;
     public List<AudioClip> enemyDeath;
     public List<AudioClip> walking;
     public List<AudioClip> audDamage;
     public List<AudioClip> staffClips;
+    //Player Audio Clips
     public AudioClip jumpClip;
-   
     public AudioClip dashClip;
     public AudioClip hijumpClip;
     public AudioClip blinkClip;
+    //UI clips
     public AudioClip buttonClick;
     public AudioClip transactionClick;
-    public AudioClip pickUpAud;
-    public AudioClip healthPickupAudio;
-    public AudioClip hurtPickupAudio;
     public AudioClip hubInteractAud;
     public AudioClip switchStaffAud;
     public AudioClip menuPopUpClip;
+    //Environment Clips
+    public AudioClip pickUpAud;
+    public AudioClip healthPickupAudio;
+    public AudioClip hurtPickupAudio;
     public AudioClip enemyShootClip;
     public AudioClip enemyExpShootClip;
     public AudioClip throwClip;
     public AudioClip crstalShootClip;
     public AudioClip healAudClip;
+
     public float volumeScale;
     public int currSong;
     // Start is called before the first frame update
@@ -189,6 +194,12 @@ public class AudioManager : MonoBehaviour
                 break;
         }
 
+    }
+
+    public void SwitchStaffSound()
+    {
+        seAud.clip = switchStaffAud;
+        seAud.Play();
     }
 
     public void ShootSound()
