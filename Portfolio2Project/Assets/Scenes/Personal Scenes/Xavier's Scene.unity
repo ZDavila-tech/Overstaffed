@@ -333,7 +333,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6256373690464243926, guid: 45de30749b3650d43830070e711739ef, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6256373690464243926, guid: 45de30749b3650d43830070e711739ef, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1056,17 +1056,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d4dba11ff5fbd0f46940616c9b46d76f, type: 3}
---- !u!114 &948108602 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6256373690464243921, guid: 45de30749b3650d43830070e711739ef, type: 3}
-  m_PrefabInstance: {fileID: 8447841310000696825}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ac024ec76d1be746aee0bcda6031e65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &976040026 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7991985557486829471, guid: 52e3eba71d869d74a97de4993da0b240, type: 3}
@@ -1297,7 +1286,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2913172950106796936, guid: bf848bbf5d4965543be8a8bfb30d72d0, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2913172950106796936, guid: bf848bbf5d4965543be8a8bfb30d72d0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1808,7 +1797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionText: Refill Potions
-  playerController: {fileID: 948108602}
+  playerController: {fileID: 0}
 --- !u!65 &1843751963
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1885,8 +1874,65 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1900118679
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7669368165478281659, guid: 776f1287d9416f246bdc54e2d4c19073, type: 3}
+      propertyPath: m_Name
+      value: Potion Refill Station (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7669368165478281660, guid: 776f1287d9416f246bdc54e2d4c19073, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7669368165478281660, guid: 776f1287d9416f246bdc54e2d4c19073, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.9917164
+      objectReference: {fileID: 0}
+    - target: {fileID: 7669368165478281660, guid: 776f1287d9416f246bdc54e2d4c19073, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.6215878
+      objectReference: {fileID: 0}
+    - target: {fileID: 7669368165478281660, guid: 776f1287d9416f246bdc54e2d4c19073, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.710743
+      objectReference: {fileID: 0}
+    - target: {fileID: 7669368165478281660, guid: 776f1287d9416f246bdc54e2d4c19073, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7669368165478281660, guid: 776f1287d9416f246bdc54e2d4c19073, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7669368165478281660, guid: 776f1287d9416f246bdc54e2d4c19073, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7669368165478281660, guid: 776f1287d9416f246bdc54e2d4c19073, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7669368165478281660, guid: 776f1287d9416f246bdc54e2d4c19073, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7669368165478281660, guid: 776f1287d9416f246bdc54e2d4c19073, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7669368165478281660, guid: 776f1287d9416f246bdc54e2d4c19073, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 776f1287d9416f246bdc54e2d4c19073, type: 3}
 --- !u!114 &2021237605 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2033684084, guid: 3aaf7647d5fa8b84297699c4b258282b, type: 3}
@@ -1930,7 +1976,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1570852443671573167, guid: a1ea5870c1304fc478e438d5f50ce4d6, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1570852443671573167, guid: a1ea5870c1304fc478e438d5f50ce4d6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19416,7 +19462,7 @@ Transform:
   - {fileID: 741303554}
   - {fileID: 1171329300829440750}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6256373690963581275
 MeshFilter:
@@ -19492,12 +19538,9 @@ MonoBehaviour:
   isSprinting: 0
   isCrouching: 0
   isStepping: 0
-  items: []
+  enableCamShake: 0
   itemSelected: 0
   potionsAvailable: 0
-  uiPotion1: {fileID: 1678641056}
-  uiPotion2: {fileID: 0}
-  uiPotion3: {fileID: 0}
   aud: {fileID: 1444516656087130202}
   AttackVolume: 0.3
   JumpVolume: 0.5
@@ -21040,7 +21083,7 @@ Transform:
   - {fileID: 1414514709}
   - {fileID: 1798590045}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &8447841310665577637
 PrefabInstance:

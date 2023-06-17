@@ -93,13 +93,14 @@ public class NewStaff : MonoBehaviour
         }
         Melee();
         SpecialAttack();
+        StartCoroutine(ResetShooting());
     }
 
     public void Shoot()
     {
         Animator anim = weapon.GetComponent<Animator>();
         //Debug.Log("Weapon Shoot Called");
-        if (Input.GetButton("Shoot"))
+        if (Input.GetButton("Shoot") && !isAttacking)
         {
             
             isShooting = true;
@@ -116,9 +117,9 @@ public class NewStaff : MonoBehaviour
                 }                
             }
         }
+            //StartCoroutine(ResetShooting());
+            StartCoroutine(ResetShootingAnimation());
 
-        StartCoroutine(ResetShooting());
-        StartCoroutine(ResetShootingAnimation());
     }
 
     private Vector3 GetSpread()
@@ -158,7 +159,7 @@ public class NewStaff : MonoBehaviour
 
     public void Melee()
     {
-        if (canMelee && Input.GetMouseButtonDown(1))
+        if (canMelee && Input.GetMouseButtonDown(1) && !isShooting)
         {
             canMelee = false;
             canSpecial = false;
@@ -208,10 +209,16 @@ public class NewStaff : MonoBehaviour
 
     IEnumerator ResetShooting()
     {
-        yield return new WaitForSeconds(0.5f);
-        isShooting = false;
-        canMelee = true;
-        canSpecial = true;
+        if (Input.GetButton("Shoot") == false)
+        {
+            isShooting = false;
+            canMelee = true;
+            canSpecial = true;
+            Debug.Log("Hit");
+        }
+            yield return new WaitForSeconds(0.5f);
+        
+        
     }
 
     IEnumerator ResetShootingAnimation()
