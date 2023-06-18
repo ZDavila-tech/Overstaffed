@@ -34,7 +34,7 @@ public class buttonFunctions : MonoBehaviour
         uiManager.HideActiveMenu();
         uiManager.HUD.SetActive(false);
         uiManager.activeMenu = uiManager.playerSelect;
-
+        uiManager.playerHealthBar.color = new Color(255,0 ,0 ,255);
         LevelManager.instance.totalEnemiesDefeated = 0;
         Debug.Log(gameManager.instance.playerController.totalHP);
         Debug.Log("Health: " + Stats.Health);
