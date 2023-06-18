@@ -23,7 +23,7 @@ public class DebugController : MonoBehaviour
 
     private void Awake()
     {
-        GIVE_EXP = new DebugCommand("give_exp~", "Gives 9999 EXP", "give_exp~", () => { player.playerStats.Exp += 9999; });
+        GIVE_EXP = new DebugCommand("give_exp~", "Gives 9999 EXP", "give_exp~", () => { Stats.Exp += 9999; });
         GOD_MODE = new DebugCommand("god_mode~", "Prevents you from taking damage", "god_mode~", () => { player.godMode = !player.godMode; });
         SKIP_LEVEL = new DebugCommand("skip_level~", "Sets the current level to the next one", "skip_level~", () => { gameManager.instance.levelManager.currentLevel += 1; });
         SKIP_TO_BOSS = new DebugCommand("skip_to_boss~", "Skips to the boss level", "skip_to_boss~", () => { gameManager.instance.levelManager.currentLevel = 20; });

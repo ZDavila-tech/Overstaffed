@@ -25,6 +25,7 @@ public class gameManager : MonoBehaviour
 
     private void Awake()
     {
+        playerStats = GetComponent<Stats>();
         if (gameManager.instance != null)
         {
             Destroy(this.gameObject);
@@ -94,7 +95,7 @@ public class gameManager : MonoBehaviour
             playerController = playerCharacter.GetComponent<PlayerController>();
             playerElement = playerController.playerElement;
             playerSkills = playerCharacter.GetComponent<Skills>();
-            playerStats = playerCharacter.GetComponent<Stats>();
+
             UIManager.instance.SetPlayerVariables();
         }
     }

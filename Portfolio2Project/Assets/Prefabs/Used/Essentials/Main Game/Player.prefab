@@ -6857,13 +6857,6 @@ MonoBehaviour:
   canMelee: 1
   weapon: {fileID: 4055193228901778526}
   isAttacking: 0
-  audios:
-  - {fileID: 8300000, guid: bcbe6ba4b6c26214c9a0730a7d423362, type: 3}
-  - {fileID: 8300000, guid: 06897aa233555e3478764947a843a245, type: 3}
-  - {fileID: 8300000, guid: 1f07c58b55a242048937945641a7381e, type: 3}
-  - {fileID: 8300000, guid: f3082a75082824640b5e0d01f042ce45, type: 3}
-  - {fileID: 8300000, guid: 26c3d4420510b4042a1e5bae6b1bf46d, type: 3}
-  - {fileID: 8300000, guid: 5f0cda4207595394095b8943e9d7c6c5, type: 3}
 --- !u!95 &334106367046308163
 Animator:
   serializedVersion: 5
@@ -13531,7 +13524,6 @@ GameObject:
   - component: {fileID: 6256373690464243926}
   - component: {fileID: 8132328926872428045}
   - component: {fileID: 6256373690464243921}
-  - component: {fileID: 5227066611642462926}
   - component: {fileID: 1055786313974128500}
   - component: {fileID: 5409566226741756279}
   - component: {fileID: 6256373690464243927}
@@ -13601,7 +13593,7 @@ MonoBehaviour:
   baseAttack: 1
   baseHealth: 10
   baseSpeed: 8
-  playerStats: {fileID: 5227066611642462926}
+  playerStats: {fileID: 0}
   iHP: 0
   totalHP: 0
   playerSpeed: 0
@@ -13635,45 +13627,8 @@ MonoBehaviour:
   itemSelected: 0
   potionsAvailable: 0
   aud: {fileID: 1444516656452086230}
-  AttackVolume: 0.3
-  JumpVolume: 0.5
-  jumpAudio: {fileID: 8300000, guid: bd109bbf0935edd40bd80dbc4f55c07f, type: 3}
-  walking:
-  - {fileID: 8300000, guid: 4185b9faa20b30c49b6d651541370792, type: 3}
-  - {fileID: 8300000, guid: d7cebb78fd324cc468b65dc50bd21f6a, type: 3}
-  - {fileID: 8300000, guid: 1f0b18b1f3cdf1a4bb6c07607ee49642, type: 3}
-  - {fileID: 8300000, guid: 6b0737cacc3a5564ca1d7133f61c913c, type: 3}
-  - {fileID: 8300000, guid: 2e91425b9a76b5141ade443a62a7c252, type: 3}
-  - {fileID: 8300000, guid: bceebd101b44ffd40a0d88221629c908, type: 3}
-  - {fileID: 8300000, guid: 1089a292958e2e649941efe945ec7f55, type: 3}
-  - {fileID: 8300000, guid: b6d3c4a234d3c3646b164c9f3865e716, type: 3}
-  - {fileID: 8300000, guid: ea2d359d96e4add4881b68e6ab22af78, type: 3}
-  audDamage:
-  - {fileID: 8300000, guid: da6be64695a55414695619cd76ba179a, type: 3}
-  - {fileID: 8300000, guid: a34eb6e623d4e294386d619797bdd352, type: 3}
-  - {fileID: 8300000, guid: 182a41e416f713241a1f57b0d58936b1, type: 3}
-  - {fileID: 8300000, guid: 8c44379bd678872499ed11fd57c68f82, type: 3}
-  - {fileID: 8300000, guid: 52f462ff42c61b34a9ee7dfc2388c1ba, type: 3}
-  - {fileID: 8300000, guid: deab8dd918e75a24e89cd4e22a511828, type: 3}
   godMode: 0
   camShake: {fileID: 8548034150311879936}
---- !u!114 &5227066611642462926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6256373690464243930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cf04abe5ec0432429fd173c729a8e77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: 0
-  Speed: 0
-  Attack: 0
-  wallrunSpeed: 15
-  Exp: 0
 --- !u!114 &1055786313974128500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13689,12 +13644,6 @@ MonoBehaviour:
   controller: {fileID: 6256373690464243920}
   playerController: {fileID: 6256373690464243921}
   blinkAimIndicatorPrefab: {fileID: 2848004723096892248, guid: 9d2a42548f99c5042b79c8c622fcb472, type: 3}
-  hiJumpAudio: {fileID: 8300000, guid: aaaf6aaf44031b548af3e2cc54343f3d, type: 3}
-  blinkAudio: {fileID: 8300000, guid: b96801a66cbb31a4586dad9b98c60749, type: 3}
-  dashAudio: {fileID: 8300000, guid: 1dcf2feb4c638a145833533c5ec699b2, type: 3}
-  hiJumpVolume: 0.5
-  blinkVolume: 0.5
-  dashVolume: 0.5
   DashSpeed: 21.9
   DashTime: 0.352
   DashParticle: {fileID: 6279226097229561517, guid: 59aef5cb70b27a341b1928e474d38f42, type: 3}

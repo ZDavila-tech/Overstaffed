@@ -19,7 +19,6 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     [SerializeField] int baseAttack;
     [SerializeField] int baseHealth;
     [SerializeField] float baseSpeed;
-    [SerializeField] public Stats playerStats;
     public int iHP;
     public int totalHP;
     public float playerSpeed;
@@ -108,7 +107,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     public void UpdatePlayerStats()
     {
         UpdateSpeed();
-        playerDamage = playerStats.Attack + baseAttack;
+        playerDamage = Stats.Attack + baseAttack;
         UpdateHP(true);
 
     }
@@ -213,7 +212,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         if (hit.gameObject.tag == "Wall" && !groundedPlayer)
         {
             gravityValue = wallrunGravity;
-            playerSpeed = playerStats.wallrunSpeed;
+            playerSpeed = Stats.wallrunSpeed;
         }
         else if (hit.gameObject.tag != "Wall")
         {
@@ -423,7 +422,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     public void UpdateSpeed()
     {
-        origSpeed = playerSpeed = baseSpeed + (playerStats.Speed / 10);
+        origSpeed = playerSpeed = baseSpeed + (Stats.Speed / 10);
         Debug.Log("Speed Calculated");
     }
 
@@ -510,7 +509,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     public void Burn(float duration, float timeBetween)
     {
-        StartCoroutine(Burning(duration, timeBetween, playerStats.GetHealth() * (1)));
+        StartCoroutine(Burning(duration, timeBetween, gameManager.instance.playerStats.GetHealth() * (1)));
     }
 
     public void Poison(float duration, float timeBetweeen)
@@ -573,7 +572,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     public void HealingPotion()
     {
-        if(iHP >= baseHealth + playerStats.Health || uiManager.activeMenu != null) //Checks if the player is at full health and no menus are open
+        if(iHP >= baseHealth + Stats.Health || uiManager.activeMenu != null) //Checks if the player is at full health and no menus are open
         {
             return;
         }
@@ -587,7 +586,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     public void UpdateHP(bool DoesHeal)
     {
-        totalHP = baseHealth + (playerStats.GetHealth() * 5);
+        totalHP = baseHealth + (gameManager.instance.playerStats.GetHealth() * 5);
         if (DoesHeal)
             iHP = totalHP;
     }

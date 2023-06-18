@@ -5,24 +5,24 @@ using UnityEngine;
 public class Stats : MonoBehaviour
 {
     [Header("----- Stats -----")]
-    [Range(0, 100)][SerializeField] public int Health;
-    [Range(0, 100)][SerializeField] public int Speed;
-    [Range(0, 100)][SerializeField] public int Attack;
-    [Range(0, 100)][SerializeField] public float wallrunSpeed;
+    [Range(0, 100)][SerializeField] public static int Health;
+    [Range(0, 100)][SerializeField] public static int Speed;
+    [Range(0, 100)][SerializeField] public static int Attack;
+    [Range(0, 100)][SerializeField] public static float wallrunSpeed;
 
     [Header("----- Experience -----")]
-    [SerializeField] public int Exp;
+    [SerializeField] public static int Exp;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        Debug.Log("AAAAAAAAA " + Stats.Exp);
     }
 
     //Getters

@@ -37,7 +37,7 @@ public class buttonFunctions : MonoBehaviour
 
         LevelManager.instance.totalEnemiesDefeated = 0;
         Debug.Log(gameManager.instance.playerController.totalHP);
-        Debug.Log("Health: " + gameManager.instance.playerStats.Health);
+        Debug.Log("Health: " + Stats.Health);
 
         AudioManager.instance.currSong = 1;
         AudioManager.instance.PlaySong();
@@ -111,6 +111,7 @@ public class buttonFunctions : MonoBehaviour
 
         Destroy(GameObject.FindGameObjectWithTag("Player"));
         SceneManager.LoadScene("Main Menu");
+
     }
 
     //If they don't want to save their game

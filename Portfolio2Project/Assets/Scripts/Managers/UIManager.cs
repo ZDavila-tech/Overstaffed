@@ -273,7 +273,7 @@ public class UIManager : MonoBehaviour
     }
     public void UpdateExp()
     {
-        int exp = gameManager.instance.playerStats.Exp;
+        int exp = Stats.Exp;
         expText.text = exp.ToString("F0");
         storeCurrency.text = exp.ToString("F0");
         expGained.text = exp.ToString("F0");

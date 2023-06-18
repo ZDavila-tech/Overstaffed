@@ -19,11 +19,13 @@ public class StoreButtons : MonoBehaviour
 
     public void BuyAttack(int amount)
     {
+
         AudioManager.instance.TransactionClick();
 
         CalculateCost(amount, UpgradeType.Atk);
-
-        if (gameManager.instance.playerStats.Exp >= cost && gameManager.instance.playerStats.GetAttack() < 100)
+        Debug.Log(Stats.Exp);
+        Debug.Log(Stats.Exp >= cost);
+        if (Stats.Exp >= cost && gameManager.instance.playerStats.GetAttack() < 100)
         {
             for (int i = 0; i < amount; ++i)
             {
@@ -40,11 +42,11 @@ public class StoreButtons : MonoBehaviour
 
         CalculateCost(amount, UpgradeType.Hp);
 
-        if (gameManager.instance.playerStats.Exp >= cost && gameManager.instance.playerStats.Health < 100)
+        if (Stats.Exp >= cost && Stats.Health < 100)
         {
             for (int i = 0; i < amount; ++i)
             {
-                gameManager.instance.playerStats.GainExp(-((gameManager.instance.playerStats.Health + 1) * 10));
+               gameManager.instance.playerStats.GainExp(-((Stats.Health + 1) * 10));
                 gameManager.instance.playerStats.HealthUp(1);
             }
             gameManager.instance.playerController.UpdatePlayerStats();
@@ -58,7 +60,7 @@ public class StoreButtons : MonoBehaviour
 
         CalculateCost(amount, UpgradeType.Spd);
 
-        if (gameManager.instance.playerStats.Exp >= cost && gameManager.instance.playerStats.GetSpeed() < 100)
+        if (Stats.Exp >= cost && gameManager.instance.playerStats.GetSpeed() < 100)
         {
             for (int i = 0; i < amount; ++i)
             {
@@ -90,11 +92,11 @@ public class StoreButtons : MonoBehaviour
     {
         AudioManager.instance.TransactionClick();
 
-        if (gameManager.instance.playerStats.Health > 0)
+        if (Stats.Health > 0)
         {
             for (int i = 0; i < amount; ++i)
             {
-                gameManager.instance.playerStats.GainExp(((gameManager.instance.playerStats.Health + 1) * 5));
+                gameManager.instance.playerStats.GainExp(((Stats.Health + 1) * 5));
                 gameManager.instance.playerStats.HealthUp(-1);
             }
             gameManager.instance.playerController.UpdatePlayerStats();
