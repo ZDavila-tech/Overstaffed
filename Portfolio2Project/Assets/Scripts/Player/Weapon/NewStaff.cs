@@ -219,7 +219,6 @@ public class NewStaff : MonoBehaviour
             isShooting = false;
             canMelee = true;
             canSpecial = true;
-            Debug.Log("Hit");
         }
             yield return new WaitForSeconds(0.5f);
         
@@ -292,6 +291,11 @@ public class NewStaff : MonoBehaviour
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         foreach(GameObject enemy in enemies)
         {
+            if(enemy == null)
+            {
+                Debug.Log("Returned");
+                break;
+            }
             if (wSpecialRange >= Vector3.Distance(transform.position, enemy.transform.position))
             {
                 Instantiate(waterEffect, player.transform.position, Quaternion.identity);
@@ -299,11 +303,12 @@ public class NewStaff : MonoBehaviour
                 if (enemy.GetComponent<IDamage>() != null)
                 {
                     int timesDamaged = 0;
+                    enemy.GetComponent<EnemyAI>().Freeze(slowDuration);
                     while (true)
                     {
                         //waterEffect.enableEmission = false;
                         //enemy.GetComponent<EnemyAI>().TakeDamage(1);
-                        enemy.GetComponent<EnemyAI>().Freeze(slowDuration);
+                        player.GetComponent<IDamage>().TakeDamage(-2);
                         timesDamaged++;
                         yield return new WaitForSeconds(1);
                         if (timesDamaged == slowDuration)
