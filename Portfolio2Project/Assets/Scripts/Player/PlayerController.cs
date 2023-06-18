@@ -572,16 +572,20 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     public void HealingPotion()
     {
-        if(iHP >= baseHealth + Stats.Health || uiManager.activeMenu != null) //Checks if the player is at full health and no menus are open
+        if(iHP >= totalHP || uiManager.activeMenu != null) //Checks if the player is at full health and no menus are open
         {
             return;
         }
-
-        if(potionsAvailable > 0 && Input.GetKeyDown(KeyCode.Tab))
+        else
         {
-            TakeDamage(-5);
-            potionsAvailable--;
+            if (potionsAvailable > 0 && Input.GetKeyDown(KeyCode.Tab))
+            {
+                TakeDamage(-5);
+                potionsAvailable--;
+            }
         }
+
+        
     }
 
     public void UpdateHP(bool DoesHeal)
