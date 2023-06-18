@@ -44,6 +44,7 @@ public class buttonFunctions : MonoBehaviour
         uiManager.ShowActiveMenu();
         Time.timeScale = gameManager.instance.timeScaleOriginal;
 
+        playerController.TurnOfStatusEffects();
         Destroy(GameObject.FindGameObjectWithTag("Player"));
         SceneManager.LoadScene("Character Select");
     }
