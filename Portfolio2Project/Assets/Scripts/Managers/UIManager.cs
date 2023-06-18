@@ -144,6 +144,10 @@ public class UIManager : MonoBehaviour
             SetElementIcon();
             UpdatePotionCount();
         }
+        if (fadeScreen.GetCurrentAnimatorStateInfo(0).IsName("CrossFadeEnd") && fadeScreen.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        {
+            isFading = false;
+        }
         if (creditsMenu.activeSelf)
         {
             ExitCreditScreen();
@@ -336,7 +340,7 @@ public class UIManager : MonoBehaviour
         fadeScreen.SetTrigger("StartFade");
         yield return new WaitForSeconds(fadeSpeed);
         LevelManager.instance.LoadNextLevel();
-        isFading = false;
+        
     }
 
     public void UpdateUtCharge(float amount)
