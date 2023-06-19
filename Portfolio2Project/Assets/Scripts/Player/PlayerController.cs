@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     [Header("----- Other -----")]
     public bool godMode;
-    Color orig;
+    Color orig = Color.red;
     float origGrav;
     float origSpeed;
 
@@ -429,7 +429,6 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     IEnumerator Freezing(float duration)
     {
         float timePassed = 0;
-        orig = uiManager.playerHealthBar.color;
         uiManager.freezeIndicator.SetActive(true);
         uiManager.playerHealthBar.color = Color.cyan;
         float origSpd = playerSpeed;
@@ -457,7 +456,6 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     IEnumerator Burning(float duration, float timeBetween, int damage)
     {
         float timePassed = 0;
-        orig = uiManager.playerHealthBar.color;
         uiManager.playerHealthBar.color = Color.yellow;
         uiManager.burnIndicator.SetActive(true);
         float oldSpeed = 0;
@@ -484,7 +482,6 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     IEnumerator Venom(float duration, float timeBetween, int damage)
     {
         float timePassed = 0;
-        orig = uiManager.playerHealthBar.color;
         uiManager.playerHealthBar.color = Color.magenta;
         uiManager.poisonIndicator.SetActive(true);
         int oldAttack = 0;
