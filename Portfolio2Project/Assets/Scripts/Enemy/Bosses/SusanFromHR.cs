@@ -416,9 +416,9 @@ public class SusanFromHR : MonoBehaviour
     {
         transitionCubeOne.transform.position = new Vector3(transitionCubeOne.transform.position.x, Random.Range(3.0f, 7.0f), transitionCubeOne.transform.position.z);
         transitionCubeOne.transform.rotation = Random.rotation;
-        transitionCubeTwo.transform.position = new Vector3(transitionCubeTwo.transform.position.x, Random.Range(3.0f, 7.0f), transitionCubeTwo.transform.position.z);
+        transitionCubeTwo.transform.position = new Vector3(transitionCubeTwo.transform.position.x, Random.Range(4.5f, 7.0f), transitionCubeTwo.transform.position.z);
         transitionCubeTwo.transform.rotation = Random.rotation;
-        transitionCubeThree.transform.position = new Vector3(transitionCubeThree.transform.position.x, Random.Range(3.0f, 7.0f), transitionCubeThree.transform.position.z);
+        transitionCubeThree.transform.position = new Vector3(transitionCubeThree.transform.position.x, Random.Range(4.5f, 7.0f), transitionCubeThree.transform.position.z);
         transitionCubeThree.transform.rotation = Random.rotation;
         transitionCubeFour.transform.position = new Vector3(transitionCubeFour.transform.position.x, Random.Range(3.0f, 7.0f), transitionCubeFour.transform.position.z);
         transitionCubeFour.transform.rotation = Random.rotation;
