@@ -211,16 +211,16 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         //Wall Running
         if (hit.gameObject.tag == "Wall" && !groundedPlayer)
         {
-            gravityValue = wallrunGravity;
-            playerSpeed = Stats.wallrunSpeed;
+            //gravityValue = wallrunGravity;
+            //playerSpeed = Stats.wallrunSpeed;
         }
         else if (hit.gameObject.tag != "Wall")
         {
-            gravityValue = origGrav;
-            if (!isSprinting && !isCrouching)
-            {
-                playerSpeed = origSpeed;
-            }
+            //gravityValue = origGrav;
+            //if (!isSprinting && !isCrouching)
+            //{
+            //    playerSpeed = origSpeed;
+            //}
         }
     }
     void Crouching()
