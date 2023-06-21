@@ -54,7 +54,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     public NewStaff playerWeapon; //set in awake
     [SerializeField] int ShootRange; //the distance the player can shoot
     [SerializeField] float ShotCooldown; //the cooldown the player has between shots    
-    private bool isShooting; //checks if the player is currently shooting
+    public bool isShooting; //checks if the player is currently shooting
+    public bool canShoot;
 
     private int jumpsUsed;
     public Vector3 move;
@@ -148,12 +149,13 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     public bool CheckGround()
     {
         float _distanceToTheGround = GetComponent<Collider>().bounds.extents.y;
+        Debug.DrawRay(transform.position, Vector3.down, Color.red);
         return Physics.Raycast(transform.position, Vector3.down, _distanceToTheGround + 0.1f);
     }
 
     void Movement()
     {
-        groundedPlayer = CheckGround();//controller.isGrounded;
+        groundedPlayer = controller.isGrounded;
         if (groundedPlayer)
         {
             if (!isStepping && move.normalized.magnitude > 0.5f)
