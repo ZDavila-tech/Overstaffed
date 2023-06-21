@@ -49,6 +49,7 @@ public class AudioManager : MonoBehaviour
 
     public float volumeScale;
     public int currSong;
+    
     // Start is called before the first frame update
     void Awake()
     {
@@ -64,51 +65,17 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
+        musicAud.volume = musicVolume.value * masterVolume.value;
+        sfxAud.volume = soundEffectsVolume.value * masterVolume.value;
         PlaySong();
         
     }
     // Update is called once per frame
     void Update()
     {
-        UpdateToggles();
         UpdateBGVolume();
         UpdateMasterVolume();
         UpdateSFXVolume();
-    }
-
-    public void UpdateToggles()
-    {
- 
-        if (soundEffectsVolume.value == 0)
-        {
-            seToggle.isOn = true;
-        }
-        else
-        {
-            seToggle.isOn = false;
-        }
-
-        if (musicVolume.value == 0)
-        {
-            bgToggle.isOn = true;
-        }
-        else
-        {
-            bgToggle.isOn = false;
-        }
-
-        if(masterVolume.value == 0)
-        {
-            mvToggle.isOn = true;
-            musicVolume.value = 0;
-            soundEffectsVolume.value = 0;
-
-        }
-        else
-        {
-            mvToggle.isOn = false;
-           
-        }
     }
 
     public void StopSong()
@@ -124,6 +91,7 @@ public class AudioManager : MonoBehaviour
 
         musicAud.Play();
         musicAud.loop = true;
+        
     }
     public void ChangeSong()
     {
@@ -132,29 +100,57 @@ public class AudioManager : MonoBehaviour
         {
             currSong = 2;
         }
+        
         PlaySong();
     }
     public void UpdateBGVolume()
     {
-        musicAud.volume = musicVolume.value;
+        musicAud.volume = musicVolume.value * masterVolume.value;
+        if (currSong == 2)
+        {
+            musicAud.volume *= 0.05f;
+        }
+        if (musicAud.volume == 0)
+        {
+            bgToggle.isOn = true;
+        }
+        else
+        {
+            bgToggle.isOn= false;
+        }
     }
 
     public void UpdateSFXVolume()
     {
-        sfxAud.volume = soundEffectsVolume.value;
+        sfxAud.volume = soundEffectsVolume.value * masterVolume.value; ;
+        if(sfxAud.volume == 0)
+        {
+            seToggle.isOn = true;
+        }
+        else
+        {
+            seToggle.isOn= false;
+        }
     }
 
     public void UpdateMasterVolume()
     {
-        sfxAud.volume = soundEffectsVolume.value * masterVolume.value;
-        musicAud.volume = musicVolume.value * masterVolume.value;
+        if (masterVolume.value == 0)
+        {
+            mvToggle.isOn = true;
+            musicVolume.value = 0;
+            soundEffectsVolume.value = 0;
+        }
+        else
+        {
+            mvToggle.isOn= false;
+        }
     }
     //Sound effects
     public void WalkingSound()
     {
         sfxAud.clip = walking[Random.Range(0, walking.Count)];
-        sfxAud.volume = masterVolume.value * 0.85f;
-        sfxAud.PlayOneShot(sfxAud.clip);
+        sfxAud.PlayOneShot(sfxAud.clip, sfxAud.volume * 0.25f);
     }
 
     public void PlayerHurt()

@@ -46,15 +46,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 003af2e7b1c74dd4398d0e6d2b382596, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mixer: {fileID: 24100000, guid: 3602e05ed767c46438d65f59cecd1c7d, type: 2}
   masterVolume: {fileID: 0}
-  volumeValue: {fileID: 0}
+  musicVolume: {fileID: 0}
   soundEffectsVolume: {fileID: 0}
   bgToggle: {fileID: 0}
   seToggle: {fileID: 0}
   mvToggle: {fileID: 0}
-  aud: {fileID: 828630253}
-  seAud: {fileID: 912590416}
+  musicAud: {fileID: 828630253}
+  sfxAud: {fileID: 912590416}
   bgms:
   - {fileID: 8300000, guid: 348bb039a9d913745a732ba631b5ad43, type: 3}
   - {fileID: 8300000, guid: ce8830c84760ccb4fa2ea03a64519dc5, type: 3}
@@ -89,25 +88,24 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 26c3d4420510b4042a1e5bae6b1bf46d, type: 3}
   - {fileID: 8300000, guid: 5f0cda4207595394095b8943e9d7c6c5, type: 3}
   jumpClip: {fileID: 8300000, guid: bd109bbf0935edd40bd80dbc4f55c07f, type: 3}
-  attackClip: {fileID: 0}
-  currSong: 0
   dashClip: {fileID: 8300000, guid: 1dcf2feb4c638a145833533c5ec699b2, type: 3}
   hijumpClip: {fileID: 8300000, guid: aaaf6aaf44031b548af3e2cc54343f3d, type: 3}
   blinkClip: {fileID: 8300000, guid: b96801a66cbb31a4586dad9b98c60749, type: 3}
   buttonClick: {fileID: 8300000, guid: 8f4e7c87dd15df14283a8e858905b5ef, type: 3}
   transactionClick: {fileID: 8300000, guid: 9e567086b71a0b94281dbed5be1c1f3a, type: 3}
-  pickUpAud: {fileID: 8300000, guid: f1af16d2acaf8ca4e848a6cafc5923c7, type: 3}
-  healthPickupAudio: {fileID: 8300000, guid: b8c6a48d068e3c34abcf603fecb02f33, type: 3}
-  hurtPickupAudio: {fileID: 8300000, guid: f551a7140ccbc9047a43daad53a48eb2, type: 3}
   hubInteractAud: {fileID: 8300000, guid: 47b82b9d221d2fa4586d6467631bbbcd, type: 3}
   switchStaffAud: {fileID: 8300000, guid: 650a5994541f45f479a89d8e0dbb843e, type: 3}
   menuPopUpClip: {fileID: 8300000, guid: a23bf838ffd8890488ab34c4d31a5ae8, type: 3}
+  pickUpAud: {fileID: 8300000, guid: f1af16d2acaf8ca4e848a6cafc5923c7, type: 3}
+  healthPickupAudio: {fileID: 8300000, guid: b8c6a48d068e3c34abcf603fecb02f33, type: 3}
+  hurtPickupAudio: {fileID: 8300000, guid: f551a7140ccbc9047a43daad53a48eb2, type: 3}
   enemyShootClip: {fileID: 8300000, guid: cef2b1e9db6d1fb42a0e14deec2637b0, type: 3}
   enemyExpShootClip: {fileID: 8300000, guid: bb9e651fc9547964289cd0d5b07901ab, type: 3}
   throwClip: {fileID: 8300000, guid: c77092956791bcd47b5db21572299acd, type: 3}
   crstalShootClip: {fileID: 8300000, guid: c44177ccfa0b2c748a3555c5fe2cde5e, type: 3}
   healAudClip: {fileID: 8300000, guid: dad37f8ca24d0eb4e94ca1b088ca3c81, type: 3}
   volumeScale: 0
+  currSong: 0
 --- !u!82 &828630253
 AudioSource:
   m_ObjectHideFlags: 0
