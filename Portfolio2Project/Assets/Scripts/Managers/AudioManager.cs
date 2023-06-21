@@ -46,6 +46,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip throwClip;
     public AudioClip crstalShootClip;
     public AudioClip healAudClip;
+    public AudioClip elevatorClip;
 
     public float volumeScale;
     public int currSong;
@@ -108,7 +109,7 @@ public class AudioManager : MonoBehaviour
         musicAud.volume = musicVolume.value * masterVolume.value;
         if (currSong == 2)
         {
-            musicAud.volume *= 0.05f;
+            musicAud.volume *= 0.25f;
         }
         if (musicAud.volume == 0)
         {
@@ -264,5 +265,11 @@ public class AudioManager : MonoBehaviour
     {
         sfxAud.clip = enemyExpShootClip;
         sfxAud.PlayOneShot(sfxAud.clip);
+    }
+
+    public void InElevatorDing()
+    {
+        sfxAud.clip = elevatorClip;
+        sfxAud.PlayOneShot(sfxAud.clip, sfxAud.volume * 0.75f);
     }
 }
