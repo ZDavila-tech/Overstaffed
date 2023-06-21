@@ -77,11 +77,11 @@ public class StoreButtons : MonoBehaviour
     {
         AudioManager.instance.TransactionClick();
 
-        if (gameManager.instance.playerStats.GetAttack() > 0)
+        if (gameManager.instance.playerStats.GetAttack() - amount >= 0)
         {
             for (int i = 0; i < amount; ++i)
             {
-                gameManager.instance.playerStats.GainExp(((gameManager.instance.playerStats.GetAttack() + 1) * 5));
+                gameManager.instance.playerStats.GainExp(((gameManager.instance.playerStats.GetAttack()) * 5));
                 gameManager.instance.playerStats.AttackUp(-1);
             }
             gameManager.instance.playerController.UpdatePlayerStats();
@@ -92,11 +92,11 @@ public class StoreButtons : MonoBehaviour
     {
         AudioManager.instance.TransactionClick();
 
-        if (Stats.Health > 0)
+        if (Stats.Health - amount >= 0)
         {
             for (int i = 0; i < amount; ++i)
             {
-                gameManager.instance.playerStats.GainExp(((Stats.Health + 1) * 5));
+                gameManager.instance.playerStats.GainExp((Stats.Health * 5));
                 gameManager.instance.playerStats.HealthUp(-1);
             }
             gameManager.instance.playerController.UpdatePlayerStats();
@@ -108,11 +108,11 @@ public class StoreButtons : MonoBehaviour
     {
         AudioManager.instance.TransactionClick();
 
-        if (gameManager.instance.playerStats.GetSpeed() > 0)
+        if (gameManager.instance.playerStats.GetSpeed() - amount >= 0)
         {
             for (int i = 0; i < amount; ++i)
             {
-                gameManager.instance.playerStats.GainExp(((int)(gameManager.instance.playerStats.GetSpeed() + 1) * 5));
+                gameManager.instance.playerStats.GainExp(((int)(gameManager.instance.playerStats.GetSpeed()) * 5));
                 gameManager.instance.playerStats.SpeedUp(-1);
             }
             gameManager.instance.playerController.UpdatePlayerStats();
