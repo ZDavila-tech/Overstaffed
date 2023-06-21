@@ -54,7 +54,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     public NewStaff playerWeapon; //set in awake
     [SerializeField] int ShootRange; //the distance the player can shoot
     [SerializeField] float ShotCooldown; //the cooldown the player has between shots    
-    private bool isShooting; //checks if the player is currently shooting
+    public bool isShooting; //checks if the player is currently shooting
+    public bool canShoot;
 
     private int jumpsUsed;
     public Vector3 move;

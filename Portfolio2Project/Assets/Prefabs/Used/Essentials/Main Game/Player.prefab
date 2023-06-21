@@ -6846,6 +6846,7 @@ MonoBehaviour:
   eSpecialRange: 10
   eSpecialDamage: 10
   earthEffect: {fileID: 6225980049285009219, guid: b3b85d1e46d3c00439beb2e7ba321fe1, type: 3}
+  eRangeIndicator: {fileID: 7555616879737626133, guid: ca2ee3a80221224469e9cd90b4862062, type: 3}
   canSpecial: 0
   cWeapon: {fileID: 3395235527453676197}
   materials:
@@ -13593,7 +13594,6 @@ MonoBehaviour:
   baseAttack: 1
   baseHealth: 10
   baseSpeed: 8
-  playerStats: {fileID: 0}
   iHP: 0
   totalHP: 0
   playerSpeed: 0
@@ -13617,6 +13617,8 @@ MonoBehaviour:
   playerWeapon: {fileID: 0}
   ShootRange: 355
   ShotCooldown: 0.1
+  isShooting: 0
+  canShoot: 0
   move: {x: 0, y: 0, z: 0}
   pushBack: {x: 0, y: 0, z: 0}
   groundedPlayer: 0

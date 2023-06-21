@@ -10,17 +10,16 @@ public class AudioManager : MonoBehaviour
     public static AudioManager instance;
 
     [Header("----- Volume Stuff -----")]
-    public AudioMixer mixer;
     public Slider masterVolume;
-    public Slider volumeValue;
+    public Slider musicVolume;
     public Slider soundEffectsVolume;
     public Toggle bgToggle;
     public Toggle seToggle;
     public Toggle mvToggle;
 
     [Header("----- Audio Stuff -----")]
-    public AudioSource aud;
-    public AudioSource seAud;
+    public AudioSource musicAud;
+    public AudioSource sfxAud;
     //List audio clips
     public List<AudioClip> bgms;
     public List<AudioClip> enemyDeath;
@@ -50,6 +49,7 @@ public class AudioManager : MonoBehaviour
 
     public float volumeScale;
     public int currSong;
+    
     // Start is called before the first frame update
     void Awake()
     {
@@ -65,93 +65,33 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        if (PlayerPrefs.HasKey("MasterVolume"))
-        {
-            mixer.SetFloat("MasterVolume", PlayerPrefs.GetFloat("MasterVolume"));
-            mixer.SetFloat("SFXVolume", PlayerPrefs.GetFloat("SFXVolume"));
-            mixer.SetFloat("MusicVolume", PlayerPrefs.GetFloat("MusicVolume"));
-        }
-        else
-        {
-            SetSliders();
-        }
+        musicAud.volume = musicVolume.value * masterVolume.value;
+        sfxAud.volume = soundEffectsVolume.value * masterVolume.value;
         PlaySong();
+        
     }
     // Update is called once per frame
     void Update()
     {
-        UpdateToggles();
-    }
-
-    public void SetSliders()
-    {
-        masterVolume.value = PlayerPrefs.GetFloat("MasterVolume");
-        soundEffectsVolume.value = PlayerPrefs.GetFloat("SFXVolume");
-        volumeValue.value = PlayerPrefs.GetFloat("MusicVolume");
-    }
-    public void UpdateMasterVolume()
-    {
-        mixer.SetFloat("MasterVolume", masterVolume.value);
-        PlayerPrefs.SetFloat("MasterVolume", masterVolume.value);
-    }
-    public void UpdateSFXVolume()
-    {
-        mixer.SetFloat("SFXVolume", soundEffectsVolume.value);
-        PlayerPrefs.SetFloat("SFXVolume", soundEffectsVolume.value);
-    }
-    public void UpdateMusicVolume()
-    {
-        mixer.SetFloat("MasterVolume", volumeValue.value);
-        PlayerPrefs.SetFloat("MasterVolume", volumeValue.value);
-    }
-    public void UpdateToggles()
-    {
- 
-        if (soundEffectsVolume.value == -40.0f)
-        {
-            seToggle.isOn = true;
-        }
-        else
-        {
-            seToggle.isOn = false;
-        }
-
-        if (volumeValue.value == -40.0f)
-        {
-            bgToggle.isOn = true;
-        }
-        else
-        {
-            bgToggle.isOn = false;
-        }
-
-        if(masterVolume.value == -40.0f)
-        {
-            mvToggle.isOn = true;
-            volumeValue.value = -40.0f;
-            soundEffectsVolume.value = -40.0f;
-
-        }
-        else
-        {
-            mvToggle.isOn = false;
-           
-        }
+        UpdateBGVolume();
+        UpdateMasterVolume();
+        UpdateSFXVolume();
     }
 
     public void StopSong()
     {
-        aud.Stop();
+        musicAud.Stop();
     }
 
     public void PlaySong()
     {
-        aud.Stop();
+        musicAud.Stop();
 
-        aud.clip = bgms[currSong];
+        musicAud.clip = bgms[currSong];
 
-        aud.Play();
-        aud.loop = true;
+        musicAud.Play();
+        musicAud.loop = true;
+        
     }
     public void ChangeSong()
     {
@@ -160,20 +100,63 @@ public class AudioManager : MonoBehaviour
         {
             currSong = 2;
         }
+        
         PlaySong();
     }
+    public void UpdateBGVolume()
+    {
+        musicAud.volume = musicVolume.value * masterVolume.value;
+        if (currSong == 2)
+        {
+            musicAud.volume *= 0.05f;
+        }
+        if (musicAud.volume == 0)
+        {
+            bgToggle.isOn = true;
+        }
+        else
+        {
+            bgToggle.isOn= false;
+        }
+    }
 
+    public void UpdateSFXVolume()
+    {
+        sfxAud.volume = soundEffectsVolume.value * masterVolume.value; ;
+        if(sfxAud.volume == 0)
+        {
+            seToggle.isOn = true;
+        }
+        else
+        {
+            seToggle.isOn= false;
+        }
+    }
+
+    public void UpdateMasterVolume()
+    {
+        if (masterVolume.value == 0)
+        {
+            mvToggle.isOn = true;
+            musicVolume.value = 0;
+            soundEffectsVolume.value = 0;
+        }
+        else
+        {
+            mvToggle.isOn= false;
+        }
+    }
+    //Sound effects
     public void WalkingSound()
     {
-        seAud.clip = walking[Random.Range(0, walking.Count)];
-       
-        seAud.Play();
+        sfxAud.clip = walking[Random.Range(0, walking.Count)];
+        sfxAud.PlayOneShot(sfxAud.clip, sfxAud.volume * 0.25f);
     }
 
     public void PlayerHurt()
     {
-        seAud.clip = audDamage[Random.Range(0, audDamage.Count)];
-        seAud.Play();
+        sfxAud.clip = audDamage[Random.Range(0, audDamage.Count)];
+        sfxAud.PlayOneShot(sfxAud.clip);
     }
 
     public void MeleeSound()
@@ -181,16 +164,16 @@ public class AudioManager : MonoBehaviour
         switch (gameManager.instance.playerController.playerElement)
         {
             case NewStaff.Element.Fire:
-                seAud.clip = staffClips[3];
-                seAud.Play();
+                sfxAud.clip = staffClips[3];
+                sfxAud.PlayOneShot(sfxAud.clip);
                 break;
             case NewStaff.Element.Water:
-                seAud.clip = staffClips[4];
-                seAud.Play();
+                sfxAud.clip = staffClips[4];
+                sfxAud.PlayOneShot(sfxAud.clip);
                 break;
             case NewStaff.Element.Earth:
-                seAud.clip = staffClips[5];
-                seAud.Play();
+                sfxAud.clip = staffClips[5];
+                sfxAud.PlayOneShot(sfxAud.clip);
                 break;
         }
 
@@ -198,88 +181,88 @@ public class AudioManager : MonoBehaviour
 
     public void SwitchStaffSound()
     {
-        seAud.clip = switchStaffAud;
-        seAud.Play();
+        sfxAud.clip = switchStaffAud;
+        sfxAud.PlayOneShot(sfxAud.clip);
     }
 
     public void ShootSound()
     {
-        seAud.clip = gameManager.instance.playerController.playerWeapon.GetShootAudio();
-        seAud.Play();
+        sfxAud.clip = gameManager.instance.playerController.playerWeapon.GetShootAudio();
+        sfxAud.PlayOneShot(sfxAud.clip);
     }
 
     public void JumpSound()
     {
-        seAud.clip = jumpClip;
-        seAud.Play();
+        sfxAud.clip = jumpClip;
+        sfxAud.PlayOneShot(sfxAud.clip);
     }
 
     public void DashSound()
     {
-        seAud.clip = dashClip;
-        seAud.Play();
+        sfxAud.clip = dashClip;
+        sfxAud.PlayOneShot(sfxAud.clip);
     }
 
     public void HiJumpSound()
     {
-        seAud.clip = hijumpClip;
-        seAud.Play();
+        sfxAud.clip = hijumpClip;
+        sfxAud.PlayOneShot(sfxAud.clip);
     }
 
     public void BlinkSound()
     {
-        seAud.clip = blinkClip;
-        seAud.Play();
+        sfxAud.clip = blinkClip;
+        sfxAud.PlayOneShot(sfxAud.clip);
     }
     public void EnemyDeath()
     {
-        seAud.clip = enemyDeath[Random.Range(0, enemyDeath.Count)];
-        seAud.Play();
+        sfxAud.clip = enemyDeath[Random.Range(0, enemyDeath.Count)];
+        sfxAud.PlayOneShot(sfxAud.clip);
     }
 
     public void ButtonClick()
     {
-        seAud.clip = buttonClick;
-        seAud.Play();
+        sfxAud.clip = buttonClick;
+        sfxAud.PlayOneShot(sfxAud.clip);
     }
     public void TransactionClick()
     {
-        seAud.clip = transactionClick;
-        seAud.Play();
+        sfxAud.clip = transactionClick;
+        sfxAud.PlayOneShot(sfxAud.clip);
     }
     public void MenuTransition()
     {
-        seAud.clip = menuPopUpClip;
-        seAud.Play();
+        sfxAud.clip = menuPopUpClip;
+        sfxAud.PlayOneShot(sfxAud.clip);
     }
 
     public void EnemyShoot()
     {
-        seAud.clip = enemyShootClip;
-        seAud.Play();
+        sfxAud.clip = enemyShootClip;
+        sfxAud.PlayOneShot(sfxAud.clip);
     }
 
     public void Throwing()
     {
-        seAud.clip = throwClip;
-        seAud.Play(); ;
+        sfxAud.clip = throwClip;
+        sfxAud.PlayOneShot(sfxAud.clip);
     }
 
     public void CrystalShoot()
     {
-        seAud.clip = crstalShootClip;
-        seAud.Play();
+        sfxAud.clip = crstalShootClip;
+        sfxAud.PlayOneShot(sfxAud.clip);
     }
 
     public void HealAud()
     {
-        seAud.clip = healAudClip;
-        seAud.Play();
+        sfxAud.clip = healAudClip;
+        sfxAud.PlayOneShot(sfxAud.clip);
     }
 
     public void EnemyExpShoot()
     {
-        seAud.clip = enemyExpShootClip;
-        seAud.Play();
+        sfxAud.clip = enemyExpShootClip;
+        sfxAud.PlayOneShot(sfxAud.clip);
     }
 }
