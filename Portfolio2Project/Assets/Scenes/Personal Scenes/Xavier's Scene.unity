@@ -367,6 +367,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6256373690464243930, guid: 45de30749b3650d43830070e711739ef, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45de30749b3650d43830070e711739ef, type: 3}
 --- !u!114 &270031876 stripped
@@ -1964,7 +1968,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1570852443671573167, guid: a1ea5870c1304fc478e438d5f50ce4d6, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1570852443671573167, guid: a1ea5870c1304fc478e438d5f50ce4d6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2194,6 +2198,7 @@ MonoBehaviour:
   eSpecialRange: 10
   eSpecialDamage: 10
   earthEffect: {fileID: 6225980049285009219, guid: b3b85d1e46d3c00439beb2e7ba321fe1, type: 3}
+  eRangeIndicator: {fileID: 0}
   canSpecial: 0
   cWeapon: {fileID: 3395235526996581161}
   materials:
@@ -19432,7 +19437,7 @@ Transform:
   - {fileID: 741303554}
   - {fileID: 1171329300829440750}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6256373690963581275
 MeshFilter:
@@ -20176,6 +20181,63 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1001 &7555616879411488701
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7555616879737626133, guid: ca2ee3a80221224469e9cd90b4862062, type: 3}
+      propertyPath: m_Name
+      value: Earth Special Range Indicator
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555616879737626134, guid: ca2ee3a80221224469e9cd90b4862062, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555616879737626134, guid: ca2ee3a80221224469e9cd90b4862062, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555616879737626134, guid: ca2ee3a80221224469e9cd90b4862062, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555616879737626134, guid: ca2ee3a80221224469e9cd90b4862062, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555616879737626134, guid: ca2ee3a80221224469e9cd90b4862062, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555616879737626134, guid: ca2ee3a80221224469e9cd90b4862062, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555616879737626134, guid: ca2ee3a80221224469e9cd90b4862062, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555616879737626134, guid: ca2ee3a80221224469e9cd90b4862062, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555616879737626134, guid: ca2ee3a80221224469e9cd90b4862062, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555616879737626134, guid: ca2ee3a80221224469e9cd90b4862062, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7555616879737626134, guid: ca2ee3a80221224469e9cd90b4862062, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ca2ee3a80221224469e9cd90b4862062, type: 3}
 --- !u!137 &7675890608975773143
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0

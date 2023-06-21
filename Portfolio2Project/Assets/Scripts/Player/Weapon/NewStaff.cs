@@ -45,6 +45,8 @@ public class NewStaff : MonoBehaviour
     [SerializeField] float eSpecialRange;
     [SerializeField] public int eSpecialDamage;
     [SerializeField] GameObject earthEffect;
+    [SerializeField] GameObject eRangeIndicator;
+    private GameObject indicatorEarth;
 
 [Header("----- Other Stuff -----")]
     public bool canSpecial;
@@ -326,10 +328,10 @@ public class NewStaff : MonoBehaviour
     void EarthAOE()
     {
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out RaycastHit hit, float.MaxValue, mask))
-        {
-            Instantiate(earthEffect, hit.point, earthEffect.transform.rotation);
-        }
+        //if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out RaycastHit hit, float.MaxValue, mask))
+        //{
+        //    Instantiate(earthEffect, hit.point, earthEffect.transform.rotation);
+        //}
         foreach (GameObject enemy in enemies)
         {
             if (eSpecialRange >= Vector3.Distance(transform.position, enemy.transform.position))
@@ -350,6 +352,10 @@ public class NewStaff : MonoBehaviour
         Animator anim = weapon.GetComponent<Animator>();
         if (Input.GetButtonDown("Special"))
         {
+            canMelee = false;
+            isAttacking = true;
+            isShooting = true;
+            player.isShooting = true;
             switch (playerElement)
             {
                 case Element.Fire:
@@ -363,6 +369,7 @@ public class NewStaff : MonoBehaviour
                 case Element.Earth:
                     anim.SetTrigger("ESpecialHold");
                     weaponParticles[2].SetActive(true);
+                    indicatorEarth = Instantiate(eRangeIndicator, player.transform.position, eRangeIndicator.transform.rotation);
                     break;
             }
         }
@@ -389,10 +396,19 @@ public class NewStaff : MonoBehaviour
 
                     anim.SetTrigger("ESpecialRelease");
                     player.ChargeUt(-100);
+                    if(indicatorEarth != null)
+                    {
+                        Destroy(indicatorEarth);
+                    }
+
                     EarthAOE();
                     ResetShooting();
                     break;
             }
+            canMelee = true;
+            isAttacking = false;
+            isShooting = false;
+            player.isShooting = false;
         }
         resetParticles();
     }
