@@ -9,28 +9,13 @@ public class CollisionDetection : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //if(other.tag == "Enemy" && staff.isAttacking)
-        //{
-        //    Debug.Log("Enemy Hit");
-        //    IDamage damageable = other.GetComponent<IDamage>();
-        //    if (damageable != null)
-        //    {
-        //        damageable.TakeDamage(hitDmg);
-        //        DamageCooldown();
-        //    }
-        //}
-        //if (other.tag == "Enemy")
-        //{
-            //Debug.Log("Enemy Hit");
             IDamage damageable = other.GetComponentInParent<IDamage>();
 
             if (damageable != null)
             {
-                
                 damageable.TakeDamage(hitDmg);
                 DamageCooldown();
             }
-        //}
     }
 
     IEnumerator DamageCooldown()
