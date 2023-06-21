@@ -12,7 +12,8 @@ public class BossHitBox : MonoBehaviour, IDamage
     {
         if (objectToFollow != null)
         {
-            this.gameObject.transform.position = objectToFollow.transform.position;
+            gameObject.transform.position = objectToFollow.transform.position;
+            gameObject.transform.rotation = objectToFollow.transform.rotation;
         }
         else
         {
