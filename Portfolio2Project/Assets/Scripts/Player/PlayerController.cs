@@ -343,9 +343,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             
             if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out RaycastHit hit, ShootRange))
             {
-                //Debug.Log("Shot");
-
-                if (hit.collider.GetComponent<IDamage>() != null)
+                if (hit.collider.GetComponent<IDamage>() != null && !hit.transform.CompareTag("Player"))
                 {
                     IDamage damageable = hit.collider.GetComponent<IDamage>();
                     damageable.TakeDamage(playerDamage);
