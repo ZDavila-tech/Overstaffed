@@ -357,25 +357,10 @@ public class EnemyAI : MonoBehaviour, IDamage, IPhysics
     {
         damageNumbers.enabled = true;
         damageNumbers.text = dmg.ToString();
-        StartCoroutine(DmgNumAnim());
         yield return new WaitForSeconds(0.5f);
         damageNumbers.enabled = false;
     }
 
-    IEnumerator DmgNumAnim()
-    {
-        Vector3 originalpos = damageNumbers.transform.position;
-        bool moving = true;
-        while (moving) 
-        {
-            yield return new WaitForSeconds(0.05f);
-            damageNumbers.transform.position += Vector3.down;
-            damageNumbers.transform.position += Vector3.right;
-        }
-        yield return new WaitForSeconds(0.5f);
-        damageNumbers.transform.position = originalpos;
-        moving = false;
-    }
 
 
     public void Knockback(Vector3 dir)

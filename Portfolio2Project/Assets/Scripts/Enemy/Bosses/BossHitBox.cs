@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossHitBox : MonoBehaviour, IDamage
@@ -48,6 +49,7 @@ public class BossHitBox : MonoBehaviour, IDamage
             }
             else
             {
+                susan.anim.SetTrigger("Hurt");
                 switch (susan.GetBossPhase())
                 {
                     case 1:

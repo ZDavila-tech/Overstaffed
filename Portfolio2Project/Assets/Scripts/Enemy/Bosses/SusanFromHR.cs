@@ -11,6 +11,7 @@ public class SusanFromHR : MonoBehaviour
     [Header("----- Art -----")]
     [SerializeField] Renderer model;
     private Color originalColor;
+    public Animator anim;
 
     [Header("----- Health Bars -----")]
     public int healthBarOne;
@@ -317,6 +318,7 @@ public class SusanFromHR : MonoBehaviour
         {
             int maxIndexThings = phaseOneThingToSpawn.Length;
             int randomThingIndex = Random.Range(0, maxIndexThings);
+            anim.SetTrigger("Throw");
             bossProjectile = Instantiate(phaseOneThingToSpawn[randomThingIndex], phaseOneSpawners[phaseOneCurrentSpawner].transform);
         }
 
@@ -352,6 +354,7 @@ public class SusanFromHR : MonoBehaviour
         }
         int maxIndexThings = phaseTwoThingToSpawn.Length;
         int randomThingIndex = Random.Range(0, maxIndexThings);
+        anim.SetTrigger("Throw");
         GameObject bossProjectile = Instantiate(phaseTwoThingToSpawn[randomThingIndex], phaseTwoSpawners[phaseTwoCurrentSpawner].transform);
         BossProjectile bossProjectileScript = bossProjectile.GetComponent<BossProjectile>();
         bossProjectileScript.spawnPosition = phaseTwoSpawners[phaseTwoCurrentSpawner].transform;
@@ -514,6 +517,7 @@ public class SusanFromHR : MonoBehaviour
 
         StopAllCoroutines();
         //death animation? death animation!
+        anim.SetTrigger("Died");
         this.gameObject.transform.rotation = new Quaternion(90, 45, 45, this.gameObject.transform.rotation.w);
         this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 3.5f, this.gameObject.transform.position.z);
         --levelManager.enemiesRemaining;
