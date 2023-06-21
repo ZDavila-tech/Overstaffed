@@ -587,7 +587,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
 
     public void UpdateHP(bool DoesHeal)
     {
-        totalHP = baseHealth + (gameManager.instance.playerStats.GetHealth() * 5);
+        totalHP = baseHealth + (gameManager.instance.playerStats.GetHealth());
         if (DoesHeal)
             iHP = totalHP;
     }
