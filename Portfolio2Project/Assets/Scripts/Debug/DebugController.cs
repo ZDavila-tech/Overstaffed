@@ -27,7 +27,7 @@ public class DebugController : MonoBehaviour
         GOD_MODE = new DebugCommand("god_mode~", "Prevents you from taking damage", "god_mode~", () => { player.godMode = !player.godMode; });
         SKIP_LEVEL = new DebugCommand("skip_level~", "Sets the current level to the next one", "skip_level~", () => { gameManager.instance.levelManager.currentLevel += 1; });
         SKIP_TO_BOSS = new DebugCommand("skip_to_boss~", "Skips to the boss level", "skip_to_boss~", () => { gameManager.instance.levelManager.currentLevel = 20; });
-        SKIP_TUTORIAL = new DebugCommand("skip_tutorial~", "Skips to the end of the tutorial", "skip_tutorial~", () => { gameManager.instance.levelManager.currentLevel = 6; });
+        SKIP_TUTORIAL = new DebugCommand("skip_tutorial~", "Skips to the end of the tutorial", "skip_tutorial~", () => { gameManager.instance.levelManager.currentLevel = 4; });
 
         commandList = new List<object>
         {

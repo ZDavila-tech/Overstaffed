@@ -149,12 +149,13 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     public bool CheckGround()
     {
         float _distanceToTheGround = GetComponent<Collider>().bounds.extents.y;
+        Debug.DrawRay(transform.position, Vector3.down, Color.red);
         return Physics.Raycast(transform.position, Vector3.down, _distanceToTheGround + 0.1f);
     }
 
     void Movement()
     {
-        groundedPlayer = CheckGround();//controller.isGrounded;
+        groundedPlayer = controller.isGrounded;
         if (groundedPlayer)
         {
             if (!isStepping && move.normalized.magnitude > 0.5f)
