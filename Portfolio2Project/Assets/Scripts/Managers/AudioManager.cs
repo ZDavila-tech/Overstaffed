@@ -189,7 +189,7 @@ public class AudioManager : MonoBehaviour
     public void ShootSound()
     {
         sfxAud.clip = gameManager.instance.playerController.playerWeapon.GetShootAudio();
-        sfxAud.PlayOneShot(sfxAud.clip);
+        sfxAud.PlayOneShot(sfxAud.clip, sfxAud.volume * 0.75f);
     }
 
     public void JumpSound()
@@ -218,7 +218,7 @@ public class AudioManager : MonoBehaviour
     public void EnemyDeath()
     {
         sfxAud.clip = enemyDeath[Random.Range(0, enemyDeath.Count)];
-        sfxAud.PlayOneShot(sfxAud.clip);
+        sfxAud.PlayOneShot(sfxAud.clip, sfxAud.volume * 0.80f);
     }
 
     public void ButtonClick()
@@ -240,7 +240,7 @@ public class AudioManager : MonoBehaviour
     public void EnemyShoot()
     {
         sfxAud.clip = enemyShootClip;
-        sfxAud.PlayOneShot(sfxAud.clip);
+        sfxAud.PlayOneShot(sfxAud.clip, sfxAud.volume * 0.70f);
     }
 
     public void Throwing()
@@ -264,7 +264,7 @@ public class AudioManager : MonoBehaviour
     public void EnemyExpShoot()
     {
         sfxAud.clip = enemyExpShootClip;
-        sfxAud.PlayOneShot(sfxAud.clip);
+        sfxAud.PlayOneShot(sfxAud.clip, sfxAud.volume * 0.75f);
     }
 
     public void InElevatorDing()
