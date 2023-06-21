@@ -78,13 +78,6 @@ public class InElevator : MonoBehaviour
         }
     }
 
-    void Ding()
-    {
-        //Debug.Log("DING");
-        aud.volume = AudioManager.instance.volumeScale * 0.75f;
-        aud.Play();
-    }
-
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -98,7 +91,7 @@ public class InElevator : MonoBehaviour
         if(!doorsOpen)
         {
             doorsOpen = true;
-            Ding();
+            AudioManager.instance.InElevatorDing();
             TurnLightOn();
             //Debug.Log("Opening Coroutine");
             yield return new WaitForSeconds(0.5f);
