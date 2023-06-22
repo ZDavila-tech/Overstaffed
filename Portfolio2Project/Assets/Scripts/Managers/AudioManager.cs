@@ -54,7 +54,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip pickUpAud;
     [Range(0f, 1f)][SerializeField] float pickUpScale;
     public AudioClip healthPickupAudio;
-    [Range(0f, 1f)][SerializeField] float healhPickupScale;
+    [Range(0f, 1f)][SerializeField] float healthPickupScale;
     public AudioClip hurtPickupAudio;
     [Range(0f, 1f)][SerializeField] float hurtPickupScale;
     public AudioClip enemyShootClip;
@@ -297,7 +297,7 @@ public class AudioManager : MonoBehaviour
     public void HealthPickupAudio()
     {
         sfxAud.clip = healthPickupAudio;
-        sfxAud.PlayOneShot(sfxAud.clip, sfxAud.volume * healhPickupScale);
+        sfxAud.PlayOneShot(sfxAud.clip, sfxAud.volume * healthPickupScale);
     }
 
     public void HurtPickUpAudio()

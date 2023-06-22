@@ -325,7 +325,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
         }
         isStepping = false;
     }
-    IEnumerator Shoot()
+     IEnumerator Shoot()
     {
         if (!isShooting)
         {
@@ -334,7 +334,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
             if (playerWeapon != null)
             {
                 playerWeapon.Shoot();
-                StartCoroutine(PlayShootSound());
+               
 
                 if (enableCamShake)
                 {
@@ -378,7 +378,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     }
 
 
-    IEnumerator PlayShootSound()
+   public IEnumerator PlayShootSound()
     {
         if (!ShootSoundInPlay)
         {

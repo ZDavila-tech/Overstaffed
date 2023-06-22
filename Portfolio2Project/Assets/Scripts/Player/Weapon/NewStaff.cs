@@ -113,6 +113,7 @@ public class NewStaff : MonoBehaviour
             isShooting = true;
             canMelee = false;
             canSpecial = false;
+            StartCoroutine(player.PlayShootSound());
             if (lastShootTime + delay < Time.time)
             {               
                 if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out RaycastHit hit, float.MaxValue, mask))
