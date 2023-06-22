@@ -163,7 +163,6 @@ public class StoreButtons : MonoBehaviour
     void CalculateCost(int amount, UpgradeType upgrade)
     {
         cost = 0;
-        AudioManager.instance.TransactionClick();
         switch (upgrade)
         {
             case UpgradeType.Atk:

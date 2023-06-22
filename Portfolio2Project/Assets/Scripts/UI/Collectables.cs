@@ -34,9 +34,9 @@ public class Collectables : MonoBehaviour
             {
                 case PickupType.Health:
                     if (value >= 0)
-                        collectSound.PlayOneShot(AudioManager.instance.healthPickupAudio, AudioManager.instance.volumeScale);
+                        AudioManager.instance.HealthPickupAudio();
                     else
-                        collectSound.PlayOneShot(AudioManager.instance.hurtPickupAudio, AudioManager.instance.volumeScale);
+                        AudioManager.instance.HurtPickUpAudio();
                     gameManager.instance.playerController.TakeDamage((int)-value);
                     break;
                 case PickupType.UltimateCharge:
