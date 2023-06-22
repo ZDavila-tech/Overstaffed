@@ -11,7 +11,7 @@ public class SusanFromHR : MonoBehaviour
     [Header("----- Art -----")]
     [SerializeField] Renderer model;
     private Color originalColor;
-    public Animator anim;
+    public Animator animator;
 
     [Header("----- Health Bars -----")]
     public int healthBarOne;
@@ -84,6 +84,7 @@ public class SusanFromHR : MonoBehaviour
         ResetPhaseTwoStuff();
         SetCubeBoolsToFalse();
         SetPhaseBoolsToFalse();
+        animator.SetBool("Died", false);
     }
 
     private void SetPhaseBoolsToFalse()
@@ -318,7 +319,7 @@ public class SusanFromHR : MonoBehaviour
         {
             int maxIndexThings = phaseOneThingToSpawn.Length;
             int randomThingIndex = Random.Range(0, maxIndexThings);
-            anim.SetTrigger("Throw");
+            animator.SetTrigger("Throw");
             bossProjectile = Instantiate(phaseOneThingToSpawn[randomThingIndex], phaseOneSpawners[phaseOneCurrentSpawner].transform);
         }
 
@@ -354,7 +355,7 @@ public class SusanFromHR : MonoBehaviour
         }
         int maxIndexThings = phaseTwoThingToSpawn.Length;
         int randomThingIndex = Random.Range(0, maxIndexThings);
-        anim.SetTrigger("Throw");
+        animator.SetTrigger("Throw");
         GameObject bossProjectile = Instantiate(phaseTwoThingToSpawn[randomThingIndex], phaseTwoSpawners[phaseTwoCurrentSpawner].transform);
         BossProjectile bossProjectileScript = bossProjectile.GetComponent<BossProjectile>();
         bossProjectileScript.spawnPosition = phaseTwoSpawners[phaseTwoCurrentSpawner].transform;
@@ -517,7 +518,7 @@ public class SusanFromHR : MonoBehaviour
 
         StopAllCoroutines();
         //death animation? death animation!
-        anim.SetTrigger("Died");
+        animator.SetBool("Died", true);
         --levelManager.enemiesRemaining;
         GameObject.Destroy(this.gameObject, 7);
 

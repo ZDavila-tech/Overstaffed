@@ -50,7 +50,7 @@ public class BossHitBox : MonoBehaviour, IDamage
             }
             else
             {
-                susan.anim.SetTrigger("Hurt");
+                susan.animator.SetTrigger("Hurt");
                 switch (susan.GetBossPhase())
                 {
                     case 1:
