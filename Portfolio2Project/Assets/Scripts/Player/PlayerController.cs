@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     public int iHP;
     public int totalHP;
     public float playerSpeed;
-    int playerDamage;
+    public int playerDamage;
     [Range(0, 100)][SerializeField] float utCharge;
     [Range(1, 20)][SerializeField] float jumpHeight;
     [Range(0, 3)][SerializeField] float shootScreenshakeIntensity;

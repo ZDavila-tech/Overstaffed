@@ -48,6 +48,9 @@ public class Store : MonoBehaviour, IInteract
         {
             gameManager.PauseState();
             uiManager.storeBtns.DisplayCosts();
+            uiManager.UpdateAttackAmount();
+            uiManager.UpdateHealthAmount();
+            uiManager.UpdateSpeedAmount();
             uiManager.activeMenu = uiManager.storeMenu;
             uiManager.ShowActiveMenu();
         }
