@@ -10,11 +10,12 @@ public class StoreButtons : MonoBehaviour
     public AudioSource buttonAudio;
     int cost = 0;
     [SerializeField] TextMeshProUGUI[] texts;
-    public enum UpgradeType 
-    { 
-    Atk,
-    Hp,
-    Spd
+    [SerializeField] TextMeshProUGUI[] SellTexts;
+    public enum UpgradeType
+    {
+        Atk,
+        Hp,
+        Spd
     }
 
     public void BuyAttack(int amount)
@@ -168,15 +169,15 @@ public class StoreButtons : MonoBehaviour
         switch (upgrade)
         {
             case UpgradeType.Atk:
-        for (int i = 0; i < amount; i++)
-        {
-            cost += (gameManager.instance.playerStats.GetAttack() +1) * 10 + (10 * i);
+                for (int i = 0; i < amount; i++)
+                {
+                    cost += (gameManager.instance.playerStats.GetAttack() + 1) * 10 + (10 * i);
                 }
                 break;
             case UpgradeType.Hp:
                 for (int i = 0; i < amount; i++)
                 {
-                    cost += (gameManager.instance.playerStats.GetHealth() +1)* 10 + (10 * i);
+                    cost += (gameManager.instance.playerStats.GetHealth() + 1) * 10 + (10 * i);
                 }
                 break;
             case UpgradeType.Spd:
@@ -198,40 +199,77 @@ public class StoreButtons : MonoBehaviour
 
     public int getCost(int amount, UpgradeType upgrade) { CalculateCost(amount, upgrade); return cost; }
 
+    public int getSellPrice(int amount, UpgradeType upgrade)
+    {
+        int price = 0;
+        switch (upgrade)
+        {
+            case UpgradeType.Atk:
+                for (int i = 0; i < amount; i++)
+                {
+                    price += (gameManager.instance.playerStats.GetAttack()) * 5 + (5 * i);
+                }
+                break;
+            case UpgradeType.Hp:
+                for (int i = 0; i < amount; i++)
+                {
+                    price += (gameManager.instance.playerStats.GetHealth()) * 5 + (5 * i);
+                }
+                break;
+            case UpgradeType.Spd:
+                for (int i = 0; i < amount; i++)
+                {
+                    price += (gameManager.instance.playerStats.GetSpeed()) * 5 + (5 * i);
+                }
+                break;
+        }
+        return price;
+    }
+
     public void DisplayCosts()
     {
         for (int i = 0; i < texts.Length; i++)
         {
-            switch (i) 
+            switch (i)
             {
                 case 0:
                     texts[i].text = "COST: " + getCost(1, UpgradeType.Atk).ToString();
+                    SellTexts[i].text = "SELL FOR: " + getSellPrice(1, UpgradeType.Atk).ToString();
                     break;
                 case 1:
                     texts[i].text = "COST: " + getCost(5, UpgradeType.Atk).ToString();
+                    SellTexts[i].text = "SELL FOR: " + getSellPrice(5, UpgradeType.Atk).ToString();
                     break;
                 case 2:
                     texts[i].text = "COST: " + getCost(10, UpgradeType.Atk).ToString();
+                    SellTexts[i].text = "SELL FOR: " + getSellPrice(10, UpgradeType.Atk).ToString();
                     break;
                 case 3:
                     texts[i].text = "COST: " + getCost(1, UpgradeType.Hp).ToString();
+                    SellTexts[i].text = "SELL FOR: " + getSellPrice(1, UpgradeType.Hp).ToString();
                     break;
                 case 4:
                     texts[i].text = "COST: " + getCost(5, UpgradeType.Hp).ToString();
+                    SellTexts[i].text = "SELL FOR: " + getSellPrice(5, UpgradeType.Hp).ToString();
                     break;
                 case 5:
                     texts[i].text = "COST: " + getCost(10, UpgradeType.Hp).ToString();
+                    SellTexts[i].text = "SELL FOR: " + getSellPrice(10, UpgradeType.Hp).ToString();
                     break;
                 case 6:
                     texts[i].text = "COST: " + getCost(1, UpgradeType.Spd).ToString();
+                    SellTexts[i].text = "SELL FOR: " + getSellPrice(1, UpgradeType.Spd).ToString();
                     break;
                 case 7:
                     texts[i].text = "COST: " + getCost(5, UpgradeType.Spd).ToString();
+                    SellTexts[i].text = "SELL FOR: " + getSellPrice(5, UpgradeType.Spd).ToString();
                     break;
                 case 8:
                     texts[i].text = "COST: " + getCost(10, UpgradeType.Spd).ToString();
+                    SellTexts[i].text = "SELL FOR: " + getSellPrice(10, UpgradeType.Spd).ToString();
                     break;
             }
         }
     }
+
 }
