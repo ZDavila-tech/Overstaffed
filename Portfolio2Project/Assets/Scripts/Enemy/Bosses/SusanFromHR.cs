@@ -517,7 +517,6 @@ public class SusanFromHR : MonoBehaviour
         doBossDeadStuff = false;
 
         StopAllCoroutines();
-        //death animation? death animation!
         animator.SetBool("Died", true);
         --levelManager.enemiesRemaining;
         GameObject.Destroy(this.gameObject, 7);

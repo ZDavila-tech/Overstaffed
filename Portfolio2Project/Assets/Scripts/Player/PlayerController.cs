@@ -57,6 +57,8 @@ public class PlayerController : MonoBehaviour, IDamage, IPhysics
     public bool isShooting; //checks if the player is currently shooting
     public bool canShoot;
 
+    [SerializeField] private LayerMask mask;
+
     private int jumpsUsed;
     public Vector3 move;
     private Vector3 playerVelocity;
