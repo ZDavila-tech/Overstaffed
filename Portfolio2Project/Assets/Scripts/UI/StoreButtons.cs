@@ -47,8 +47,10 @@ public class StoreButtons : MonoBehaviour
         {
             for (int i = 0; i < amount; ++i)
             {
-               gameManager.instance.playerStats.GainExp(-((Stats.Health + 1) * 10));
+                gameManager.instance.playerStats.GainExp(-((Stats.Health + 1) * 10));
                 gameManager.instance.playerStats.HealthUp(1);
+                fileManager.HP += 1;
+                fileManager.saveStats();
             }
             gameManager.instance.playerController.UpdatePlayerStats();
             gameManager.instance.playerController.UpdateHealthBar();

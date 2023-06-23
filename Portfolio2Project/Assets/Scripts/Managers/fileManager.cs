@@ -5,14 +5,20 @@ using UnityEngine;
 
 public static class fileManager// : MonoBehaviour
 {
+
+    //settings
     public static float masterVolume;
     public static float effectVolume;
     public static float musicVolume;
     public static float sensitivity;
-    //public static int level;
     public static int highestLevelCompleted;
     public static bool invertY;
     public static bool infinite = true;
+
+    //Stats
+    public static int HP;
+    public static int Atk;
+    public static int Spd;
 
     private static bool hasloaded;
 
@@ -25,20 +31,30 @@ public static class fileManager// : MonoBehaviour
         if (!hasloaded)
         {
             hasloaded = true;
-            resetData();
+            resetSettingsData();
+        }
+        if (hasloaded)
+        {
+            load();
         }
     }
     
-    public static void save()
+    public static void saveSettings()
     {
         PlayerPrefs.SetFloat("MV", masterVolume);
         PlayerPrefs.SetFloat("EV", effectVolume);
         PlayerPrefs.SetFloat("MuV", musicVolume);
         PlayerPrefs.SetFloat("Sen", sensitivity);
-        //PlayerPrefs.SetInt("LvL", level);
         PlayerPrefs.SetInt("MaxLvL", highestLevelCompleted);
         PlayerPrefs.SetString("inv", invertY.ToString());
         PlayerPrefs.SetString("inf", infinite.ToString());
+    }
+
+    public static void saveStats()
+    {
+        PlayerPrefs.SetInt("HP", HP);
+        PlayerPrefs.SetInt("Atk", Atk);
+        PlayerPrefs.SetInt("Spd", Spd);
     }
 
     public static void load()
@@ -51,11 +67,14 @@ public static class fileManager// : MonoBehaviour
         highestLevelCompleted = PlayerPrefs.GetInt("MaxLvL");
         infinite = bool.Parse(PlayerPrefs.GetString("inf"));
         invertY = bool.Parse( PlayerPrefs.GetString("inv"));
+        HP = PlayerPrefs.GetInt("HP");
+        Atk = PlayerPrefs.GetInt("Atk");
+        Spd = PlayerPrefs.GetInt("Spd");
 
 
     }
 
-    public static void resetData()
+    public static void resetSettingsData()
     {
         PlayerPrefs.DeleteAll();
         masterVolume = 0.5f;
@@ -68,8 +87,18 @@ public static class fileManager// : MonoBehaviour
         UIManager.instance.invert.isOn = invertY;
         infinite = false;
         sensitivity= 1;
-        save();
+        saveSettings();
 
+    }
+
+    public static void resetStatsData()
+    {
+        HP = 0;
+        Atk = 0;
+        Spd = 0;
+        PlayerPrefs.SetInt("HP", HP);
+        PlayerPrefs.SetInt("Atk", Atk);
+        PlayerPrefs.SetInt("Spd", Spd);
     }
 
 }

@@ -16,7 +16,9 @@ public class Stats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Health = fileManager.HP;
+        Speed = fileManager.Spd;
+        Attack = fileManager.Atk;
     }
 
     //Getters
@@ -39,14 +41,17 @@ public class Stats : MonoBehaviour
         Health += amount;
         gameManager.instance.playerController.UpdateHP(true);
         gameManager.instance.playerController.UpdateHealthBar();
+        fileManager.HP += amount;
     }
     public void SpeedUp (int amount)
     {
         Speed += amount;
+        fileManager.Spd += amount;
     }
     public void AttackUp (int amount)
     {
          Attack += amount;
+        fileManager.Atk += amount;
     }
     public void GainExp(int amount)
     {
