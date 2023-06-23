@@ -20,6 +20,7 @@ public class LevelSelect : MonoBehaviour, IInteract
 
     public bool Interact(PlayerInteractionSystem player)
     {
+        AudioManager.instance.HubInteractionSound();
         gameManager.PauseState();
         uiManager.activeMenu = uiManager.levelSelectMenu;
         uiManager.ShowActiveMenu();

@@ -20,6 +20,7 @@ public class ElementSelect : MonoBehaviour, IInteract
 
     public bool Interact(PlayerInteractionSystem player)
     {
+        AudioManager.instance.HubInteractionSound();
         gameManager.PauseState();
         uiManager.activeMenu = uiManager.elementSelectMenu;
         uiManager.ShowActiveMenu();

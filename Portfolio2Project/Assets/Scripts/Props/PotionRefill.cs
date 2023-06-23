@@ -22,6 +22,7 @@ public class PotionRefill : MonoBehaviour, IInteract
 
     public bool Interact(PlayerInteractionSystem player)
     {
+        AudioManager.instance.HubInteractionSound();
         playerController.GetComponent<PlayerController>().potionsAvailable = 3;
         return true;
     }

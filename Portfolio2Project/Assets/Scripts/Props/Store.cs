@@ -46,6 +46,7 @@ public class Store : MonoBehaviour, IInteract
         }
         else //if it's not, normal store behaviour applies and the store menu is opened
         {
+            AudioManager.instance.HubInteractionSound();
             gameManager.PauseState();
             uiManager.storeBtns.DisplayCosts();
             uiManager.UpdateAttackAmount();
