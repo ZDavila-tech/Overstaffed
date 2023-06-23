@@ -308,4 +308,10 @@ public class AudioManager : MonoBehaviour
         sfxAud.clip = hurtPickupAudio;
         sfxAud.PlayOneShot(sfxAud.clip, sfxAud.volume * hurtPickupScale);
     }
+
+    public void HubInteractionSound()
+    {
+        sfxAud.clip = hubInteractAud;
+        sfxAud.PlayOneShot(sfxAud.clip, sfxAud.volume * hubInteractAudScale);
+    }
 }
