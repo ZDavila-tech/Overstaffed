@@ -13,8 +13,8 @@ public class PlayerPushBackObject : MonoBehaviour
     {
         gameObject.transform.LookAt(player.transform.position);
         targetPosition = player.transform.position;
-        StartCoroutine(LerpPosition(targetPosition, 1.1f));
-        Destroy(gameObject, 1.2f);
+        StartCoroutine(LerpPosition(targetPosition, 1.0f));
+        Destroy(gameObject, 1.1f);
     }
 
     private void OnTriggerEnter(Collider other)
