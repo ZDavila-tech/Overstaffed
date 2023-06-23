@@ -61,6 +61,9 @@ public class UIManager : MonoBehaviour
     public TextMeshProUGUI hpText;
     public TextMeshProUGUI potionText;
     public TextMeshProUGUI expText;
+    public TextMeshProUGUI healthText;
+    public TextMeshProUGUI speedText;
+    public TextMeshProUGUI attackText;
     public TextMeshProUGUI storeCurrency;
     [SerializeField] Image UtCharge;
 
@@ -119,7 +122,6 @@ public class UIManager : MonoBehaviour
         playerSkills = gameManager.playerSkills;
         //fileManager.save();
         fileManager.load();
-
     }
 
     void Update()
@@ -283,6 +285,22 @@ public class UIManager : MonoBehaviour
         expGained.text = exp.ToString("F0");
     }
 
+    public void UpdateHealthAmount()
+    {
+        int health = gameManager.instance.playerController.totalHP;
+        healthText.text = health.ToString("F0");
+
+    }
+    public void UpdateSpeedAmount()
+    {
+        float speed = gameManager.instance.playerController.playerSpeed;
+        speedText.text = speed.ToString("F0");
+    }
+    public void UpdateAttackAmount()
+    {
+        int attack = gameManager.instance.playerController.playerDamage;
+        attackText.text = attack.ToString("F0");
+    }
     public void UpdatePotionCount()
     {
         int potionCount = gameManager.instance.playerController.potionsAvailable;

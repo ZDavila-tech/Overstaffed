@@ -33,6 +33,7 @@ public class StoreButtons : MonoBehaviour
                 gameManager.instance.playerStats.AttackUp(amount);
             }
             gameManager.instance.playerController.UpdatePlayerStats();
+            UIManager.instance.UpdateAttackAmount();
             DisplayCosts();
         }
     }
@@ -53,6 +54,7 @@ public class StoreButtons : MonoBehaviour
             }
             gameManager.instance.playerController.UpdatePlayerStats();
             gameManager.instance.playerController.UpdateHealthBar();
+            UIManager.instance.UpdateHealthAmount();
             DisplayCosts();
         }
     }
@@ -70,6 +72,7 @@ public class StoreButtons : MonoBehaviour
                 gameManager.instance.playerStats.SpeedUp(1);
             }
             gameManager.instance.playerController.UpdatePlayerStats();
+            UIManager.instance.UpdateSpeedAmount();
             DisplayCosts();
         }
     }
@@ -87,6 +90,7 @@ public class StoreButtons : MonoBehaviour
                 gameManager.instance.playerStats.AttackUp(-1);
             }
             gameManager.instance.playerController.UpdatePlayerStats();
+            UIManager.instance.UpdateAttackAmount();
             DisplayCosts();
         }
     }
@@ -103,6 +107,7 @@ public class StoreButtons : MonoBehaviour
             }
             gameManager.instance.playerController.UpdatePlayerStats();
             gameManager.instance.playerController.UpdateHealthBar();
+            UIManager.instance.UpdateHealthAmount();
             DisplayCosts();
         }
     }
@@ -118,6 +123,7 @@ public class StoreButtons : MonoBehaviour
                 gameManager.instance.playerStats.SpeedUp(-1);
             }
             gameManager.instance.playerController.UpdatePlayerStats();
+            UIManager.instance.UpdateSpeedAmount();
             DisplayCosts();
         }
     }
@@ -159,7 +165,6 @@ public class StoreButtons : MonoBehaviour
     void CalculateCost(int amount, UpgradeType upgrade)
     {
         cost = 0;
-        AudioManager.instance.TransactionClick();
         switch (upgrade)
         {
             case UpgradeType.Atk:
