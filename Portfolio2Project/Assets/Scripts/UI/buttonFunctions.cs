@@ -221,6 +221,7 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.isPaused = false;
         if(LevelManager.instance != null)
         {
+            LevelManager.instance.highestLevelCompleted = fileManager.highestLevelCompleted;
             LevelManager.instance.TutorialBeatenGoToLevelSix();
             LevelManager.instance.LoadNextLevel();
         }
