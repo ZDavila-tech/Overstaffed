@@ -46,7 +46,7 @@ public class PlayerPushBackDetectionZone : MonoBehaviour
         GameObject pushBackObject = Instantiate(pushBackProjectile, spawnPointForProjectile.transform);
         pushBackObject.GetComponent<PlayerPushBackObject>().player = playerCollider.gameObject;
 
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(1.3f);
 
         isPushing = false;
     }

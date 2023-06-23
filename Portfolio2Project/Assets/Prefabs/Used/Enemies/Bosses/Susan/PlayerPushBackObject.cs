@@ -13,8 +13,8 @@ public class PlayerPushBackObject : MonoBehaviour
     {
         gameObject.transform.LookAt(player.transform.position);
         targetPosition = player.transform.position;
-        StartCoroutine(LerpPosition(targetPosition, 1));
-        Destroy(gameObject, 1.1f);
+        StartCoroutine(LerpPosition(targetPosition, 1.1f));
+        Destroy(gameObject, 1.2f);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,7 +24,7 @@ public class PlayerPushBackObject : MonoBehaviour
             IPhysics physicsable = other.GetComponent<IPhysics>();
 
             Vector3 dir = other.transform.position - transform.position;
-            physicsable.Knockback(dir * 15);
+            physicsable.Knockback(dir * 20);
         }
     }
 
