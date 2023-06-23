@@ -174,7 +174,7 @@ public class buttonFunctions : MonoBehaviour
         AudioManager.instance.ChangeSong();
         uiManager.ShowActiveMenu();
         //LevelManager.instance.tutorialBeaten = false;
-        LevelManager.instance.highestLevelCompleted = 0;
+        LevelManager.instance.highestLevelCompleted = 1;
         LevelManager.instance.totalEnemiesDefeated = 0;
 
         SceneManager.LoadScene("Character Select");
