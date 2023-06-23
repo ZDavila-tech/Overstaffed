@@ -96,7 +96,8 @@ public class buttonFunctions : MonoBehaviour
     public void YesSave()
     {
         AudioManager.instance.MenuTransition();
-        fileManager.save();
+        fileManager.saveSettings();
+        fileManager.saveStats();
         uiManager.saveMenu.SetActive(false);
         uiManager.HideActiveMenu();
         uiManager.HUD.SetActive(false);
@@ -119,7 +120,7 @@ public class buttonFunctions : MonoBehaviour
     public void NoSave()
     {
         AudioManager.instance.MenuTransition();
-        fileManager.resetData();
+        //fileManager.resetSettingsData();
         Destroy(GameObject.FindGameObjectWithTag("Player"));
         uiManager.saveMenu.SetActive(false);
         uiManager.HideActiveMenu();
@@ -164,7 +165,8 @@ public class buttonFunctions : MonoBehaviour
     {
 
         AudioManager.instance.ButtonClick();
-        fileManager.resetData();
+        fileManager.resetSettingsData();
+        fileManager.resetStatsData();
         //Debug.Log("Play Button Pressed");
         uiManager.HideActiveMenu();
         uiManager.activeMenu = uiManager.playerSelect;

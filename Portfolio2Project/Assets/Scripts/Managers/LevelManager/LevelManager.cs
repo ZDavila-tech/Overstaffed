@@ -314,10 +314,14 @@ public class LevelManager : MonoBehaviour
         if (highestLevelCompleted >= 5)
         {
             currentLevel = 6;
+            fileManager.highestLevelCompleted = 6;
+            fileManager.saveSettings();
         }
         else
         {
             currentLevel = 1;
+            fileManager.highestLevelCompleted = 1;
+            fileManager.saveSettings();
         }
     }
 
