@@ -82,7 +82,7 @@ public static class fileManager// : MonoBehaviour
         AudioManager.instance.soundEffectsVolume.value = effectVolume;
         musicVolume = 0.5f;
         AudioManager.instance.musicVolume.value = musicVolume;
-        //level = 1;
+        highestLevelCompleted = 1;
         invertY = false;
         UIManager.instance.invert.isOn = invertY;
         infinite = false;

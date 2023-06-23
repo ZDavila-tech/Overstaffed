@@ -96,6 +96,7 @@ public class buttonFunctions : MonoBehaviour
     public void YesSave()
     {
         AudioManager.instance.MenuTransition();
+        fileManager.highestLevelCompleted = LevelManager.instance.highestLevelCompleted;
         fileManager.saveSettings();
         fileManager.saveStats();
         uiManager.saveMenu.SetActive(false);
