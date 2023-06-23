@@ -29,7 +29,10 @@ public class AudioManager : MonoBehaviour
     public List<AudioClip> audDamage;
     [Range(0f, 1f)][SerializeField] float audDamageScale;
     public List<AudioClip> staffClips;
-    [Range(0f, 1f)][SerializeField] float staffScale;
+    [Range(0f, 1f)][SerializeField] float fireStaffScale;
+    [Range(0f, 1f)][SerializeField] float waterStaffScale;
+    [Range(0f, 1f)][SerializeField] float earthStaffScale;
+    [Range(0f, 1f)][SerializeField] float playerShootScale;
     //Player Audio Clips
     public AudioClip jumpClip;
     [Range(0f, 1f)][SerializeField] float jumpClipScale;
@@ -187,15 +190,15 @@ public class AudioManager : MonoBehaviour
         {
             case NewStaff.Element.Fire:
                 sfxAud.clip = staffClips[3];
-                sfxAud.PlayOneShot(sfxAud.clip, sfxAud.volume * staffScale);
+                sfxAud.PlayOneShot(sfxAud.clip, sfxAud.volume * fireStaffScale);
                 break;
             case NewStaff.Element.Water:
                 sfxAud.clip = staffClips[4];
-                sfxAud.PlayOneShot(sfxAud.clip, sfxAud.volume * staffScale);
+                sfxAud.PlayOneShot(sfxAud.clip, sfxAud.volume * waterStaffScale);
                 break;
             case NewStaff.Element.Earth:
                 sfxAud.clip = staffClips[5];
-                sfxAud.PlayOneShot(sfxAud.clip, sfxAud.volume * staffScale);
+                sfxAud.PlayOneShot(sfxAud.clip, sfxAud.volume * earthStaffScale);
                 break;
         }
 
@@ -210,7 +213,7 @@ public class AudioManager : MonoBehaviour
     public void ShootSound()
     {
         sfxAud.clip = gameManager.instance.playerController.playerWeapon.GetShootAudio();
-        sfxAud.PlayOneShot(sfxAud.clip, sfxAud.volume * 0.75f);
+        sfxAud.PlayOneShot(sfxAud.clip, sfxAud.volume * playerShootScale);
     }
 
     public void JumpSound()
