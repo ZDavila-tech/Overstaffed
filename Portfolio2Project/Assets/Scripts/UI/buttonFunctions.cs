@@ -164,18 +164,18 @@ public class buttonFunctions : MonoBehaviour
 
     public void PlayNewGame() //Takes player to character select scene
     {
-
         AudioManager.instance.ButtonClick();
-        fileManager.resetSettingsData();
         fileManager.resetStatsData();
+        fileManager.resetSettingsData();
         //Debug.Log("Play Button Pressed");
         uiManager.HideActiveMenu();
         uiManager.activeMenu = uiManager.playerSelect;
         AudioManager.instance.ChangeSong();
         uiManager.ShowActiveMenu();
-        //LevelManager.instance.tutorialBeaten = false;
-        LevelManager.instance.highestLevelCompleted = 1;
+        LevelManager.instance.highestLevelCompleted = 0;
         LevelManager.instance.totalEnemiesDefeated = 0;
+        LevelManager.instance.currentLevel = 1;
+        LevelManager.instance.isSpawning = false;
 
         SceneManager.LoadScene("Character Select");
     }

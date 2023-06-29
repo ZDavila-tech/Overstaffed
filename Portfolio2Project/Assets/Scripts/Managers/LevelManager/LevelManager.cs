@@ -331,5 +331,6 @@ public class LevelManager : MonoBehaviour
         levelCompleted = false;
         levelTransitioning = false;
         playerInPlayerSpawn = false;
+        isSpawning = false;
     }
 }
