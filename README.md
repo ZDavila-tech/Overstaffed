@@ -12,11 +12,9 @@ The Latest Update of my Final Project for Full Sail Game Development Bachelor De
 - Deus Ott
 
 ## My Role
-- Designed and programmed the UI of the game
-- Edited and added sound effects and background music through audio components and sound systems
-- Coded menus and menu systems (Pause Menu, Main Menu, Settings Menu, etc.)
-- Created credit screen
-- Coded level/scene transitions
+- Designed and coded the UI interface of the game (HUD, Pause Menu, Main Menu, Settings Menu, etc).
+- Edited and programmed sound effects and background music through audio components and sound systems.
+- Implemented level/scene transitions and animations
 
 This link is to the Google Drive folder that holds the most recent installer of the Game. When installing, Windows will pop up a message that the installer cannot be trusted. 
 Please click on "More Info" and then "Run Anyway" to continue with the installation. 
